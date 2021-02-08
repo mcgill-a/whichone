@@ -28,10 +28,7 @@ html {
 /* First image (Logo. Full height) */
 .bgimg-1 {
   background-image: url('https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-  min-height: 100%;
-  max-height: 100%;
-  min-width: 100%;
-  max-width: 100%;
+  background-size: cover;
 }
 
 .w3-wide {
