@@ -8,6 +8,7 @@ REFRESH_TOKEN = ''
     
 def getAuth(client_id, redirect_uri, scope):
     data = "{}client_id={}&response_type=code&redirect_uri={}&scope={}".format(SPOTIFY_URL_AUTH, client_id, redirect_uri, scope) 
+    print(data)
     return data
 
 def getToken(code, client_id, client_secret, redirect_uri):
