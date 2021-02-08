@@ -1,0 +1,407 @@
+{
+    "items": [
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/4UXqAaa6dQYAk18Lv7PEgX"
+            },
+            "followers": {
+                "href": null,
+                "total": 8561088
+            },
+            "genres": [
+                "emo",
+                "modern rock",
+                "pop punk"
+            ],
+            "href": "https://api.spotify.com/v1/artists/4UXqAaa6dQYAk18Lv7PEgX",
+            "id": "4UXqAaa6dQYAk18Lv7PEgX",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/078a111caaad88290dfa51d1aebf76f305f63dbf",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/abf638dd7e70c34518f4c2972c8d3c934456713d",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/194afe6aa362b3b1c3ea51744776d96e800be9c9",
+                    "width": 160
+                }
+            ],
+            "name": "Fall Out Boy",
+            "popularity": 83,
+            "type": "artist",
+            "uri": "spotify:artist:4UXqAaa6dQYAk18Lv7PEgX"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/6Wr3hh341P84m3EI8qdn9O"
+            },
+            "followers": {
+                "href": null,
+                "total": 2281293
+            },
+            "genres": [
+                "chicago hardcore",
+                "chicago punk",
+                "hardcore punk",
+                "pop punk",
+                "punk"
+            ],
+            "href": "https://api.spotify.com/v1/artists/6Wr3hh341P84m3EI8qdn9O",
+            "id": "6Wr3hh341P84m3EI8qdn9O",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/bf4cbbaa55e76f8313821ff104dae72e8823c932",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/66bf088bf69bb12fdff7ad0170045fad67a05d08",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/5226e3815fff0e3f43650ce5fa941f5b47e86656",
+                    "width": 160
+                }
+            ],
+            "name": "Rise Against",
+            "popularity": 75,
+            "type": "artist",
+            "uri": "spotify:artist:6Wr3hh341P84m3EI8qdn9O"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3OpqU68JpZlzvjAJj3B2Da"
+            },
+            "followers": {
+                "href": null,
+                "total": 442092
+            },
+            "genres": [
+                "british power metal",
+                "comic",
+                "comic metal",
+                "metal",
+                "pirate",
+                "power metal",
+                "scottish metal"
+            ],
+            "href": "https://api.spotify.com/v1/artists/3OpqU68JpZlzvjAJj3B2Da",
+            "id": "3OpqU68JpZlzvjAJj3B2Da",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/1c6cc2407c94016b9a6353541d280595d27b5c0b",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/a3f90f6f56da5c2a2a4a41b308addd8561778fcd",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/78ee4658603f7a7babff247cb44ab1dcbc3d27e1",
+                    "width": 160
+                }
+            ],
+            "name": "Alestorm",
+            "popularity": 63,
+            "type": "artist",
+            "uri": "spotify:artist:3OpqU68JpZlzvjAJj3B2Da"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V"
+            },
+            "followers": {
+                "href": null,
+                "total": 75818586
+            },
+            "genres": [
+                "pop",
+                "uk pop"
+            ],
+            "href": "https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V",
+            "id": "6eUKZXaKkcviH0Ku9w2n3V",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/c9e693f336bc004af00c51bbf0a157e8b5af75f2",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/ebe13258cf525b7399ea1b34a25d38172b3023a1",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/05fc0a0a6b74757e87da8081c358f5ee972466db",
+                    "width": 160
+                }
+            ],
+            "name": "Ed Sheeran",
+            "popularity": 93,
+            "type": "artist",
+            "uri": "spotify:artist:6eUKZXaKkcviH0Ku9w2n3V"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/6cmp7ut7okJAgJOSaMAVf3"
+            },
+            "followers": {
+                "href": null,
+                "total": 53574
+            },
+            "genres": [
+                "bitpop",
+                "future rock",
+                "power metal",
+                "swedish metal",
+                "swedish power metal"
+            ],
+            "href": "https://api.spotify.com/v1/artists/6cmp7ut7okJAgJOSaMAVf3",
+            "id": "6cmp7ut7okJAgJOSaMAVf3",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/55c9c52a1bc92a9ae48c7aaacd7d56cd2678bb0b",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/b278f6b3f0a3b46c6f42a75971b917f9221edf7e",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/bba1c6ac1541fc38fff14cb8be74384e52c31159",
+                    "width": 160
+                }
+            ],
+            "name": "Machinae Supremacy",
+            "popularity": 47,
+            "type": "artist",
+            "uri": "spotify:artist:6cmp7ut7okJAgJOSaMAVf3"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/4HBMToZ4yMR07eiK9IxtjK"
+            },
+            "followers": {
+                "href": null,
+                "total": 64723
+            },
+            "genres": [
+                "complextro",
+                "edm",
+                "electro house",
+                "filthstep"
+            ],
+            "href": "https://api.spotify.com/v1/artists/4HBMToZ4yMR07eiK9IxtjK",
+            "id": "4HBMToZ4yMR07eiK9IxtjK",
+            "images": [
+                {
+                    "height": 1000,
+                    "url": "https://i.scdn.co/image/04194d84e1a42bce2b4af5c177f3580d839d5e78",
+                    "width": 1000
+                },
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/2b7fe60e4c2a2c7c75063022cce6062e8b6ade18",
+                    "width": 640
+                },
+                {
+                    "height": 200,
+                    "url": "https://i.scdn.co/image/77630e050d0ef5f6928b042e0ec720107eb98b60",
+                    "width": 200
+                },
+                {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/46af99524f0595493ce43577008a5fbf2e808057",
+                    "width": 64
+                }
+            ],
+            "name": "Klaypex",
+            "popularity": 43,
+            "type": "artist",
+            "uri": "spotify:artist:4HBMToZ4yMR07eiK9IxtjK"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/0FWzNDaEu9jdgcYTbcOa4F"
+            },
+            "followers": {
+                "href": null,
+                "total": 723296
+            },
+            "genres": [
+                "dance pop",
+                "electropowerpop",
+                "modern rock",
+                "pop",
+                "pop punk",
+                "pop rap",
+                "post-teen pop"
+            ],
+            "href": "https://api.spotify.com/v1/artists/0FWzNDaEu9jdgcYTbcOa4F",
+            "id": "0FWzNDaEu9jdgcYTbcOa4F",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/b7b32fecb902c99e948b1b50916866d1a0ead5b3",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/f2ee1f435d47feec3258df59466be7326afc2e00",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/7e889cbde24acb655bbde1294a742c3b0b7b8ea0",
+                    "width": 160
+                }
+            ],
+            "name": "3OH!3",
+            "popularity": 68,
+            "type": "artist",
+            "uri": "spotify:artist:0FWzNDaEu9jdgcYTbcOa4F"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3YQKmKGau1PzlVlkL1iodx"
+            },
+            "followers": {
+                "href": null,
+                "total": 19492299
+            },
+            "genres": [
+                "modern rock",
+                "rock"
+            ],
+            "href": "https://api.spotify.com/v1/artists/3YQKmKGau1PzlVlkL1iodx",
+            "id": "3YQKmKGau1PzlVlkL1iodx",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/19e8f3bc875b7a4b9cf0041a5ee696c4be5478aa",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/99fb27e4f2caad57e4bf5ee55676c3e352fee3c8",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/f6a0cfdea725ca2a58de787ca5f1b82d0c516be3",
+                    "width": 160
+                }
+            ],
+            "name": "Twenty One Pilots",
+            "popularity": 85,
+            "type": "artist",
+            "uri": "spotify:artist:3YQKmKGau1PzlVlkL1iodx"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3mJ9GlkLzj8Ka7Z7EQaCMi"
+            },
+            "followers": {
+                "href": null,
+                "total": 326423
+            },
+            "genres": [
+                "abstract hip hop",
+                "comic",
+                "indie pop rap",
+                "modern rock",
+                "pop rap"
+            ],
+            "href": "https://api.spotify.com/v1/artists/3mJ9GlkLzj8Ka7Z7EQaCMi",
+            "id": "3mJ9GlkLzj8Ka7Z7EQaCMi",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/c0043bdb21e78b5a044a1110210d1e0718a1c09b",
+                    "width": 640
+                },
+                {
+                    "height": 320,
+                    "url": "https://i.scdn.co/image/2c4f1d2adf25b1e68b64fd98a16d05f765aed01f",
+                    "width": 320
+                },
+                {
+                    "height": 160,
+                    "url": "https://i.scdn.co/image/bc3b40f6bf19014781df63e1de4fde83a2ea42f3",
+                    "width": 160
+                }
+            ],
+            "name": "Watsky",
+            "popularity": 60,
+            "type": "artist",
+            "uri": "spotify:artist:3mJ9GlkLzj8Ka7Z7EQaCMi"
+        },
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/2C2sVVXanbOpymYBMpsi89"
+            },
+            "followers": {
+                "href": null,
+                "total": 485245
+            },
+            "genres": [
+                "modern rock",
+                "neon pop punk",
+                "pop punk",
+                "pop rock",
+                "post-teen pop",
+                "vegas indie",
+                "viral pop"
+            ],
+            "href": "https://api.spotify.com/v1/artists/2C2sVVXanbOpymYBMpsi89",
+            "id": "2C2sVVXanbOpymYBMpsi89",
+            "images": [
+                {
+                    "height": 563,
+                    "url": "https://i.scdn.co/image/ff6eb786aff45ab50e9820fe39f359656640888e",
+                    "width": 1000
+                },
+                {
+                    "height": 360,
+                    "url": "https://i.scdn.co/image/fc2ef2ece7668476e45d3c53d9a215988beb27a4",
+                    "width": 640
+                },
+                {
+                    "height": 113,
+                    "url": "https://i.scdn.co/image/ebf956c4e6e62c25187fa76d6509f0cf892d76ba",
+                    "width": 200
+                },
+                {
+                    "height": 36,
+                    "url": "https://i.scdn.co/image/865d5164f7a79a3d880f01f6c4369b31c6e214cd",
+                    "width": 64
+                }
+            ],
+            "name": "The Cab",
+            "popularity": 64,
+            "type": "artist",
+            "uri": "spotify:artist:2C2sVVXanbOpymYBMpsi89"
+        }
+    ],
+    "total": 50,
+    "limit": 10,
+    "offset": 0,
+    "href": "https://api.spotify.com/v1/me/top/artists?limit=10&offset=0&time_range=long_term",
+    "previous": null,
+    "next": "https://api.spotify.com/v1/me/top/artists?limit=10&offset=10&time_range=long_term"
+}
