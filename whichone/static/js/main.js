@@ -8,3 +8,14 @@ async function requestSongs() {
         console.error("API unavailable. Please try again later.");
     }
 }
+
+async function processSongs() {
+    let result = await requestSongs();
+    if (result == [] || result == undefined || !result) {
+        console.error("No data returned from API");
+    } else if (result) {
+        
+        // do something with it here
+        console.log(result);
+    }
+}
