@@ -1,4 +1,4 @@
-async function requestSongs(a, b) {
+async function requestSongs() {
     try {
         let url = "/2songs";
         let response = await fetch(url);
