@@ -1,4 +1,5 @@
-from flask import render_template, redirect, request, url_for
+import os
+from flask import render_template, redirect, request, url_for, json, jsonify
 from whichone.spotify import startup
 from whichone import app
 
@@ -19,4 +20,10 @@ def cb():
 
 @app.route('/2songs')
 def random():
-	return 'kasbdhkiasd'
+
+	filename = os.path.join(app.static_folder, 'resources', 'top10.json')
+
+	with open(filename) as test_file:
+		data = json.load(test_file)
+
+	return jsonify(data)
