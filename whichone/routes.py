@@ -2,14 +2,14 @@ from flask import render_template, redirect, request
 from whichone.spotify import startup
 from whichone import app
 
-@app.route('/')
-def index():
-
+@app.route('/login')
+def login():
 	response = startup.getUser()
 	return redirect(response)
 
-	#return render_template('index.html')
-
+@app.route('/')
+def index():
+	return render_template('index.html')
 
 @app.route('/callback/')
 def cb():
