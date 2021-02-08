@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <title>Which One</title>
     <meta charset="UTF-8">
@@ -6,30 +7,29 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
     {% block styles -%}
-        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
     {% endblock %}
     {% block javascript %}
-        <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
     {% endblock %}
-    
+
 </head>
 
 <body>
-    <!-- First Parallax Image with Logo Text -->
-    <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
-        <div class="w3-display-middle" style="white-space:nowrap;">
-            <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">WHICH <span
-                    class="w3-hide-small">ONE?</span>
-        </div>
-        <div>
-            <form action="/login">
-                <input type="submit" value="LOG IN" />
-            </form>            
+    <div class="bgimg-1">
+        <div class="container">
+            <div class="center-display">
+                <span class="w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">WHICH ONE?</span>
+                <div>
+                    <form action="/login">
+                        <input type="submit" value="LOG IN" />
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-
-
 </body>
+
 </html>

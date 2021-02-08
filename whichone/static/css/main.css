@@ -29,6 +29,7 @@ html {
 .bgimg-1 {
   background-image: url('https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
   background-size: cover;
+  height:100%;
 }
 
 .w3-wide {
@@ -38,6 +39,25 @@ html {
 .w3-hover-opacity {
   cursor: pointer;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  height: 100%;
+}
+
+.center-display {
+  display:flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
 
 /* Turn off parallax scrolling for tablets and phones */
 @media only screen and (max-device-width: 1600px) {
