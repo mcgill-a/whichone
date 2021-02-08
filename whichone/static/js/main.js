@@ -14,8 +14,9 @@ async function processSongs() {
     if (result == [] || result == undefined || !result) {
         console.error("No data returned from API");
     } else if (result) {
-        
-        // do something with it here
-        console.log(result);
+
+        for (item in result.items) {
+            console.log(item.name + " AND THE NEXT IN THE LIST IS \n\n")
+        }
     }
 }
