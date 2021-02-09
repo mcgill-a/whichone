@@ -1,4 +1,5 @@
 var user = {artists: null, tracks: null};
+
 window.onload = function() {
     process("artists", "tracks");
 }
@@ -77,6 +78,12 @@ function compareArtists() {
         else {
             console.log("These artists are just as popular as one another!");
         }
+
+        let text1 = document.getElementById("text1");
+        let text2 = document.getElementById("text2");
+        text1.innerHTML = artist1Name + " | Popularity: " + artist1Popularity;
+        text2.innerHTML = artist2Name + " | Popularity: " + artist2Popularity;
+
     }
 }
 
@@ -114,6 +121,21 @@ function compareTracks() {
         // print data to console
         console.log("Track Name: " + track1Name + "\nPopularity: " + track1Popularity);
         console.log("Track Name: " + track2Name + "\nPopularity: " + track2Popularity);
+
+        if (track1Popularity > track2Popularity) {
+            console.log(track1Name + " is more popular!");
+        }
+        else if (track1Popularity < track2Popularity) {
+            console.log(track2Name + " is more popular!");
+        }
+        else {
+            console.log("These tracks are just as popular as one another!");
+        }
+
+        let text1 = document.getElementById("text1");
+        let text2 = document.getElementById("text2");
+        text1.innerHTML = track1Name + " | Popularity: " + track1Popularity;
+        text2.innerHTML = track2Name + " | Popularity: " + track2Popularity;
 
     }
 }
