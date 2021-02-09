@@ -6,4 +6,4 @@ if __name__ == '__main__':
     print("-- Which One Web Server --")
     print("--- --- --- --- --- --- ---")
     print("")
-    app.run(threaded=True)
+    app.run(threaded=True, port=8080)

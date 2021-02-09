@@ -4,13 +4,6 @@ from flask_session import Session
 import whichone.spotipy as spotipy
 import uuid
 
-app = Flask(__name__)
-app.config.from_pyfile("whichone/config/defaults.py")
-app.config['SECRET_KEY'] = os.urandom(64)
-app.config['SESSION_TYPE'] = 'filesystem'
-app.config['SESSION_FILE_DIR'] = './.flask_session/'
-Session(app)
-
 caches_folder = './.spotify_caches/'
 if not os.path.exists(caches_folder):
     os.makedirs(caches_folder)
