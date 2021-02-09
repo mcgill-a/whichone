@@ -43,6 +43,7 @@ def index():
     spotify = spotipy.Spotify(auth_manager=auth_manager)
     return f'<h2>Hi {spotify.me()["display_name"]}, ' \
            f'<small><a href="/sign_out">[sign out]<a/></small></h2>' \
+           f'<a href="/play">play</a> | ' \
            f'<a href="/playlists">my playlists</a> | ' \
            f'<a href="/currently_playing">currently playing</a> | ' \
            f'<a href="/top_tracks">top tracks</a> | ' \
@@ -165,6 +166,6 @@ def current_user():
     spotify = spotipy.Spotify(auth_manager=auth_manager)
     return spotify.current_user()
 
-@app.route('/old')
-def oldIndex():
-    return render_template('index.html')
+@app.route('/play')
+def play():
+    return render_template('play.html')
