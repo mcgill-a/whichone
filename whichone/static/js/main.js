@@ -1,7 +1,7 @@
-var user = {artists: null, tracks: null};
+var user = {top_artists: null, top_tracks: null};
 
 window.onload = function() {
-    process("artists", "tracks");
+    process("top_artists", "top_tracks");
 }
 
 async function makeRequest(param) {
@@ -34,14 +34,14 @@ async function process(param1, param2) {
 
 function compareArtists() {
 
-    if (user.artists == [] || user.artists == undefined || !user.artists) {
+    if (user.top_artists == [] || user.top_artists == undefined || !user.top_artists) {
         console.error("No data")
     }
     else {
 
         // accesses "items" section of JSON
         // lists all the artists in the items
-        artistList = Object.values(user.artists)[1];
+        artistList = Object.values(user.top_artists)[1];
 
         // creates 2 reference numbers from available numbers
         listLen = artistList.length;
@@ -89,14 +89,14 @@ function compareArtists() {
 
 function compareTracks() {
 
-    if (user.tracks == [] || user.tracks == undefined || !user.tracks) {
+    if (user.top_tracks == [] || user.top_tracks == undefined || !user.top_tracks) {
         console.error("No data")
     }
     else {
 
         // accesses "items" section of JSON
         // lists all the tracks in the items
-        trackList = Object.values(user.tracks)[1];
+        trackList = Object.values(user.top_tracks)[1];
 
         // creates 2 reference numbers from available numbers
         listLen = trackList.length;
