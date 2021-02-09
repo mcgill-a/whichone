@@ -60,7 +60,7 @@ function compareArtists() {
         artist1Popularity = Object.values(artist1Data)[7];
 
         track1ImageList = Object.values(artist1Data)[5];
-        track1ImageData = track1ImageList[0];
+        track1ImageData = track1ImageList[1];
         track1Image = track1ImageData.url;
         console.log(track1Image);
 
@@ -71,7 +71,7 @@ function compareArtists() {
         artist2Popularity = Object.values(artist2Data)[7];
 
         track2ImageList = Object.values(artist2Data)[5];
-        track2ImageData = track2ImageList[0];
+        track2ImageData = track2ImageList[1];
         track2Image = track2ImageData.url;
         console.log(track2Image);
 
@@ -131,7 +131,7 @@ function compareTracks() {
 
         track1AlbumRef = Object.values(track1Data)[0];
         track1ImageList = Object.values(track1AlbumRef)[6];
-        track1ImageData = track1ImageList[0];
+        track1ImageData = track1ImageList[1];
         track1Image = track1ImageData.url;
         console.log(track1Image);
         
@@ -143,7 +143,7 @@ function compareTracks() {
 
         track2AlbumRef = Object.values(track2Data)[0];
         track2ImageList = Object.values(track2AlbumRef)[6];
-        track2ImageData = track2ImageList[0];
+        track2ImageData = track2ImageList[1];
         track2Image = track2ImageData.url;
         console.log(track2Image);
 
