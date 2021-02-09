@@ -39,10 +39,8 @@ function compareArtists() {
     else {
 
         // accesses "items" section of JSON
-        items = Object.values(user.artists)[1];
-            
-        // lists all the songs in the items
-        artistList = Object.values(items);
+        // lists all the artists in the items
+        artistList = Object.values(user.artists)[1];
 
         // creates 2 reference numbers from available numbers
         listLen = artistList.length;
@@ -67,8 +65,8 @@ function compareArtists() {
         artist2Popularity = Object.values(artist2Data)[7];
 
         // print data to console
-        console.log("Artist Name: " + artist1Name + ". Popularity: " + artist1Popularity);
-        console.log("Artist Name: " + artist2Name + ". Popularity: " + artist2Popularity);
+        console.log("Artist Name: " + artist1Name + "\nPopularity: " + artist1Popularity);
+        console.log("Artist Name: " + artist2Name + "\nPopularity: " + artist2Popularity);
 
         if (artist1Popularity > artist2Popularity) {
             console.log(artist1Name + " is more popular!");
@@ -90,10 +88,8 @@ function compareTracks() {
     else {
 
         // accesses "items" section of JSON
-        items = Object.values(user.tracks)[1];
-            
-        // lists all the songs in the items
-        trackList = Object.values(items);
+        // lists all the tracks in the items
+        trackList = Object.values(user.tracks)[1];
 
         // creates 2 reference numbers from available numbers
         listLen = trackList.length;
@@ -105,6 +101,19 @@ function compareTracks() {
             num2 = Math.floor(Math.random() * listLen);
         } 
 
-        console.log(trackList);
+        track1 = trackList[num1];
+        track1Data = Object.values(track1);
+        track1Name = Object.values(track1Data)[11];
+        track1Popularity = Object.values(track1Data)[12];
+        
+        track2 = trackList[num2];
+        track2Data = Object.values(track2);
+        track2Name = Object.values(track2Data)[11];
+        track2Popularity = Object.values(track2Data)[12];
+
+        // print data to console
+        console.log("Track Name: " + track1Name + "\nPopularity: " + track1Popularity);
+        console.log("Track Name: " + track2Name + "\nPopularity: " + track2Popularity);
+
     }
 }
