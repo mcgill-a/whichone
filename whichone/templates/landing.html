@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     {% block styles -%}
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
     {% endblock %}
     {% block javascript %}
@@ -21,16 +23,17 @@
     <div class="bgimg-1">
         <div class="container">
             <div class="center-display">
-                <span class="w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">WHICH ONE?</span>
-                <br/>
+                <h1 class="gotham-header">Which One.</h1>
                 <div>
                     <a href="{{auth_url}}/">
                         <button class="spotify-login">
-                            <span style="display:inline-block;">
-                                <img class="span-icon" src="{{url_for('static', filename='resources/spotify-icon.png')}}"></img>
+                            <span class="span-container">
+                                <img class="span-icon"
+                                    src="{{url_for('static', filename='resources/spotify-icon.png')}}"></img>
+                                Log in with Spotify
                             </span>
-                            Log in with Spotify</button>
-                     </a>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>

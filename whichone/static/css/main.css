@@ -67,17 +67,62 @@ html {
   border: none;
 }
 
-.spotify-login:hover {
+.spotify-login:hover, .spotify-login:active, .spotify-login:focus  {
   background-color: rgb(26, 150, 69);
 }
 
-.span-icon {
-  height: 48px;
-  width: 48px;
-  margin-right: 10px;
+.spotify-login:active, .spotify-login:focus {
+  outline: 0;
+  border: none;
 }
 
 
+
+.span-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.span-icon {
+  height: 48px;
+  width: 48px;
+  margin-right: 15px;
+}
+
+.gotham-header {
+  font-family: 'GothamPro';
+  font-weight: bold;
+  font-size: 140px;
+  color: white;
+}
+
+.gotham-small {
+  font-family: 'GothamPro';
+  font-weight: normal;
+  font-size: 20px;
+  color: white;
+}
+
+.album_art {
+  width: 300px;
+  height: 300px;
+  border-radius: 100%;
+}
+
+.choice-display {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  width: 100%;
+}
+
+.choice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+}
 
 
 /* Turn off parallax scrolling for tablets and phones */

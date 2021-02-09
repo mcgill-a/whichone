@@ -89,10 +89,15 @@ function compareArtists() {
             console.log("These artists are just as popular as one another!");
         }
 
-        let text1 = document.getElementById("text1");
-        let text2 = document.getElementById("text2");
-        text1.innerHTML = artist1Name + " | Popularity: " + artist1Popularity;
-        text2.innerHTML = artist2Name + " | Popularity: " + artist2Popularity;
+        let text1a = document.getElementById("text1a");
+        let text2a = document.getElementById("text2a");
+        text1a.innerHTML = artist1Name;
+        text2a.innerHTML = artist2Name;
+
+        let text1b = document.getElementById("text1b");
+        let text2b = document.getElementById("text2b");
+        text1b.innerHTML = "Popularity: " + artist1Popularity;
+        text2b.innerHTML = "Popularity: " + artist2Popularity;
 
         let pic1 = document.getElementById("image1");
         pic1.src = track1Image;
@@ -161,10 +166,15 @@ function compareTracks() {
             console.log("These tracks are just as popular as one another!");
         }
 
-        let text1 = document.getElementById("text1");
-        let text2 = document.getElementById("text2");
-        text1.innerHTML = track1Name + " | Popularity: " + track1Popularity;
-        text2.innerHTML = track2Name + " | Popularity: " + track2Popularity;
+        let text1a = document.getElementById("text1a");
+        let text2a = document.getElementById("text2a");
+        text1a.innerHTML = track1Name;
+        text2a.innerHTML = track2Name;
+
+        let text1b = document.getElementById("text1b");
+        let text2b = document.getElementById("text2b");
+        text1b.innerHTML = "Popularity: " + track1Popularity;
+        text2b.innerHTML = "Popularity: " + track2Popularity;
 
         let pic1 = document.getElementById("image1");
         pic1.src = track1Image;

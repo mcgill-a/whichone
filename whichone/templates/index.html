@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     {% block styles -%}
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
     {% endblock %}
     {% block javascript %}
@@ -21,34 +23,30 @@
 
     <div class="bgimg-1">
         <div class="container">
-
-            <!--Xander's testing zone. Enter at your own risk!-->
-            <div>
-
-                <p style="color:white" id="text1">Text 1</p>
-                <img id="image1"
-                    src="https://www.clipartmax.com/png/middle/69-699484_music-notes-png-transparent-background-musical-notes.png"
-                    alt="Image 1" style="width:60px;height:60px">
-                <p style="color:white" id="text2">Text 2</p>
-                <img id="image2"
-                    src="https://www.clipartmax.com/png/middle/69-699484_music-notes-png-transparent-background-musical-notes.png"
-                    alt="Image 2" style="width:60px;height:60px">
-
-            </div>
-
-            <div>
-                <button type="button" id="artists" onclick="compareArtists()">artists</button>
-                <button type="button" id="tracks" onclick="compareTracks()">tracks</button>
-            </div>
-
             <div class="center-display">
-                <span class="w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">WHICH ONE?</span>
-                <div>
-                    <form action="/login">
-                        <input type="submit" value="LOG IN" />
-                    </form>
+                <h1 class="gotham-header">Which One.</h1>
+                <!--Xander's testing zone. Enter at your own risk!-->
+                <div class="choice-display">
+                    <div class="choice choice1">
+                        <img id="image1" class="album_art">
+                        <h4 class="gotham-small" id="text1a">Text 1</h4>
+                        <h4 class="gotham-small" id="text1b"></h4>
+                    </div>
+
+                    <div class="choice choice2">
+                        <img id="image2" class="album_art">
+                        <h4 class="gotham-small" id="text2a">Text 2</h4>
+                        <h4 class="gotham-small" id="text2b"></h4>
+                    </div>
                 </div>
+
+                <div>
+                    <button type="button" id="artists" onclick="compareArtists()">artists</button>
+                    <button type="button" id="tracks" onclick="compareTracks()">tracks</button>
+                </div>
+
             </div>
+
         </div>
     </div>
 </body>
