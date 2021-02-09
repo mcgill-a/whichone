@@ -112,11 +112,13 @@ function compareTracks() {
         track1Data = Object.values(track1);
         track1Name = Object.values(track1Data)[11];
         track1Popularity = Object.values(track1Data)[12];
+        track1ID = Object.values(track1Data)[9];
         
         track2 = trackList[num2];
         track2Data = Object.values(track2);
         track2Name = Object.values(track2Data)[11];
         track2Popularity = Object.values(track2Data)[12];
+        track2ID = Object.values(track2Data)[9];
 
         // print data to console
         console.log("Track Name: " + track1Name + "\nPopularity: " + track1Popularity);
