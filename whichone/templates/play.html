@@ -14,28 +14,39 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
     {% endblock %}
     {% block javascript %}
-    <!-- <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script> -->
+    <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
     {% endblock %}
 
 </head>
 
 <body>
+
     <div class="bgimg-1">
         <div class="container">
             <div class="center-display">
                 <h1 class="gotham-header">Which One.</h1>
-                <div>
-                    <a href="{{auth_url}}/">
-                        <button class="spotify-login">
-                            <span class="span-container">
-                                <img class="span-icon"
-                                    src="{{url_for('static', filename='resources/spotify-icon.png')}}"></img>
-                                Log in with Spotify
-                            </span>
-                        </button>
-                    </a>
+                <!--Xander's testing zone. Enter at your own risk!-->
+                <div class="choice-display">
+                    <div class="choice choice1">
+                        <img id="image1" class="album_art">
+                        <h4 class="gotham-small" id="text1a">Text 1</h4>
+                        <h4 class="gotham-small" id="text1b"></h4>
+                    </div>
+
+                    <div class="choice choice2">
+                        <img id="image2" class="album_art">
+                        <h4 class="gotham-small" id="text2a">Text 2</h4>
+                        <h4 class="gotham-small" id="text2b"></h4>
+                    </div>
                 </div>
+
+                <div>
+                    <button type="button" id="artists" onclick="compareArtists()">artists</button>
+                    <button type="button" id="tracks" onclick="compareTracks()">tracks</button>
+                </div>
+
             </div>
+
         </div>
     </div>
 </body>
