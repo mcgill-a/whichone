@@ -57,6 +57,27 @@ html {
 }
 
 
+.spotify-login {
+  background-color: rgb(31,185,85);
+  width: 400px;
+  height: 90px;
+  color: white;
+  border-radius: 10px;
+  font-size: 32px;
+  border: none;
+}
+
+.spotify-login:hover {
+  background-color: rgb(26, 150, 69);
+}
+
+.span-icon {
+  height: 48px;
+  width: 48px;
+  margin-right: 10px;
+}
+
+
 
 
 /* Turn off parallax scrolling for tablets and phones */
