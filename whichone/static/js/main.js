@@ -59,11 +59,21 @@ function compareArtists() {
         artist1Name = Object.values(artist1Data)[6];
         artist1Popularity = Object.values(artist1Data)[7];
 
+        track1ImageList = Object.values(artist1Data)[5];
+        track1ImageData = track1ImageList[0];
+        track1Image = track1ImageData.url;
+        console.log(track1Image);
+
         // get data for artist at list position num2
         artist2 = artistList[num2];
         artist2Data = Object.values(artist2);
         artist2Name = Object.values(artist2Data)[6];
         artist2Popularity = Object.values(artist2Data)[7];
+
+        track2ImageList = Object.values(artist2Data)[5];
+        track2ImageData = track2ImageList[0];
+        track2Image = track2ImageData.url;
+        console.log(track2Image);
 
         // print data to console
         console.log("Artist Name: " + artist1Name + "\nPopularity: " + artist1Popularity);
@@ -83,6 +93,11 @@ function compareArtists() {
         let text2 = document.getElementById("text2");
         text1.innerHTML = artist1Name + " | Popularity: " + artist1Popularity;
         text2.innerHTML = artist2Name + " | Popularity: " + artist2Popularity;
+
+        let pic1 = document.getElementById("image1");
+        pic1.src = track1Image;
+        let pic2 = document.getElementById("image2");
+        pic2.src = track2Image;
 
     }
 }
@@ -113,12 +128,24 @@ function compareTracks() {
         track1Name = Object.values(track1Data)[11];
         track1Popularity = Object.values(track1Data)[12];
         track1ID = Object.values(track1Data)[9];
+
+        track1AlbumRef = Object.values(track1Data)[0];
+        track1ImageList = Object.values(track1AlbumRef)[6];
+        track1ImageData = track1ImageList[0];
+        track1Image = track1ImageData.url;
+        console.log(track1Image);
         
         track2 = trackList[num2];
         track2Data = Object.values(track2);
         track2Name = Object.values(track2Data)[11];
         track2Popularity = Object.values(track2Data)[12];
         track2ID = Object.values(track2Data)[9];
+
+        track2AlbumRef = Object.values(track2Data)[0];
+        track2ImageList = Object.values(track2AlbumRef)[6];
+        track2ImageData = track2ImageList[0];
+        track2Image = track2ImageData.url;
+        console.log(track2Image);
 
         // print data to console
         console.log("Track Name: " + track1Name + "\nPopularity: " + track1Popularity);
@@ -138,6 +165,11 @@ function compareTracks() {
         let text2 = document.getElementById("text2");
         text1.innerHTML = track1Name + " | Popularity: " + track1Popularity;
         text2.innerHTML = track2Name + " | Popularity: " + track2Popularity;
+
+        let pic1 = document.getElementById("image1");
+        pic1.src = track1Image;
+        let pic2 = document.getElementById("image2");
+        pic2.src = track2Image;
 
     }
 }
