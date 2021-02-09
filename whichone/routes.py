@@ -134,3 +134,7 @@ def current_user():
         return redirect('/')
     spotify = spotipy.Spotify(auth_manager=auth_manager)
     return spotify.current_user()
+
+@app.route('/old')
+def oldIndex():
+    return render_template('index.html')
