@@ -1,6 +1,11 @@
-async function requestSongs() {
+var user = {artists: null, tracks: null};
+window.onload = function() {
+    process("artists", "tracks");
+}
+
+async function makeRequest(param) {
     try {
-        let url = "/2songs";
+        let url = "/" + param;
         let response = await fetch(url);
         let data = await response.json();
         return data;
@@ -9,15 +14,33 @@ async function requestSongs() {
     }
 }
 
-async function processSongs() {
-    let result = await requestSongs();
-    if (result == [] || result == undefined || !result) {
-        console.error("No data returned from API");
-    } else if (result) {
+async function process(param1, param2) {
+
+    let result1 = await makeRequest(param1);
+    if (result1 == [] || result1 == undefined || !result1) {
+        console.error("No data returned from API (param1)");
+    } else if (result1) {
+        user[param1] = result1;
+    }
+
+    let result2 = await makeRequest(param2);
+    if (result2 == [] || result2 == undefined || !result2) {
+        console.error("No data returned from API (param2)");
+    } else if (result2) {
+        user[param2] = result2;
+    }
+}
+
+function compareArtists() {
+
+    if (user.artists == [] || user.artists == undefined || !user.artists) {
+        console.error("No data")
+    }
+    else {
 
         // accesses "items" section of JSON
-        items = Object.values(result)[1];
-        
+        items = Object.values(user.artists)[1];
+            
         // lists all the songs in the items
         artistList = Object.values(items);
 
@@ -56,6 +79,32 @@ async function processSongs() {
         else {
             console.log("These artists are just as popular as one another!");
         }
+    }
+}
 
+function compareTracks() {
+
+    if (user.tracks == [] || user.tracks == undefined || !user.tracks) {
+        console.error("No data")
+    }
+    else {
+
+        // accesses "items" section of JSON
+        items = Object.values(user.tracks)[1];
+            
+        // lists all the songs in the items
+        trackList = Object.values(items);
+
+        // creates 2 reference numbers from available numbers
+        listLen = trackList.length;
+        num1 = Math.floor(Math.random() * listLen);
+        num2 = Math.floor(Math.random() * listLen);
+
+        // reference numbers cannot match
+        while (num1 == num2) {
+            num2 = Math.floor(Math.random() * listLen);
+        } 
+
+        console.log(trackList);
     }
 }
