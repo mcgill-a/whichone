@@ -8,8 +8,10 @@ caches_folder = './.spotify_caches/'
 if not os.path.exists(caches_folder):
     os.makedirs(caches_folder)
 
+
 def session_cache_path():
     return caches_folder + session.get('uuid')
+
 
 @app.route('/')
 def index():
@@ -34,7 +36,8 @@ def index():
     if not auth_manager.validate_token(cache_handler.get_cached_token()):
         # Step 2. Display sign in link when no token
         auth_url = auth_manager.get_authorize_url()
-        return f'<h2><a href="{auth_url}">Sign in</a></h2>'
+        #return f'<h2><a href="{auth_url}">Sign in</a></h2>'
+        return render_template('landing.html', auth_url=auth_url)
 
     # Step 4. Signed in, display data
     spotify = spotipy.Spotify(auth_manager=auth_manager)
@@ -89,6 +92,7 @@ def currently_playing():
         return track
     return "No track currently playing."
 
+
 @app.route('/top_tracks')
 def top_tracks():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
@@ -105,6 +109,7 @@ def top_tracks():
         return tracks
     return "Could not find top tracks"
 
+
 @app.route('/top_artists')
 def top_artists():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
@@ -120,6 +125,31 @@ def top_artists():
     if not artists is None:
         return artists
     return "Could not find top artists"
+
+
+@app.route('/audio_features', methods=['POST'])
+def audio_features():
+    if request.method == 'POST':
+        data = request.get_json()
+        if data.track_ids:
+            print(data.track_ids)
+            return data.track_ids
+    """        
+            cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
+            auth_manager = spotipy.oauth2.SpotifyOAuth(
+                client_id=app.config['SPOTIPY_CLIENT_ID'],
+                client_secret=app.config['SPOTIPY_CLIENT_SECRET'],
+                redirect_uri=app.config['SPOTIPY_REDIRECT_URI'],
+                cache_handler=cache_handler)
+            if not auth_manager.validate_token(cache_handler.get_cached_token()):
+                return redirect('/')
+            spotify = spotipy.Spotify(auth_manager=auth_manager)
+            features = spotify.audio_features(tracks=[track_ids])
+            if not features is None:
+                return features
+            return "Could not find any audio features"
+    """
+    return []
 
 
 @app.route('/current_user')
