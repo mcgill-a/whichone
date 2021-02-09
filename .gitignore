@@ -1,5 +1,5 @@
-/.flask_session
-/.spotify_caches
+.flask_session/*
+.spotify_caches/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
