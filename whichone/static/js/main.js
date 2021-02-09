@@ -21,10 +21,12 @@ async function processSongs() {
         // lists all the songs in the items
         artistList = Object.values(items);
 
+        // creates 2 reference numbers from available numbers
         listLen = artistList.length;
         num1 = Math.floor(Math.random() * listLen);
         num2 = Math.floor(Math.random() * listLen);
 
+        // reference numbers cannot match
         while (num1 == num2) {
             num2 = Math.floor(Math.random() * listLen);
         } 
@@ -41,6 +43,7 @@ async function processSongs() {
         artist2Name = Object.values(artist2Data)[6];
         artist2Popularity = Object.values(artist2Data)[7];
 
+        // print data to console
         console.log("Artist Name: " + artist1Name + ". Popularity: " + artist1Popularity);
         console.log("Artist Name: " + artist2Name + ". Popularity: " + artist2Popularity);
 
