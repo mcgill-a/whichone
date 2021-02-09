@@ -1,6 +1,5 @@
 import os
 from flask import render_template, redirect, request, url_for, json, jsonify
-from whichone.spotify import startup
 from whichone import app
 
 @app.route('/login')
