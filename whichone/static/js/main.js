@@ -4,6 +4,7 @@ var user = {
 };
 
 var idList = [];
+var featuresList = [];
 var highScore = 0;
 
 window.onload = function () {
@@ -61,7 +62,11 @@ async function makePostRequest(url, inputBody) {
         contentType: "application/json",
         dataType: "json",
         success: function(data){
-            console.log(data);
+            for (i = 0; i < data.length; i++) {
+                featuresList.push(data[i]);
+            }
+            console.log(featuresList);
+
         },
         error: function(errMsg) {
             console.log(errMsg);
@@ -159,7 +164,8 @@ function compareArtists() {
             track1ImageList = Object.values(artist1Data)[5];
             track1ImageData = track1ImageList[1];
             track1Image = track1ImageData.url;
-            //console.log(track1Image);
+
+            //TODO features
 
             // get data for artist at list position num2
             artist2 = artistList[num2];
@@ -179,10 +185,8 @@ function compareArtists() {
 
         updateMode("artist", " do you listen to more?");
 
-        let text1a = document.getElementById("text1a");
-        let text2a = document.getElementById("text2a");
-        text1a.innerHTML = artist1Name;
-        text2a.innerHTML = artist2Name;
+        document.getElementById("text1a").textContent = artist1Name;
+        document.getElementById("text2a").textContent = artist2Name;
 
         let pic1 = document.getElementById("image1");
         pic1.src = track1Image;
@@ -229,7 +233,6 @@ function compareTracks() {
             track1ImageList = Object.values(track1AlbumRef)[6];
             track1ImageData = track1ImageList[1];
             track1Image = track1ImageData.url;
-            //console.log(track1Image);
 
             track2 = trackList[num2];
             track2Data = Object.values(track2);
@@ -249,11 +252,8 @@ function compareTracks() {
 
         updateMode("track", " do you listen to more?");
 
-        let text1a = document.getElementById("text1a");
-        let text2a = document.getElementById("text2a");
-
-        text1a.innerHTML = track1Name;
-        text2a.innerHTML = track2Name;
+        document.getElementById("text1a").textContent = track1Name;
+        document.getElementById("text2a").textContent = track2Name;
 
         let pic1 = document.getElementById("image1");
         pic1.src = track1Image;

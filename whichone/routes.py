@@ -105,7 +105,7 @@ def top_tracks():
     if not auth_manager.validate_token(cache_handler.get_cached_token()):
         return redirect('/')
     spotify = spotipy.Spotify(auth_manager=auth_manager)
-    tracks = spotify.current_user_top_tracks(time_range="short_term", limit=50)
+    tracks = spotify.current_user_top_tracks(time_range="long_term", limit=50)
     if not tracks is None:
         return tracks
     return "Could not find top tracks"
@@ -122,7 +122,7 @@ def top_artists():
     if not auth_manager.validate_token(cache_handler.get_cached_token()):
         return redirect('/')
     spotify = spotipy.Spotify(auth_manager=auth_manager)
-    artists = spotify.current_user_top_artists(time_range="short_term", limit=50)
+    artists = spotify.current_user_top_artists(time_range="long_term", limit=50)
     if not artists is None:
         return artists
     return "Could not find top artists"
