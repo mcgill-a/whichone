@@ -123,23 +123,16 @@ html {
   font-size: 22px;
   color: white;
   margin: 0 auto;
+  max-width: 90%;
+  text-align: center;
 }
 
 .album_art {
-  width: 80%;
-  height: 80%;
-  max-height: 30vw;
-  /* Magic! */
-  max-width: 30vw;
+  width: 340px;
+  height: 340px;
   border-radius: 8px;
-  cursor: pointer;
   object-fit: cover;
-  transition: all .2s ease-in-out;
-  margin-bottom: 30px;
-}
-
-.album_art:hover {
-  transform: scale(1.1);
+  margin-bottom: 10px;
 }
 
 .choice-display {
@@ -154,13 +147,22 @@ html {
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  width: 480px;
-  height: 440px;
-  padding: 0 25px;
+  width: 360px;
+  height: 475px;
+  padding: 10px;
+  background-color: rgb(49, 49, 49, 0.7);
+  margin: 10px 30px;
+  border-radius: 10px;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+}
+
+.choice:hover {
+  transform: scale(1.07);
 }
 
 .user-card {
-  width: 600px;
+  width: 650px;
   height: 200px;
   background-color: #FF000000;
   display: flex;
@@ -186,7 +188,7 @@ html {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  width: 440px;
+  width: 490px;
   padding: 10px;
   
 }
