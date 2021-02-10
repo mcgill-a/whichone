@@ -104,6 +104,10 @@ html {
   color: white;
 }
 
+.text-grey {
+  color: rgb(87, 83, 83) !important;
+}
+
 .gotham-small {
   font-family: 'GothamPro';
   font-weight: normal;
