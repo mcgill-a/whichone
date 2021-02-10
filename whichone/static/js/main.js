@@ -3,7 +3,11 @@ var user = {
     top_tracks: null
 };
 
+<<<<<<< HEAD
 idList = [];
+=======
+var highScore = 0;
+>>>>>>> 825ceb3dd565765295a0f722bdd916e0ec26cbf9
 
 window.onload = function () {
     loadWindow();
@@ -91,6 +95,15 @@ function listTrackIDs(input) {
 function updateMode(mode, mode_text) {
     document.getElementById("mode").textContent = mode;
     document.getElementById("mode_text").textContent = mode_text;
+}
+
+function updateHighScore(score) {
+    if (score > highScore) {
+        highScore = score;
+        console.log("Update high score: " + highScore);
+    }
+
+    document.getElementById("high_score").textContent = highScore;
 }
 
 function compareArtists() {
@@ -248,6 +261,7 @@ function makeGuess(option) {
         } else if (thisPop2 > thisPop1) {
             // wrong answer
             console.log("Final score: " + userCurrentScore);
+            updateHighScore(userCurrentScore);
             userCurrentScore = 0;
         } else {
             // neutral answer, error or same pop
@@ -261,6 +275,7 @@ function makeGuess(option) {
         } else if (thisPop1 > thisPop2) {
             // wrong answer
             console.log("Final score: " + userCurrentScore);
+            updateHighScore(userCurrentScore);
             userCurrentScore = 0;
         } else {
             // neutral answer, error or same pop

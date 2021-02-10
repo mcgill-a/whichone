@@ -20,12 +20,14 @@
 </head>
 
 <body>
-
     <div class="bgimg-1">
         <div class="container">
             <div class="center-display">
-                <h1 class="gotham-medium">Which <span id="mode" class="text-grey">one</span><span id="mode_text">?</span></h1>
-            
+                <h1 class="gotham-medium">Which
+                    <span id="mode" class="text-grey">one</span>
+                    <span id="mode_text">?</span>
+                </h1>
+
                 <div class="choice-display">
                     <div class="choice choice1">
                         <img id="image1" class="album_art" onclick="makeGuess('1')" role="button">
@@ -39,14 +41,28 @@
                         <h4 class="gotham-small" id="text2b"></h4>
                     </div>
                 </div>
-
-                <div>
-                    <button type="button" id="artists" onclick="compareArtists()">artists</button>
-                    <button type="button" id="tracks" onclick="compareTracks()">tracks</button>
-                </div>
-
             </div>
 
+            {% if user %}
+            <div class="user-card">
+                <div class="user-card-left">
+                    
+                    <img class="user-profile" src="{{user.profile_pic}}">
+                </div>
+                <div class="user-card-right">
+                    <h4 class="name">{{user.display_name}}</h4>
+                    
+                    <p class="score">High Score: <span id="high_score">0</span></p>
+                    <div class="made-with">
+                        <span class="span-container">
+                            <img class="span-icon-small"
+                                src="{{url_for('static', filename='resources/spotify-icon-black.png')}}"></img>
+                            Which One?
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 </body>
