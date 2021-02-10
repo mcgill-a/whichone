@@ -122,7 +122,6 @@ function updateMode(mode, mode_text) {
 function updateHighScore(score) {
     if (score > highScore) {
         highScore = score;
-        console.log("Update high score: " + highScore);
     }
 
     document.getElementById("high_score").textContent = highScore;
@@ -164,10 +163,6 @@ function compareArtists() {
             track1ImageList = Object.values(artist1Data)[5];
             track1ImageData = track1ImageList[1];
             track1Image = track1ImageData.url;
-
-            for (item in featuresList) {
-                console.log(Object.values(item[2]));
-            }
 
             // get data for artist at list position num2
             artist2 = artistList[num2];
@@ -235,6 +230,7 @@ function compareTracks() {
             track1ImageList = Object.values(track1AlbumRef)[6];
             track1ImageData = track1ImageList[1];
             track1Image = track1ImageData.url;
+            track1Dance = 0;
 
             track2 = trackList[num2];
             track2Data = Object.values(track2);
@@ -250,6 +246,24 @@ function compareTracks() {
             track2ImageList = Object.values(track2AlbumRef)[6];
             track2ImageData = track2ImageList[1];
             track2Image = track2ImageData.url;
+            track2Dance = 0;
+
+            for (i = 0; i < featuresList.length; i++) {
+                thisTrackFeatures = Object.values(featuresList[i]);
+                if (thisTrackFeatures[5] == track1ID) {
+                    console.log("Track 1 Danceability: " + thisTrackFeatures[2]);
+                    track1Dance = thisTrackFeatures[2];
+                    break;
+                }
+            }
+            for (i = 0; i < featuresList.length; i++) {
+                thisTrackFeatures = Object.values(featuresList[i]);
+                if (thisTrackFeatures[5] == track2ID) {
+                    console.log("Track 2 Danceability: " + thisTrackFeatures[2]);
+                    track2Dance = thisTrackFeatures[2];
+                    break;
+                }
+            }
         }
 
         updateMode("track", " have you listened to more?");
@@ -267,8 +281,6 @@ function compareTracks() {
 
 function makeGuess(option) {
 
-    functionArray = [compareArtists(), compareTracks()];
-
     if (option == null || thisOption1 == null || thisOption2 == null) {
         console.log("There is a problem, an option is null");
 
@@ -276,11 +288,9 @@ function makeGuess(option) {
         if (thisPop1 > thisPop2) {
             //correct answer
             userCurrentScore += 1;
-            console.log("Current score: " + userCurrentScore);
             document.getElementById("current_score").textContent = userCurrentScore;
         } else if (thisPop2 > thisPop1) {
             // wrong answer
-            console.log("Final score: " + userCurrentScore);
             updateHighScore(userCurrentScore);
             userCurrentScore = 0;
             document.getElementById("current_score").textContent = userCurrentScore;
@@ -292,11 +302,9 @@ function makeGuess(option) {
         if (thisPop2 > thisPop1) {
             //correct answer
             userCurrentScore += 1;
-            console.log("Current score: " + userCurrentScore);
             document.getElementById("current_score").textContent = userCurrentScore;
         } else if (thisPop1 > thisPop2) {
             // wrong answer
-            console.log("Final score: " + userCurrentScore);
             updateHighScore(userCurrentScore);
             userCurrentScore = 0;
             document.getElementById("current_score").textContent = userCurrentScore;
