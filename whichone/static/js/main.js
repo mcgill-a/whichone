@@ -1,6 +1,9 @@
-var user = {top_artists: null, top_tracks: null};
+var user = {
+    top_artists: null,
+    top_tracks: null
+};
 
-window.onload = function() {
+window.onload = function () {
     loadWindow();
 }
 
@@ -22,7 +25,7 @@ async function makeRequest(param) {
         let response = await fetch(url);
         let data = await response.json();
         return data;
-    } catch(error) {
+    } catch (error) {
         console.error("API unavailable. Please try again later.");
     }
 }
@@ -53,8 +56,7 @@ function compareArtists() {
 
     if (user.top_artists == [] || user.top_artists == undefined || !user.top_artists) {
         console.error("No data")
-    }
-    else {
+    } else {
 
         // accesses "items" section of JSON
         // lists all the artists in the items
@@ -68,7 +70,7 @@ function compareArtists() {
         // reference numbers cannot match
         while (num1 == num2) {
             num2 = Math.floor(Math.random() * listLen);
-        } 
+        }
 
         // get data for artist at list position num1
         artist1 = artistList[num1];
@@ -121,19 +123,11 @@ function compareTracks() {
 
     if (user.top_tracks == [] || user.top_tracks == undefined || !user.top_tracks) {
         console.error("No data")
-    }
-    else {
+    } else {
 
         // accesses "items" section of JSON
         // lists all the tracks in the items
         trackList = Object.values(user.top_tracks)[1];
-
-        // get on-screen song names - TODO
-
-        //let text1a = document.getElementById("text1a");
-        //let text2a = document.getElementById("text2a");
-        //current1 = text1a.textContent;
-        //current2 = text2a.textContent;
 
         // creates 2 reference numbers from available numbers
         listLen = trackList.length;
@@ -143,7 +137,7 @@ function compareTracks() {
         // reference numbers cannot match
         while (num1 == num2) {
             num2 = Math.floor(Math.random() * listLen);
-        } 
+        }
 
         track1 = trackList[num1];
         track1Data = Object.values(track1);
@@ -159,7 +153,7 @@ function compareTracks() {
         track1ImageData = track1ImageList[1];
         track1Image = track1ImageData.url;
         //console.log(track1Image);
-        
+
         track2 = trackList[num2];
         track2Data = Object.values(track2);
         track2Name = Object.values(track2Data)[11];
@@ -201,48 +195,44 @@ function makeGuess(option) {
 
     if (option == null || thisOption1 == null || thisOption2 == null) {
         console.log("There is a problem, an option is null");
-    }
 
-    else if (option == thisOption1) {
+    } else if (option == '1') {
         if (thisPop1 > thisPop2) {
             //correct answer
-            userCurrentScore+=1;
+            userCurrentScore += 1;
             console.log("Current score: " + userCurrentScore);
-        }
-        else if (thisPop2 > thisPop1) {
+        } else if (thisPop2 > thisPop1) {
             // wrong answer
             console.log("Final score: " + userCurrentScore);
             userCurrentScore = 0;
-        }
-        else {
+        } else {
             // neutral answer, error or same pop
             console.log("same");
         }
-    }
-
-    else if (option == thisOption2) {
+    } else if (option == '2') {
         if (thisPop2 > thisPop1) {
             //correct answer
-            userCurrentScore+=1;
+            userCurrentScore += 1;
             console.log("Current score: " + userCurrentScore);
-        }
-        else if (thisPop1 > thisPop2) {
+        } else if (thisPop1 > thisPop2) {
             // wrong answer
             console.log("Final score: " + userCurrentScore);
             userCurrentScore = 0;
-        }
-        else {
+        } else {
             // neutral answer, error or same pop
             console.log("same");
         }
-    }
-
-    else {
+    } else {
         //something has gone wrong
         console.log("hmmmmm");
     }
 
-    var functionChoice = functionArray[Math.floor(Math.random()*functionArray.length)];
-    functionChoice;
+    choiceNum = Math.random();
+    if (choiceNum < 0.5) {
+        compareArtists();
+    } else if (choiceNum >= 0.5) {
+        compareTracks();
+    }
+
 
 }
