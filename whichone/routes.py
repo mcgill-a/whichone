@@ -144,7 +144,7 @@ def audio_features():
             spotify = spotipy.Spotify(auth_manager=auth_manager)
             features = spotify.audio_features(tracks=data["track_ids"])
             if not features is None:
-                return features
+                return str(features), 201
             return "Could not find any audio features"
     return []
 
