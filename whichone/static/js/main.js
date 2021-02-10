@@ -1,7 +1,19 @@
 var user = {top_artists: null, top_tracks: null};
 
 window.onload = function() {
+    loadWindow();
+}
+
+var thisOption1 = "";
+var thisOption2 = "";
+var thisPop1 = "";
+var thisPop2 = "";
+
+userCurrentScore = 0;
+
+async function loadWindow() {
     process("top_artists", "top_tracks");
+    compareArtists();
 }
 
 async function makeRequest(param) {
@@ -59,10 +71,13 @@ function compareArtists() {
         artist1Name = Object.values(artist1Data)[6];
         artist1Popularity = Object.values(artist1Data)[7];
 
+        thisOption1 = artist1Name;
+        thisPop1 = artist1Popularity;
+
         track1ImageList = Object.values(artist1Data)[5];
         track1ImageData = track1ImageList[1];
         track1Image = track1ImageData.url;
-        console.log(track1Image);
+        //console.log(track1Image);
 
         // get data for artist at list position num2
         artist2 = artistList[num2];
@@ -70,10 +85,13 @@ function compareArtists() {
         artist2Name = Object.values(artist2Data)[6];
         artist2Popularity = Object.values(artist2Data)[7];
 
+        thisOption2 = artist2Name;
+        thisPop2 = artist2Popularity;
+
         track2ImageList = Object.values(artist2Data)[5];
         track2ImageData = track2ImageList[1];
         track2Image = track2ImageData.url;
-        console.log(track2Image);
+        //console.log(track2Image);
 
         // print data to console
         //console.log("Artist Name: " + artist1Name + "\nPopularity: " + artist1Popularity);
@@ -104,7 +122,7 @@ function compareTracks() {
         trackList = Object.values(user.top_tracks)[1];
 
         // get on-screen song names - TODO
-        
+
         //let text1a = document.getElementById("text1a");
         //let text2a = document.getElementById("text2a");
         //current1 = text1a.textContent;
@@ -126,11 +144,14 @@ function compareTracks() {
         track1Popularity = Object.values(track1Data)[12];
         track1ID = Object.values(track1Data)[9];
 
+        thisOption1 = track1Name;
+        thisPop1 = track1Popularity;
+
         track1AlbumRef = Object.values(track1Data)[0];
         track1ImageList = Object.values(track1AlbumRef)[6];
         track1ImageData = track1ImageList[1];
         track1Image = track1ImageData.url;
-        console.log(track1Image);
+        //console.log(track1Image);
         
         track2 = trackList[num2];
         track2Data = Object.values(track2);
@@ -138,11 +159,14 @@ function compareTracks() {
         track2Popularity = Object.values(track2Data)[12];
         track2ID = Object.values(track2Data)[9];
 
+        thisOption2 = track2Name;
+        thisPop2 = track2Popularity;
+
         track2AlbumRef = Object.values(track2Data)[0];
         track2ImageList = Object.values(track2AlbumRef)[6];
         track2ImageData = track2ImageList[1];
         track2Image = track2ImageData.url;
-        console.log(track2Image);
+        //console.log(track2Image);
 
         //console.log("Track Name: " + track1Name + "\nPopularity: " + track1Popularity);
         //console.log("Track Name: " + track2Name + "\nPopularity: " + track2Popularity);
@@ -159,14 +183,56 @@ function compareTracks() {
         pic2.src = track2Image;
 
     }
+}
 
-    function makeGuess() {
+function makeGuess(option) {
 
-        functionArray = [compareArtists(), compareTracks()];
+    functionArray = [compareArtists(), compareTracks()];
 
-        var functionChoice = functionArray[Math.floor(Math.random()*functionArray.length)];
-
-        functionChoice;
-
+    if (option == null || thisOption1 == null || thisOption2 == null) {
+        console.log("There is a problem, an option is null");
     }
+
+    else if (option == thisOption1) {
+        if (thisPop1 > thisPop2) {
+            //correct answer
+            userCurrentScore+=1;
+            console.log("Current score: " + userCurrentScore);
+        }
+        else if (thisPop2 > thisPop1) {
+            // wrong answer
+            console.log("Final score: " + userCurrentScore);
+            userCurrentScore = 0;
+        }
+        else {
+            // neutral answer, error or same pop
+            console.log("same");
+        }
+    }
+
+    else if (option == thisOption2) {
+        if (thisPop2 > thisPop1) {
+            //correct answer
+            userCurrentScore+=1;
+            console.log("Current score: " + userCurrentScore);
+        }
+        else if (thisPop1 > thisPop2) {
+            // wrong answer
+            console.log("Final score: " + userCurrentScore);
+            userCurrentScore = 0;
+        }
+        else {
+            // neutral answer, error or same pop
+            console.log("same");
+        }
+    }
+
+    else {
+        //something has gone wrong
+        console.log("hmmmmm");
+    }
+
+    var functionChoice = functionArray[Math.floor(Math.random()*functionArray.length)];
+    functionChoice;
+
 }
