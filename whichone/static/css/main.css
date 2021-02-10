@@ -97,6 +97,17 @@ html {
   color: white;
 }
 
+.gotham-medium {
+  font-family: 'GothamPro';
+  font-weight: bold;
+  font-size: 70px;
+  color: white;
+}
+
+.text-grey {
+  color: rgb(87, 83, 83) !important;
+}
+
 .gotham-small {
   font-family: 'GothamPro';
   font-weight: normal;

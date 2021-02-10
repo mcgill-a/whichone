@@ -44,6 +44,11 @@ async function process(param1, param2) {
     }
 }
 
+function updateMode(mode, mode_text) {
+    document.getElementById("mode").textContent = mode;
+    document.getElementById("mode_text").textContent = mode_text;
+}
+
 function compareArtists() {
 
     if (user.top_artists == [] || user.top_artists == undefined || !user.top_artists) {
@@ -96,6 +101,8 @@ function compareArtists() {
         // print data to console
         //console.log("Artist Name: " + artist1Name + "\nPopularity: " + artist1Popularity);
         //console.log("Artist Name: " + artist2Name + "\nPopularity: " + artist2Popularity);
+
+        updateMode("artist", " is the most popular?");
 
         let text1a = document.getElementById("text1a");
         let text2a = document.getElementById("text2a");
@@ -170,6 +177,9 @@ function compareTracks() {
 
         //console.log("Track Name: " + track1Name + "\nPopularity: " + track1Popularity);
         //console.log("Track Name: " + track2Name + "\nPopularity: " + track2Popularity);
+
+
+        updateMode("track", " is the most popular?");
 
         let text1a = document.getElementById("text1a");
         let text2a = document.getElementById("text2a");
