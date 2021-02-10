@@ -3,6 +3,8 @@ var user = {
     top_tracks: null
 };
 
+idList = [];
+
 window.onload = function () {
     loadWindow();
 }
@@ -16,6 +18,9 @@ userCurrentScore = 0;
 
 async function loadWindow() {
     process("top_artists", "top_tracks");
+    
+    postInput = JSON.parse(JSON.stringify(idList)); // convert idList a JSON object
+    makePostRequest("audio_features", postInput);
 }
 
 async function makeRequest(param) {
@@ -27,6 +32,25 @@ async function makeRequest(param) {
     } catch (error) {
         console.error("API unavailable. Please try again later.");
     }
+}
+
+async function makePostRequest(param, inputBody) {
+    const settings = {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: inputBody
+    };
+    try {
+        let url = "/" + param;
+        let fetchResponse = await fetch(url, settings);
+        let data = await fetchResponse.json();
+        return data;
+    } catch (error) {
+        console.error("API (POST) unavailable. Please try again later.");
+    }    
 }
 
 async function process(param1, param2) {
@@ -44,7 +68,24 @@ async function process(param1, param2) {
     } else if (result2) {
         user[param2] = result2;
     }
+
+    listTrackIDs(result2);
+
     compareArtists();
+}
+
+function listTrackIDs(input) {
+
+    //for track in JSON object list, get track ID and add to list
+
+    items = input.items;
+    
+    for (i = 0; i < items.length; i++) {
+        idList.push(items[i].id);
+    }
+
+    console.log(idList);
+
 }
 
 function updateMode(mode, mode_text) {
