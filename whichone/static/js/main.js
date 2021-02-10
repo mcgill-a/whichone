@@ -76,28 +76,13 @@ function compareArtists() {
         console.log(track2Image);
 
         // print data to console
-        console.log("Artist Name: " + artist1Name + "\nPopularity: " + artist1Popularity);
-        console.log("Artist Name: " + artist2Name + "\nPopularity: " + artist2Popularity);
-
-        if (artist1Popularity > artist2Popularity) {
-            console.log(artist1Name + " is more popular!");
-        }
-        else if (artist1Popularity < artist2Popularity) {
-            console.log(artist2Name + " is more popular!");
-        }
-        else {
-            console.log("These artists are just as popular as one another!");
-        }
+        //console.log("Artist Name: " + artist1Name + "\nPopularity: " + artist1Popularity);
+        //console.log("Artist Name: " + artist2Name + "\nPopularity: " + artist2Popularity);
 
         let text1a = document.getElementById("text1a");
         let text2a = document.getElementById("text2a");
         text1a.innerHTML = artist1Name;
         text2a.innerHTML = artist2Name;
-
-        let text1b = document.getElementById("text1b");
-        let text2b = document.getElementById("text2b");
-        text1b.innerHTML = "Popularity: " + artist1Popularity;
-        text2b.innerHTML = "Popularity: " + artist2Popularity;
 
         let pic1 = document.getElementById("image1");
         pic1.src = track1Image;
@@ -118,11 +103,12 @@ function compareTracks() {
         // lists all the tracks in the items
         trackList = Object.values(user.top_tracks)[1];
 
-        // get on-screen song names
-        let text1a = document.getElementById("text1a");
-        let text2a = document.getElementById("text2a");
-        current1 = text1a.textContent;
-        current2 = text2a.textContent;
+        // get on-screen song names - TODO
+        
+        //let text1a = document.getElementById("text1a");
+        //let text2a = document.getElementById("text2a");
+        //current1 = text1a.textContent;
+        //current2 = text2a.textContent;
 
         // creates 2 reference numbers from available numbers
         listLen = trackList.length;
@@ -158,27 +144,14 @@ function compareTracks() {
         track2Image = track2ImageData.url;
         console.log(track2Image);
 
-        // print data to console
-        console.log("Track Name: " + track1Name + "\nPopularity: " + track1Popularity);
-        console.log("Track Name: " + track2Name + "\nPopularity: " + track2Popularity);
-
-        if (track1Popularity > track2Popularity) {
-            console.log(track1Name + " is more popular!");
-        }
-        else if (track1Popularity < track2Popularity) {
-            console.log(track2Name + " is more popular!");
-        }
-        else {
-            console.log("These tracks are just as popular as one another!");
-        }
+        //console.log("Track Name: " + track1Name + "\nPopularity: " + track1Popularity);
+        //console.log("Track Name: " + track2Name + "\nPopularity: " + track2Popularity);
 
         let text1a = document.getElementById("text1a");
         let text2a = document.getElementById("text2a");
+
         text1a.innerHTML = track1Name;
         text2a.innerHTML = track2Name;
-
-        text1b.innerHTML = "Popularity: " + track1Popularity;
-        text2b.innerHTML = "Popularity: " + track2Popularity;
 
         let pic1 = document.getElementById("image1");
         pic1.src = track1Image;

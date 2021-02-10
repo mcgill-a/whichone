@@ -102,6 +102,7 @@ html {
   font-weight: normal;
   font-size: 20px;
   color: white;
+  margin: 0 auto;
 }
 
 .album_art {
@@ -120,9 +121,11 @@ html {
 .choice {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   width: 400px;
+  height: 440px;
+  padding: 0 25px;
 }
 
 
