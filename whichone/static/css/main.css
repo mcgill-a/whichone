@@ -83,6 +83,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .span-icon {
@@ -233,6 +234,9 @@ html {
   margin: 0;
   color: whitesmoke;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
