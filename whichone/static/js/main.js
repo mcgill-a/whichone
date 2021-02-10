@@ -3,11 +3,8 @@ var user = {
     top_tracks: null
 };
 
-<<<<<<< HEAD
-idList = [];
-=======
+var idList = [];
 var highScore = 0;
->>>>>>> 825ceb3dd565765295a0f722bdd916e0ec26cbf9
 
 window.onload = function () {
     loadWindow();
