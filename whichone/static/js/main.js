@@ -183,7 +183,7 @@ function compareArtists() {
 
         }
 
-        updateMode("artist", " do you listen to more?");
+        updateMode("artist", " have you listened to more?");
 
         document.getElementById("text1a").textContent = artist1Name;
         document.getElementById("text2a").textContent = artist2Name;
@@ -250,7 +250,7 @@ function compareTracks() {
             track2Image = track2ImageData.url;
         }
 
-        updateMode("track", " do you listen to more?");
+        updateMode("track", " have you listened to more?");
 
         document.getElementById("text1a").textContent = track1Name;
         document.getElementById("text2a").textContent = track2Name;

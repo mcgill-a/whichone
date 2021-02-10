@@ -107,8 +107,9 @@ html {
 .gotham-medium {
   font-family: 'GothamPro';
   font-weight: bold;
-  font-size: 70px;
+  font-size: 3.5vw;
   color: white;
+  text-align: center;
 }
 
 .text-grey {
@@ -124,8 +125,11 @@ html {
 }
 
 .album_art {
-  width: 360px;
-  height: 360px;
+  width: 80%;
+  height: 80%;
+  max-height: 30vw;
+  /* Magic! */
+  max-width: 30vw;
   border-radius: 8px;
   cursor: pointer;
   object-fit: cover;
