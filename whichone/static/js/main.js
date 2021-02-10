@@ -5,6 +5,7 @@ var user = {
 
 var idList = [];
 var featuresList = [];
+var featuresDict = {};
 var highScore = 0;
 
 window.onload = function () {
@@ -58,20 +59,22 @@ async function makePostRequest(url, inputBody) {
     $.ajax({
         type: "POST",
         url: url,
-        data: JSON.stringify({"track_ids" :inputBody}),
+        data: JSON.stringify({
+            "track_ids": inputBody
+        }),
         contentType: "application/json",
         dataType: "json",
-        success: function(data){
+        success: function (data) {
             for (i = 0; i < data.length; i++) {
                 featuresList.push(data[i]);
             }
-            console.log(featuresList);
 
         },
-        error: function(errMsg) {
+        error: function (errMsg) {
             console.log(errMsg);
         }
-      });
+    });
+
 }
 
 
@@ -93,6 +96,21 @@ async function process(param1, param2) {
 
     listTrackIDs(result2);
 
+
+    // @alex fix this pls
+    console.log(featuresList.length);
+
+    for (var i = 0; i < featuresList.length; i++) {
+        var thisFeatures = Object.values(featuresList[i]);
+        if (!featuresDict[thisFeatures[5]]) {
+            featuresDict[thisFeatures[5]] = [];
+        }
+        featuresDict[thisFeatures[5]].push(featuresList[2]);
+    }
+
+    console.log(JSON.stringify(featuresDict));
+    //
+
     compareArtists();
 }
 
@@ -101,12 +119,10 @@ function listTrackIDs(input) {
     //for track in JSON object list, get track ID and add to list
 
     items = input.items;
-    
+
     for (i = 0; i < items.length; i++) {
         idList.push(items[i].id);
     }
-
-    console.log(idList);
 
     postInput = JSON.parse(JSON.stringify(idList)); // convert idList a JSON object
     makePostRequest("/audio_features", postInput);
@@ -248,22 +264,6 @@ function compareTracks() {
             track2Image = track2ImageData.url;
             track2Dance = 0;
 
-            for (i = 0; i < featuresList.length; i++) {
-                thisTrackFeatures = Object.values(featuresList[i]);
-                if (thisTrackFeatures[5] == track1ID) {
-                    console.log("Track 1 Danceability: " + thisTrackFeatures[2]);
-                    track1Dance = thisTrackFeatures[2];
-                    break;
-                }
-            }
-            for (i = 0; i < featuresList.length; i++) {
-                thisTrackFeatures = Object.values(featuresList[i]);
-                if (thisTrackFeatures[5] == track2ID) {
-                    console.log("Track 2 Danceability: " + thisTrackFeatures[2]);
-                    track2Dance = thisTrackFeatures[2];
-                    break;
-                }
-            }
         }
 
         updateMode("track", " have you listened to more?");
