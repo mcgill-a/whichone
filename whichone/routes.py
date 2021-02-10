@@ -105,7 +105,7 @@ def top_tracks():
     if not auth_manager.validate_token(cache_handler.get_cached_token()):
         return redirect('/')
     spotify = spotipy.Spotify(auth_manager=auth_manager)
-    tracks = spotify.current_user_top_tracks(time_range="medium_term", limit=50)
+    tracks = spotify.current_user_top_tracks(time_range="short_term", limit=50)
     if not tracks is None:
         return tracks
     return "Could not find top tracks"
@@ -122,7 +122,7 @@ def top_artists():
     if not auth_manager.validate_token(cache_handler.get_cached_token()):
         return redirect('/')
     spotify = spotipy.Spotify(auth_manager=auth_manager)
-    artists = spotify.current_user_top_artists(time_range="medium_term", limit=50)
+    artists = spotify.current_user_top_artists(time_range="short_term", limit=50)
     if not artists is None:
         return artists
     return "Could not find top artists"
@@ -132,7 +132,8 @@ def top_artists():
 def audio_features():
     if request.method == 'POST':
         data = request.get_json()
-        if data["track_ids"]:
+        print(data)
+        if data != None and "track_ids" in data:
             cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
             auth_manager = spotipy.oauth2.SpotifyOAuth(
                 client_id=app.config['SPOTIPY_CLIENT_ID'],
@@ -140,13 +141,14 @@ def audio_features():
                 redirect_uri=app.config['SPOTIPY_REDIRECT_URI'],
                 cache_handler=cache_handler)
             if not auth_manager.validate_token(cache_handler.get_cached_token()):
+                print("no auth")
                 return redirect('/')
             spotify = spotipy.Spotify(auth_manager=auth_manager)
             features = spotify.audio_features(tracks=data["track_ids"])
             if not features is None:
-                return str(features), 201
+                return json.dumps(features), 200
             return "Could not find any audio features"
-    return []
+    return "Bad Request", 400
 
 
 @app.route('/current_user')
