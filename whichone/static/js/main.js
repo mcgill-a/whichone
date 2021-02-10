@@ -275,11 +275,13 @@ function makeGuess(option) {
             //correct answer
             userCurrentScore += 1;
             console.log("Current score: " + userCurrentScore);
+            document.getElementById("current_score").textContent = userCurrentScore;
         } else if (thisPop2 > thisPop1) {
             // wrong answer
             console.log("Final score: " + userCurrentScore);
             updateHighScore(userCurrentScore);
             userCurrentScore = 0;
+            document.getElementById("current_score").textContent = userCurrentScore;
         } else {
             // neutral answer, error or same pop
             console.log("same");
@@ -289,11 +291,13 @@ function makeGuess(option) {
             //correct answer
             userCurrentScore += 1;
             console.log("Current score: " + userCurrentScore);
+            document.getElementById("current_score").textContent = userCurrentScore;
         } else if (thisPop1 > thisPop2) {
             // wrong answer
             console.log("Final score: " + userCurrentScore);
             updateHighScore(userCurrentScore);
             userCurrentScore = 0;
+            document.getElementById("current_score").textContent = userCurrentScore;
         } else {
             // neutral answer, error or same pop
             console.log("same");

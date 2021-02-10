@@ -167,7 +167,7 @@ html {
 
 .user-card-left {
   width: 180px;
-  background: #264653;
+  background-color: none;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -175,13 +175,13 @@ html {
 }
 
 .user-card-right {
-  background: #2a9d8f;
+  background-color: none;
   overflow: hidden;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  width: 420px;
+  width: 440px;
   padding: 10px;
   
 }
@@ -215,6 +215,13 @@ html {
 .user-card .score {
   width: 100%;
   font-size: 25px;
+  margin: 0;
+  text-align: center;
+}
+
+.user-card .name-small {
+  width: 100%;
+  font-size: 20px;
   margin: 0;
   text-align: center;
 }

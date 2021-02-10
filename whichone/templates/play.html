@@ -52,11 +52,11 @@
                     <img class="user-profile" src="{{user.profile_pic}}">
                 </div>
                 <div class="user-card-right">
-                    <h4 class="name">{{user.display_name}}</h4>
-                    
+                    <p class="score">Current Score: <span id="current_score">0</span></p>
                     <p class="score">High Score: <span id="high_score">0</span></p>
                     <div class="made-with">
                         <span class="span-container">
+                            <p class="name-small">{{user.display_name}}</p>
                             <img class="span-icon-small"
                                 src="{{url_for('static', filename='resources/spotify-icon-black.png')}}"></img>
                             Which One?
