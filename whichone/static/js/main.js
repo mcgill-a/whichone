@@ -78,42 +78,44 @@ function compareArtists() {
         num1 = Math.floor(Math.random() * listLen);
         num2 = Math.floor(Math.random() * listLen);
 
+        pop1 = 0;
+        pop2 = 0;
+
         // reference numbers cannot match
-        while (num1 == num2) {
+        while (num1 == num2 || pop1 == pop2) {
+
             num2 = Math.floor(Math.random() * listLen);
+
+            // get data for artist at list position num1
+            artist1 = artistList[num1];
+            artist1Data = Object.values(artist1);
+            artist1Name = Object.values(artist1Data)[6];
+            artist1Popularity = Object.values(artist1Data)[7];
+            pop1 = artist1Popularity;
+
+            thisOption1 = artist1Name;
+            thisPop1 = artist1Popularity;
+
+            track1ImageList = Object.values(artist1Data)[5];
+            track1ImageData = track1ImageList[1];
+            track1Image = track1ImageData.url;
+            //console.log(track1Image);
+
+            // get data for artist at list position num2
+            artist2 = artistList[num2];
+            artist2Data = Object.values(artist2);
+            artist2Name = Object.values(artist2Data)[6];
+            artist2Popularity = Object.values(artist2Data)[7];
+            pop2 = artist2Popularity;
+
+            thisOption2 = artist2Name;
+            thisPop2 = artist2Popularity;
+
+            track2ImageList = Object.values(artist2Data)[5];
+            track2ImageData = track2ImageList[1];
+            track2Image = track2ImageData.url;
+
         }
-
-        // get data for artist at list position num1
-        artist1 = artistList[num1];
-        artist1Data = Object.values(artist1);
-        artist1Name = Object.values(artist1Data)[6];
-        artist1Popularity = Object.values(artist1Data)[7];
-
-        thisOption1 = artist1Name;
-        thisPop1 = artist1Popularity;
-
-        track1ImageList = Object.values(artist1Data)[5];
-        track1ImageData = track1ImageList[1];
-        track1Image = track1ImageData.url;
-        //console.log(track1Image);
-
-        // get data for artist at list position num2
-        artist2 = artistList[num2];
-        artist2Data = Object.values(artist2);
-        artist2Name = Object.values(artist2Data)[6];
-        artist2Popularity = Object.values(artist2Data)[7];
-
-        thisOption2 = artist2Name;
-        thisPop2 = artist2Popularity;
-
-        track2ImageList = Object.values(artist2Data)[5];
-        track2ImageData = track2ImageList[1];
-        track2Image = track2ImageData.url;
-        //console.log(track2Image);
-
-        // print data to console
-        //console.log("Artist Name: " + artist1Name + "\nPopularity: " + artist1Popularity);
-        //console.log("Artist Name: " + artist2Name + "\nPopularity: " + artist2Popularity);
 
         updateMode("artist", " is the most popular?");
 
@@ -145,44 +147,45 @@ function compareTracks() {
         num1 = Math.floor(Math.random() * listLen);
         num2 = Math.floor(Math.random() * listLen);
 
+        pop1 = 0;
+        pop2 = 0;
+
         // reference numbers cannot match
-        while (num1 == num2) {
+        while (num1 == num2 || pop1 == pop2) {
+
             num2 = Math.floor(Math.random() * listLen);
+
+            track1 = trackList[num1];
+            track1Data = Object.values(track1);
+            track1Name = Object.values(track1Data)[11];
+            track1Popularity = Object.values(track1Data)[12];
+            pop1 = track1Popularity;
+            track1ID = Object.values(track1Data)[9];
+
+            thisOption1 = track1Name;
+            thisPop1 = track1Popularity;
+
+            track1AlbumRef = Object.values(track1Data)[0];
+            track1ImageList = Object.values(track1AlbumRef)[6];
+            track1ImageData = track1ImageList[1];
+            track1Image = track1ImageData.url;
+            //console.log(track1Image);
+
+            track2 = trackList[num2];
+            track2Data = Object.values(track2);
+            track2Name = Object.values(track2Data)[11];
+            track2Popularity = Object.values(track2Data)[12];
+            pop2 = track2Popularity;
+            track2ID = Object.values(track2Data)[9];
+
+            thisOption2 = track2Name;
+            thisPop2 = track2Popularity;
+
+            track2AlbumRef = Object.values(track2Data)[0];
+            track2ImageList = Object.values(track2AlbumRef)[6];
+            track2ImageData = track2ImageList[1];
+            track2Image = track2ImageData.url;
         }
-
-        track1 = trackList[num1];
-        track1Data = Object.values(track1);
-        track1Name = Object.values(track1Data)[11];
-        track1Popularity = Object.values(track1Data)[12];
-        track1ID = Object.values(track1Data)[9];
-
-        thisOption1 = track1Name;
-        thisPop1 = track1Popularity;
-
-        track1AlbumRef = Object.values(track1Data)[0];
-        track1ImageList = Object.values(track1AlbumRef)[6];
-        track1ImageData = track1ImageList[1];
-        track1Image = track1ImageData.url;
-        //console.log(track1Image);
-
-        track2 = trackList[num2];
-        track2Data = Object.values(track2);
-        track2Name = Object.values(track2Data)[11];
-        track2Popularity = Object.values(track2Data)[12];
-        track2ID = Object.values(track2Data)[9];
-
-        thisOption2 = track2Name;
-        thisPop2 = track2Popularity;
-
-        track2AlbumRef = Object.values(track2Data)[0];
-        track2ImageList = Object.values(track2AlbumRef)[6];
-        track2ImageData = track2ImageList[1];
-        track2Image = track2ImageData.url;
-        //console.log(track2Image);
-
-        //console.log("Track Name: " + track1Name + "\nPopularity: " + track1Popularity);
-        //console.log("Track Name: " + track2Name + "\nPopularity: " + track2Popularity);
-
 
         updateMode("track", " is the most popular?");
 
