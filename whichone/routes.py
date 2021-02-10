@@ -132,9 +132,10 @@ def top_artists():
 def audio_features():
     if request.method == 'POST':
         data = request.get_json()
-        if data.track_ids:
-            print(data.track_ids)
-            return data.track_ids
+        return data
+        #if data.track_ids:
+        #    print(data.track_ids)
+        #    return data.track_ids
     """        
             cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
             auth_manager = spotipy.oauth2.SpotifyOAuth(
