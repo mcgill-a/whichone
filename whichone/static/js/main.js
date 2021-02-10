@@ -262,6 +262,7 @@ function makeGuess(option) {
             console.log("Final score: " + userCurrentScore);
             updateHighScore(userCurrentScore);
             userCurrentScore = 0;
+            document.getElementById("current_score").textContent = userCurrentScore;
         } else {
             // neutral answer, error or same pop
             console.log("same");
@@ -277,6 +278,7 @@ function makeGuess(option) {
             console.log("Final score: " + userCurrentScore);
             updateHighScore(userCurrentScore);
             userCurrentScore = 0;
+            document.getElementById("current_score").textContent = userCurrentScore;
         } else {
             // neutral answer, error or same pop
             console.log("same");
