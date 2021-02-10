@@ -142,7 +142,7 @@ def audio_features():
             if not auth_manager.validate_token(cache_handler.get_cached_token()):
                 return redirect('/')
             spotify = spotipy.Spotify(auth_manager=auth_manager)
-            features = spotify.audio_features(tracks=[track_ids])
+            features = spotify.audio_features(tracks=data["track_ids"])
             if not features is None:
                 return features
             return "Could not find any audio features"
