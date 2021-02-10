@@ -4,10 +4,6 @@ var user = {
 };
 
 var idList = [];
-<<<<<<< HEAD
-=======
-
->>>>>>> df93890215083b046331f67097ecc9ca2220d1b6
 var highScore = 0;
 
 window.onload = function () {
@@ -23,9 +19,6 @@ userCurrentScore = 0;
 
 async function loadWindow() {
     process("top_artists", "top_tracks");
-    
-    postInput = JSON.parse(JSON.stringify(idList)); // convert idList a JSON object
-    makePostRequest("audio_features", postInput);
 }
 
 async function makeRequest(param) {
@@ -39,7 +32,8 @@ async function makeRequest(param) {
     }
 }
 
-async function makePostRequest(param, inputBody) {
+async function makePostRequest(url, inputBody) {
+    /*
     const settings = {
         method: 'POST',
         headers: {
@@ -51,12 +45,30 @@ async function makePostRequest(param, inputBody) {
     try {
         let url = "/" + param;
         let fetchResponse = await fetch(url, settings);
+        console.log(fetchResponse);
         let data = await fetchResponse.json();
         return data;
     } catch (error) {
         console.error("API (POST) unavailable. Please try again later.");
-    }    
+    }
+    */
+
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: JSON.stringify({"track_ids" :inputBody}),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(data){
+            console.log(data);
+        },
+        error: function(errMsg) {
+            console.log(errMsg);
+        }
+      });
 }
+
 
 async function process(param1, param2) {
 
@@ -90,6 +102,9 @@ function listTrackIDs(input) {
     }
 
     console.log(idList);
+
+    postInput = JSON.parse(JSON.stringify(idList)); // convert idList a JSON object
+    makePostRequest("/audio_features", postInput);
 
 }
 
