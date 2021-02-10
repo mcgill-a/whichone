@@ -3,6 +3,8 @@ var user = {
     top_tracks: null
 };
 
+var highScore = 0;
+
 window.onload = function () {
     loadWindow();
 }
@@ -50,6 +52,15 @@ async function process(param1, param2) {
 function updateMode(mode, mode_text) {
     document.getElementById("mode").textContent = mode;
     document.getElementById("mode_text").textContent = mode_text;
+}
+
+function updateHighScore(score) {
+    if (score > highScore) {
+        highScore = score;
+        console.log("Update high score: " + highScore);
+    }
+
+    document.getElementById("high_score").textContent = highScore;
 }
 
 function compareArtists() {
@@ -204,6 +215,7 @@ function makeGuess(option) {
         } else if (thisPop2 > thisPop1) {
             // wrong answer
             console.log("Final score: " + userCurrentScore);
+            updateHighScore(userCurrentScore);
             userCurrentScore = 0;
         } else {
             // neutral answer, error or same pop
@@ -217,6 +229,7 @@ function makeGuess(option) {
         } else if (thisPop1 > thisPop2) {
             // wrong answer
             console.log("Final score: " + userCurrentScore);
+            updateHighScore(userCurrentScore);
             userCurrentScore = 0;
         } else {
             // neutral answer, error or same pop

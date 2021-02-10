@@ -164,4 +164,15 @@ def current_user():
 
 @app.route('/play')
 def play():
-    return render_template('play.html')
+    user = current_user()
+    if (type(user) is dict):
+        # remove extra info from user object
+        user_output = dict()
+        user_output['display_name'] = user['display_name']
+        if (user['images'][0] and user['images'][0]['url']):
+            user_output['profile_pic'] = user['images'][0]['url']
+        else:
+            user_output['profile_pic'] = None 
+        return render_template('play.html', user=user_output)  
+        
+    return render_template('play.html', user=None)
