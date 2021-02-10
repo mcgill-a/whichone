@@ -4,10 +4,6 @@ var user = {
 };
 
 var idList = [];
-<<<<<<< HEAD
-=======
-
->>>>>>> df93890215083b046331f67097ecc9ca2220d1b6
 var highScore = 0;
 
 window.onload = function () {
@@ -260,6 +256,7 @@ function makeGuess(option) {
             //correct answer
             userCurrentScore += 1;
             console.log("Current score: " + userCurrentScore);
+            document.getElementById("current_score").textContent = userCurrentScore;
         } else if (thisPop2 > thisPop1) {
             // wrong answer
             console.log("Final score: " + userCurrentScore);
@@ -274,6 +271,7 @@ function makeGuess(option) {
             //correct answer
             userCurrentScore += 1;
             console.log("Current score: " + userCurrentScore);
+            document.getElementById("current_score").textContent = userCurrentScore;
         } else if (thisPop1 > thisPop2) {
             // wrong answer
             console.log("Final score: " + userCurrentScore);
