@@ -165,7 +165,9 @@ function compareArtists() {
             track1ImageData = track1ImageList[1];
             track1Image = track1ImageData.url;
 
-            //TODO features
+            for (item in featuresList) {
+                console.log(Object.values(item[2]));
+            }
 
             // get data for artist at list position num2
             artist2 = artistList[num2];
