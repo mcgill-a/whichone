@@ -118,6 +118,12 @@ function compareTracks() {
         // lists all the tracks in the items
         trackList = Object.values(user.top_tracks)[1];
 
+        // get on-screen song names
+        let text1a = document.getElementById("text1a");
+        let text2a = document.getElementById("text2a");
+        current1 = text1a.textContent;
+        current2 = text2a.textContent;
+
         // creates 2 reference numbers from available numbers
         listLen = trackList.length;
         num1 = Math.floor(Math.random() * listLen);
@@ -171,8 +177,6 @@ function compareTracks() {
         text1a.innerHTML = track1Name;
         text2a.innerHTML = track2Name;
 
-        let text1b = document.getElementById("text1b");
-        let text2b = document.getElementById("text2b");
         text1b.innerHTML = "Popularity: " + track1Popularity;
         text2b.innerHTML = "Popularity: " + track2Popularity;
 
@@ -180,6 +184,16 @@ function compareTracks() {
         pic1.src = track1Image;
         let pic2 = document.getElementById("image2");
         pic2.src = track2Image;
+
+    }
+
+    function makeGuess() {
+
+        functionArray = [compareArtists(), compareTracks()];
+
+        var functionChoice = functionArray[Math.floor(Math.random()*functionArray.length)];
+
+        functionChoice;
 
     }
 }
