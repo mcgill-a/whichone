@@ -124,11 +124,17 @@ html {
 }
 
 .album_art {
-  width: 400px;
-  height: 400px;
+  width: 360px;
+  height: 360px;
   border-radius: 8px;
   cursor: pointer;
   object-fit: cover;
+  transition: all .2s ease-in-out;
+  margin-bottom: 30px;
+}
+
+.album_art:hover {
+  transform: scale(1.1);
 }
 
 .choice-display {

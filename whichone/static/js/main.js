@@ -4,6 +4,10 @@ var user = {
 };
 
 var idList = [];
+<<<<<<< HEAD
+=======
+
+>>>>>>> df93890215083b046331f67097ecc9ca2220d1b6
 var highScore = 0;
 
 window.onload = function () {
@@ -90,6 +94,7 @@ function listTrackIDs(input) {
 }
 
 function updateMode(mode, mode_text) {
+    document.getElementById("mode_intro").textContent = "Which ";
     document.getElementById("mode").textContent = mode;
     document.getElementById("mode_text").textContent = mode_text;
 }
@@ -157,7 +162,7 @@ function compareArtists() {
 
         }
 
-        updateMode("artist", " is the most popular?");
+        updateMode("artist", " do you listen to more?");
 
         let text1a = document.getElementById("text1a");
         let text2a = document.getElementById("text2a");
@@ -227,7 +232,7 @@ function compareTracks() {
             track2Image = track2ImageData.url;
         }
 
-        updateMode("track", " is the most popular?");
+        updateMode("track", " do you listen to more?");
 
         let text1a = document.getElementById("text1a");
         let text2a = document.getElementById("text2a");
