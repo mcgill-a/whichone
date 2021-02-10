@@ -16,7 +16,6 @@ userCurrentScore = 0;
 
 async function loadWindow() {
     process("top_artists", "top_tracks");
-    compareArtists();
 }
 
 async function makeRequest(param) {
@@ -45,6 +44,7 @@ async function process(param1, param2) {
     } else if (result2) {
         user[param2] = result2;
     }
+    compareArtists();
 }
 
 function updateMode(mode, mode_text) {
