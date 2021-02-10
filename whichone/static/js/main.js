@@ -32,6 +32,11 @@ async function process(param1, param2) {
     }
 }
 
+function updateMode(mode, mode_text) {
+    document.getElementById("mode").textContent(mode);
+    document.getElementById("mode_text").textContent(mode_text);
+}
+
 function compareArtists() {
 
     if (user.top_artists == [] || user.top_artists == undefined || !user.top_artists) {

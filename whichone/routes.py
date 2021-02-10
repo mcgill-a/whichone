@@ -132,11 +132,7 @@ def top_artists():
 def audio_features():
     if request.method == 'POST':
         data = request.get_json()
-        return data
-        #if data.track_ids:
-        #    print(data.track_ids)
-        #    return data.track_ids
-    """        
+        if data["track_ids"]:
             cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
             auth_manager = spotipy.oauth2.SpotifyOAuth(
                 client_id=app.config['SPOTIPY_CLIENT_ID'],
@@ -150,7 +146,6 @@ def audio_features():
             if not features is None:
                 return features
             return "Could not find any audio features"
-    """
     return []
 
 
