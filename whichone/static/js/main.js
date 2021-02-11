@@ -18,6 +18,8 @@ var thisPop1 = "";
 var thisPop2 = "";
 
 userCurrentScore = 0;
+maxLives = 3;
+lives = maxLives;
 
 async function loadWindow() {
     process("top_artists", "top_tracks");
@@ -291,9 +293,15 @@ function makeGuess(option) {
             document.getElementById("current_score").textContent = userCurrentScore;
         } else if (thisPop2 > thisPop1) {
             // wrong answer
-            updateHighScore(userCurrentScore);
-            userCurrentScore = 0;
-            document.getElementById("current_score").textContent = userCurrentScore;
+            lives -= 1;
+            console.log("wrong -1 life, lives = " + lives);
+            if (lives == 0){
+                console.log("0 lives u lose");
+                updateHighScore(userCurrentScore);
+                userCurrentScore = 0;
+                lives = maxLives;
+                document.getElementById("current_score").textContent = userCurrentScore;
+            }
         } else {
             // neutral answer, error or same pop
             console.log("same");
@@ -305,9 +313,15 @@ function makeGuess(option) {
             document.getElementById("current_score").textContent = userCurrentScore;
         } else if (thisPop1 > thisPop2) {
             // wrong answer
-            updateHighScore(userCurrentScore);
-            userCurrentScore = 0;
-            document.getElementById("current_score").textContent = userCurrentScore;
+            lives -= 1;
+            console.log("wrong -1 life, lives = " + lives);
+            if (lives == 0){
+                console.log("0 lives u lose");
+                updateHighScore(userCurrentScore);
+                userCurrentScore = 0;
+                lives = maxLives;
+                document.getElementById("current_score").textContent = userCurrentScore;
+            }
         } else {
             // neutral answer, error or same pop
             console.log("same");
