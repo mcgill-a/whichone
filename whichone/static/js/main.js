@@ -6,22 +6,21 @@ var user = {
 var idList = [];
 var featuresList = [];
 var featuresDict = {};
-var highScore = 0;
 
 var option1 = null;
 var option2 = null;
 var currentMode = "popularity";
 
-userCurrentScore = 0;
-maxLives = 3;
-lives = maxLives;
+const maxLives = 3;
+var lives = maxLives;
+var userCurrentScore = 0;
+var highScore = 0;
 
 
 $(document).ready(function () {
 
     getSpotifyData();
 
-    // choice selector
     $(".choice").on('click', function (event) {
         event.stopPropagation();
         event.stopImmediatePropagation();
@@ -107,15 +106,9 @@ function compareArtists() {
     if (user.top_artists == [] || user.top_artists == undefined || !user.top_artists) {
         console.error("No data")
     } else {
-
-        // accesses "items" section of JSON
-        // lists all the artists in the items
         artistList = user.top_artists['items'];
-
-        // creates 2 reference numbers from available numbers
-        listLen = artistList.length;
-        num1 = Math.floor(Math.random() * listLen);
-        num2 = Math.floor(Math.random() * listLen);
+        numTracks = artistList.length;
+        num1 = Math.floor(Math.random() * numTracks);
 
         option1 = null;
         option2 = null;
@@ -123,11 +116,11 @@ function compareArtists() {
         // reference numbers cannot match
         while (option1 == null || option2 == null || num1 == num2 || option1['popularity'] == option2['popularity']) {
 
+            // switch the index for option2
+            num2 = Math.floor(Math.random() * numTracks);
+
             option1 = artistList[num1];
             option2 = artistList[num2];
-
-            // switch the index for option2
-            num2 = Math.floor(Math.random() * listLen);
         }
 
         updateMode("artist", " have you listened to more?");
@@ -135,7 +128,7 @@ function compareArtists() {
         document.getElementById("text1a").textContent = option1['name'];
         document.getElementById("text2a").textContent = option2['name'];
 
-        document.getElementById("image1").src = option1['images'][1]['url'];;
+        document.getElementById("image1").src = option1['images'][1]['url'];
         document.getElementById("image2").src = option2['images'][1]['url'];
     }
 }
@@ -145,14 +138,10 @@ function compareTracks() {
     if (user.top_tracks == [] || user.top_tracks == undefined || !user.top_tracks) {
         console.error("No data")
     } else {
-        // accesses "items" section of JSON
-        // lists all the tracks in the items
         trackList = user.top_tracks['items'];
-
-        // creates 2 reference numbers from available numbers
         
-        listLen = trackList.length;
-        num1 = Math.floor(Math.random() * listLen);
+        numTracks = trackList.length;
+        num1 = Math.floor(Math.random() * numTracks);
 
         option1 = null;
         option2 = null;
@@ -162,13 +151,12 @@ function compareTracks() {
             option1[currentMode] == option2[currentMode]) {
                 
             // switch the index for option2
-            num2 = Math.floor(Math.random() * listLen);
+            num2 = Math.floor(Math.random() * numTracks);
 
             option1 = trackList[num1];
-            option1['danceability'] = featuresDict[option1['id']]['danceability']
+            option1['danceability'] = featuresDict[option1['id']]['danceability'];
             option2 = trackList[num2];
-            option2['danceability'] = featuresDict[option2['id']]['danceability']
-
+            option2['danceability'] = featuresDict[option2['id']]['danceability'];
         }
 
         if (currentMode == "popularity") {
@@ -187,61 +175,28 @@ function compareTracks() {
 
 
 function makeGuess(option) {
-
     if (option == null || option1 == null || option2 == null) {
         console.log("There is a problem, an option is null");
-
-    } else if (option == '1') {
-        if (option1[currentMode] > option2[currentMode]) {
-            //correct answer
-            userCurrentScore += 1;
-            updateLives();
-            document.getElementById("current_score").textContent = userCurrentScore;
-        } else if (option2[currentMode] > option1[currentMode]) {
-            // wrong answer
-            lives -= 1;
-            console.log("wrong -1 life, lives = " + lives);
-            updateLives();
-            if (lives == 0) {
-                console.log("0 lives u lose");
-                updateHighScore(userCurrentScore);
-                userCurrentScore = 0;
-                lives = maxLives;
-                document.getElementById("current_score").textContent = userCurrentScore;
-            }
-        } else {
-            // neutral answer, error or same pop
-            console.log("same");
-            updateLives();
-        }
-    } else if (option == '2') {
-        if (option2[currentMode] > option1[currentMode]) {
-            //correct answer
-            userCurrentScore += 1;
-            updateLives();
-            document.getElementById("current_score").textContent = userCurrentScore;
-        } else if (option1[currentMode] > option2[currentMode]) {
-            // wrong answer
-            lives -= 1;
-            updateLives();
-            console.log("wrong -1 life, lives = " + lives);
-            if (lives == 0) {
-                console.log("0 lives u lose");
-                updateHighScore(userCurrentScore);
-                userCurrentScore = 0;
-                lives = maxLives;
-                document.getElementById("current_score").textContent = userCurrentScore;
-            }
-        } else {
-            // neutral answer, error or same pop
-            console.log("same");
-            updateLives();
-        }
-    } else {
-        //something has gone wrong
-        console.log("hmmmmm");
+    } else if (
+        (option == '1' && option1[currentMode] > option2[currentMode]) ||
+        (option == '2' && option2[currentMode] > option1[currentMode])) {
+        //correct answer
+        userCurrentScore += 1;
         updateLives();
+        document.getElementById("current_score").textContent = userCurrentScore;
+    } else {
+        // wrong answer
+        lives -= 1;
+        updateLives();
+        if (lives == 0) {
+            console.log("Game over. Final score: " + userCurrentScore);
+            updateHighScore(userCurrentScore);
+            userCurrentScore = 0;
+            lives = maxLives;
+            document.getElementById("current_score").textContent = userCurrentScore;
+        }
     }
+
 
     choiceNum = Math.random();
     if (choiceNum < 0.3) {
