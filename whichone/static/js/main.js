@@ -253,3 +253,21 @@ function updateLives() {
     }
 
 }
+
+function getStats(param1, param2) {
+
+    var big = null;
+    var small = null;
+
+    if (param1 > param2) {
+        big = param1;
+        small = param2;
+    }
+    else {
+        big = param2;
+        small = param1;
+    }
+
+    
+
+}
