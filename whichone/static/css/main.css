@@ -40,20 +40,23 @@ html {
   cursor: pointer;
 }
 
-.container {
+.container-score {
   display: flex;
   flex-direction: column;
-  padding: 50px;
+  justify-content: center;
+  padding: 10px;
   height: 100%;
+  width: 200px;
 }
 
 .container-vert {
   display: flex;
   flex-direction: row;
-  padding: 50px;
+  margin-top: 50px;
   height: 100%;
   justify-content: center;
   align-items: center;
+  background-color: rgb(49, 49, 49, 0.7);
 }
 
 .center-display {
@@ -104,7 +107,7 @@ html {
 .span-icon-small {
   height: 64px;
   width: 64px;
-  margin-right: 8px;
+  margin: 0 8px;
 }
 
 .gotham-header {
@@ -232,6 +235,13 @@ html {
 }
 
 .score {
+  width: 100%;
+  font-size: 25px;
+  margin: 0;
+  color: whitesmoke;
+}
+
+.score-label {
   width: 100%;
   font-size: 25px;
   margin: 0;

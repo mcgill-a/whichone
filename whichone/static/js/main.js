@@ -102,7 +102,6 @@ function updateHighScore(score) {
 }
 
 function compareArtists() {
-    console.log("Compare artists " + currentMode);
     if (user.top_artists == [] || user.top_artists == undefined || !user.top_artists) {
         console.error("No data")
     } else {
@@ -134,7 +133,6 @@ function compareArtists() {
 }
 
 function compareTracks() {
-    console.log("Compare tracks " + currentMode);
     if (user.top_tracks == [] || user.top_tracks == undefined || !user.top_tracks) {
         console.error("No data")
     } else {
@@ -209,7 +207,6 @@ function makeGuess(option) {
     console.log(option1[currentMode], option2[currentMode]);
 
     choiceNum = Math.random();
-    console.log(choiceNum);
     if (choiceNum < 0.2) {
         currentMode = "popularity";
         compareArtists();
