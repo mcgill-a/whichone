@@ -239,8 +239,10 @@ function updateLives() {
     icon1 = document.getElementById("life1");
     icon2 = document.getElementById("life2");
     icon3 = document.getElementById("life3");
-    if (lives > 3) {
+    if (Number.isNaN(lives) || lives > 3) {
         cheaterMode = true;
+        console.log("Cheater mode enabled.");
+        highScore = 0;
     }
     if (cheaterMode) {
         icon1.src = "/static/resources/spotify-icon-red.png";
