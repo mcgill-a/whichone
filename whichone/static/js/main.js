@@ -310,7 +310,9 @@ function getStats(param1, param2) {
         timesMore = 1.1;
     }
     amountMore = Math.round((big - small)*10) / 10;
+
     durationMore = amountMore / 1000;
+    durationMore = Math.round(durationMore*10) / 10;
 
     if (currentMode == 'danceability') {
         document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " times more danceable than " + smallChoice + ".";
@@ -324,5 +326,7 @@ function getStats(param1, param2) {
     else if (currentMode == 'popularity') {
         document.getElementById("stats-text").textContent = "You have listened to " + bigChoice + " " + timesMore + " times more than " + smallChoice + ".";
     }
+
+    // TODO singular plural oh no
 
 }
