@@ -8,10 +8,6 @@ var featuresList = [];
 var featuresDict = {};
 var highScore = 0;
 
-window.onload = function () {
-    loadWindow();
-}
-
 var option1 = null;
 var option2 = null;
 
@@ -19,9 +15,19 @@ userCurrentScore = 0;
 maxLives = 3;
 lives = maxLives;
 
-async function loadWindow() {
-    process("top_artists", "top_tracks");
-}
+
+$(document).ready(function () {
+
+    getSpotifyData();
+
+    // choice selector
+    $(".choice").on('click', function (event) {
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        makeGuess($(this).data('choice'));
+    });
+
+});
 
 async function makeRequest(param) {
     try {
@@ -34,17 +40,24 @@ async function makeRequest(param) {
     }
 }
 
-async function makePostRequest(url, inputBody) {
+async function getAudioFeatures(tracks) {
+    let trackIds = [];
+    tracks.items.forEach(track => {
+        trackIds.push(track.id);
+    });
+
     $.ajax({
         type: "POST",
-        url: url,
+        url: "/audio_features",
         data: JSON.stringify({
-            "track_ids": inputBody
+            "track_ids": trackIds
         }),
         contentType: "application/json",
         dataType: "json",
         success: function (data) {
-            doWork(data);
+            data.forEach(result => {
+                featuresDict[result['id']] = result;
+            });
         },
         error: function (errMsg) {
             console.log(errMsg);
@@ -53,55 +66,33 @@ async function makePostRequest(url, inputBody) {
 }
 
 
-async function process(param1, param2) {
+async function getSpotifyData() {
 
-    let result1 = await makeRequest(param1);
-    if (result1 == [] || result1 == undefined || !result1) {
+    let artists = await makeRequest("top_artists");
+    if (artists == [] || artists == undefined || !artists) {
         console.error("No data returned from API (param1)");
-    } else if (result1) {
-        user[param1] = result1;
+    } else if (artists) {
+        user['top_artists'] = artists;
     }
 
-    let result2 = await makeRequest(param2);
-    if (result2 == [] || result2 == undefined || !result2) {
+    let tracks = await makeRequest("top_tracks");
+    if (tracks == [] || tracks == undefined || !tracks) {
         console.error("No data returned from API (param2)");
-    } else if (result2) {
-        user[param2] = result2;
+    } else if (tracks) {
+        user['top_tracks'] = tracks;
     }
 
-    listTrackIDs(result2);
+    getAudioFeatures(tracks);
     compareArtists();
 }
 
-async function listTrackIDs(input) {
-
-    //for track in JSON object list, get track ID and add to list
-
-    items = input.items;
-
-    for (i = 0; i < items.length; i++) {
-        idList.push(items[i].id);
-    }
-
-    postInput = JSON.parse(JSON.stringify(idList)); // convert idList a JSON object
-    makePostRequest("/audio_features", postInput);
-}
-
-function doWork(results) {
-    if (results != null) {
-        results.forEach(result => {
-            featuresDict[result['id']] = result;
-        });
-    } else {
-        console.error("Audio features unavailable");
-    }
-}
 
 function updateMode(mode, mode_text) {
     document.getElementById("mode_intro").textContent = "Which ";
     document.getElementById("mode").textContent = mode;
     document.getElementById("mode_text").textContent = mode_text;
 }
+
 
 function updateHighScore(score) {
     if (score > highScore) {
@@ -134,7 +125,7 @@ function compareArtists() {
 
             option1 = artistList[num1];
             option2 = artistList[num2];
-            
+
             // switch the index for option2
             num2 = Math.floor(Math.random() * listLen);
         }
@@ -187,6 +178,10 @@ function compareTracks() {
         document.getElementById("image2").src = option2['album']['images'][1]['url'];
     }
 }
+
+
+
+
 
 function makeGuess(option) {
 
@@ -260,27 +255,21 @@ function updateLives() {
     icon3 = document.getElementById("life3");
 
     if (lives == 3) {
-        icon1.src="/static/resources/spotify-icon.png";
-        icon2.src="/static/resources/spotify-icon.png";
-        icon3.src="/static/resources/spotify-icon.png";
-    }
-
-    else if (lives == 2) {
-        icon1.src="/static/resources/spotify-icon.png";
-        icon2.src="/static/resources/spotify-icon.png";
-        icon3.src="/static/resources/spotify-icon-black.png";
-    }
-
-    else if (lives == 1) {
-        icon1.src="/static/resources/spotify-icon.png";
-        icon2.src="/static/resources/spotify-icon-black.png";
-        icon3.src="/static/resources/spotify-icon-black.png";
-    }
-
-    else {
-        icon1.src="/static/resources/spotify-icon-black.png";
-        icon2.src="/static/resources/spotify-icon-black.png";
-        icon3.src="/static/resources/spotify-icon-black.png";
+        icon1.src = "/static/resources/spotify-icon.png";
+        icon2.src = "/static/resources/spotify-icon.png";
+        icon3.src = "/static/resources/spotify-icon.png";
+    } else if (lives == 2) {
+        icon1.src = "/static/resources/spotify-icon.png";
+        icon2.src = "/static/resources/spotify-icon.png";
+        icon3.src = "/static/resources/spotify-icon-black.png";
+    } else if (lives == 1) {
+        icon1.src = "/static/resources/spotify-icon.png";
+        icon2.src = "/static/resources/spotify-icon-black.png";
+        icon3.src = "/static/resources/spotify-icon-black.png";
+    } else {
+        icon1.src = "/static/resources/spotify-icon-black.png";
+        icon2.src = "/static/resources/spotify-icon-black.png";
+        icon3.src = "/static/resources/spotify-icon-black.png";
     }
 
 }

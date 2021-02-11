@@ -14,8 +14,8 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
     {% endblock %}
     {% block javascript %}
-    <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
     {% endblock %}
 
 </head>
@@ -31,12 +31,12 @@
                 </h1>
 
                 <div class="choice-display">
-                    <div class="choice choice1" onclick="makeGuess('1')">
+                    <div id="abc" class="choice choice1" data-choice="1">
                         <img id="image1" class="album_art" role="button">
                         <h4 class="gotham-small" id="text1a"></h4>
                     </div>
 
-                    <div class="choice choice2" onclick="makeGuess('2')">
+                    <div class="choice choice2" data-choice="2">
                         <img id="image2" class="album_art" role="button">
                         <h4 class="gotham-small" id="text2a"></h4>
                     </div>
@@ -63,7 +63,7 @@
                     <h4 class="score" color="white">High Score</h4>
                 </div>
 
-                
+
             </div>
             {% endif %}
         </div>
