@@ -92,7 +92,6 @@ function doWork(results) {
         results.forEach(result => {
             featuresDict[result['id']] = result;
         });
-        console.log(featuresDict);
     } else {
         console.error("Audio features unavailable");
     }
@@ -131,18 +130,13 @@ function compareArtists() {
         option2 = null;
 
         // reference numbers cannot match
-        while (option1 == null || option2 == null || num1 == num2) {
-            //option1['popularity'] == option1['popularity']) {
-            
-            // switch the index for option2
-            num2 = Math.floor(Math.random() * listLen);
+        while (option1 == null || option2 == null || num1 == num2 || option1['popularity'] == option2['popularity']) {
 
             option1 = artistList[num1];
             option2 = artistList[num2];
-
-            console.log(option1);
-            console.log(option2);
-            break;
+            
+            // switch the index for option2
+            num2 = Math.floor(Math.random() * listLen);
         }
 
         updateMode("artist", " have you listened to more?");
@@ -175,14 +169,13 @@ function compareTracks() {
 
         // reference numbers cannot match
         while (option1 == null || option2 == null || num1 == num2 ||
-            option1['popularity'] == option1['popularity']) {
-            
-            // switch the index for option2
-            num2 = Math.floor(Math.random() * listLen);
+            option1['popularity'] == option2['popularity']) {
 
             option1 = trackList[num1];
             option2 = trackList[num2];
-            break;
+
+            // switch the index for option2
+            num2 = Math.floor(Math.random() * listLen);
         }
 
         updateMode("track", " have you listened to more?");
