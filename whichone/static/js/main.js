@@ -315,5 +315,8 @@ function getStats(param1, param2) {
     else if (currentMode == 'duration') {
         document.getElementById("stats-text").textContent = bigChoice + " is " + durationMore + " seconds longer than " + smallChoice + ".";
     }
+    else if (currentMode == 'popularity') {
+        document.getElementById("stats-text").textContent = "You have listened to " + bigChoice + " " + timesMore + " times more than " + smallChoice + ".";
+    }
 
 }
