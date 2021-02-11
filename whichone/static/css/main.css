@@ -248,6 +248,10 @@ html {
   text-align: center;
 }
 
+.negative-margin {
+  margin: -30px auto !important;
+}
+
 .name-small {
   width: 100%;
   font-size: 20px;
