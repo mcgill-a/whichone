@@ -12,10 +12,8 @@ window.onload = function () {
     loadWindow();
 }
 
-var thisOption1 = "";
-var thisOption2 = "";
-var thisPop1 = "";
-var thisPop2 = "";
+var option1 = null;
+var option2 = null;
 
 userCurrentScore = 0;
 maxLives = 3;
@@ -122,60 +120,38 @@ function compareArtists() {
 
         // accesses "items" section of JSON
         // lists all the artists in the items
-        artistList = Object.values(user.top_artists)[1];
+        artistList = user.top_artists['items'];
 
         // creates 2 reference numbers from available numbers
         listLen = artistList.length;
         num1 = Math.floor(Math.random() * listLen);
         num2 = Math.floor(Math.random() * listLen);
 
-        pop1 = 0;
-        pop2 = 0;
+        option1 = null;
+        option2 = null;
 
         // reference numbers cannot match
-        while (num1 == num2 || pop1 == pop2) {
-
+        while (option1 == null || option2 == null || num1 == num2) {
+            //option1['popularity'] == option1['popularity']) {
+            
+            // switch the index for option2
             num2 = Math.floor(Math.random() * listLen);
 
-            // get data for artist at list position num1
-            artist1 = artistList[num1];
-            artist1Data = Object.values(artist1);
-            artist1Name = Object.values(artist1Data)[6];
-            artist1Popularity = Object.values(artist1Data)[7];
-            pop1 = artist1Popularity;
+            option1 = artistList[num1];
+            option2 = artistList[num2];
 
-            thisOption1 = artist1Name;
-            thisPop1 = artist1Popularity;
-
-            track1ImageList = Object.values(artist1Data)[5];
-            track1ImageData = track1ImageList[1];
-            track1Image = track1ImageData.url;
-
-            // get data for artist at list position num2
-            artist2 = artistList[num2];
-            artist2Data = Object.values(artist2);
-            artist2Name = Object.values(artist2Data)[6];
-            artist2Popularity = Object.values(artist2Data)[7];
-            pop2 = artist2Popularity;
-
-            thisOption2 = artist2Name;
-            thisPop2 = artist2Popularity;
-
-            track2ImageList = Object.values(artist2Data)[5];
-            track2ImageData = track2ImageList[1];
-            track2Image = track2ImageData.url;
-
+            console.log(option1);
+            console.log(option2);
+            break;
         }
 
         updateMode("artist", " have you listened to more?");
 
-        document.getElementById("text1a").textContent = artist1Name;
-        document.getElementById("text2a").textContent = artist2Name;
+        document.getElementById("text1a").textContent = option1['name'];
+        document.getElementById("text2a").textContent = option2['name'];
 
-        let pic1 = document.getElementById("image1");
-        pic1.src = track1Image;
-        let pic2 = document.getElementById("image2");
-        pic2.src = track2Image;
+        document.getElementById("image1").src = option1['images'][1]['url'];;
+        document.getElementById("image2").src = option2['images'][1]['url'];
 
     }
 }
@@ -185,88 +161,57 @@ function compareTracks() {
     if (user.top_tracks == [] || user.top_tracks == undefined || !user.top_tracks) {
         console.error("No data")
     } else {
-
         // accesses "items" section of JSON
         // lists all the tracks in the items
-        trackList = Object.values(user.top_tracks)[1];
+        trackList = user.top_tracks['items'];
 
         // creates 2 reference numbers from available numbers
         listLen = trackList.length;
         num1 = Math.floor(Math.random() * listLen);
         num2 = Math.floor(Math.random() * listLen);
 
-        pop1 = 0;
-        pop2 = 0;
+        option1 = null;
+        option2 = null;
 
         // reference numbers cannot match
-        while (num1 == num2 || pop1 == pop2) {
-
+        while (option1 == null || option2 == null || num1 == num2 ||
+            option1['popularity'] == option1['popularity']) {
+            
+            // switch the index for option2
             num2 = Math.floor(Math.random() * listLen);
 
-            track1 = trackList[num1];
-            track1Data = Object.values(track1);
-            track1Name = Object.values(track1Data)[11];
-            track1Popularity = Object.values(track1Data)[12];
-            pop1 = track1Popularity;
-            track1ID = Object.values(track1Data)[9];
-
-            thisOption1 = track1Name;
-            thisPop1 = track1Popularity;
-
-            track1AlbumRef = Object.values(track1Data)[0];
-            track1ImageList = Object.values(track1AlbumRef)[6];
-            track1ImageData = track1ImageList[1];
-            track1Image = track1ImageData.url;
-            track1Dance = 0;
-
-            track2 = trackList[num2];
-            track2Data = Object.values(track2);
-            track2Name = Object.values(track2Data)[11];
-            track2Popularity = Object.values(track2Data)[12];
-            pop2 = track2Popularity;
-            track2ID = Object.values(track2Data)[9];
-
-            thisOption2 = track2Name;
-            thisPop2 = track2Popularity;
-
-            track2AlbumRef = Object.values(track2Data)[0];
-            track2ImageList = Object.values(track2AlbumRef)[6];
-            track2ImageData = track2ImageList[1];
-            track2Image = track2ImageData.url;
-            track2Dance = 0;
-
+            option1 = trackList[num1];
+            option2 = trackList[num2];
+            break;
         }
 
         updateMode("track", " have you listened to more?");
 
-        document.getElementById("text1a").textContent = track1Name;
-        document.getElementById("text2a").textContent = track2Name;
+        document.getElementById("text1a").textContent = option1['name'];
+        document.getElementById("text2a").textContent = option2['name'];
 
-        let pic1 = document.getElementById("image1");
-        pic1.src = track1Image;
-        let pic2 = document.getElementById("image2");
-        pic2.src = track2Image;
-
+        document.getElementById("image1").src = option1['album']['images'][1]['url'];;
+        document.getElementById("image2").src = option2['album']['images'][1]['url'];
     }
 }
 
 function makeGuess(option) {
 
-    if (option == null || thisOption1 == null || thisOption2 == null) {
+    if (option == null || option1 == null || option2 == null) {
         console.log("There is a problem, an option is null");
 
     } else if (option == '1') {
-        if (thisPop1 > thisPop2) {
+        if (option1['popularity'] > option2['popularity']) {
             //correct answer
             userCurrentScore += 1;
             updateLives();
             document.getElementById("current_score").textContent = userCurrentScore;
-        } else if (thisPop2 > thisPop1) {
+        } else if (option2['popularity'] > option1['popularity']) {
             // wrong answer
             lives -= 1;
             console.log("wrong -1 life, lives = " + lives);
             updateLives();
-            if (lives == 0){
+            if (lives == 0) {
                 console.log("0 lives u lose");
                 updateHighScore(userCurrentScore);
                 userCurrentScore = 0;
@@ -279,17 +224,17 @@ function makeGuess(option) {
             updateLives();
         }
     } else if (option == '2') {
-        if (thisPop2 > thisPop1) {
+        if (option2['popularity'] > option1['popularity']) {
             //correct answer
             userCurrentScore += 1;
             updateLives();
             document.getElementById("current_score").textContent = userCurrentScore;
-        } else if (thisPop1 > thisPop2) {
+        } else if (option1['popularity'] > option2['popularity']) {
             // wrong answer
             lives -= 1;
             updateLives();
             console.log("wrong -1 life, lives = " + lives);
-            if (lives == 0){
+            if (lives == 0) {
                 console.log("0 lives u lose");
                 updateHighScore(userCurrentScore);
                 userCurrentScore = 0;
@@ -322,27 +267,21 @@ function updateLives() {
     icon3 = document.getElementById("life3");
 
     if (lives == 3) {
-        icon1.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
-        icon2.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
-        icon3.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
-    }
-
-    else if (lives == 2) {
-        icon1.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
-        icon2.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
-        icon3.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
-    }
-
-    else if (lives == 1) {
-        icon1.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
-        icon2.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
-        icon3.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
-    }
-
-    else {
-        icon1.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
-        icon2.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
-        icon3.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
+        icon1.src = "{{url_for('static', filename='resources/spotify-icon.png')}}";
+        icon2.src = "{{url_for('static', filename='resources/spotify-icon.png')}}";
+        icon3.src = "{{url_for('static', filename='resources/spotify-icon.png')}}";
+    } else if (lives == 2) {
+        icon1.src = "{{url_for('static', filename='resources/spotify-icon.png')}}";
+        icon2.src = "{{url_for('static', filename='resources/spotify-icon.png')}}";
+        icon3.src = "{{url_for('static', filename='resources/spotify-icon-black.png')}}";
+    } else if (lives == 1) {
+        icon1.src = "{{url_for('static', filename='resources/spotify-icon.png')}}";
+        icon2.src = "{{url_for('static', filename='resources/spotify-icon-black.png')}}";
+        icon3.src = "{{url_for('static', filename='resources/spotify-icon-black.png')}}";
+    } else {
+        icon1.src = "{{url_for('static', filename='resources/spotify-icon-black.png')}}";
+        icon2.src = "{{url_for('static', filename='resources/spotify-icon-black.png')}}";
+        icon3.src = "{{url_for('static', filename='resources/spotify-icon-black.png')}}";
     }
 
 }
