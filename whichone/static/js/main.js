@@ -43,27 +43,30 @@ async function makeRequest(param) {
 
 async function getAudioFeatures(tracks) {
     let trackIds = [];
-    tracks.items.forEach(track => {
-        trackIds.push(track.id);
-    });
-
-    $.ajax({
-        type: "POST",
-        url: "/audio_features",
-        data: JSON.stringify({
-            "track_ids": trackIds
-        }),
-        contentType: "application/json",
-        dataType: "json",
-        success: function (data) {
-            data.forEach(result => {
-                featuresDict[result['id']] = result;
-            });
-        },
-        error: function (errMsg) {
-            console.log(errMsg);
-        }
-    });
+    
+    if (tracks != null) {
+        tracks.items.forEach(track => {
+            trackIds.push(track.id);
+        });
+    
+        $.ajax({
+            type: "POST",
+            url: "/audio_features",
+            data: JSON.stringify({
+                "track_ids": trackIds
+            }),
+            contentType: "application/json",
+            dataType: "json",
+            success: function (data) {
+                data.forEach(result => {
+                    featuresDict[result['id']] = result;
+                });
+            },
+            error: function (errMsg) {
+                console.log(errMsg);
+            }
+        });
+    }
 }
 
 
@@ -183,54 +186,57 @@ function compareTracks() {
 
 
 function makeGuess(option) {
-    document.getElementById("stats-text").textContent = "";
-    document.getElementById("stats-text").style.color = "white";
     if (option == null || option1 == null || option2 == null) {
-        console.log("There is a problem, an option is null");
-    } else if (
-        (option == '1' && option1[currentMode] > option2[currentMode]) ||
-        (option == '2' && option2[currentMode] > option1[currentMode])) {
-        //correct answer
-        userCurrentScore += 1;
-        updateLives();
-        document.getElementById("current_score").textContent = userCurrentScore;
-        getStats(option1[currentMode],option2[currentMode]);
+        // data hasn't loaded yet
     } else {
-        // wrong answer
-        lives -= 1;
-        updateLives();
-        getStats(option1[currentMode],option2[currentMode]);
-        if (lives == 0) {
-            console.log("Game over. Final score: " + userCurrentScore);
-            updateHighScore(userCurrentScore);
-            document.getElementById("stats-text").textContent = "Game Over";
-            document.getElementById("stats-text").style.color = "red";
+        document.getElementById("stats-text").textContent = "";
+        document.getElementById("stats-text").style.color = "white";
+        
+        if (
+            (option == '1' && option1[currentMode] > option2[currentMode]) ||
+            (option == '2' && option2[currentMode] > option1[currentMode])) {
+            //correct answer
+            userCurrentScore += 1;
             updateLives();
-
-            lives = maxLives;
-            userCurrentScore = 0;
             document.getElementById("current_score").textContent = userCurrentScore;
+            getStats(option1[currentMode],option2[currentMode]);
+        } else {
+            // wrong answer
+            lives -= 1;
+            updateLives();
+            getStats(option1[currentMode],option2[currentMode]);
+            if (lives == 0) {
+                console.log("Game over. Final score: " + userCurrentScore);
+                updateHighScore(userCurrentScore);
+                document.getElementById("stats-text").textContent = "Game Over";
+                document.getElementById("stats-text").style.color = "red";
+                updateLives();
+    
+                lives = maxLives;
+                userCurrentScore = 0;
+                document.getElementById("current_score").textContent = userCurrentScore;
+            }
         }
-    }
-
-    console.log(option1[currentMode], option2[currentMode]);
-
-    choiceNum = Math.random();
-    if (choiceNum < 0.2) {
-        currentMode = "popularity";
-        compareArtists();
-    } else if (choiceNum >= 0.2 && choiceNum < 0.4) {
-        currentMode = "popularity";
-        compareTracks();
-    } else if (choiceNum >= 0.4 && choiceNum < 0.6) {
-        currentMode = "danceability";
-        compareTracks();
-    } else if (choiceNum >= 0.6 && choiceNum < 0.8) {
-        currentMode = "duration";
-        compareTracks();
-    } else {
-        currentMode = "valence";
-        compareTracks();
+    
+        console.log(option1[currentMode], option2[currentMode]);
+    
+        choiceNum = Math.random();
+        if (choiceNum < 0.2) {
+            currentMode = "popularity";
+            compareArtists();
+        } else if (choiceNum >= 0.2 && choiceNum < 0.4) {
+            currentMode = "popularity";
+            compareTracks();
+        } else if (choiceNum >= 0.4 && choiceNum < 0.6) {
+            currentMode = "danceability";
+            compareTracks();
+        } else if (choiceNum >= 0.6 && choiceNum < 0.8) {
+            currentMode = "duration";
+            compareTracks();
+        } else {
+            currentMode = "valence";
+            compareTracks();
+        }
     }
 }
 
