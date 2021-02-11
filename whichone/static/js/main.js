@@ -187,22 +187,20 @@ function makeGuess(option) {
         (option == '1' && option1[currentMode] > option2[currentMode]) ||
         (option == '2' && option2[currentMode] > option1[currentMode])) {
         //correct answer
-        //document.getElementById("game_over").textContent = "Correct";
         userCurrentScore += 1;
         updateLives();
         document.getElementById("current_score").textContent = userCurrentScore;
     } else {
         // wrong answer
-        //document.getElementById("game_over").textContent = "Wrong";
         lives -= 1;
         updateLives();
         if (lives == 0) {
             console.log("Game over. Final score: " + userCurrentScore);
             updateHighScore(userCurrentScore);
             userCurrentScore = 0;
-            //document.getElementById("game_over").textContent = "Game Over!";
-            lives = maxLives;
+            document.getElementById("stats-text").textContent = "Game Over!";
             updateLives();
+            lives = maxLives;
             document.getElementById("current_score").textContent = userCurrentScore;
         }
     }
@@ -268,6 +266,6 @@ function getStats(param1, param2) {
         small = param1;
     }
 
-    
+
 
 }
