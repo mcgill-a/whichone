@@ -1,6 +1,7 @@
 import os
 import uuid
 from flask import render_template, redirect, request, url_for, json, jsonify
+from flask_session import Session
 from whichone import app, session
 import whichone.spotipy as spotipy
 
@@ -10,7 +11,9 @@ if not os.path.exists(caches_folder):
 
 
 def session_cache_path():
-    return caches_folder + session.get('uuid')
+    if not session.get('uuid'):
+        session['uuid'] = str(uuid.uuid4())
+    return caches_folder + session.get('uuid') 
 
 
 @app.route('/')
