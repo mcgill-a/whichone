@@ -24,7 +24,7 @@ def index():
         client_id=app.config['SPOTIPY_CLIENT_ID'],
         client_secret=app.config['SPOTIPY_CLIENT_SECRET'],
         redirect_uri=app.config['SPOTIPY_REDIRECT_URI'],
-        scope='user-top-read user-read-currently-playing playlist-modify-private',
+        scope='user-top-read',
         cache_handler=cache_handler,
         show_dialog=True)
 
@@ -75,23 +75,6 @@ def playlists():
 
     spotify = spotipy.Spotify(auth_manager=auth_manager)
     return spotify.current_user_playlists()
-
-
-@app.route('/currently_playing')
-def currently_playing():
-    cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
-    auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=app.config['SPOTIPY_CLIENT_ID'],
-        client_secret=app.config['SPOTIPY_CLIENT_SECRET'],
-        redirect_uri=app.config['SPOTIPY_REDIRECT_URI'],
-        cache_handler=cache_handler)
-    if not auth_manager.validate_token(cache_handler.get_cached_token()):
-        return redirect('/')
-    spotify = spotipy.Spotify(auth_manager=auth_manager)
-    track = spotify.current_user_playing_track()
-    if not track is None:
-        return track
-    return "No track currently playing."
 
 
 @app.route('/top_tracks')
@@ -164,6 +147,7 @@ def current_user():
     spotify = spotipy.Spotify(auth_manager=auth_manager)
     return spotify.current_user()
 
+
 @app.route('/play')
 def play():
     user = current_user()
@@ -177,4 +161,4 @@ def play():
             user_output['profile_pic'] = None 
         return render_template('play.html', user=user_output)  
         
-    return render_template('play.html', user=None)
+    return redirect('/')
