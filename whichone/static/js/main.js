@@ -242,12 +242,12 @@ function updateLives() {
     if (Number.isNaN(lives) || lives > 3) {
         cheaterMode = true;
         console.log("Cheater mode enabled.");
-        highScore = 0;
     }
     if (cheaterMode) {
         icon1.src = "/static/resources/spotify-icon-red.png";
         icon2.src = "/static/resources/spotify-icon-red.png";
         icon3.src = "/static/resources/spotify-icon-red.png";
+        highScore = 0;
     } else if (lives == 3) {
         icon1.src = "/static/resources/spotify-icon.png";
         icon2.src = "/static/resources/spotify-icon.png";

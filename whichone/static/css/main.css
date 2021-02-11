@@ -291,4 +291,209 @@ html {
   }
 }
 
+@media only screen and (max-width: 860px) {
+  .album_art {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .choice {
+    width: 320px;
+    height: 435px;
+    padding: 10px;
+    margin: 10px 20px;
+  }
+
+  .score {
+    font-size: 20px;
+  }
+  
+  .score-label {
+    font-size: 20px;
+  }
+
+  .container-vert {
+    width: 600px;
+  }
+
+  .container-score {
+    width: 180px;
+  }
+
+  .span-icon-small {
+    height: 48px;
+    width: 48px;
+    margin: 0 6px;
+  }
+
+  .gotham-small {
+    font-weight: 500;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .album_art {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .choice {
+    width: 270px;
+    height: 385px;
+    padding: 10px;
+    margin: 5px 10px;
+  }
+
+  .score {
+    font-size: 18px;
+  }
+  
+  .score-label {
+    font-size: 18px;
+  }
+
+  .container-vert {
+    width: 500px;
+  }
+
+  .container-score {
+    width: 180px;
+  }
+
+  .span-icon-small {
+    height: 43px;
+    width: 43px;
+    margin: 0 6px;
+  }
+
+  .gotham-small {
+    font-weight: 400;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .album_art {
+    width: 230px;
+    height: 230px;
+  }
+  
+  .choice {
+    width: 250px;
+    height: 365px;
+    padding: 10px;
+    margin: 5px 10px;
+  }
+
+  .score {
+    font-size: 15px;
+  }
+  
+  .score-label {
+    font-size: 15px;
+  }
+
+  .container-vert {
+    width: 450px;
+  }
+
+  .container-score {
+    width: 180px;
+  }
+
+  .span-icon-small {
+    height: 32px;
+    width: 32px;
+    margin: 0 6px;
+  }
+
+  .gotham-small {
+    font-weight: 400;
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .album_art {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .choice {
+    width: 200px;
+    height: 315px;
+    padding: 10px;
+    margin: 5px 10px;
+  }
+
+  .score {
+    font-size: 13px;
+  }
+  
+  .score-label {
+    font-size: 13px;
+  }
+
+  .container-vert {
+    width: 400px;
+  }
+
+  .container-score {
+    width: 175px;
+  }
+
+  .span-icon-small {
+    height: 25px;
+    width: 25px;
+    margin: 0 6px;
+  }
+
+  .gotham-small {
+    font-weight: 400;
+    font-size: 13px;
+  }
+}
+
+
+@media only screen and (max-width: 400px) {
+  .album_art {
+    width: 130px;
+    height: 130px;
+  }
+  
+  .choice {
+    width: 150px;
+    height: 265px;
+    padding: 10px;
+    margin: 5px 10px;
+  }
+
+  .score {
+    font-size: 12px;
+  }
+  
+  .score-label {
+    font-size: 12px;
+  }
+
+  .container-vert {
+    width: 320px;
+  }
+
+  .container-score {
+    width: 160px;
+  }
+
+  .span-icon-small {
+    height: 20px;
+    width: 20px;
+    margin: 0 5px;
+  }
+
+  .gotham-small {
+    font-weight: 400;
+    font-size: 12px;
+  }
+}
 
