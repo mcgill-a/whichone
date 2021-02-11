@@ -50,6 +50,16 @@ html {
   overflow: hidden;
 }
 
+.container-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
 .container-vert {
   display: flex;
   flex-direction: row;
@@ -100,12 +110,6 @@ html {
   justify-content: center;
   align-items: center;
   width: 100%;
-}
-
-.span-icon {
-  height: 48px;
-  width: 48px;
-  margin-right: 15px;
 }
 
 .span-icon-small {

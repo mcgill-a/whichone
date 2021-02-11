@@ -183,6 +183,8 @@ function compareTracks() {
 
 
 function makeGuess(option) {
+    document.getElementById("stats-text").textContent = "";
+    document.getElementById("stats-text").style.color = "white";
     if (option == null || option1 == null || option2 == null) {
         console.log("There is a problem, an option is null");
     } else if (
@@ -192,16 +194,21 @@ function makeGuess(option) {
         userCurrentScore += 1;
         updateLives();
         document.getElementById("current_score").textContent = userCurrentScore;
+        getStats(option1[currentMode],option2[currentMode]);
     } else {
         // wrong answer
         lives -= 1;
         updateLives();
+        getStats(option1[currentMode],option2[currentMode]);
         if (lives == 0) {
             console.log("Game over. Final score: " + userCurrentScore);
             updateHighScore(userCurrentScore);
-            userCurrentScore = 0;
-            lives = maxLives;
+            document.getElementById("stats-text").textContent = "Game Over";
+            document.getElementById("stats-text").style.color = "red";
             updateLives();
+
+            lives = maxLives;
+            userCurrentScore = 0;
             document.getElementById("current_score").textContent = userCurrentScore;
         }
     }
@@ -258,5 +265,37 @@ function updateLives() {
         icon2.src = "/static/resources/spotify-icon-black.png";
         icon3.src = "/static/resources/spotify-icon-black.png";
     }
+
+}
+
+function getStats(param1, param2) {
+
+    var big = null;
+    var small = null;
+
+    if (param1 > param2) {
+        big = param1;
+        small = param2;
+    }
+    else {
+        big = param2;
+        small = param1;
+    }
+
+    choice1 = document.getElementById("text1a").textContent;
+    choice2 = document.getElementById("text2a").textContent;
+
+    timesMore = Math.round((big / small)*10) / 10;
+    if (timesMore < 0.1) {
+        timesMore = 50;
+    }
+    else if (timesMore == 1) {
+        timesMore = 1.1;
+    }
+    amountMore = Math.round((big - small)*10) / 10;
+
+    durationMore = amountMore / 1000;
+
+    document.getElementById("stats-text").textContent = choice1 + " is " + timesMore + " times more than " + choice2 + ".";
 
 }

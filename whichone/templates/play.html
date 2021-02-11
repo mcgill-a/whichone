@@ -49,8 +49,7 @@
                     <h2 class="score" style="text-align: right;" id="current_score">0</h2>
                     <h4 class="score-label" style="text-align: right;">Current Score</h4>
                 </div>
-
-
+        
                 <img id="life1" class="span-icon-small"
                     src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 1">
                 <img id="life2" class="span-icon-small"
@@ -65,8 +64,8 @@
             </div>
 
             <div class="container-vert negative-margin">
-                <div class="container-score">
-                    <h4 class="score-label">Really?!</h4>
+                <div class="container-stats">
+                    <h4 class="score-label" id="stats-text" color="white"></h4>
                 </div>
             </div>
             {% endif %}
