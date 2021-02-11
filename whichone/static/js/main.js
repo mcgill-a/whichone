@@ -155,14 +155,22 @@ function compareTracks() {
 
             option1 = trackList[num1];
             option1['danceability'] = featuresDict[option1['id']]['danceability'];
+            option1['valence'] = featuresDict[option1['id']]['valence'];
+            option1['duration'] = featuresDict[option1['id']]['duration_ms'];
             option2 = trackList[num2];
             option2['danceability'] = featuresDict[option2['id']]['danceability'];
+            option2['valence'] = featuresDict[option2['id']]['valence'];
+            option2['duration'] = featuresDict[option2['id']]['duration_ms'];
         }
 
         if (currentMode == "popularity") {
             updateMode("track", " have you listened to more?");
         } else if (currentMode == "danceability") {
             updateMode("track", " is more danceable?");
+        } else if (currentMode == "valence") {
+            updateMode("track", " is more upbeat?");
+        } else if (currentMode == "duration") {
+            updateMode("track", " is longer?");
         }
 
         document.getElementById("text1a").textContent = option1['name'];
@@ -193,20 +201,29 @@ function makeGuess(option) {
             updateHighScore(userCurrentScore);
             userCurrentScore = 0;
             lives = maxLives;
+            updateLives();
             document.getElementById("current_score").textContent = userCurrentScore;
         }
     }
 
+    console.log(option1[currentMode], option2[currentMode]);
 
     choiceNum = Math.random();
-    if (choiceNum < 0.3) {
+    console.log(choiceNum);
+    if (choiceNum < 0.2) {
         currentMode = "popularity";
         compareArtists();
-    } else if (choiceNum >= 0.3 && choiceNum < 0.6) {
+    } else if (choiceNum >= 0.2 && choiceNum < 0.4) {
         currentMode = "popularity";
         compareTracks();
-    } else {
+    } else if (choiceNum >= 0.4 && choiceNum < 0.6) {
         currentMode = "danceability";
+        compareTracks();
+    } else if (choiceNum >= 0.6 && choiceNum < 0.8) {
+        currentMode = "duration";
+        compareTracks();
+    } else {
+        currentMode = "valence";
         compareTracks();
     }
 }
