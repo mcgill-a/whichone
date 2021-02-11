@@ -290,11 +290,13 @@ function makeGuess(option) {
         if (thisPop1 > thisPop2) {
             //correct answer
             userCurrentScore += 1;
+            updateLives();
             document.getElementById("current_score").textContent = userCurrentScore;
         } else if (thisPop2 > thisPop1) {
             // wrong answer
             lives -= 1;
             console.log("wrong -1 life, lives = " + lives);
+            updateLives();
             if (lives == 0){
                 console.log("0 lives u lose");
                 updateHighScore(userCurrentScore);
@@ -305,15 +307,18 @@ function makeGuess(option) {
         } else {
             // neutral answer, error or same pop
             console.log("same");
+            updateLives();
         }
     } else if (option == '2') {
         if (thisPop2 > thisPop1) {
             //correct answer
             userCurrentScore += 1;
+            updateLives();
             document.getElementById("current_score").textContent = userCurrentScore;
         } else if (thisPop1 > thisPop2) {
             // wrong answer
             lives -= 1;
+            updateLives();
             console.log("wrong -1 life, lives = " + lives);
             if (lives == 0){
                 console.log("0 lives u lose");
@@ -325,10 +330,12 @@ function makeGuess(option) {
         } else {
             // neutral answer, error or same pop
             console.log("same");
+            updateLives();
         }
     } else {
         //something has gone wrong
         console.log("hmmmmm");
+        updateLives();
     }
 
     choiceNum = Math.random();
@@ -337,6 +344,36 @@ function makeGuess(option) {
     } else if (choiceNum >= 0.5) {
         compareTracks();
     }
+}
 
+function updateLives() {
+
+    icon1 = document.getElementById("life1");
+    icon2 = document.getElementById("life2");
+    icon3 = document.getElementById("life3");
+
+    if (lives == 3) {
+        icon1.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
+        icon2.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
+        icon3.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
+    }
+
+    else if (lives == 2) {
+        icon1.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
+        icon2.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
+        icon3.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
+    }
+
+    else if (lives == 1) {
+        icon1.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
+        icon2.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
+        icon3.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
+    }
+
+    else {
+        icon1.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
+        icon2.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
+        icon3.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
+    }
 
 }

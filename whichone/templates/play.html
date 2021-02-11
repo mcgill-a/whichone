@@ -44,23 +44,26 @@
             </div>
 
             {% if user %}
-            <div class="user-card">
-                <div class="user-card-left">
-                    
-                    <img class="user-profile" src="{{user.profile_pic}}">
+            <div class="container-vert">
+                <div class="container">
+                    <h2 class="score" color="white" id="current_score">0</h2>
+                    <h4 class="score" color="white">Current Score</h4>
                 </div>
-                <div class="user-card-right">
-                    <p class="score">Current Score: <span id="current_score">0</span></p>
-                    <p class="score">High Score: <span id="high_score">0</span></p>
-                    <div class="made-with">
-                        <p class="name-small">{{user.display_name}}</p>
-                        <span class="span-container">
-                            <img class="span-icon-small"
-                                src="{{url_for('static', filename='resources/spotify-icon.png')}}"></img>
-                            <p>Which One?</p>
-                        </span>
-                    </div>
+
+
+                <img id="life1" class="span-icon-small"
+                    src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 1">
+                <img id="life2" class="span-icon-small"
+                    src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 2">
+                <img id="life3" class="span-icon-small"
+                    src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 3">
+
+                <div class="container">
+                    <h2 class="score" color="white" id="high_score">0</h2>
+                    <h4 class="score" color="white">High Score</h4>
                 </div>
+
+                
             </div>
             {% endif %}
         </div>
