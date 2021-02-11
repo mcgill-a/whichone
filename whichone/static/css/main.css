@@ -13,6 +13,7 @@ html {
   height: 100%;
   color: #777;
   line-height: 1.8;
+  min-width: 260px;
 }
 
 /* Create a Parallax Effect */
@@ -497,3 +498,44 @@ html {
   }
 }
 
+@media only screen and (max-width: 300px) {
+  .album_art {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .choice {
+    width: 100px;
+    height: 215px;
+    padding: 10px;
+    margin: 5px 5px;
+  }
+
+  .score {
+    font-size: 10px;
+  }
+  
+  .score-label {
+    font-size: 10px;
+  }
+
+  .container-vert {
+    width: 230px;
+    height: 60px;
+  }
+
+  .container-score {
+    width: 130px;
+  }
+
+  .span-icon-small {
+    height: 12px;
+    width: 12px;
+    margin: 0 3px;
+  }
+
+  .gotham-small {
+    font-weight: 400;
+    font-size: 10px;
+  }
+}
