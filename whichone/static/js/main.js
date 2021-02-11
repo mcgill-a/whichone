@@ -37,27 +37,6 @@ async function makeRequest(param) {
 }
 
 async function makePostRequest(url, inputBody) {
-    /*
-    const settings = {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: inputBody
-    };
-    try {
-        let url = "/" + param;
-        let fetchResponse = await fetch(url, settings);
-        console.log(fetchResponse);
-        let data = await fetchResponse.json();
-        return data;
-    } catch (error) {
-        console.error("API (POST) unavailable. Please try again later.");
-    }
-    */
-
-
     $.ajax({
         type: "POST",
         url: url,
@@ -67,16 +46,12 @@ async function makePostRequest(url, inputBody) {
         contentType: "application/json",
         dataType: "json",
         success: function (data) {
-            for (i = 0; i < data.length; i++) {
-                featuresList.push(data[i]);
-            }
-
+            doWork(data);
         },
         error: function (errMsg) {
             console.log(errMsg);
         }
     });
-
 }
 
 
@@ -97,26 +72,10 @@ async function process(param1, param2) {
     }
 
     listTrackIDs(result2);
-
-
-    // @alex fix this pls
-    console.log(featuresList.length);
-
-    for (var i = 0; i < featuresList.length; i++) {
-        var thisFeatures = Object.values(featuresList[i]);
-        if (!featuresDict[thisFeatures[5]]) {
-            featuresDict[thisFeatures[5]] = [];
-        }
-        featuresDict[thisFeatures[5]].push(featuresList[2]);
-    }
-
-    console.log(JSON.stringify(featuresDict));
-    //
-
     compareArtists();
 }
 
-function listTrackIDs(input) {
+async function listTrackIDs(input) {
 
     //for track in JSON object list, get track ID and add to list
 
@@ -128,7 +87,17 @@ function listTrackIDs(input) {
 
     postInput = JSON.parse(JSON.stringify(idList)); // convert idList a JSON object
     makePostRequest("/audio_features", postInput);
+}
 
+function doWork(results) {
+    if (results != null) {
+        results.forEach(result => {
+            featuresDict[result['id']] = result;
+        });
+        console.log(featuresDict);
+    } else {
+        console.error("Audio features unavailable");
+    }
 }
 
 function updateMode(mode, mode_text) {
