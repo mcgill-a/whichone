@@ -47,6 +47,7 @@ html {
   padding: 10px;
   height: 100%;
   width: 200px;
+  overflow: hidden;
 }
 
 .container-vert {
@@ -242,6 +243,7 @@ html {
   font-size: 25px;
   margin: 0;
   color: whitesmoke;
+  height: 45px;
 }
 
 .score-label {
