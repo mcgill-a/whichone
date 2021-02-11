@@ -273,17 +273,28 @@ function getStats(param1, param2) {
     var big = null;
     var small = null;
 
+    var bigChoice = null;
+    var smallChoice = null;
+
+    choice1 = document.getElementById("text1a").textContent;
+    choice2 = document.getElementById("text2a").textContent;
+
     if (param1 > param2) {
         big = param1;
         small = param2;
+
+        bigChoice = choice1;
+        smallChoice = choice2;
+
     }
     else {
         big = param2;
         small = param1;
-    }
 
-    choice1 = document.getElementById("text1a").textContent;
-    choice2 = document.getElementById("text2a").textContent;
+        
+        bigChoice = choice2;
+        smallChoice = choice1;
+    }
 
     timesMore = Math.round((big / small)*10) / 10;
     if (timesMore < 0.1) {
@@ -293,9 +304,16 @@ function getStats(param1, param2) {
         timesMore = 1.1;
     }
     amountMore = Math.round((big - small)*10) / 10;
-
     durationMore = amountMore / 1000;
 
-    document.getElementById("stats-text").textContent = choice1 + " is " + timesMore + " times more than " + choice2 + ".";
+    if (currentMode == 'danceability') {
+        document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " times more danceable than " + smallChoice + ".";
+    }
+    else if (currentMode == 'valence') {
+        document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " times more upbeat than " + smallChoice + ".";
+    }
+    else if (currentMode == 'duration') {
+        document.getElementById("stats-text").textContent = bigChoice + " is " + durationMore + " seconds longer than " + smallChoice + ".";
+    }
 
 }

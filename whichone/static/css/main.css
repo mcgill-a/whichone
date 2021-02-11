@@ -112,6 +112,12 @@ html {
   width: 100%;
 }
 
+.span-icon {
+  height: 48px;
+  width: 48px;
+  margin: 0 8px;
+}
+
 .span-icon-small {
   height: 64px;
   width: 64px;
