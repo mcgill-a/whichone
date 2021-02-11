@@ -17,6 +17,8 @@ var userCurrentScore = 0;
 var highScore = 0;
 
 
+var cheaterMode = false;
+
 $(document).ready(function () {
 
     getSpotifyData();
@@ -230,8 +232,14 @@ function updateLives() {
     icon1 = document.getElementById("life1");
     icon2 = document.getElementById("life2");
     icon3 = document.getElementById("life3");
-
-    if (lives == 3) {
+    if (lives > 3) {
+        cheaterMode = true;
+    }
+    if (cheaterMode) {
+        icon1.src = "/static/resources/spotify-icon-red.png";
+        icon2.src = "/static/resources/spotify-icon-red.png";
+        icon3.src = "/static/resources/spotify-icon-red.png";
+    } else if (lives == 3) {
         icon1.src = "/static/resources/spotify-icon.png";
         icon2.src = "/static/resources/spotify-icon.png";
         icon3.src = "/static/resources/spotify-icon.png";
