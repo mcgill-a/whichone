@@ -10,6 +10,7 @@ var highScore = 0;
 
 var option1 = null;
 var option2 = null;
+var currentMode = "popularity";
 
 userCurrentScore = 0;
 maxLives = 3;
@@ -26,7 +27,6 @@ $(document).ready(function () {
         event.stopImmediatePropagation();
         makeGuess($(this).data('choice'));
     });
-
 });
 
 async function makeRequest(param) {
@@ -103,7 +103,7 @@ function updateHighScore(score) {
 }
 
 function compareArtists() {
-
+    console.log("Compare artists " + currentMode);
     if (user.top_artists == [] || user.top_artists == undefined || !user.top_artists) {
         console.error("No data")
     } else {
@@ -137,12 +137,11 @@ function compareArtists() {
 
         document.getElementById("image1").src = option1['images'][1]['url'];;
         document.getElementById("image2").src = option2['images'][1]['url'];
-
     }
 }
 
 function compareTracks() {
-
+    console.log("Compare tracks " + currentMode);
     if (user.top_tracks == [] || user.top_tracks == undefined || !user.top_tracks) {
         console.error("No data")
     } else {
@@ -151,25 +150,32 @@ function compareTracks() {
         trackList = user.top_tracks['items'];
 
         // creates 2 reference numbers from available numbers
+        
         listLen = trackList.length;
         num1 = Math.floor(Math.random() * listLen);
-        num2 = Math.floor(Math.random() * listLen);
 
         option1 = null;
         option2 = null;
 
         // reference numbers cannot match
         while (option1 == null || option2 == null || num1 == num2 ||
-            option1['popularity'] == option2['popularity']) {
-
-            option1 = trackList[num1];
-            option2 = trackList[num2];
-
+            option1[currentMode] == option2[currentMode]) {
+                
             // switch the index for option2
             num2 = Math.floor(Math.random() * listLen);
+
+            option1 = trackList[num1];
+            option1['danceability'] = featuresDict[option1['id']]['danceability']
+            option2 = trackList[num2];
+            option2['danceability'] = featuresDict[option2['id']]['danceability']
+
         }
 
-        updateMode("track", " have you listened to more?");
+        if (currentMode == "popularity") {
+            updateMode("track", " have you listened to more?");
+        } else if (currentMode == "danceability") {
+            updateMode("track", " is more danceable?");
+        }
 
         document.getElementById("text1a").textContent = option1['name'];
         document.getElementById("text2a").textContent = option2['name'];
@@ -180,21 +186,18 @@ function compareTracks() {
 }
 
 
-
-
-
 function makeGuess(option) {
 
     if (option == null || option1 == null || option2 == null) {
         console.log("There is a problem, an option is null");
 
     } else if (option == '1') {
-        if (option1['popularity'] > option2['popularity']) {
+        if (option1[currentMode] > option2[currentMode]) {
             //correct answer
             userCurrentScore += 1;
             updateLives();
             document.getElementById("current_score").textContent = userCurrentScore;
-        } else if (option2['popularity'] > option1['popularity']) {
+        } else if (option2[currentMode] > option1[currentMode]) {
             // wrong answer
             lives -= 1;
             console.log("wrong -1 life, lives = " + lives);
@@ -212,12 +215,12 @@ function makeGuess(option) {
             updateLives();
         }
     } else if (option == '2') {
-        if (option2['popularity'] > option1['popularity']) {
+        if (option2[currentMode] > option1[currentMode]) {
             //correct answer
             userCurrentScore += 1;
             updateLives();
             document.getElementById("current_score").textContent = userCurrentScore;
-        } else if (option1['popularity'] > option2['popularity']) {
+        } else if (option1[currentMode] > option2[currentMode]) {
             // wrong answer
             lives -= 1;
             updateLives();
@@ -241,9 +244,14 @@ function makeGuess(option) {
     }
 
     choiceNum = Math.random();
-    if (choiceNum < 0.5) {
+    if (choiceNum < 0.3) {
+        currentMode = "popularity";
         compareArtists();
-    } else if (choiceNum >= 0.5) {
+    } else if (choiceNum >= 0.3 && choiceNum < 0.6) {
+        currentMode = "popularity";
+        compareTracks();
+    } else {
+        currentMode = "danceability";
         compareTracks();
     }
 }
