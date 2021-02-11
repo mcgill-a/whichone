@@ -322,27 +322,27 @@ function updateLives() {
     icon3 = document.getElementById("life3");
 
     if (lives == 3) {
-        icon1.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
-        icon2.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
-        icon3.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
+        icon1.src="/static/resources/spotify-icon.png";
+        icon2.src="/static/resources/spotify-icon.png";
+        icon3.src="/static/resources/spotify-icon.png";
     }
 
     else if (lives == 2) {
-        icon1.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
-        icon2.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
-        icon3.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
+        icon1.src="/static/resources/spotify-icon.png";
+        icon2.src="/static/resources/spotify-icon.png";
+        icon3.src="/static/resources/spotify-icon-black.png";
     }
 
     else if (lives == 1) {
-        icon1.src="{{url_for('static', filename='resources/spotify-icon.png')}}";
-        icon2.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
-        icon3.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
+        icon1.src="/static/resources/spotify-icon.png";
+        icon2.src="/static/resources/spotify-icon-black.png";
+        icon3.src="/static/resources/spotify-icon-black.png";
     }
 
     else {
-        icon1.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
-        icon2.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
-        icon3.src="{{url_for('static', filename='resources/spotify-icon-black.png')}}";
+        icon1.src="/static/resources/spotify-icon-black.png";
+        icon2.src="/static/resources/spotify-icon-black.png";
+        icon3.src="/static/resources/spotify-icon-black.png";
     }
 
 }
