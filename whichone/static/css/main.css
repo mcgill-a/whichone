@@ -24,13 +24,15 @@ html {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
+  height: 100% !important;
+  position: absolute !important;
+  overflow: hidden;
 }
 
 /* First image (Logo. Full height) */
 .bgimg-1 {
   background-image: url('https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-  background-size: cover;
-  height:100%;
 }
 
 .w3-wide {
