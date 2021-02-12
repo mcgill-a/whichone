@@ -216,7 +216,7 @@ html {
   margin: 10px 30px;
   border-radius: 10px;
   -moz-border-radius: 10px;
-  transition: all .2s ease-in-out;
+  transition: all .12s ease-in-out;
   cursor: pointer;
   outline: 0;
 }
