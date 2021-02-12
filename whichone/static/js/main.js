@@ -232,21 +232,20 @@ function makeGuess(option) {
 
         console.log(option1[currentMode], option2[currentMode]);
 
+        choiceArray = ["popularity", "popularity", "danceability", "duration", "valence"];
+        currentMode = choiceArray[Math.floor(Math.random() * choiceArray.length)];
+
         choiceNum = Math.random();
-        if (choiceNum < 0.2) {
-            currentMode = "popularity";
+
+        if (choiceNum < 0.5 && currentMode == "popularity") {
             compareArtists();
-        } else if (choiceNum >= 0.2 && choiceNum < 0.4) {
-            currentMode = "popularity";
+        } else if (choiceNum >= 0.5 && currentMode == "popularity") {
             compareTracks();
-        } else if (choiceNum >= 0.4 && choiceNum < 0.6) {
-            currentMode = "danceability";
+        } else if (currentMode == "danceability") {
             compareTracks();
-        } else if (choiceNum >= 0.6 && choiceNum < 0.8) {
-            currentMode = "duration";
+        } else if (currentMode == "duration") {
             compareTracks();
-        } else {
-            currentMode = "valence";
+        } else { // currentMode == "valence"
             compareTracks();
         }
     }
@@ -314,8 +313,8 @@ function getStats(param1, param2) {
     }
 
     timesMore = Math.round((big / small)*10) / 10;
-    if (timesMore < 0.1) {
-        timesMore = 50;
+    if (timesMore == Infinity) {
+        timesMore = "a lot";
     }
     else if (timesMore == 1) {
         timesMore = 1.1;
@@ -328,16 +327,16 @@ function getStats(param1, param2) {
     plural = "s";
 
     if (currentMode == 'danceability') {
-        document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " times more danceable than " + smallChoice + ".";
+        document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " x more danceable than " + smallChoice + ".";
     }
     else if (currentMode == 'valence') {
-        document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " times more upbeat than " + smallChoice + ".";
+        document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " x more upbeat than " + smallChoice + ".";
     }
     else if (currentMode == 'duration') {
         if (durationMore == 1) {plural = "";}
         document.getElementById("stats-text").textContent = bigChoice + " is " + durationMore + " second" + plural + " longer than " + smallChoice + ".";
     }
     else if (currentMode == 'popularity') {
-        document.getElementById("stats-text").textContent = "You have listened to " + bigChoice + " " + timesMore + " times more than " + smallChoice + ".";
+        document.getElementById("stats-text").textContent = "You have listened to " + bigChoice + " " + timesMore + " x more than " + smallChoice + ".";
     }
 }
