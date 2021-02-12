@@ -24,13 +24,15 @@ html {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
+  height: 100% !important;
+  position: absolute !important;
+  overflow: hidden;
 }
 
 /* First image (Logo. Full height) */
 .bgimg-1 {
   background-image: url('https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-  background-size: cover;
-  height:100%;
 }
 
 .w3-wide {
@@ -39,6 +41,10 @@ html {
 
 .w3-hover-opacity {
   cursor: pointer;
+}
+
+.container {
+  height: 100%;
 }
 
 .container-score {
@@ -66,21 +72,37 @@ html {
   flex-direction: row;
   margin-top: 60px;
   margin: 50px auto;
-  height: 100%;
+  min-height: 80px;
   justify-content: center;
   align-items: center;
   background-color: rgb(49, 49, 49, 0.7);
   width: 700px;
   border-radius: 10px;
+  animation: fadeIn 1s;
 }
+
+#stats-popup {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 300ms, opacity 300ms;
+}
+
 
 .center-display {
   display:flex;
   flex-direction: column;
-  height: 100%;
+  height: auto;
   width: 100%;
   justify-content: center;
   align-items: center;
+}
+
+.full-height {
+  height: 100%;
 }
 
 
@@ -128,7 +150,7 @@ html {
 .gotham-header {
   font-family: 'GothamPro';
   font-weight: bold;
-  font-size: 140px;
+  font-size: 9vw;
   color: white;
 }
 
@@ -263,6 +285,7 @@ html {
   margin: 0;
   color: whitesmoke;
   text-align: center;
+  padding: 0 5px;
 }
 
 .negative-margin {
@@ -331,6 +354,19 @@ html {
     font-weight: 500;
     font-size: 16px;
   }
+
+  .spotify-login {
+    background-color: rgb(31,185,85);
+    width: 360px;
+    height: 80px;
+    font-size: 28px;
+  }
+
+  .span-icon {
+    height: 40px;
+    width: 40px;
+    margin: 0 8px;
+  }
 }
 
 @media only screen and (max-width: 700px) {
@@ -371,6 +407,19 @@ html {
   .gotham-small {
     font-weight: 400;
     font-size: 16px;
+  }
+
+  .spotify-login {
+    background-color: rgb(31,185,85);
+    width: 360px;
+    height: 80px;
+    font-size: 28px;
+  }
+
+  .span-icon {
+    height: 40px;
+    width: 40px;
+    margin: 0 8px;
   }
 }
 
@@ -413,6 +462,19 @@ html {
     font-weight: 400;
     font-size: 15px;
   }
+
+  .spotify-login {
+    background-color: rgb(31,185,85);
+    width: 360px;
+    height: 80px;
+    font-size: 28px;
+  }
+
+  .span-icon {
+    height: 40px;
+    width: 40px;
+    margin: 0 8px;
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -453,6 +515,19 @@ html {
   .gotham-small {
     font-weight: 400;
     font-size: 13px;
+  }
+
+  .spotify-login {
+    background-color: rgb(31,185,85);
+    width: 300px;
+    height: 70px;
+    font-size: 22px;
+  }
+
+  .span-icon {
+    height: 30px;
+    width: 30px;
+    margin: 0 6px;
   }
 }
 
@@ -496,6 +571,25 @@ html {
     font-weight: 400;
     font-size: 12px;
   }
+
+  .span-icon {
+    height: 48px;
+    width: 48px;
+    margin: 0 8px;
+  }
+
+  .spotify-login {
+    background-color: rgb(31,185,85);
+    width: 250px;
+    height: 70px;
+    font-size: 20px;
+  }
+
+  .span-icon {
+    height: 26px;
+    width: 26px;
+    margin: 0 6px;
+  }
 }
 
 @media only screen and (max-width: 300px) {
@@ -537,5 +631,18 @@ html {
   .gotham-small {
     font-weight: 400;
     font-size: 10px;
+  }
+
+  .spotify-login {
+    background-color: rgb(31,185,85);
+    width: 220px;
+    height: 60px;
+    font-size: 19px;
+  }
+
+  .span-icon {
+    height: 24px;
+    width: 24px;
+    margin: 0 6px;
   }
 }

@@ -13,16 +13,12 @@
         href="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
     {% endblock %}
-    {% block javascript %}
-    <!-- <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script> -->
-    {% endblock %}
-
 </head>
 
 <body>
     <div class="bgimg-1">
         <div class="container">
-            <div class="center-display">
+            <div class="center-display full-height">
                 <h1 class="gotham-header">Which One?</h1>
                 <div>
                     <a href="{{auth_url}}/">

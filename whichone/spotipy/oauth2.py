@@ -144,7 +144,7 @@ class SpotifyClientCredentials(SpotifyAuthBase):
                  requests_timeout=None):
         """
         You can either provide a client_id and client_secret to the
-        constructor or set SPOTIPY_CLIENT_ID and SPOTIPY_CLIENT_SECRET
+        constructor or set SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET
         environment variables
         """
 

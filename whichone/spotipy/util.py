@@ -13,10 +13,10 @@ import whichone.spotipy
 LOGGER = logging.getLogger(__name__)
 
 CLIENT_CREDS_ENV_VARS = {
-    "client_id": "SPOTIPY_CLIENT_ID",
-    "client_secret": "SPOTIPY_CLIENT_SECRET",
+    "client_id": "SPOTIFY_CLIENT_ID",
+    "client_secret": "SPOTIFY_CLIENT_SECRET",
     "client_username": "SPOTIPY_CLIENT_USERNAME",
-    "redirect_uri": "SPOTIPY_REDIRECT_URI",
+    "redirect_uri": "SPOTIFY_REDIRECT_URI",
 }
 
 
@@ -55,13 +55,13 @@ def prompt_for_user_token(
     """
     if not oauth_manager:
         if not client_id:
-            client_id = os.getenv("SPOTIPY_CLIENT_ID")
+            client_id = os.getenv("SPOTIFY_CLIENT_ID")
 
         if not client_secret:
-            client_secret = os.getenv("SPOTIPY_CLIENT_SECRET")
+            client_secret = os.getenv("SPOTIFY_CLIENT_SECRET")
 
         if not redirect_uri:
-            redirect_uri = os.getenv("SPOTIPY_REDIRECT_URI")
+            redirect_uri = os.getenv("SPOTIFY_REDIRECT_URI")
 
         if not client_id:
             LOGGER.warning(
@@ -69,9 +69,9 @@ def prompt_for_user_token(
                 You need to set your Spotify API credentials.
                 You can do this by setting environment variables like so:
 
-                export SPOTIPY_CLIENT_ID='your-spotify-client-id'
-                export SPOTIPY_CLIENT_SECRET='your-spotify-client-secret'
-                export SPOTIPY_REDIRECT_URI='your-app-redirect-url'
+                export SPOTIFY_CLIENT_ID='your-spotify-client-id'
+                export SPOTIFY_CLIENT_SECRET='your-spotify-client-secret'
+                export SPOTIFY_REDIRECT_URI='your-app-redirect-url'
 
                 Get your credentials at
                     https://developer.spotify.com/my-applications
