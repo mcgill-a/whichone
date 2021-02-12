@@ -8,12 +8,13 @@ h6 {
   font-family: "Lato", sans-serif;
 }
 
-button, button:focus, button:active {
-  outline:none !important;
+button,
+button:focus,
+button:active {
+  outline: none !important;
   box-shadow: none !important;
-  padding: 0;
   border: none;
-  background: none;
+  border-radius: 10px;
 }
 
 body,
@@ -88,7 +89,6 @@ html {
   background-color: rgb(49, 49, 49, 0.7);
   width: 700px;
   border-radius: 10px;
-  animation: fadeIn 1s;
 }
 
 #stats-popup {

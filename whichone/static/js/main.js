@@ -252,7 +252,6 @@ function makeGuess(option) {
     }
 }
 
-
 function updateLives() {
 
     icon1 = document.getElementById("life1");
