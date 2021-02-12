@@ -219,9 +219,11 @@ function makeGuess(option) {
                 document.getElementById("current_score").textContent = userCurrentScore;
             }
         }
-    
+        
+        $("#stats-popup").removeClass("hidden");
+
         console.log(option1[currentMode], option2[currentMode]);
-    
+
         choiceNum = Math.random();
         if (choiceNum < 0.2) {
             currentMode = "popularity";
