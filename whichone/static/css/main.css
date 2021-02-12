@@ -323,7 +323,6 @@ html {
   align-items: center;
 }
 
-
 /* Turn off parallax scrolling for tablets and phones */
 @media only screen and (max-device-width: 1600px) {
 
