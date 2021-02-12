@@ -8,6 +8,14 @@ h6 {
   font-family: "Lato", sans-serif;
 }
 
+button, button:focus, button:active {
+  outline:none !important;
+  box-shadow: none !important;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
 body,
 html {
   height: 100%;
@@ -95,7 +103,7 @@ html {
 
 
 .center-display {
-  display:flex;
+  display: flex;
   flex-direction: column;
   height: auto;
   width: 100%;
@@ -109,7 +117,7 @@ html {
 
 
 .spotify-login {
-  background-color: rgb(31,185,85);
+  background-color: rgb(31, 185, 85);
   width: 400px;
   height: 90px;
   color: white;
@@ -118,12 +126,15 @@ html {
   border: none;
 }
 
-.spotify-login:hover, .spotify-login:active, .spotify-login:focus  {
+.spotify-login:hover,
+.spotify-login:active,
+.spotify-login:focus {
   background-color: rgb(26, 150, 69);
   cursor: pointer;
 }
 
-.spotify-login:active, .spotify-login:focus {
+.spotify-login:active,
+.spotify-login:focus {
   outline: 0;
   border: none;
 }
@@ -188,10 +199,11 @@ html {
 
 .choice-display {
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   width: 100%;
 }
+
 
 .choice {
   display: flex;
@@ -206,6 +218,12 @@ html {
   border-radius: 10px;
   transition: all .2s ease-in-out;
   cursor: pointer;
+  outline: 0;
+
+}
+
+.choice:focus {
+  outline: 0;
 }
 
 .choice:hover {
@@ -241,7 +259,7 @@ html {
   flex-direction: column;
   width: 490px;
   padding: 10px;
-  
+
 }
 
 .user-profile {
@@ -322,7 +340,7 @@ html {
     width: 300px;
     height: 300px;
   }
-  
+
   .choice {
     width: 320px;
     height: 435px;
@@ -333,7 +351,7 @@ html {
   .score {
     font-size: 20px;
   }
-  
+
   .score-label {
     font-size: 20px;
   }
@@ -358,7 +376,7 @@ html {
   }
 
   .spotify-login {
-    background-color: rgb(31,185,85);
+    background-color: rgb(31, 185, 85);
     width: 360px;
     height: 80px;
     font-size: 28px;
@@ -376,7 +394,7 @@ html {
     width: 250px;
     height: 250px;
   }
-  
+
   .choice {
     width: 270px;
     height: 385px;
@@ -387,7 +405,7 @@ html {
   .score {
     font-size: 18px;
   }
-  
+
   .score-label {
     font-size: 18px;
   }
@@ -412,7 +430,7 @@ html {
   }
 
   .spotify-login {
-    background-color: rgb(31,185,85);
+    background-color: rgb(31, 185, 85);
     width: 360px;
     height: 80px;
     font-size: 28px;
@@ -430,7 +448,7 @@ html {
     width: 230px;
     height: 230px;
   }
-  
+
   .choice {
     width: 250px;
     height: 365px;
@@ -441,7 +459,7 @@ html {
   .score {
     font-size: 15px;
   }
-  
+
   .score-label {
     font-size: 15px;
   }
@@ -466,7 +484,7 @@ html {
   }
 
   .spotify-login {
-    background-color: rgb(31,185,85);
+    background-color: rgb(31, 185, 85);
     width: 360px;
     height: 80px;
     font-size: 28px;
@@ -484,7 +502,7 @@ html {
     width: 180px;
     height: 180px;
   }
-  
+
   .choice {
     width: 200px;
     height: 315px;
@@ -495,7 +513,7 @@ html {
   .score {
     font-size: 13px;
   }
-  
+
   .score-label {
     font-size: 13px;
   }
@@ -520,7 +538,7 @@ html {
   }
 
   .spotify-login {
-    background-color: rgb(31,185,85);
+    background-color: rgb(31, 185, 85);
     width: 300px;
     height: 70px;
     font-size: 22px;
@@ -539,7 +557,7 @@ html {
     width: 130px;
     height: 130px;
   }
-  
+
   .choice {
     width: 150px;
     height: 265px;
@@ -550,7 +568,7 @@ html {
   .score {
     font-size: 12px;
   }
-  
+
   .score-label {
     font-size: 12px;
   }
@@ -581,7 +599,7 @@ html {
   }
 
   .spotify-login {
-    background-color: rgb(31,185,85);
+    background-color: rgb(31, 185, 85);
     width: 250px;
     height: 70px;
     font-size: 20px;
@@ -599,7 +617,7 @@ html {
     width: 80px;
     height: 80px;
   }
-  
+
   .choice {
     width: 100px;
     height: 215px;
@@ -610,7 +628,7 @@ html {
   .score {
     font-size: 10px;
   }
-  
+
   .score-label {
     font-size: 10px;
   }
@@ -636,7 +654,7 @@ html {
   }
 
   .spotify-login {
-    background-color: rgb(31,185,85);
+    background-color: rgb(31, 185, 85);
     width: 220px;
     height: 60px;
     font-size: 19px;
