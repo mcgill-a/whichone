@@ -43,6 +43,10 @@ html {
   cursor: pointer;
 }
 
+.container {
+  height: 100%;
+}
+
 .container-score {
   display: flex;
   flex-direction: column;
@@ -130,7 +134,7 @@ html {
 .gotham-header {
   font-family: 'GothamPro';
   font-weight: bold;
-  font-size: 140px;
+  font-size: 9vw;
   color: white;
 }
 
@@ -333,6 +337,19 @@ html {
     font-weight: 500;
     font-size: 16px;
   }
+
+  .spotify-login {
+    background-color: rgb(31,185,85);
+    width: 360px;
+    height: 80px;
+    font-size: 28px;
+  }
+
+  .span-icon {
+    height: 40px;
+    width: 40px;
+    margin: 0 8px;
+  }
 }
 
 @media only screen and (max-width: 700px) {
@@ -373,6 +390,19 @@ html {
   .gotham-small {
     font-weight: 400;
     font-size: 16px;
+  }
+
+  .spotify-login {
+    background-color: rgb(31,185,85);
+    width: 360px;
+    height: 80px;
+    font-size: 28px;
+  }
+
+  .span-icon {
+    height: 40px;
+    width: 40px;
+    margin: 0 8px;
   }
 }
 
@@ -415,6 +445,19 @@ html {
     font-weight: 400;
     font-size: 15px;
   }
+
+  .spotify-login {
+    background-color: rgb(31,185,85);
+    width: 360px;
+    height: 80px;
+    font-size: 28px;
+  }
+
+  .span-icon {
+    height: 40px;
+    width: 40px;
+    margin: 0 8px;
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -455,6 +498,19 @@ html {
   .gotham-small {
     font-weight: 400;
     font-size: 13px;
+  }
+
+  .spotify-login {
+    background-color: rgb(31,185,85);
+    width: 300px;
+    height: 70px;
+    font-size: 22px;
+  }
+
+  .span-icon {
+    height: 30px;
+    width: 30px;
+    margin: 0 6px;
   }
 }
 
@@ -498,6 +554,25 @@ html {
     font-weight: 400;
     font-size: 12px;
   }
+
+  .span-icon {
+    height: 48px;
+    width: 48px;
+    margin: 0 8px;
+  }
+
+  .spotify-login {
+    background-color: rgb(31,185,85);
+    width: 250px;
+    height: 70px;
+    font-size: 20px;
+  }
+
+  .span-icon {
+    height: 26px;
+    width: 26px;
+    margin: 0 6px;
+  }
 }
 
 @media only screen and (max-width: 300px) {
@@ -539,5 +614,18 @@ html {
   .gotham-small {
     font-weight: 400;
     font-size: 10px;
+  }
+
+  .spotify-login {
+    background-color: rgb(31,185,85);
+    width: 220px;
+    height: 60px;
+    font-size: 19px;
+  }
+
+  .span-icon {
+    height: 24px;
+    width: 24px;
+    margin: 0 6px;
   }
 }
