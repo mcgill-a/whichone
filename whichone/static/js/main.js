@@ -313,6 +313,8 @@ function getStats(param1, param2) {
     durationMore = amountMore / 1000;
     durationMore = Math.round(durationMore);
 
+    plural = "s";
+
     if (currentMode == 'danceability') {
         document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " times more danceable than " + smallChoice + ".";
     }
@@ -320,12 +322,10 @@ function getStats(param1, param2) {
         document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " times more upbeat than " + smallChoice + ".";
     }
     else if (currentMode == 'duration') {
-        document.getElementById("stats-text").textContent = bigChoice + " is " + durationMore + " seconds longer than " + smallChoice + ".";
+        if (durationMore == 1) {plural = "";}
+        document.getElementById("stats-text").textContent = bigChoice + " is " + durationMore + " second" + plural + " longer than " + smallChoice + ".";
     }
     else if (currentMode == 'popularity') {
         document.getElementById("stats-text").textContent = "You have listened to " + bigChoice + " " + timesMore + " times more than " + smallChoice + ".";
     }
-
-    // TODO singular plural oh no
-
 }
