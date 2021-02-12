@@ -5,7 +5,7 @@ var user = {
 
 var idList = [];
 var featuresList = [];
-var featuresDict = {};
+var featuresDict = null;
 
 var option1 = null;
 var option2 = null;
@@ -58,6 +58,7 @@ async function getAudioFeatures(tracks) {
             contentType: "application/json",
             dataType: "json",
             success: function (data) {
+                featuresDict = {};
                 data.forEach(result => {
                     featuresDict[result['id']] = result;
                 });
@@ -159,13 +160,20 @@ function compareTracks() {
             num2 = Math.floor(Math.random() * numTracks);
 
             option1 = trackList[num1];
-            option1['danceability'] = featuresDict[option1['id']]['danceability'];
-            option1['valence'] = featuresDict[option1['id']]['valence'];
-            option1['duration'] = featuresDict[option1['id']]['duration_ms'];
             option2 = trackList[num2];
-            option2['danceability'] = featuresDict[option2['id']]['danceability'];
-            option2['valence'] = featuresDict[option2['id']]['valence'];
-            option2['duration'] = featuresDict[option2['id']]['duration_ms'];
+
+            // if features dict hasn't been initialised yet, just use popularity
+            if (featuresDict == null) {
+                currentMode = "popularity";
+            } else {
+                option1['danceability'] = featuresDict[option1['id']]['danceability'];
+                option1['valence'] = featuresDict[option1['id']]['valence'];
+                option1['duration'] = featuresDict[option1['id']]['duration_ms'];
+                
+                option2['danceability'] = featuresDict[option2['id']]['danceability'];
+                option2['valence'] = featuresDict[option2['id']]['valence'];
+                option2['duration'] = featuresDict[option2['id']]['duration_ms'];
+            }
         }
 
         if (currentMode == "popularity") {
@@ -243,6 +251,7 @@ function makeGuess(option) {
         }
     }
 }
+
 
 function updateLives() {
 
