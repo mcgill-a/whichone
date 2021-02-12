@@ -14,6 +14,7 @@ html {
   color: #777;
   line-height: 1.8;
   min-width: 260px;
+  padding-bottom: 50px;
 }
 
 /* Create a Parallax Effect */
@@ -45,6 +46,7 @@ html {
 
 .container {
   height: 100%;
+  overflow: auto !important;
 }
 
 .container-score {
