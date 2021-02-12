@@ -12,8 +12,7 @@ button,
 button:focus,
 button:active {
   outline: none !important;
-  box-shadow: none !important;
-  border: none;
+  border: none !important;
   border-radius: 10px;
 }
 
@@ -216,10 +215,10 @@ html {
   background-color: rgb(49, 49, 49, 0.7);
   margin: 10px 30px;
   border-radius: 10px;
+  -moz-border-radius: 10px;
   transition: all .2s ease-in-out;
   cursor: pointer;
   outline: 0;
-
 }
 
 .choice:focus {
@@ -227,7 +226,8 @@ html {
 }
 
 .choice:hover {
-  transform: scale(1.07);
+  transform: scale(1.1);
+  overflow:hidden !important;
 }
 
 .user-card {
