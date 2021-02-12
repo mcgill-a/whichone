@@ -299,7 +299,6 @@ function getStats(param1, param2) {
         big = param2;
         small = param1;
 
-        
         bigChoice = choice2;
         smallChoice = choice1;
     }
@@ -314,7 +313,7 @@ function getStats(param1, param2) {
     amountMore = Math.round((big - small)*10) / 10;
 
     durationMore = amountMore / 1000;
-    durationMore = Math.round(durationMore*10) / 10;
+    durationMore = Math.round(durationMore);
 
     if (currentMode == 'danceability') {
         document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " times more danceable than " + smallChoice + ".";
