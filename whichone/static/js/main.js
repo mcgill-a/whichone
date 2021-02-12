@@ -118,7 +118,8 @@ function compareArtists() {
         option2 = null;
 
         // reference numbers cannot match
-        while (option1 == null || option2 == null || num1 == num2 || option1['popularity'] == option2['popularity']) {
+        while (option1 == null || option2 == null || num1 == num2 ||
+            option1[currentMode] == option2[currentMode]) {
 
             // switch the index for option2
             num2 = Math.floor(Math.random() * numTracks);
@@ -150,8 +151,9 @@ function compareTracks() {
         option2 = null;
 
         // reference numbers cannot match
-        while (option1 == null || option2 == null || num1 == num2 ||
-            option1[currentMode] == option2[currentMode]) {
+        while (option1 == null || option2 == null ||
+            option1[currentMode] == option2[currentMode] || 
+            option1['name'] == option2['name']) {
                 
             // switch the index for option2
             num2 = Math.floor(Math.random() * numTracks);

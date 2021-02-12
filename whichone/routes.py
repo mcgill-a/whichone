@@ -24,9 +24,9 @@ def index():
 
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=app.config['SPOTIPY_CLIENT_ID'],
-        client_secret=app.config['SPOTIPY_CLIENT_SECRET'],
-        redirect_uri=app.config['SPOTIPY_REDIRECT_URI'],
+        client_id=app.config['SPOTIFY_CLIENT_ID'],
+        client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
+        redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
         scope='user-top-read',
         cache_handler=cache_handler,
         show_dialog=True)
@@ -69,9 +69,9 @@ def sign_out():
 def playlists():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=app.config['SPOTIPY_CLIENT_ID'],
-        client_secret=app.config['SPOTIPY_CLIENT_SECRET'],
-        redirect_uri=app.config['SPOTIPY_REDIRECT_URI'],
+        client_id=app.config['SPOTIFY_CLIENT_ID'],
+        client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
+        redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
         cache_handler=cache_handler)
     if not auth_manager.validate_token(cache_handler.get_cached_token()):
         return redirect('/')
@@ -84,9 +84,9 @@ def playlists():
 def top_tracks():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=app.config['SPOTIPY_CLIENT_ID'],
-        client_secret=app.config['SPOTIPY_CLIENT_SECRET'],
-        redirect_uri=app.config['SPOTIPY_REDIRECT_URI'],
+        client_id=app.config['SPOTIFY_CLIENT_ID'],
+        client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
+        redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
         cache_handler=cache_handler)
     if not auth_manager.validate_token(cache_handler.get_cached_token()):
         return redirect('/')
@@ -101,9 +101,9 @@ def top_tracks():
 def top_artists():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=app.config['SPOTIPY_CLIENT_ID'],
-        client_secret=app.config['SPOTIPY_CLIENT_SECRET'],
-        redirect_uri=app.config['SPOTIPY_REDIRECT_URI'],
+        client_id=app.config['SPOTIFY_CLIENT_ID'],
+        client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
+        redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
         cache_handler=cache_handler)
     if not auth_manager.validate_token(cache_handler.get_cached_token()):
         return redirect('/')
@@ -122,9 +122,9 @@ def audio_features():
         if data != None and "track_ids" in data:
             cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
             auth_manager = spotipy.oauth2.SpotifyOAuth(
-                client_id=app.config['SPOTIPY_CLIENT_ID'],
-                client_secret=app.config['SPOTIPY_CLIENT_SECRET'],
-                redirect_uri=app.config['SPOTIPY_REDIRECT_URI'],
+                client_id=app.config['SPOTIFY_CLIENT_ID'],
+                client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
+                redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
                 cache_handler=cache_handler)
             if not auth_manager.validate_token(cache_handler.get_cached_token()):
                 print("no auth")
@@ -141,9 +141,9 @@ def audio_features():
 def current_user():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=app.config['SPOTIPY_CLIENT_ID'],
-        client_secret=app.config['SPOTIPY_CLIENT_SECRET'],
-        redirect_uri=app.config['SPOTIPY_REDIRECT_URI'],
+        client_id=app.config['SPOTIFY_CLIENT_ID'],
+        client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
+        redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
         cache_handler=cache_handler)
     if not auth_manager.validate_token(cache_handler.get_cached_token()):
         return redirect('/')
