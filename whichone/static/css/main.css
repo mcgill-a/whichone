@@ -277,7 +277,7 @@ html {
 
 .choice:hover {
   transform: scale(1.1);
-  overflow:hidden !important;
+  overflow: hidden !important;
 }
 
 .user-card {
@@ -766,15 +766,15 @@ html {
   transition: .2s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: #ffca3a;
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px #e8f5ff;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(16px);
   -ms-transform: translateX(16px);
   transform: translateX(16px);
