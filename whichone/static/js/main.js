@@ -374,16 +374,16 @@ function getStats(param1, param2) {
     plural = "s";
 
     if (currentMode == 'danceability') {
-        document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " x more danceable than " + smallChoice + ".";
+        document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + "x more danceable than " + smallChoice + ".";
     } else if (currentMode == 'valence') {
-        document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " x more upbeat than " + smallChoice + ".";
+        document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + "x more upbeat than " + smallChoice + ".";
     } else if (currentMode == 'duration') {
         if (durationMore == 1) {
             plural = "";
         }
         document.getElementById("stats-text").textContent = bigChoice + " is " + durationMore + " second" + plural + " longer than " + smallChoice + ".";
     } else if (currentMode == 'popularity') {
-        document.getElementById("stats-text").textContent = "You have listened to " + bigChoice + " " + timesMore + " x more than " + smallChoice + ".";
+        document.getElementById("stats-text").textContent = "You have listened to " + bigChoice + " " + timesMore + "x more than " + smallChoice + ".";
     }
 }
 
