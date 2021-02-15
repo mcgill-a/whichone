@@ -47,10 +47,22 @@ function localDataFound() {
     let tracks = localStorage.getItem("top_tracks");
     let artists = localStorage.getItem("top_artists");
     let features = localStorage.getItem("audio_features");
+    let score = localStorage.getItem("high_score");
+
     if (tracks != null && artists != null && features != null) {
         user['top_artists'] = JSON.parse(artists);
         user['top_tracks'] = JSON.parse(tracks);
         featuresDict = JSON.parse(features);
+
+        if (score != null) {
+            highScore = parseInt(score, 10);
+            if (Number.isNaN(highScore)) {
+                highScore = 0;
+            } else {
+                document.getElementById("high_score").textContent = highScore;
+            }
+        }
+
         return true;
     } else {
         return false;
@@ -130,8 +142,9 @@ function updateMode(mode, mode_text) {
 
 
 function updateHighScore(score) {
-    if (score > highScore) {
+    if (score > highScore && !cheaterMode) {
         highScore = score;
+        localStorage.setItem("high_score", highScore);
     }
 
     document.getElementById("high_score").textContent = highScore;
