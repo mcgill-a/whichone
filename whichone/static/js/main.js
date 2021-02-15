@@ -80,6 +80,14 @@ async function makeRequest(param) {
     }
 }
 
+function showChoice() {
+    $('.choice').css('opacity', '1');
+}
+
+function hideChoice() {
+    $('.choice').css('opacity', '0');
+}
+
 async function getAudioFeatures(tracks) {
     let trackIds = [];
 
