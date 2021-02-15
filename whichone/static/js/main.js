@@ -16,6 +16,9 @@ var lives = maxLives;
 var userCurrentScore = 0;
 var highScore = 0;
 
+var allowDance = true;
+var allowValence = true;
+var allowDuration = true;
 
 var cheaterMode = false;
 
@@ -232,7 +235,18 @@ function makeGuess(option) {
 
         console.log(option1[currentMode], option2[currentMode]);
 
-        choiceArray = ["popularity", "popularity", "danceability", "duration", "valence"];
+        choiceArray = ["popularity", "popularity"];
+
+        if (allowDance == true) {
+            choiceArray.push("danceability");
+        }
+        if (allowValence == true) {
+            choiceArray.push("valence");
+        }
+        if (allowDuration == true) {
+            choiceArray.push("duration");
+        }
+
         currentMode = choiceArray[Math.floor(Math.random() * choiceArray.length)];
 
         choiceNum = Math.random();
