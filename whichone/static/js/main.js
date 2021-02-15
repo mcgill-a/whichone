@@ -16,10 +16,6 @@ var lives = maxLives;
 var userCurrentScore = 0;
 var highScore = 0;
 
-var allowDance = true;
-var allowValence = true;
-var allowDuration = true;
-
 var cheaterMode = false;
 
 $(document).ready(function () {
@@ -39,9 +35,11 @@ $(document).ready(function () {
         makeGuess($(this).data('choice'));
     });
 
-    $(".spotify-logout").on('click', function(event) {
+    $(".spotify-logout").on('click', function (event) {
         localStorage.clear();
     });
+
+    init_options();
 });
 
 function localDataFound() {
@@ -72,12 +70,12 @@ async function makeRequest(param) {
 
 async function getAudioFeatures(tracks) {
     let trackIds = [];
-    
+
     if (tracks != null) {
         tracks.items.forEach(track => {
             trackIds.push(track.id);
         });
-    
+
         $.ajax({
             type: "POST",
             url: "/audio_features",
@@ -177,7 +175,7 @@ function compareTracks() {
         console.error("No data")
     } else {
         trackList = user.top_tracks['items'];
-        
+
         numTracks = trackList.length;
         num1 = Math.floor(Math.random() * numTracks);
 
@@ -186,9 +184,9 @@ function compareTracks() {
 
         // reference numbers cannot match
         while (option1 == null || option2 == null ||
-            option1[currentMode] == option2[currentMode] || 
+            option1[currentMode] == option2[currentMode] ||
             option1['name'] == option2['name']) {
-                
+
             // switch the index for option2
             num2 = Math.floor(Math.random() * numTracks);
 
@@ -202,7 +200,7 @@ function compareTracks() {
                 option1['danceability'] = featuresDict[option1['id']]['danceability'];
                 option1['valence'] = featuresDict[option1['id']]['valence'];
                 option1['duration'] = featuresDict[option1['id']]['duration_ms'];
-                
+
                 option2['danceability'] = featuresDict[option2['id']]['danceability'];
                 option2['valence'] = featuresDict[option2['id']]['valence'];
                 option2['duration'] = featuresDict[option2['id']]['duration_ms'];
@@ -235,7 +233,7 @@ function makeGuess(option) {
     } else {
         document.getElementById("stats-text").textContent = "";
         document.getElementById("stats-text").style.color = "white";
-        
+
         if (
             (option == '1' && option1[currentMode] > option2[currentMode]) ||
             (option == '2' && option2[currentMode] > option1[currentMode])) {
@@ -243,50 +241,51 @@ function makeGuess(option) {
             userCurrentScore += 1;
             updateLives();
             document.getElementById("current_score").textContent = userCurrentScore;
-            getStats(option1[currentMode],option2[currentMode]);
+            getStats(option1[currentMode], option2[currentMode]);
         } else {
             // wrong answer
             lives -= 1;
             updateLives();
-            getStats(option1[currentMode],option2[currentMode]);
+            getStats(option1[currentMode], option2[currentMode]);
             if (lives == 0) {
                 console.log("Game over. Final score: " + userCurrentScore);
                 updateHighScore(userCurrentScore);
                 document.getElementById("stats-text").textContent = "Game Over";
                 document.getElementById("stats-text").style.color = "red";
                 updateLives();
-    
+
                 lives = maxLives;
                 userCurrentScore = 0;
                 document.getElementById("current_score").textContent = userCurrentScore;
             }
         }
-        
+
         $("#stats-popup").removeClass("hidden");
 
         console.log(option1[currentMode], option2[currentMode]);
 
-        
+
 
         randomMode();
     }
 }
 
 function randomMode() {
+
     choiceArray = ["popularity", "popularity"];
 
-    if (allowDance == true) {
+    if (danceBox.checked) {
         choiceArray.push("danceability");
     }
-    if (allowValence == true) {
+    if (valenceBox.checked) {
         choiceArray.push("valence");
     }
-    if (allowDuration == true) {
+    if (durationBox.checked) {
         choiceArray.push("duration");
     }
 
     currentMode = choiceArray[Math.floor(Math.random() * choiceArray.length)];
-    
+
     choiceNum = Math.random();
     if (choiceNum < 0.5 && currentMode == "popularity") {
         compareArtists();
@@ -353,8 +352,7 @@ function getStats(param1, param2) {
         bigChoice = choice1;
         smallChoice = choice2;
 
-    }
-    else {
+    } else {
         big = param2;
         small = param1;
 
@@ -362,14 +360,13 @@ function getStats(param1, param2) {
         smallChoice = choice1;
     }
 
-    timesMore = Math.round((big / small)*10) / 10;
+    timesMore = Math.round((big / small) * 10) / 10;
     if (timesMore == Infinity) {
         timesMore = "a lot";
-    }
-    else if (timesMore == 1) {
+    } else if (timesMore == 1) {
         timesMore = 1.1;
     }
-    amountMore = Math.round((big - small)*10) / 10;
+    amountMore = Math.round((big - small) * 10) / 10;
 
     durationMore = amountMore / 1000;
     durationMore = Math.round(durationMore);
@@ -378,42 +375,24 @@ function getStats(param1, param2) {
 
     if (currentMode == 'danceability') {
         document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " x more danceable than " + smallChoice + ".";
-    }
-    else if (currentMode == 'valence') {
+    } else if (currentMode == 'valence') {
         document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " x more upbeat than " + smallChoice + ".";
-    }
-    else if (currentMode == 'duration') {
-        if (durationMore == 1) {plural = "";}
+    } else if (currentMode == 'duration') {
+        if (durationMore == 1) {
+            plural = "";
+        }
         document.getElementById("stats-text").textContent = bigChoice + " is " + durationMore + " second" + plural + " longer than " + smallChoice + ".";
-    }
-    else if (currentMode == 'popularity') {
+    } else if (currentMode == 'popularity') {
         document.getElementById("stats-text").textContent = "You have listened to " + bigChoice + " " + timesMore + " x more than " + smallChoice + ".";
     }
 }
 
-function toggleDance() {
-    if (allowDance == true) {
-        allowDance = false;
-    }
-    else {
-        allowDance = true;
-    }
-}
+function init_options() {
+    var danceBox = document.getElementById("danceBox");
+    var valenceBox = document.getElementById("valenceBox");
+    var durationBox = document.getElementById("durationBox");
 
-function toggleValence() {
-    if (allowValence == true) {
-        allowValence = false;
-    }
-    else {
-        allowValence = true;
-    }
-}
-
-function toggleDuration() {
-    if (allowDuration == true) {
-        allowDuration = false;
-    }
-    else {
-        allowDuration = true;
-    }
+    danceBox.checked = true;
+    valenceBox.checked = true;
+    durationBox.checked = true;
 }
