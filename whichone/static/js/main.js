@@ -15,7 +15,7 @@ const maxLives = 3;
 var lives = maxLives;
 var userCurrentScore = 0;
 var highScore = 0;
-var stopped = false;
+
 var cheaterMode = false;
 
 $(document).ready(function () {
@@ -32,9 +32,7 @@ $(document).ready(function () {
     $(".choice").on('click', function (event) {
         event.stopPropagation();
         event.stopImmediatePropagation();
-        if (!stopped) {
-            makeGuess($(this).data('choice'));
-        }
+        makeGuess($(this).data('choice'));
     });
 
     $("#sign-out").on('click', function (event) {
@@ -57,22 +55,10 @@ function localDataFound() {
     let tracks = localStorage.getItem("top_tracks");
     let artists = localStorage.getItem("top_artists");
     let features = localStorage.getItem("audio_features");
-    let score = localStorage.getItem("high_score");
-
     if (tracks != null && artists != null && features != null) {
         user['top_artists'] = JSON.parse(artists);
         user['top_tracks'] = JSON.parse(tracks);
         featuresDict = JSON.parse(features);
-
-        if (score != null) {
-            highScore = parseInt(score, 10);
-            if (Number.isNaN(highScore)) {
-                highScore = 0;
-            } else {
-                document.getElementById("high_score").textContent = highScore;
-            }
-        }
-
         return true;
     } else {
         return false;
@@ -187,17 +173,21 @@ async function getSpotifyData() {
 }
 
 
-function updateMode(intro, mode, mode_text) {
-    document.getElementById("mode_intro").textContent = intro;
+function updateMode(mode, mode_text) {
+    document.getElementById("mode_intro").textContent = "Which ";
     document.getElementById("mode").textContent = mode;
     document.getElementById("mode_text").textContent = mode_text;
+    document.getElementById("question_mark").textContent = "?";
+
+    if (document.getElementById("mode_text").textContent == " listened to more") {
+        document.getElementById("mode_text").style.color = "orange";
+    }
 }
 
 
 function updateHighScore(score) {
-    if (score > highScore && !cheaterMode) {
+    if (score > highScore) {
         highScore = score;
-        localStorage.setItem("high_score", highScore);
     }
 
     document.getElementById("high_score").textContent = highScore;
@@ -225,7 +215,7 @@ function compareArtists() {
             option2 = artistList[num2];
         }
 
-        updateMode("which", "artist", " have you listened to more?");
+        updateMode("artist have you", " listened to more");
 
         document.getElementById("text1a").textContent = option1['name'];
         document.getElementById("text2a").textContent = option2['name'];
@@ -274,13 +264,13 @@ function compareTracks() {
         }
 
         if (currentMode == "popularity") {
-            updateMode("Which ","track", " have you listened to more?");
+            updateMode("track have you", " listened to more");
         } else if (currentMode == "danceability") {
-            updateMode("Which ","track", " is more danceable?");
+            updateMode("track is more", " danceable");
         } else if (currentMode == "valence") {
-            updateMode("Which ","track", " is more upbeat?");
+            updateMode("track is more", " upbeat");
         } else if (currentMode == "duration") {
-            updateMode("Which ","track", " is longer?");
+            updateMode("track is", " longer");
         }
 
         document.getElementById("text1a").textContent = option1['name'];
@@ -314,16 +304,25 @@ function makeGuess(option) {
             updateLives();
             getStats(option1[currentMode], option2[currentMode]);
             if (lives == 0) {
-                stopGame();
+                console.log("Game over. Final score: " + userCurrentScore);
+                updateHighScore(userCurrentScore);
+                document.getElementById("stats-text").textContent = "Game Over";
+                document.getElementById("stats-text").style.color = "red";
+                updateLives();
+
+                lives = maxLives;
+                userCurrentScore = 0;
+                document.getElementById("current_score").textContent = userCurrentScore;
             }
         }
 
-        if (!stopped) {
-            randomMode();
-        }
-
         $("#stats-popup").removeClass("hidden");
+
         console.log(option1[currentMode], option2[currentMode]);
+
+
+
+        randomMode();
     }
 }
 
@@ -444,7 +443,7 @@ function getStats(param1, param2) {
     }
 }
 
-function initOptions() {
+function init_options() {
     var danceBox = document.getElementById("danceBox");
     var valenceBox = document.getElementById("valenceBox");
     var durationBox = document.getElementById("durationBox");
