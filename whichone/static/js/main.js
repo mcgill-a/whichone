@@ -122,6 +122,7 @@ function stopGame() {
 
 function startGame() {
     stopped = false;
+    showChoices();
 }
 
 async function getAudioFeatures(tracks) {
