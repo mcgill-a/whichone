@@ -131,6 +131,8 @@ function stopGame() {
 function startGame() {
     stopped = false;
     showChoices();
+    lives = 3;
+    updateLives();
 }
 
 async function getAudioFeatures(tracks) {
