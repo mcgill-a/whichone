@@ -14,15 +14,37 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
     {% endblock %}
     {% block javascript %}
+    <!-- Prevent logout then returning back-->
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () {
+            null
+        };
+    </script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
     {% endblock %}
-
 </head>
 
 <body>
     <div class="bgimg-1">
         <div class="container">
+            <div class="nav-bar">
+                <a class="logout" href="/logout">
+                    <button class="spotify-logout">
+                        <span class="span-container">
+                            <img class="span-icon-logout"
+                                src="{{url_for('static', filename='resources/spotify-icon.png')}}"></img>
+                            Logout
+                        </span>
+                    </button>
+                </a>
+            </div>
+            
             <div class="center-display">
                 <h1 class="gotham-medium">
                     <span id="mode_intro"></span>
@@ -42,7 +64,6 @@
                 </div>
             </div>
 
-            {% if user %}
             <div class="container-vert">
                 <div class="container-score">
                     <h2 class="score" style="text-align: right;" id="current_score">0</h2>
@@ -67,7 +88,6 @@
                     <h4 class="score-label" id="stats-text" color="white"></h4>
                 </div>
             </div>
-            {% endif %}
         </div>
     </div>
 </body>

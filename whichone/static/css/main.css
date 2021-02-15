@@ -138,6 +138,35 @@ html {
   border: none;
 }
 
+.nav-bar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logout {
+  display: block;
+  width: 150px;
+  height: 55px;
+}
+
+.spotify-logout {
+  background-color: rgb(255, 80, 80);
+  width: 130px;
+  height: 35px;
+  color: white;
+  border-radius: 10px;
+  font-size: 20px;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.span-icon-logout {
+  height: 20px;
+  width: 20px;
+  margin: 0 8px 0 0;
+
+}
 
 
 .span-container {
@@ -322,6 +351,7 @@ html {
   justify-content: center;
   align-items: center;
 }
+
 
 /* Turn off parallax scrolling for tablets and phones */
 @media only screen and (max-device-width: 1600px) {
