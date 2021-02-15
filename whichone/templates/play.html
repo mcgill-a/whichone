@@ -34,7 +34,6 @@
     <div class="bgimg-1">
         <div class="container">
             <div class="nav-bar">
-                {% if user %}
                 <a class="logout" href="/logout">
                     <button class="spotify-logout">
                         <span class="span-container">
@@ -44,7 +43,6 @@
                         </span>
                     </button>
                 </a>
-                {% endif %}
             </div>
             
             <div class="center-display">
@@ -66,7 +64,6 @@
                 </div>
             </div>
 
-            {% if user %}
             <div class="container-vert">
                 <div class="container-score">
                     <h2 class="score" style="text-align: right;" id="current_score">0</h2>
@@ -91,7 +88,6 @@
                     <h4 class="score-label" id="stats-text" color="white"></h4>
                 </div>
             </div>
-            {% endif %}
         </div>
     </div>
 </body>

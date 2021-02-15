@@ -47,6 +47,19 @@ def index():
     return redirect('/play')
 
 
+@app.route('/play')
+def play():
+    cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
+    auth_manager = spotipy.oauth2.SpotifyOAuth(
+        client_id=app.config['SPOTIFY_CLIENT_ID'],
+        client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
+        redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
+        cache_handler=cache_handler)
+    if not auth_manager.validate_token(cache_handler.get_cached_token()):
+        return redirect('/')
+    return render_template('play.html')
+
+
 @app.route('/logout')
 def sign_out():
     try:
@@ -56,21 +69,6 @@ def sign_out():
     except OSError as e:
         print ("Error: %s - %s." % (e.filename, e.strerror))
     return redirect('/')
-
-
-@app.route('/playlists')
-def playlists():
-    cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
-    auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=app.config['SPOTIFY_CLIENT_ID'],
-        client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
-        redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
-        cache_handler=cache_handler)
-    if not auth_manager.validate_token(cache_handler.get_cached_token()):
-        return redirect('/')
-
-    spotify = spotipy.Spotify(auth_manager=auth_manager)
-    return spotify.current_user_playlists()
 
 
 @app.route('/top_tracks')
@@ -128,33 +126,3 @@ def audio_features():
                 return json.dumps(features), 200
             return "Could not find any audio features"
     return "Bad Request", 400
-
-
-@app.route('/current_user')
-def current_user():
-    cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
-    auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=app.config['SPOTIFY_CLIENT_ID'],
-        client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
-        redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
-        cache_handler=cache_handler)
-    if not auth_manager.validate_token(cache_handler.get_cached_token()):
-        return redirect('/')
-    spotify = spotipy.Spotify(auth_manager=auth_manager)
-    return spotify.current_user()
-
-
-@app.route('/play')
-def play():
-    user = current_user()
-    if (type(user) is dict):
-        # remove extra info from user object
-        user_output = dict()
-        user_output['display_name'] = user['display_name']
-        if (user['images'][0] and user['images'][0]['url']):
-            user_output['profile_pic'] = user['images'][0]['url']
-        else:
-            user_output['profile_pic'] = None 
-        return render_template('play.html', user=user_output)  
-        
-    return redirect('/')
