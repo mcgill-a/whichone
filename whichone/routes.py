@@ -47,7 +47,7 @@ def index():
     return redirect('/play')
 
 
-@app.route('/sign_out')
+@app.route('/logout')
 def sign_out():
     try:
         # Remove the CACHE file (.cache-test) so that a new user can authorize.

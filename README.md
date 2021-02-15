@@ -20,13 +20,13 @@ Once all of the dependencies have been installed:
 * Setup complete! You should see the success message as shown in the image below
 * Go to http://localhost:8080/ to access the site
 
-<img src="demo/running.png" width="80%">
+<img src="/demo/running.png" width="80%">
 
 
 ## Screenshots
 
-<img src="demo/play1.png" width="80%">
-<img src="demo/play2.png" width="80%">
+<img src="/demo/play1.png" width="80%">
+<img src="/demo/play2.png" width="80%">
 
 ## Contributors
 
