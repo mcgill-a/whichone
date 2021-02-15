@@ -139,6 +139,7 @@ function compareArtists() {
 
         document.getElementById("image1").src = option1['images'][1]['url'];
         document.getElementById("image2").src = option2['images'][1]['url'];
+        $('.album_art').css('opacity', '1');
     }
 }
 
@@ -192,8 +193,9 @@ function compareTracks() {
         document.getElementById("text1a").textContent = option1['name'];
         document.getElementById("text2a").textContent = option2['name'];
 
-        document.getElementById("image1").src = option1['album']['images'][1]['url'];;
+        document.getElementById("image1").src = option1['album']['images'][1]['url'];
         document.getElementById("image2").src = option2['album']['images'][1]['url'];
+        $('.album_art').css('opacity', '1');
     }
 }
 
