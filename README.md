@@ -4,7 +4,7 @@ https://whichone.rocks/
 
 ## Required Development Setup
 
-* Use the following command to install all the dependencies from 'whichone/requirements.txt':
+* Use the following command to install the dependencies from 'requirements.txt':
 
 ```sh
 (Python 2.x) > pip install -r requirements.txt 
