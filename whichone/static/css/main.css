@@ -224,7 +224,6 @@ html {
   border-radius: 8px;
   object-fit: cover;
   margin-bottom: 10px;
-  opacity: 0;
 }
 
 .choice-display {
@@ -250,6 +249,7 @@ html {
   transition: all .12s ease-in-out;
   cursor: pointer;
   outline: 0;
+  opacity: 0;
 }
 
 .choice:focus {
