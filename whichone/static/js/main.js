@@ -15,7 +15,7 @@ const maxLives = 3;
 var lives = maxLives;
 var userCurrentScore = 0;
 var highScore = 0;
-
+var stopped = false;
 var cheaterMode = false;
 
 $(document).ready(function () {
@@ -32,14 +32,16 @@ $(document).ready(function () {
     $(".choice").on('click', function (event) {
         event.stopPropagation();
         event.stopImmediatePropagation();
-        makeGuess($(this).data('choice'));
+        if (!stopped) {
+            makeGuess($(this).data('choice'));
+        }
     });
 
     $(".spotify-logout").on('click', function (event) {
         localStorage.clear();
     });
 
-    init_options();
+    initOptions();
 });
 
 function localDataFound() {
@@ -80,12 +82,46 @@ async function makeRequest(param) {
     }
 }
 
-function showChoice() {
-    $('.choice').css('opacity', '1');
+function showChoices(scale=false) {
+    $('.choice').removeClass("slow-transition");
+    $('.choice').addClass("fast-transition");
+    $('.choice').css('cursor', 'pointer');
+    
+    if (scale) {
+        $('.choice').css('transform', 'scale(1)');
+    } else {
+        $('.choice').css('opacity', '1');
+    }
 }
 
-function hideChoice() {
-    $('.choice').css('opacity', '0');
+function hideChoices(scale=false) {
+    $('.choice').removeClass("fast-transition");
+    $('.choice').addClass("slow-transition");
+    $('.choice').css('cursor', 'none');
+    if (scale) {
+        $('.choice').css('transform', 'scale(0)');
+    } else {
+        $('.choice').css('opacity', '0');
+    }
+}
+
+function stopGame() {
+    stopped = true;
+    console.log("Game over. Final score: " + userCurrentScore);
+    updateHighScore(userCurrentScore);
+    updateMode("Game Over","","");
+    //document.getElementById("stats-text").textContent = "Game Over";
+    //document.getElementById("stats-text").style.color = "red";
+    
+    updateLives();
+    lives = maxLives;
+    userCurrentScore = 0;
+    document.getElementById("current_score").textContent = userCurrentScore;
+    hideChoices();
+}
+
+function startGame() {
+    stopped = false;
 }
 
 async function getAudioFeatures(tracks) {
@@ -142,8 +178,8 @@ async function getSpotifyData() {
 }
 
 
-function updateMode(mode, mode_text) {
-    document.getElementById("mode_intro").textContent = "Which ";
+function updateMode(intro, mode, mode_text) {
+    document.getElementById("mode_intro").textContent = intro;
     document.getElementById("mode").textContent = mode;
     document.getElementById("mode_text").textContent = mode_text;
 }
@@ -180,7 +216,7 @@ function compareArtists() {
             option2 = artistList[num2];
         }
 
-        updateMode("artist", " have you listened to more?");
+        updateMode("which", "artist", " have you listened to more?");
 
         document.getElementById("text1a").textContent = option1['name'];
         document.getElementById("text2a").textContent = option2['name'];
@@ -229,13 +265,13 @@ function compareTracks() {
         }
 
         if (currentMode == "popularity") {
-            updateMode("track", " have you listened to more?");
+            updateMode("Which ","track", " have you listened to more?");
         } else if (currentMode == "danceability") {
-            updateMode("track", " is more danceable?");
+            updateMode("Which ","track", " is more danceable?");
         } else if (currentMode == "valence") {
-            updateMode("track", " is more upbeat?");
+            updateMode("Which ","track", " is more upbeat?");
         } else if (currentMode == "duration") {
-            updateMode("track", " is longer?");
+            updateMode("Which ","track", " is longer?");
         }
 
         document.getElementById("text1a").textContent = option1['name'];
@@ -269,25 +305,16 @@ function makeGuess(option) {
             updateLives();
             getStats(option1[currentMode], option2[currentMode]);
             if (lives == 0) {
-                console.log("Game over. Final score: " + userCurrentScore);
-                updateHighScore(userCurrentScore);
-                document.getElementById("stats-text").textContent = "Game Over";
-                document.getElementById("stats-text").style.color = "red";
-                updateLives();
-
-                lives = maxLives;
-                userCurrentScore = 0;
-                document.getElementById("current_score").textContent = userCurrentScore;
+                stopGame();
             }
         }
 
+        if (!stopped) {
+            randomMode();
+        }
+
         $("#stats-popup").removeClass("hidden");
-
         console.log(option1[currentMode], option2[currentMode]);
-
-
-
-        randomMode();
     }
 }
 
@@ -408,7 +435,7 @@ function getStats(param1, param2) {
     }
 }
 
-function init_options() {
+function initOptions() {
     var danceBox = document.getElementById("danceBox");
     var valenceBox = document.getElementById("valenceBox");
     var durationBox = document.getElementById("durationBox");
