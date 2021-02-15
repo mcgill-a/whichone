@@ -235,7 +235,6 @@ html {
   max-width: 90%;
   text-align: center;
   overflow:hidden;
-  overflow-wrap: break-word;
 }
 
 .album_art {
@@ -266,17 +265,10 @@ html {
   margin: 10px 30px;
   border-radius: 10px;
   -moz-border-radius: 10px;
+  transition: all .12s ease-in-out;
   cursor: pointer;
   outline: 0;
   opacity: 0;
-}
-
-.fast-transition {
-  transition: all .12s ease-in-out;
-}
-
-.slow-transition {
-  transition: all 0.8s ease-in-out;
 }
 
 .choice:focus {
