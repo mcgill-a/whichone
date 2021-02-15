@@ -17,16 +17,15 @@ https://whichone.rocks/
 Once all of the dependencies have been installed:
 * Create and setup a 'defaults.py' file in the config directory (example file included)
 * Run the server: <b>python run.py</b>
-* Setup complete! You should see the success message as shown in the image below
 * Go to http://localhost:8080/ to access the site
 
-<img src="demo/running.png" width="80%">
+<img src="whichone/demo/running.png" width="80%">
 
 
 ## Screenshots
 
-<img src="demo/play1.png" width="80%">
-<img src="demo/play2.png" width="80%">
+<img src="whichone/demo/play1.png" width="80%">
+<img src="whichone/demo/play2.png" width="80%">
 
 ## Contributors
 
