@@ -354,3 +354,30 @@ function getStats(param1, param2) {
         document.getElementById("stats-text").textContent = "You have listened to " + bigChoice + " " + timesMore + " x more than " + smallChoice + ".";
     }
 }
+
+function toggleDance() {
+    if (allowDance == true) {
+        allowDance = false;
+    }
+    else {
+        allowDance = true;
+    }
+}
+
+function toggleValence() {
+    if (allowValence == true) {
+        allowValence = false;
+    }
+    else {
+        allowValence = true;
+    }
+}
+
+function toggleDuration() {
+    if (allowDuration == true) {
+        allowDuration = false;
+    }
+    else {
+        allowDuration = true;
+    }
+}
