@@ -164,7 +164,7 @@ html {
   text-decoration: none;
 }
 
-.spotify-logout {
+.button-dark {
   background-color: rgb(49, 49, 49, 0.7);
   width: 120px;
   height: 35px;
@@ -176,7 +176,7 @@ html {
   cursor: pointer;
 }
 
-.spotify-logout:hover {
+.button-dark:hover {
   background-color: rgba(71, 71, 71, 0.7);
 }
 
@@ -286,6 +286,16 @@ html {
 .choice:hover {
   transform: scale(1.1);
   overflow: hidden !important;
+}
+
+.play-again {
+  position: absolute; 
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 100px;
+  cursor: pointer;
 }
 
 .user-card {

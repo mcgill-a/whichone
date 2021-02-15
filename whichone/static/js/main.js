@@ -37,8 +37,16 @@ $(document).ready(function () {
         }
     });
 
-    $(".spotify-logout").on('click', function (event) {
+    $("#sign-out").on('click', function (event) {
         localStorage.clear();
+    });
+
+    $(".play-again").on('click', function (event) {
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        if (stopped) {
+            startGame();
+        }
     });
 
     initOptions();
@@ -83,6 +91,7 @@ async function makeRequest(param) {
 }
 
 function showChoices(scale=false) {
+    $('.play-again').addClass("hidden");
     $('.choice').removeClass("slow-transition");
     $('.choice').addClass("fast-transition");
     $('.choice').css('cursor', 'pointer');
@@ -97,12 +106,13 @@ function showChoices(scale=false) {
 function hideChoices(scale=false) {
     $('.choice').removeClass("fast-transition");
     $('.choice').addClass("slow-transition");
-    $('.choice').css('cursor', 'none');
+    $('.choice').css('cursor', 'default');
     if (scale) {
         $('.choice').css('transform', 'scale(0)');
     } else {
         $('.choice').css('opacity', '0');
     }
+    $('.play-again').removeClass("hidden");
 }
 
 function stopGame() {
@@ -110,8 +120,6 @@ function stopGame() {
     console.log("Game over. Final score: " + userCurrentScore);
     updateHighScore(userCurrentScore);
     updateMode("Game Over","","");
-    //document.getElementById("stats-text").textContent = "Game Over";
-    //document.getElementById("stats-text").style.color = "red";
     
     updateLives();
     lives = maxLives;
