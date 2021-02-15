@@ -50,6 +50,7 @@ $(document).ready(function () {
     });
 
     initOptions();
+    document.getElementById("mode_text").style.color = "#ffa600"
 });
 
 function localDataFound() {
@@ -90,12 +91,12 @@ async function makeRequest(param) {
     }
 }
 
-function showChoices(scale=false) {
+function showChoices(scale = false) {
     $('.play-again').addClass("hidden");
     $('.choice').removeClass("slow-transition");
     $('.choice').addClass("fast-transition");
     $('.choice').css('cursor', 'pointer');
-    
+
     if (scale) {
         $('.choice').css('transform', 'scale(1)');
     } else {
@@ -103,7 +104,7 @@ function showChoices(scale=false) {
     }
 }
 
-function hideChoices(scale=false) {
+function hideChoices(scale = false) {
     $('.choice').removeClass("fast-transition");
     $('.choice').addClass("slow-transition");
     $('.choice').css('cursor', 'default');
@@ -119,8 +120,8 @@ function stopGame() {
     stopped = true;
     console.log("Game over. Final score: " + userCurrentScore);
     updateHighScore(userCurrentScore);
-    updateMode("Game Over","","");
-    
+    updateMode("Game Over", "");
+
     updateLives();
     lives = maxLives;
     userCurrentScore = 0;
@@ -189,10 +190,28 @@ async function getSpotifyData() {
 }
 
 
-function updateMode(intro, mode, mode_text) {
-    document.getElementById("mode_intro").textContent = intro;
-    document.getElementById("mode").textContent = mode;
+function updateMode(mode_intro, mode_text) {
+    document.getElementById("mode_intro").textContent = mode_intro;
     document.getElementById("mode_text").textContent = mode_text;
+
+    document.getElementById("mode_intro").style.color = "whitesmoke";
+
+    if (document.getElementById("mode_intro").textContent == "Game Over") {
+        document.getElementById("mode_intro").style.color = "#404040";
+    }
+
+    if (document.getElementById("mode_text").textContent == "listened to more?") {
+        document.getElementById("mode_text").style.color = "#ffa600";
+    } else if (document.getElementById("mode_text").textContent == "danceable?") {
+        document.getElementById("mode_text").style.color = "#c300ff";
+    } else if (document.getElementById("mode_text").textContent == "upbeat?") {
+        document.getElementById("mode_text").style.color = "#2ae600";
+    } else if (document.getElementById("mode_text").textContent == "longer?") {
+        document.getElementById("mode_text").style.color = "#0051ff";
+    } else {
+        document.getElementById("mode_text").style.color = "whitesmoke";
+        console.log(document.getElementById("mode_text").textContent);
+    }
 }
 
 
@@ -227,7 +246,7 @@ function compareArtists() {
             option2 = artistList[num2];
         }
 
-        updateMode("which", "artist", " have you listened to more?");
+        updateMode("Which artist have you ", "listened to more?");
 
         document.getElementById("text1a").textContent = option1['name'];
         document.getElementById("text2a").textContent = option2['name'];
@@ -276,13 +295,13 @@ function compareTracks() {
         }
 
         if (currentMode == "popularity") {
-            updateMode("Which ","track", " have you listened to more?");
+            updateMode("Which track have you ", "listened to more?");
         } else if (currentMode == "danceability") {
-            updateMode("Which ","track", " is more danceable?");
+            updateMode("Which track is more ", "danceable?");
         } else if (currentMode == "valence") {
-            updateMode("Which ","track", " is more upbeat?");
+            updateMode("Which track is more ", "upbeat?");
         } else if (currentMode == "duration") {
-            updateMode("Which ","track", " is longer?");
+            updateMode("Which track is ", "longer?");
         }
 
         document.getElementById("text1a").textContent = option1['name'];
