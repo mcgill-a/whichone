@@ -24,14 +24,40 @@ var cheaterMode = false;
 
 $(document).ready(function () {
 
-    getSpotifyData();
+    // if their spotify data exists in the browser
+    // use that instead of requesting new data
+    if (localDataFound()) {
+        // start with a random mode
+        randomMode();
+    } else {
+        getSpotifyData();
+    }
 
     $(".choice").on('click', function (event) {
         event.stopPropagation();
         event.stopImmediatePropagation();
         makeGuess($(this).data('choice'));
     });
+
+    $(".spotify-logout").on('click', function(event) {
+        localStorage.clear();
+    });
 });
+
+function localDataFound() {
+    // get data from local storage instead of the web server
+    let tracks = localStorage.getItem("top_tracks");
+    let artists = localStorage.getItem("top_artists");
+    let features = localStorage.getItem("audio_features");
+    if (tracks != null && artists != null && features != null) {
+        user['top_artists'] = JSON.parse(artists);
+        user['top_tracks'] = JSON.parse(tracks);
+        featuresDict = JSON.parse(features);
+        return true;
+    } else {
+        return false;
+    }
+}
 
 async function makeRequest(param) {
     try {
@@ -65,6 +91,7 @@ async function getAudioFeatures(tracks) {
                 data.forEach(result => {
                     featuresDict[result['id']] = result;
                 });
+                localStorage.setItem("audio_features", JSON.stringify(featuresDict));
             },
             error: function (errMsg) {
                 console.log(errMsg);
@@ -81,6 +108,7 @@ async function getSpotifyData() {
         console.error("No data returned from API (param1)");
     } else if (artists) {
         user['top_artists'] = artists;
+        localStorage.setItem("top_artists", JSON.stringify(artists));
     }
 
     let tracks = await makeRequest("top_tracks");
@@ -88,10 +116,11 @@ async function getSpotifyData() {
         console.error("No data returned from API (param2)");
     } else if (tracks) {
         user['top_tracks'] = tracks;
+        localStorage.setItem("top_tracks", JSON.stringify(tracks));
     }
 
-    getAudioFeatures(tracks);
     compareArtists();
+    getAudioFeatures(tracks);
 }
 
 
@@ -237,33 +266,38 @@ function makeGuess(option) {
 
         console.log(option1[currentMode], option2[currentMode]);
 
-        choiceArray = ["popularity", "popularity"];
+        
 
-        if (allowDance == true) {
-            choiceArray.push("danceability");
-        }
-        if (allowValence == true) {
-            choiceArray.push("valence");
-        }
-        if (allowDuration == true) {
-            choiceArray.push("duration");
-        }
+        randomMode();
+    }
+}
 
-        currentMode = choiceArray[Math.floor(Math.random() * choiceArray.length)];
+function randomMode() {
+    choiceArray = ["popularity", "popularity"];
 
-        choiceNum = Math.random();
+    if (allowDance == true) {
+        choiceArray.push("danceability");
+    }
+    if (allowValence == true) {
+        choiceArray.push("valence");
+    }
+    if (allowDuration == true) {
+        choiceArray.push("duration");
+    }
 
-        if (choiceNum < 0.5 && currentMode == "popularity") {
-            compareArtists();
-        } else if (choiceNum >= 0.5 && currentMode == "popularity") {
-            compareTracks();
-        } else if (currentMode == "danceability") {
-            compareTracks();
-        } else if (currentMode == "duration") {
-            compareTracks();
-        } else { // currentMode == "valence"
-            compareTracks();
-        }
+    currentMode = choiceArray[Math.floor(Math.random() * choiceArray.length)];
+    
+    choiceNum = Math.random();
+    if (choiceNum < 0.5 && currentMode == "popularity") {
+        compareArtists();
+    } else if (choiceNum >= 0.5 && currentMode == "popularity") {
+        compareTracks();
+    } else if (currentMode == "danceability") {
+        compareTracks();
+    } else if (currentMode == "duration") {
+        compareTracks();
+    } else { // currentMode == "valence"
+        compareTracks();
     }
 }
 
