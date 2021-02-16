@@ -41,7 +41,7 @@ $(document).ready(function () {
         localStorage.clear();
     });
 
-    $(".play-again").on('click', function (event) {
+    $("#play-again").on('click', function (event) {
         event.stopPropagation();
         event.stopImmediatePropagation();
         if (stopped) {
@@ -102,7 +102,7 @@ async function makeRequest(param) {
 }
 
 function showChoices(scale = false) {
-    $('.play-again').addClass("hidden");
+    $('.end-game').addClass("hidden");
     $('.choice').removeClass("slow-transition");
     $('.choice').addClass("fast-transition");
     $('.choice').css('cursor', 'pointer');
@@ -123,7 +123,7 @@ function hideChoices(scale = false) {
     } else {
         $('.choice').css('opacity', '0');
     }
-    $('.play-again').removeClass("hidden");
+    $('.end-game').removeClass("hidden");
 }
 
 function stopGame() {

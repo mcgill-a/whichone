@@ -176,7 +176,7 @@ html {
   cursor: pointer;
 }
 
-.button-dark2 {
+.dark-box {
   background-color: rgb(49, 49, 49, 0.7);
   width: 360px;
   height: 140px;
@@ -185,23 +185,21 @@ html {
   font-size: 28px;
   border: none;
   margin: 10px;
-  cursor: pointer;
 }
 
 .you-scored {
-  background-color: rgb(49, 49, 49, 0.7);
   width: 360px;
   height: 70px;
-  color: white;
-  border-radius: 10px;
-  font-size: 22px;
-  border: none;
-  margin: 10px;
-  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.button-dark:hover,
-.button-dark2:hover {
+.you-scored h4 {
+  font-size: 24px;
+}
+
+button:hover {
   background-color: rgba(71, 71, 71, 0.7);
 }
 
@@ -305,13 +303,16 @@ html {
   overflow: hidden !important;
 }
 
-.play-again {
+.end-game {
   position: absolute; 
   left: 0; 
   right: 0; 
   margin-left: auto; 
   margin-right: auto; 
   width: 360px;
+}
+
+button {
   cursor: pointer;
 }
 
@@ -511,7 +512,7 @@ html {
     margin: 0 8px;
   }
 
-  .button-dark2 {
+  .dark-box {
     width: 360px;
     height: 140px;
     font-size: 28px;
@@ -587,7 +588,7 @@ html {
     margin: 0 8px;
   }
 
-  .button-dark2 {
+  .dark-box {
     width: 360px;
     height: 140px;
     font-size: 28px;
@@ -655,7 +656,7 @@ html {
     margin: 0 8px;
   }
 
-  .button-dark2 {
+  .dark-box {
     width: 360px;
     height: 140px;
     font-size: 28px;
@@ -723,7 +724,7 @@ html {
     margin: 0 6px;
   }
 
-  .button-dark2 {
+  .dark-box {
     width: 300px;
     height: 115px;
     font-size: 22px;
@@ -798,7 +799,7 @@ html {
     margin: 0 6px;
   }
 
-  .button-dark2 {
+  .dark-box {
     width: 250px;
     height: 95px;
     font-size: 20px;
@@ -868,7 +869,7 @@ html {
     margin: 0 6px;
   }
 
-  .button-dark2 {
+  .dark-box {
     width: 220px;
     height: 85px;
     font-size: 19px;
