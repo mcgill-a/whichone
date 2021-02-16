@@ -442,6 +442,10 @@ html {
     width: 600px;
   }
 
+  .container-options {
+    width: 600px;
+  }
+
   .container-score {
     width: 180px;
   }
@@ -502,6 +506,10 @@ html {
     width: 500px;
   }
 
+  .container-options {
+    width: 500px;
+  }
+
   .container-score {
     width: 180px;
   }
@@ -553,6 +561,10 @@ html {
   }
 
   .container-vert {
+    width: 450px;
+  }
+
+  .container-options {
     width: 450px;
   }
 
@@ -610,6 +622,10 @@ html {
     width: 400px;
   }
 
+  .container-options {
+    width: 400px;
+  }
+
   .container-score {
     width: 175px;
   }
@@ -662,6 +678,10 @@ html {
   }
 
   .container-vert {
+    width: 320px;
+  }
+
+  .container-options {
     width: 320px;
   }
 
@@ -722,6 +742,11 @@ html {
   }
 
   .container-vert {
+    width: 230px;
+    height: 60px;
+  }
+
+  .container-options {
     width: 230px;
     height: 60px;
   }

@@ -2,13 +2,12 @@ import os
 import uuid
 from flask import render_template, redirect, request, url_for, json, jsonify
 from flask_session import Session
-from whichone import app, session
+from whichone import app, session, limiter
 import whichone.spotipy as spotipy
 
 caches_folder = './.spotify_caches/'
 if not os.path.exists(caches_folder):
     os.makedirs(caches_folder)
-
 
 def session_cache_path():
     if not session.get('uuid'):
@@ -72,6 +71,7 @@ def sign_out():
 
 
 @app.route('/top_tracks')
+@limiter.limit("10 per day")
 def top_tracks():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
@@ -90,7 +90,9 @@ def top_tracks():
     return "Could not find top tracks"
 
 
+
 @app.route('/top_artists')
+@limiter.limit("10 per day")
 def top_artists():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
@@ -110,6 +112,7 @@ def top_artists():
 
 
 @app.route('/audio_features', methods=['POST'])
+@limiter.limit("10 per day")
 def audio_features():
     if request.method == 'POST':
         data = request.get_json()
