@@ -417,15 +417,36 @@ html {
   }
 }
 
+@media only screen and (max-width: 980px) {
+  .nav-bar {
+    margin: 0;
+  }
+  
+  .button-dark {
+    width: 120px;
+    height: 35px;
+    font-size: 17px;
+    margin: 10px 10px 0 10px;
+  }
+}
+
 @media only screen and (max-width: 860px) {
+  
+  .button-dark {
+    width: 110px;
+    height: 30px;
+    font-size: 15px;
+    margin: 10px 10px 0 10px;
+  }
+  
   .album_art {
-    width: 300px;
-    height: 300px;
+    width: 260px;
+    height: 260px;
   }
 
   .choice {
-    width: 320px;
-    height: 435px;
+    width: 280px;
+    height: 395px;
     padding: 10px;
     margin: 10px 20px;
   }
@@ -435,6 +456,10 @@ html {
   }
 
   .score-label {
+    font-size: 20px;
+  }
+
+  .options-label {
     font-size: 20px;
   }
 
@@ -458,7 +483,7 @@ html {
 
   .gotham-small {
     font-weight: 500;
-    font-size: 14px;
+    font-size: 17px;
   }
 
   .spotify-login {
@@ -482,14 +507,22 @@ html {
 }
 
 @media only screen and (max-width: 700px) {
+
+  .button-dark {
+    width: 105px;
+    height: 30px;
+    font-size: 14px;
+    margin: 10px 10px 0 10px;
+  }
+
   .album_art {
-    width: 250px;
-    height: 250px;
+    width: 220px;
+    height: 220px;
   }
 
   .choice {
-    width: 270px;
-    height: 385px;
+    width: 240px;
+    height: 355px;
     padding: 10px;
     margin: 5px 10px;
   }
@@ -499,6 +532,10 @@ html {
   }
 
   .score-label {
+    font-size: 18px;
+  }
+
+  .options-label {
     font-size: 18px;
   }
 
@@ -547,13 +584,13 @@ html {
 
 @media only screen and (max-width: 600px) {
   .album_art {
-    width: 230px;
-    height: 230px;
+    width: 200px;
+    height: 200px;
   }
 
   .choice {
-    width: 250px;
-    height: 365px;
+    width: 220px;
+    height: 335px;
     padding: 10px;
     margin: 5px 10px;
   }
@@ -563,6 +600,10 @@ html {
   }
 
   .score-label {
+    font-size: 15px;
+  } 
+  
+  .options-label {
     font-size: 15px;
   }
 
@@ -611,13 +652,13 @@ html {
 
 @media only screen and (max-width: 500px) {
   .album_art {
-    width: 180px;
-    height: 180px;
+    width: 170px;
+    height: 170px;
   }
 
   .choice {
-    width: 200px;
-    height: 315px;
+    width: 190px;
+    height: 305px;
     padding: 10px;
     margin: 5px 10px;
   }
@@ -627,6 +668,10 @@ html {
   }
 
   .score-label {
+    font-size: 13px;
+  }
+
+  .options-label {
     font-size: 13px;
   }
 
@@ -695,6 +740,10 @@ html {
     font-size: 12px;
   }
 
+  .options-label {
+    font-size: 12px;
+  }
+
   .container-vert {
     width: 320px;
   }
@@ -746,13 +795,13 @@ html {
 
 @media only screen and (max-width: 300px) {
   .album_art {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
   }
 
   .choice {
-    width: 100px;
-    height: 215px;
+    width: 110px;
+    height: 225px;
     padding: 10px;
     margin: 5px 5px;
   }
@@ -762,6 +811,10 @@ html {
   }
 
   .score-label {
+    font-size: 10px;
+  }
+
+  .options-label {
     font-size: 10px;
   }
 
