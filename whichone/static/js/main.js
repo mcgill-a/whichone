@@ -124,8 +124,8 @@ function stopGame() {
 
     updateLives();
     lives = maxLives;
-    userCurrentScore = 0;
     document.getElementById("current_score").textContent = userCurrentScore;
+    userCurrentScore = 0;
     hideChoices();
 }
 
