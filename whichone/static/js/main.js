@@ -131,6 +131,7 @@ function stopGame() {
 
 function startGame() {
     stopped = false;
+    randomMode();
     showChoices();
     lives = 3;
     updateLives();
