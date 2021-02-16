@@ -188,6 +188,18 @@ html {
   cursor: pointer;
 }
 
+.you-scored {
+  background-color: rgb(49, 49, 49, 0.7);
+  width: 360px;
+  height: 70px;
+  color: white;
+  border-radius: 10px;
+  font-size: 22px;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+}
+
 .button-dark:hover,
 .button-dark2:hover {
   background-color: rgba(71, 71, 71, 0.7);

@@ -135,6 +135,7 @@ function stopGame() {
     updateLives();
     lives = maxLives;
     document.getElementById("current_score").textContent = userCurrentScore;
+    document.getElementById("final_score").textContent = "You Scored " + userCurrentScore + "!"
     userCurrentScore = 0;
     hideChoices();
 }
