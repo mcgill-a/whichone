@@ -201,13 +201,13 @@ function updateMode(mode_intro, mode_text) {
     }
 
     if (document.getElementById("mode_text").textContent == "listened to more?") {
-        document.getElementById("mode_text").style.color = "#ffa600";
+        document.getElementById("mode_text").style.color = "#FFC789";
     } else if (document.getElementById("mode_text").textContent == "danceable?") {
-        document.getElementById("mode_text").style.color = "#c300ff";
+        document.getElementById("mode_text").style.color = "#EC89FF";
     } else if (document.getElementById("mode_text").textContent == "upbeat?") {
-        document.getElementById("mode_text").style.color = "#2ae600";
+        document.getElementById("mode_text").style.color = "#A0FF89";
     } else if (document.getElementById("mode_text").textContent == "longer?") {
-        document.getElementById("mode_text").style.color = "#0051ff";
+        document.getElementById("mode_text").style.color = "#9091FF";
     } else {
         document.getElementById("mode_text").style.color = "whitesmoke";
         console.log(document.getElementById("mode_text").textContent);
