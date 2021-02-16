@@ -83,7 +83,9 @@ def top_tracks():
         return redirect('/')
     spotify = spotipy.Spotify(auth_manager=auth_manager)
     tracks = spotify.current_user_top_tracks(time_range="long_term", limit=50)
-    if not tracks is None:
+    tracks2 = spotify.current_user_top_tracks(time_range="long_term", limit=50, offset=49)
+    if tracks is not None and tracks2 is not None:
+        tracks['items'].extend(tracks2['items'][1:])
         return tracks
     return "Could not find top tracks"
 
@@ -100,7 +102,9 @@ def top_artists():
         return redirect('/')
     spotify = spotipy.Spotify(auth_manager=auth_manager)
     artists = spotify.current_user_top_artists(time_range="long_term", limit=50)
-    if not artists is None:
+    artists2 = spotify.current_user_top_artists(time_range="long_term", limit=50, offset=49)
+    if artists is not None and artists2 is not None:
+        artists['items'].extend(artists2['items'][1:])
         return artists
     return "Could not find top artists"
 
