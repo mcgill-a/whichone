@@ -227,7 +227,6 @@ function updateMode(mode_intro, mode_text) {
         document.getElementById("mode_text").style.color = "#9091FF";
     } else {
         document.getElementById("mode_text").style.color = "whitesmoke";
-        console.log(document.getElementById("mode_text").textContent);
     }
 }
 
