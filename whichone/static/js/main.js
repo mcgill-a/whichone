@@ -129,7 +129,8 @@ function stopGame() {
     hideChoices();
 }
 
-function startGame() {
+function startGame() {    
+    document.getElementById("current_score").textContent = userCurrentScore;
     stopped = false;
     randomMode();
     showChoices();
