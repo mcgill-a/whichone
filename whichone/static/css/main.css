@@ -429,6 +429,10 @@ html {
     width: 600px;
   }
 
+  .container-options {
+    width: 600px;
+  }
+
   .container-score {
     width: 180px;
   }
@@ -480,6 +484,10 @@ html {
   }
 
   .container-vert {
+    width: 500px;
+  }
+
+  .container-options {
     width: 500px;
   }
 
@@ -537,6 +545,10 @@ html {
     width: 450px;
   }
 
+  .container-options {
+    width: 450px;
+  }
+
   .container-score {
     width: 180px;
   }
@@ -588,6 +600,10 @@ html {
   }
 
   .container-vert {
+    width: 400px;
+  }
+
+  .container-options {
     width: 400px;
   }
 
@@ -643,6 +659,10 @@ html {
   }
 
   .container-vert {
+    width: 320px;
+  }
+
+  .container-options {
     width: 320px;
   }
 
@@ -703,6 +723,11 @@ html {
   }
 
   .container-vert {
+    width: 230px;
+    height: 60px;
+  }
+
+  .container-options {
     width: 230px;
     height: 60px;
   }
