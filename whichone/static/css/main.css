@@ -76,8 +76,8 @@ html {
   justify-content: center;
   align-items: center;
   padding: 2px;
-  height: 100%;
-  width: 100%;
+  height: 80px;
+  width: 700px;
   overflow: hidden;
 }
 
@@ -176,7 +176,20 @@ html {
   cursor: pointer;
 }
 
-.button-dark:hover {
+.button-dark2 {
+  background-color: rgb(49, 49, 49, 0.7);
+  width: 130px;
+  height: 50px;
+  color: white;
+  border-radius: 10px;
+  font-size: 22px;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.button-dark:hover,
+.button-dark2:hover {
   background-color: rgba(71, 71, 71, 0.7);
 }
 
@@ -258,8 +271,8 @@ html {
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  width: 300px;
-  height: 415px;
+  width: 320px;
+  height: 435px;
   padding: 10px;
   background-color: rgb(49, 49, 49, 0.7);
   margin: 10px 30px;
@@ -286,7 +299,7 @@ html {
   right: 0; 
   margin-left: auto; 
   margin-right: auto; 
-  width: 100px;
+  width: 260px;
   cursor: pointer;
 }
 
@@ -446,6 +459,10 @@ html {
     font-size: 20px;
   }
 
+  .options-label {
+    font-size: 20px;
+  }
+
   .container-vert {
     width: 600px;
   }
@@ -481,6 +498,12 @@ html {
     width: 40px;
     margin: 0 8px;
   }
+
+  .button-dark2 {
+    width: 130px;
+    height: 50px;
+    margin: 0 8px;
+  }
 }
 
 @media only screen and (max-width: 700px) {
@@ -509,6 +532,10 @@ html {
   }
 
   .score-label {
+    font-size: 18px;
+  }
+
+  .options-label {
     font-size: 18px;
   }
 
@@ -567,6 +594,10 @@ html {
   }
 
   .score-label {
+    font-size: 15px;
+  } 
+  
+  .options-label {
     font-size: 15px;
   }
 
@@ -628,6 +659,10 @@ html {
     font-size: 13px;
   }
 
+  .options-label {
+    font-size: 13px;
+  }
+
   .container-vert {
     width: 400px;
   }
@@ -684,6 +719,10 @@ html {
   }
 
   .score-label {
+    font-size: 12px;
+  }
+
+  .options-label {
     font-size: 12px;
   }
 
@@ -748,6 +787,10 @@ html {
   }
 
   .score-label {
+    font-size: 10px;
+  }
+
+  .options-label {
     font-size: 10px;
   }
 
