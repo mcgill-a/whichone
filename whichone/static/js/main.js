@@ -50,7 +50,7 @@ $(document).ready(function () {
     });
 
     initOptions();
-    document.getElementById("mode_text").style.color = "#ffa600"
+    document.getElementById("mode_text").style.color = "#FFC789"
 });
 
 function localDataFound() {
@@ -195,18 +195,20 @@ function updateMode(mode_intro, mode_text) {
     document.getElementById("mode_text").textContent = mode_text;
 
     document.getElementById("mode_intro").style.color = "whitesmoke";
+    document.getElementById("question_mark").textContent = "?";
 
-    if (document.getElementById("mode_intro").textContent == "Game Over") {
-        document.getElementById("mode_intro").style.color = "#404040";
+    if (mode_intro == "Game Over") {
+        document.getElementById("mode_intro").style.color = "#FF4343";
+        document.getElementById("question_mark").textContent = "";
     }
 
-    if (document.getElementById("mode_text").textContent == "listened to more?") {
+    if (mode_text == "listened to more") {
         document.getElementById("mode_text").style.color = "#FFC789";
-    } else if (document.getElementById("mode_text").textContent == "danceable?") {
+    } else if (mode_text == "danceable") {
         document.getElementById("mode_text").style.color = "#EC89FF";
-    } else if (document.getElementById("mode_text").textContent == "upbeat?") {
+    } else if (mode_text == "upbeat") {
         document.getElementById("mode_text").style.color = "#A0FF89";
-    } else if (document.getElementById("mode_text").textContent == "longer?") {
+    } else if (mode_text == "longer") {
         document.getElementById("mode_text").style.color = "#9091FF";
     } else {
         document.getElementById("mode_text").style.color = "whitesmoke";
@@ -246,7 +248,7 @@ function compareArtists() {
             option2 = artistList[num2];
         }
 
-        updateMode("Which artist have you ", "listened to more?");
+        updateMode("Which artist have you ", "listened to more");
 
         document.getElementById("text1a").textContent = option1['name'];
         document.getElementById("text2a").textContent = option2['name'];
@@ -295,13 +297,13 @@ function compareTracks() {
         }
 
         if (currentMode == "popularity") {
-            updateMode("Which track have you ", "listened to more?");
+            updateMode("Which track have you ", "listened to more");
         } else if (currentMode == "danceability") {
-            updateMode("Which track is more ", "danceable?");
+            updateMode("Which track is more ", "danceable");
         } else if (currentMode == "valence") {
-            updateMode("Which track is more ", "upbeat?");
+            updateMode("Which track is more ", "upbeat");
         } else if (currentMode == "duration") {
-            updateMode("Which track is ", "longer?");
+            updateMode("Which track is ", "longer");
         }
 
         document.getElementById("text1a").textContent = option1['name'];
