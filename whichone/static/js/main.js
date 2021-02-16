@@ -55,10 +55,20 @@ $(document).ready(function () {
 
 function localDataFound() {
     // get data from local storage instead of the web server
+    let expire = localStorage.getItem("expire");
     let tracks = localStorage.getItem("top_tracks");
     let artists = localStorage.getItem("top_artists");
     let features = localStorage.getItem("audio_features");
     let score = localStorage.getItem("high_score");
+
+    const EXPIRATION_TIME = 604800000; // 1 week (milliseconds)
+
+    if (expire != null) {
+        // If the expiration time has passed, we need to get new data instead of using the local storage
+        if (new Date().getTime() - new Date(JSON.parse(expire)) > EXPIRATION_TIME) {
+            return false;
+        }
+    }
 
     if (tracks != null && artists != null && features != null) {
         user['top_artists'] = JSON.parse(artists);
@@ -159,6 +169,7 @@ async function getAudioFeatures(tracks) {
                 data.forEach(result => {
                     featuresDict[result['id']] = result;
                 });
+                localStorage.setItem("expire", JSON.stringify(new Date().getTime()));
                 localStorage.setItem("audio_features", JSON.stringify(featuresDict));
             },
             error: function (errMsg) {
@@ -176,6 +187,7 @@ async function getSpotifyData() {
         console.error("No data returned from API (param1)");
     } else if (artists) {
         user['top_artists'] = artists;
+        localStorage.setItem("expire", JSON.stringify(new Date().getTime()));
         localStorage.setItem("top_artists", JSON.stringify(artists));
     }
 
@@ -184,6 +196,7 @@ async function getSpotifyData() {
         console.error("No data returned from API (param2)");
     } else if (tracks) {
         user['top_tracks'] = tracks;
+        localStorage.setItem("expire", JSON.stringify(new Date().getTime()));
         localStorage.setItem("top_tracks", JSON.stringify(tracks));
     }
 
