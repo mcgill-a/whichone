@@ -425,6 +425,10 @@ html {
     font-size: 20px;
   }
 
+  .options-label {
+    font-size: 20px;
+  }
+
   .container-vert {
     width: 600px;
   }
@@ -483,6 +487,10 @@ html {
     font-size: 18px;
   }
 
+  .options-label {
+    font-size: 18px;
+  }
+
   .container-vert {
     width: 500px;
   }
@@ -538,6 +546,10 @@ html {
   }
 
   .score-label {
+    font-size: 15px;
+  } 
+  
+  .options-label {
     font-size: 15px;
   }
 
@@ -599,6 +611,10 @@ html {
     font-size: 13px;
   }
 
+  .options-label {
+    font-size: 13px;
+  }
+
   .container-vert {
     width: 400px;
   }
@@ -655,6 +671,10 @@ html {
   }
 
   .score-label {
+    font-size: 12px;
+  }
+
+  .options-label {
     font-size: 12px;
   }
 
@@ -719,6 +739,10 @@ html {
   }
 
   .score-label {
+    font-size: 10px;
+  }
+
+  .options-label {
     font-size: 10px;
   }
 
