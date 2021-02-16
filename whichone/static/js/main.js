@@ -214,7 +214,7 @@ function updateMode(mode_intro, mode_text) {
     document.getElementById("question_mark").textContent = "?";
 
     if (mode_intro == "Game Over") {
-        document.getElementById("mode_intro").style.color = "#FF4343";
+        document.getElementById("mode_intro").style.color = "#FF0000";
         document.getElementById("question_mark").textContent = "";
     }
 
