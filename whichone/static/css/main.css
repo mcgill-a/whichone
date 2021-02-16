@@ -8,12 +8,25 @@ h6 {
   font-family: "Lato", sans-serif;
 }
 
+.btn {
+  background-color: rgb(49, 49, 49, 1);
+  border-radius: 10px;;
+  outline: none;
+  transition: 0.4s ease-in-out;
+  width: 300px;
+  height: 100px;
+  margin-top: 30px !important;
+}
+
+.btn:hover {
+  background-color: rgb(53, 53, 53) !important;
+}
+
 button,
 button:focus,
 button:active {
   outline: none !important;
   border: none !important;
-  border-radius: 10px;
 }
 
 body,
@@ -23,6 +36,7 @@ html {
   line-height: 1.8;
   min-width: 240px;
   padding-bottom: 50px;
+  overflow: auto !important;
 }
 
 /* Create a Parallax Effect */
@@ -54,7 +68,6 @@ html {
 
 .container {
   height: 100%;
-  overflow: auto !important;
 }
 
 
@@ -309,7 +322,11 @@ button:hover {
   right: 0; 
   margin-left: auto; 
   margin-right: auto; 
-  width: 360px;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 button {
