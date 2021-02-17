@@ -50,7 +50,7 @@ async function getAudioFeatures(tracks) {
     let trackIds = [];
 
     if (tracks != null) {
-        tracks.items.forEach(track => {
+        tracks.forEach(track => {
             trackIds.push(track.id);
         });
 
