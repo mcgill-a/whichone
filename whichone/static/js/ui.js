@@ -52,12 +52,12 @@ function updateMode(mode_intro, mode_text) {
 
 
 function updateHighScore(score) {
-    if (score > highScore && !cheaterMode) {
-        highScore = score;
-        localStorage.setItem("high_score", highScore);
+    if (score > user.high_score && !cheaterMode) {
+        user.high_score = score;
+        localStorage.setItem("user", JSON.stringify(user));
     }
 
-    document.getElementById("high_score").textContent = highScore;
+    document.getElementById("high_score").textContent = user.high_score;
 }
 
 

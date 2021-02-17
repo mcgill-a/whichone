@@ -1,11 +1,13 @@
 var user = {
     top_artists: null,
-    top_tracks: null
+    top_tracks: null,
+    audio_features: null,
+    expire: 0,
+    high_score: 0
 };
 
 var idList = [];
 var featuresList = [];
-var featuresDict = null;
 
 var option1 = null;
 var option2 = null;
@@ -14,21 +16,19 @@ var currentMode = "popularity";
 const maxLives = 3;
 var lives = maxLives;
 var userCurrentScore = 0;
-var highScore = 0;
 var stopped = false;
 var cheaterMode = false;
 
 $(document).ready(function () {
-
     // if their spotify data exists in the browser
     // use that instead of requesting new data
+    
     if (localDataFound()) {
         // start with a random mode
         randomMode();
     } else {
         getSpotifyData();
     }
-    
 
     $(".choice").on('click', function (event) {
         event.stopPropagation();
