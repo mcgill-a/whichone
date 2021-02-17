@@ -1,3 +1,4 @@
+#test to see if login works properly on firefox
 import pytest
 import pytest_html
 from time import sleep
