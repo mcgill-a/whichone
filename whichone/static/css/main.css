@@ -160,7 +160,7 @@ html {
   height: 40px;
   justify-content: center;
   align-items: center;
-  width: 700px;
+  width: 250px;
   border-radius: 10px;
 }
 
@@ -454,7 +454,7 @@ button {
 .score {
   width: 100%;
   font-size: 25px;
-  margin: 40px;
+  margin: 0px;
   color: whitesmoke;
   height: 45px;
 }
@@ -584,6 +584,11 @@ button {
     height: 40px;
     width: 40px;
     margin: 0 8px;
+  }
+
+  .span-icon-large-no-margin {
+    width: 54px;
+    height: 54px;
   }
 
   .dark-box {
