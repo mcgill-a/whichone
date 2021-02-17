@@ -28,6 +28,7 @@ $(document).ready(function () {
     } else {
         getSpotifyData();
     }
+    
 
     $(".choice").on('click', function (event) {
         event.stopPropagation();
