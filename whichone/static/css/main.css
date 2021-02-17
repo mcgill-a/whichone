@@ -119,7 +119,7 @@ html {
 .container-options {
   display: flex;
   flex-direction: row;
-  margin: 50px auto;
+  margin: 40px auto;
   height: 80px;
   justify-content: center;
   align-items: center;
