@@ -106,6 +106,17 @@ html {
   border-radius: 10px;
 }
 
+.container-vert-clear {
+  display: flex;
+  flex-direction: row;
+  margin: 40px auto;
+  min-height: 80px;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
+  border-radius: 10px;
+}
+
 .container-options {
   display: flex;
   flex-direction: row;
@@ -396,7 +407,7 @@ button {
 .score {
   width: 100%;
   font-size: 25px;
-  margin: 0;
+  margin: 40px;
   color: whitesmoke;
   height: 45px;
 }
