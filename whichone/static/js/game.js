@@ -51,7 +51,6 @@ function makeGuess(option) {
         }
 
         $("#stats-popup").removeClass("hidden");
-        console.log(option1[currentMode], option2[currentMode]);
     }
 }
 
@@ -61,7 +60,6 @@ function compareArtists() {
         console.error("No data")
     } else {
         artistList = user.top_artists;
-        console.log(artistList);
         numTracks = artistList.length;
         num1 = Math.floor(Math.random() * numTracks);
 
@@ -95,8 +93,6 @@ function compareTracks() {
         console.error("No data")
     } else {
         trackList = user.top_tracks;
-        console.log(trackList);
-
         numTracks = trackList.length;
         num1 = Math.floor(Math.random() * numTracks);
 
@@ -115,16 +111,16 @@ function compareTracks() {
             option2 = trackList[num2];
 
             // if features dict hasn't been initialised yet, just use popularity
-            if (featuresDict == null) {
+            if (user['audio_features'] == null) {
                 currentMode = "popularity";
             } else {
-                option1['danceability'] = featuresDict[option1['id']]['danceability'];
-                option1['valence'] = featuresDict[option1['id']]['valence'];
-                option1['duration'] = featuresDict[option1['id']]['duration_ms'];
+                option1['danceability'] = user['audio_features'][option1['id']]['danceability'];
+                option1['valence'] = user['audio_features'][option1['id']]['valence'];
+                option1['duration'] = user['audio_features'][option1['id']]['duration_ms'];
 
-                option2['danceability'] = featuresDict[option2['id']]['danceability'];
-                option2['valence'] = featuresDict[option2['id']]['valence'];
-                option2['duration'] = featuresDict[option2['id']]['duration_ms'];
+                option2['danceability'] = user['audio_features'][option2['id']]['danceability'];
+                option2['valence'] = user['audio_features'][option2['id']]['valence'];
+                option2['duration'] = user['audio_features'][option2['id']]['duration_ms'];
             }
         }
 
@@ -148,7 +144,6 @@ function compareTracks() {
 }
 
 function randomMode() {
-
     let choiceArray = ["popularity", "popularity"];
 
     if (danceBox.checked) {
@@ -190,7 +185,7 @@ function updateLives() {
         icon1.src = "/static/resources/spotify-icon-red.png";
         icon2.src = "/static/resources/spotify-icon-red.png";
         icon3.src = "/static/resources/spotify-icon-red.png";
-        highScore = 0;
+        user.high_score = 0;
     } else if (lives == 3) {
         icon1.src = "/static/resources/spotify-icon.png";
         icon2.src = "/static/resources/spotify-icon.png";
