@@ -130,7 +130,7 @@ function stopGame() {
     stopped = true;
     console.log("Game over. Final score: " + userCurrentScore);
     updateHighScore(userCurrentScore);
-    updateMode("Game Over", "");
+    updateMode("", "");
 
     updateLives();
     lives = maxLives;
@@ -213,7 +213,7 @@ function updateMode(mode_intro, mode_text) {
     document.getElementById("mode_intro").style.color = "whitesmoke";
     document.getElementById("question_mark").textContent = "?";
 
-    if (mode_intro == "Game Over") {
+    if (mode_intro == "") {
         document.getElementById("mode_intro").style.color = "#FF0000";
         document.getElementById("question_mark").textContent = "";
     }
