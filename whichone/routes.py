@@ -71,7 +71,7 @@ def sign_out():
 
 
 @app.route('/top_tracks')
-@limiter.limit("10 per day")
+@limiter.limit("1000 per day")
 def top_tracks():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
@@ -89,10 +89,8 @@ def top_tracks():
         return json.dumps(tracks['items'])
     return json.dumps([]), 204
 
-
-
 @app.route('/top_artists')
-@limiter.limit("10 per day")
+@limiter.limit("1000 per day")
 def top_artists():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
@@ -112,7 +110,7 @@ def top_artists():
 
 
 @app.route('/audio_features', methods=['POST'])
-@limiter.limit("10 per day")
+@limiter.limit("1000 per day")
 def audio_features():
     if request.method == 'POST':
         data = request.get_json()
