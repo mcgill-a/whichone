@@ -109,8 +109,7 @@ html {
 .container-vert-clear {
   display: flex;
   flex-direction: row;
-  margin: 40px auto;
-  min-height: 80px;
+  height: 40px;
   justify-content: center;
   align-items: center;
   width: 700px;
