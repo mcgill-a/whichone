@@ -35,16 +35,6 @@ function localDataFound() {
     }
 }
 
-async function makeRequest(param) {
-    try {
-        let url = "/" + param;
-        let response = await fetch(url);
-        let data = await response.json();
-        return data;
-    } catch (error) {
-        console.error("API unavailable. Please try again later.");
-    }
-}
 
 async function getAudioFeatures(tracks) {
     let trackIds = [];
@@ -72,32 +62,42 @@ async function getAudioFeatures(tracks) {
             },
             error: function (errMsg) {
                 console.log(errMsg);
-            }
+                featuresDict = {};
+            },
+            timeout: 3000
         });
     }
 }
 
 
 async function getSpotifyData() {
+    $.ajax({
+        type: "GET",
+        url: "/top_artists",
+        success: function (data) {
+            user['artists'] = data;
+            localStorage.setItem("expire", JSON.stringify(new Date().getTime()));
+            localStorage.setItem("top_artists", JSON.stringify(artists));
+            compareArtists();
+        },
+        error: function () {
+            console.error("API unavailable. Please try again later.");
+        },
+        timeout: 5000
+    });
 
-    let artists = await makeRequest("top_artists");
-    if (artists == [] || artists == undefined || !artists) {
-        console.error("No data returned from API (param1)");
-    } else if (artists) {
-        user['top_artists'] = artists;
-        localStorage.setItem("expire", JSON.stringify(new Date().getTime()));
-        localStorage.setItem("top_artists", JSON.stringify(artists));
-    }
-
-    let tracks = await makeRequest("top_tracks");
-    if (tracks == [] || tracks == undefined || !tracks) {
-        console.error("No data returned from API (param2)");
-    } else if (tracks) {
-        user['top_tracks'] = tracks;
-        localStorage.setItem("expire", JSON.stringify(new Date().getTime()));
-        localStorage.setItem("top_tracks", JSON.stringify(tracks));
-    }
-
-    compareArtists();
-    getAudioFeatures(tracks);
+    $.ajax({
+        type: "GET",
+        url: "/top_tracks" + param,
+        success: function (data) {
+            user['top_tracks'] = data;
+            localStorage.setItem("expire", JSON.stringify(new Date().getTime()));
+            localStorage.setItem("top_tracks", JSON.stringify(tracks));
+            getAudioFeatures(user['top_tracks']);
+        },
+        error: function () {
+            console.error("API unavailable. Please try again later.");
+        },
+        timeout: 5000
+    });
 }
