@@ -9,7 +9,7 @@ h6 {
 }
 
 .btn {
-  background-color: rgb(49, 49, 49, 1);
+  background-color: rgba(255, 88, 88, 0.7);
   border-radius: 10px;;
   outline: none;
   transition: 0.4s ease-in-out;
@@ -19,7 +19,7 @@ h6 {
 }
 
 .btn:hover {
-  background-color: rgb(53, 53, 53) !important;
+  background-color: rgb(255, 88, 88, 1) !important;
 }
 
 button,
@@ -320,8 +320,7 @@ button:hover {
   position: absolute; 
   left: 0; 
   right: 0; 
-  margin-left: auto; 
-  margin-right: auto; 
+  margin: 120px auto 0 auto;
   width: auto;
   display: flex;
   justify-content: center;
