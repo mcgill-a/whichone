@@ -19,6 +19,39 @@ function startGame() {
     showChoices();
     lives = 3;
     updateLives();
+    startCounter();
+}
+
+function wrongAnswer() {
+    console.log("Wrong answer");
+    lives -= 1;
+    updateLives();
+    if (option1 != null && option2 != null) {
+        getStats(option1[currentMode], option2[currentMode]);
+        $("#stats-popup").removeClass("hidden");
+    }
+    if (lives <= 0) {
+        stopGame();
+        stopCounter();
+    } else {
+        randomMode();
+        resetCounter();
+    }
+}
+
+function correctAnswer() {
+    userCurrentScore += 1;
+    updateLives();
+    document.getElementById("current_score").textContent = userCurrentScore;
+    if (option1 != null && option2 != null) {
+        getStats(option1[currentMode], option2[currentMode]);
+        $("#stats-popup").removeClass("hidden");
+    }
+
+    if (!stopped) {
+        randomMode();
+        resetCounter();
+    }
 }
 
 function makeGuess(option) {
@@ -31,26 +64,10 @@ function makeGuess(option) {
         if (
             (option == '1' && option1[currentMode] > option2[currentMode]) ||
             (option == '2' && option2[currentMode] > option1[currentMode])) {
-            //correct answer
-            userCurrentScore += 1;
-            updateLives();
-            document.getElementById("current_score").textContent = userCurrentScore;
-            getStats(option1[currentMode], option2[currentMode]);
+                correctAnswer();
         } else {
-            // wrong answer
-            lives -= 1;
-            updateLives();
-            getStats(option1[currentMode], option2[currentMode]);
-            if (lives == 0) {
-                stopGame();
-            }
+            wrongAnswer();
         }
-
-        if (!stopped) {
-            randomMode();
-        }
-
-        $("#stats-popup").removeClass("hidden");
     }
 }
 

@@ -64,7 +64,7 @@ async function getAudioFeatures() {
     }
 }
 
-function request(key, callback) {
+async function request(key, callback) {
     $.ajax({
         type: "GET",
         url: "/" + key,
@@ -82,6 +82,6 @@ function request(key, callback) {
 }
 
 async function getSpotifyData() {
-    request("top_artists", compareArtists);
-    request("top_tracks", getAudioFeatures);
+    await request("top_artists", compareArtists);
+    await request("top_tracks", getAudioFeatures);
 }

@@ -1,3 +1,43 @@
+function cdwn() {
+    countdown -= 1;
+    if (countdown <= 0) {
+        wrongAnswer();
+    }
+    countdownNumberEl.textContent = countdown;
+}
+
+function startCounter() {
+    $("#countdown-number").css("display", "block");
+    $("#inner-circle").css("display", "block");
+    console.log("Start counter");
+    countdown = 10;
+    countdownNumberEl.textContent = countdown;
+    if (refreshIntervalId != null) {
+        clearInterval(refreshIntervalId);
+    }
+    refreshIntervalId = setInterval(cdwn, 1000);
+    $("#inner-circle").addClass("animated");
+}
+
+function resetCounter() {
+    $("#inner-circle").css("display", "none");
+    countdown = 10;
+    countdownNumberEl.textContent = countdown;
+    clearInterval(refreshIntervalId);
+    refreshIntervalId = setInterval(cdwn, 1000);
+    // add a delay so that the animation actually resets
+    setTimeout(function(){
+        $("#inner-circle").css("display", "block");
+    }, 20);
+}
+
+function stopCounter() {
+    console.log("Stop counter (" + countdown + ")");
+    clearInterval(refreshIntervalId);
+    $("#inner-circle").css("display", "none");
+    $("#countdown-number").css("display", "none");
+}
+
 
 function showChoices(scale = false) {
     $('.end-game').addClass("hidden");
