@@ -60,7 +60,8 @@ function compareArtists() {
     if (user.top_artists == [] || user.top_artists == undefined || !user.top_artists) {
         console.error("No data")
     } else {
-        artistList = user.top_artists['items'];
+        artistList = user.top_artists;
+        console.log(artistList);
         numTracks = artistList.length;
         num1 = Math.floor(Math.random() * numTracks);
 
@@ -93,7 +94,8 @@ function compareTracks() {
     if (user.top_tracks == [] || user.top_tracks == undefined || !user.top_tracks) {
         console.error("No data")
     } else {
-        trackList = user.top_tracks['items'];
+        trackList = user.top_tracks;
+        console.log(trackList);
 
         numTracks = trackList.length;
         num1 = Math.floor(Math.random() * numTracks);
