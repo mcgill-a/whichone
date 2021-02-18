@@ -30,12 +30,14 @@ button:active {
 }
 
 .down {
+  z-index: 9;
   display: flex;
   height: 100% !important;
   flex-direction: column;
 }
 
 .time-up {
+  z-index: 9;
   position: absolute;
   opacity: 0;
   font-size: 2.35vw !important;
@@ -111,6 +113,7 @@ html {
   height: 100% !important;
   position: absolute !important;
   overflow: hidden;
+  z-index: 0;
 }
 
 /* First image (Logo. Full height) */
@@ -128,9 +131,8 @@ html {
 
 .container {
   height: 100%;
+  z-index: 10;
 }
-
-
 
 
 .container-score {
@@ -360,6 +362,7 @@ button:hover {
 
 
 .choice {
+  z-index: 11;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -387,6 +390,7 @@ button:hover {
 }
 
 .end-game {
+  z-index: 13;
   position: absolute; 
   left: 0; 
   right: 0; 
@@ -687,6 +691,10 @@ button {
 }
 
 @media only screen and (max-width: 600px) {
+
+  .time-up {
+    font-size: 3.2vw !important;
+  }
 
   .btn {
     width: 240px;

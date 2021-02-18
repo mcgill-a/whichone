@@ -22,6 +22,7 @@ function startGame() {
     lives = 3;
     updateLives();
     $(".choice").css("opacity", 1);
+    $(".choice").css("cursor", "pointer");
     $(".down").css("opacity", 1);
     $(".time-up").css("opacity", 0);
     startCounter();
@@ -39,6 +40,7 @@ function wrongAnswer(temporarilyHideCards=false) {
         hideDelay = 2000; // delay in ms
         let opacityDelay = 100;
         $(".choice").css("opacity", 0);
+        $(".choice").css("cursor", "default");
         $(".down").css("opacity", 0);
         paused = true;
 
@@ -65,6 +67,7 @@ function wrongAnswer(temporarilyHideCards=false) {
             resetCounter();
             paused = false;
             $(".choice").css("opacity", 1);
+            $(".choice").css("cursor", "pointer");
             $(".down").css("opacity", 1);
         }
     }, hideDelay);
