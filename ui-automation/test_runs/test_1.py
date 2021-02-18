@@ -1,4 +1,3 @@
-# pytest to check if login works properly on chrome and firefox
 import pytest
 import pytest_html
 from time import sleep
@@ -11,23 +10,20 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 import settings
 
-@pytest.fixture(params=["chrome", "firefox"], scope="class")
-def driver_init(request):
-    if request.param == "chrome":
-        web_driver = webdriver.Chrome()
-    if request.param == "firefox":
-        web_driver = webdriver.Firefox()
-    request.cls.driver = web_driver
-    yield
-    web_driver.close()
 
 @pytest.mark.usefixtures("driver_init")
-class LoginTest:
+class BasicTest:
     pass
-class Test_URL(LoginTest):
-    def test_login(self):
+
+@pytest.mark.incremental      
+class Test_Login(BasicTest):
+    
+    def test_url(self):
         self.driver.get(settings.baseaddress)
         assert self.driver.title == "Which One"
+
+    
+    def test_login(self):
 
         self.driver.find_element_by_class_name("spotify-login").click()
         WebDriverWait(self.driver, 10).until(EC.title_contains("Spotify"))
