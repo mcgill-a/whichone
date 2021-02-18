@@ -13,30 +13,53 @@ function stopGame() {
 }
 
 function startGame() {    
+    
     document.getElementById("current_score").textContent = userCurrentScore;
     stopped = false;
+    paused = false;
     randomMode();
     showChoices();
     lives = 3;
     updateLives();
+    $(".choice").css("opacity", 1);
+    $(".down").css("opacity", 1);
     startCounter();
 }
 
-function wrongAnswer() {
+function wrongAnswer(temporarilyHideCards=false) {
+    
     console.log("Wrong answer");
     lives -= 1;
     updateLives();
-    if (option1 != null && option2 != null) {
-        getStats(option1[currentMode], option2[currentMode]);
-        $("#stats-popup").removeClass("hidden");
+    
+    let hideDelay = 0;
+    
+    if (temporarilyHideCards) {
+        hideDelay = 1200; // delay in ms
+        $(".choice").css("opacity", 0);
+        $(".down").css("opacity", 0);
+        paused = true;
     }
-    if (lives <= 0) {
-        stopGame();
-        stopCounter();
-    } else {
-        randomMode();
-        resetCounter();
-    }
+
+    setTimeout(function(){
+        if (option1 != null && option2 != null) {
+            getStats(option1[currentMode], option2[currentMode]);
+            $("#stats-popup").removeClass("hidden");
+        }
+        if (lives <= 0) {
+            stopGame();
+            stopCounter();
+        } else {
+            randomMode();
+            resetCounter();
+            paused = false;
+            $(".choice").css("opacity", 1);
+            $(".down").css("opacity", 1);
+        }
+
+    }, hideDelay);
+
+    
 }
 
 function correctAnswer() {

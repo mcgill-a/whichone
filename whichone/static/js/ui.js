@@ -1,7 +1,7 @@
 function cdwn() {
     countdown -= 1;
-    if (countdown <= 0) {
-        wrongAnswer();
+    if (countdown <= 0 && !paused) {
+        wrongAnswer(true);
     }
     countdownNumberEl.textContent = countdown;
 }
