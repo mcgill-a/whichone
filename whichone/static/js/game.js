@@ -23,6 +23,7 @@ function startGame() {
     updateLives();
     $(".choice").css("opacity", 1);
     $(".down").css("opacity", 1);
+    $(".time-up").css("opacity", 0);
     startCounter();
 }
 
@@ -35,13 +36,23 @@ function wrongAnswer(temporarilyHideCards=false) {
     let hideDelay = 0;
     
     if (temporarilyHideCards) {
-        hideDelay = 1200; // delay in ms
+        hideDelay = 2000; // delay in ms
+        let opacityDelay = 100;
         $(".choice").css("opacity", 0);
         $(".down").css("opacity", 0);
         paused = true;
+
+        setTimeout(function() {
+            $(".time-up").css("opacity", 1);
+        }, opacityDelay);
+
+        setTimeout(function() {
+            $(".time-up").css("opacity", 1);
+        }, hideDelay-opacityDelay);
     }
 
     setTimeout(function(){
+        $(".time-up").css("opacity", 0);
         if (option1 != null && option2 != null) {
             getStats(option1[currentMode], option2[currentMode]);
             $("#stats-popup").removeClass("hidden");
@@ -56,9 +67,7 @@ function wrongAnswer(temporarilyHideCards=false) {
             $(".choice").css("opacity", 1);
             $(".down").css("opacity", 1);
         }
-
     }, hideDelay);
-
     
 }
 
