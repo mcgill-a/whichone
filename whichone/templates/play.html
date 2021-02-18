@@ -61,12 +61,22 @@
                         <img id="image1" alt="album art photo cover" class="album_art">
                         <h4 class="gotham-small" alt="album art photo cover" id="text1a"></h4>
                     </button>
+                    
+                    <div class="down">
+                        <div id="countdown" title="Choose before time runs out!">
+                            <div id="countdown-number"></div>
+                            <svg>
+                              <circle id="inner-circle" r="18" cx="20" cy="20"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                    
                     <button id="button-choice-2" class="choice choice2" data-choice="2">
                         <img id="image2" alt="album art photo cover" class="album_art">
                         <h4 class="gotham-small" id="text2a"></h4>
                     </button>
                 </div>
-                <div class ="end-game hidden">
+                <div class="end-game hidden">
                     <div class="dark-box you-scored">
                         <h4 id="final_score"></h4>
                     </div>
@@ -75,9 +85,10 @@
             </div>
 
             <div class="container-vert">
-                <div class="container-score">
-                    <h2 class="score" style="text-align: right;" id="current_score">0</h2>
-                    <h4 class="score-label" style="text-align: right;">Current Score</h4>
+                <div class="container-vert-clear">
+                    <h2 class="score" style="text-align: right;" id="current_score">0</h1>
+                        <img id="fire_icon" alt="current score icon" style="vertical-align:middle;margin:0px 20px" title="Current Score"
+                            src="{{url_for('static', filename='resources/fire-icon (2).png')}}">
                 </div>
 
                 <img id="life1" class="span-icon-small"
@@ -87,9 +98,10 @@
                 <img id="life3" class="span-icon-small"
                     src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 3">
 
-                <div class="container-score">
-                    <h2 class="score" style="text-align: left;" id="high_score">0</h2>
-                    <h4 class="score-label" style="text-align: left;">High Score</h4>
+                <div class="container-vert-clear">
+                    <img id="fire_icon" alt="current score icon" style="vertical-align:middle;margin:0px 20px" title="High Score"
+                        src="{{url_for('static', filename='resources/trophy-icon (2).png')}}">
+                    <h2 class="score" style="text-align: left;" id="high_score">0</h1>
                 </div>
             </div>
 
@@ -100,7 +112,6 @@
             </div>
 
             <div id="options-popup" class="container-options">
-
                 <div class="container-stats">
                     <label class="switch" title="Toggle whether you are quizzed on danceability">
                         <input type="checkbox" id="danceBox">

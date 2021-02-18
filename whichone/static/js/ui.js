@@ -1,3 +1,41 @@
+function cdwn() {
+    countdown -= 1;
+    if (countdown <= 0) {
+        wrongAnswer();
+    }
+    countdownNumberEl.textContent = countdown;
+}
+
+function startCounter() {
+    $("#countdown-number").css("display", "block");
+    $("#inner-circle").css("display", "block");
+    countdown = 10;
+    countdownNumberEl.textContent = countdown;
+    if (refreshIntervalId != null) {
+        clearInterval(refreshIntervalId);
+    }
+    refreshIntervalId = setInterval(cdwn, 1000);
+    $("#inner-circle").addClass("animated");
+}
+
+function resetCounter() {
+    $("#inner-circle").css("display", "none");
+    countdown = 10;
+    countdownNumberEl.textContent = countdown;
+    clearInterval(refreshIntervalId);
+    refreshIntervalId = setInterval(cdwn, 1000);
+    // add a delay so that the animation actually resets
+    setTimeout(function(){
+        $("#inner-circle").css("display", "block");
+    }, 20);
+}
+
+function stopCounter() {
+    clearInterval(refreshIntervalId);
+    $("#inner-circle").css("display", "none");
+    $("#countdown-number").css("display", "none");
+}
+
 
 function showChoices(scale = false) {
     $('.end-game').addClass("hidden");
@@ -52,12 +90,12 @@ function updateMode(mode_intro, mode_text) {
 
 
 function updateHighScore(score) {
-    if (score > highScore && !cheaterMode) {
-        highScore = score;
-        localStorage.setItem("high_score", highScore);
+    if (score > user.high_score && !cheaterMode) {
+        user.high_score = score;
+        localStorage.setItem("user", JSON.stringify(user));
     }
 
-    document.getElementById("high_score").textContent = highScore;
+    document.getElementById("high_score").textContent = user.high_score;
 }
 
 
@@ -91,8 +129,12 @@ function getStats(param1, param2) {
     if (timesMore == Infinity) {
         timesMore = "a lot";
     } else if (timesMore == 1) {
-        timesMore = 1.1;
+        timesMore = "1.1x";
     }
+    else {
+        timesMore = timesMore + "x";
+    }
+
     amountMore = Math.round((big - small) * 10) / 10;
 
     durationMore = amountMore / 1000;
@@ -101,15 +143,15 @@ function getStats(param1, param2) {
     plural = "s";
 
     if (currentMode == 'danceability') {
-        document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + "x more danceable than " + smallChoice + ".";
+        document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " more danceable than " + smallChoice + ".";
     } else if (currentMode == 'valence') {
-        document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + "x more upbeat than " + smallChoice + ".";
+        document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " more upbeat than " + smallChoice + ".";
     } else if (currentMode == 'duration') {
         if (durationMore == 1) {
             plural = "";
         }
         document.getElementById("stats-text").textContent = bigChoice + " is " + durationMore + " second" + plural + " longer than " + smallChoice + ".";
     } else if (currentMode == 'popularity') {
-        document.getElementById("stats-text").textContent = "You have listened to " + bigChoice + " " + timesMore + "x more than " + smallChoice + ".";
+        document.getElementById("stats-text").textContent = "You have listened to " + bigChoice + " " + timesMore + " more than " + smallChoice + ".";
     }
 }

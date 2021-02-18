@@ -1,11 +1,13 @@
 var user = {
     top_artists: null,
-    top_tracks: null
+    top_tracks: null,
+    audio_features: null,
+    expire: 0,
+    high_score: 0
 };
 
 var idList = [];
 var featuresList = [];
-var featuresDict = null;
 
 var option1 = null;
 var option2 = null;
@@ -14,21 +16,13 @@ var currentMode = "popularity";
 const maxLives = 3;
 var lives = maxLives;
 var userCurrentScore = 0;
-var highScore = 0;
 var stopped = false;
 var cheaterMode = false;
+var countdownNumberEl = null;
+var countdown = 10;
+var refreshIntervalId = null;
 
 $(document).ready(function () {
-
-    // if their spotify data exists in the browser
-    // use that instead of requesting new data
-    if (localDataFound()) {
-        // start with a random mode
-        randomMode();
-    } else {
-        getSpotifyData();
-    }
-
     $(".choice").on('click', function (event) {
         event.stopPropagation();
         event.stopImmediatePropagation();
@@ -51,6 +45,19 @@ $(document).ready(function () {
 
     initOptions();
     document.getElementById("mode_text").style.color = "#FFC789"
+    countdownNumberEl = document.getElementById('countdown-number');
+    countdownNumberEl.textContent = countdown;
+
+    // if their spotify data exists in the browser
+    // use that instead of requesting new data
+    if (localDataFound()) {
+        // start with a random mode
+        randomMode();
+        startCounter();
+    } else {
+        getSpotifyData();
+        startCounter();
+    }
 });
 
 function initOptions() {

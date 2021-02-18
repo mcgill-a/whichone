@@ -71,7 +71,7 @@ def sign_out():
 
 
 @app.route('/top_tracks')
-@limiter.limit("10 per day")
+@limiter.limit(app.config['API_RATE_LIMITS'])
 def top_tracks():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
@@ -86,13 +86,11 @@ def top_tracks():
     tracks2 = spotify.current_user_top_tracks(time_range="long_term", limit=50, offset=49)
     if tracks is not None and tracks2 is not None:
         tracks['items'].extend(tracks2['items'][1:])
-        return tracks
-    return "Could not find top tracks"
-
-
+        return json.dumps(tracks['items'])
+    return json.dumps([]), 204
 
 @app.route('/top_artists')
-@limiter.limit("10 per day")
+@limiter.limit(app.config['API_RATE_LIMITS'])
 def top_artists():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
@@ -107,12 +105,12 @@ def top_artists():
     artists2 = spotify.current_user_top_artists(time_range="long_term", limit=50, offset=49)
     if artists is not None and artists2 is not None:
         artists['items'].extend(artists2['items'][1:])
-        return artists
-    return "Could not find top artists"
+        return json.dumps(artists['items'])
+    return json.dumps([]), 204
 
 
 @app.route('/audio_features', methods=['POST'])
-@limiter.limit("10 per day")
+@limiter.limit(app.config['API_RATE_LIMITS'])
 def audio_features():
     if request.method == 'POST':
         data = request.get_json()

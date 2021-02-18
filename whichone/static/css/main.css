@@ -29,6 +29,60 @@ button:active {
   border: none !important;
 }
 
+.down {
+  display: flex;
+  height: 100% !important;
+  flex-direction: column;
+}
+
+#countdown {
+  align-self: flex-end;
+  position: relative;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+}
+
+#countdown-number {
+  color: white;
+  display: inline-block;
+  line-height: 40px;
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  transform: rotateY(-180deg) rotateZ(-90deg);
+}
+
+svg circle {
+  display: block;
+  stroke-dasharray: 113px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  stroke-width: 2px;
+  stroke: white;
+  fill: none;
+  animation: none;
+}
+
+.animated {
+  animation: countdown 10s linear infinite forwards;
+}
+
+
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 113px;
+  }
+}
+
 body,
 html {
   height: 100%;
@@ -97,7 +151,7 @@ html {
 .container-vert {
   display: flex;
   flex-direction: row;
-  margin: 40px auto;
+  margin: 20px auto 40px auto;
   min-height: 80px;
   justify-content: center;
   align-items: center;
@@ -106,10 +160,20 @@ html {
   border-radius: 10px;
 }
 
+.container-vert-clear {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  border-radius: 10px;
+}
+
 .container-options {
   display: flex;
   flex-direction: row;
-  margin: 50px auto;
+  margin: 40px auto;
   height: 80px;
   justify-content: center;
   align-items: center;
@@ -298,7 +362,7 @@ button:hover {
   height: 435px;
   padding: 10px;
   background-color: rgb(49, 49, 49, 0.7);
-  margin: 10px 30px;
+  margin: 10px;
   border-radius: 10px;
   -moz-border-radius: 10px;
   transition: all .12s ease-in-out;
@@ -312,7 +376,7 @@ button:hover {
 }
 
 .choice:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   overflow: hidden !important;
 }
 
@@ -396,7 +460,7 @@ button {
 .score {
   width: 100%;
   font-size: 25px;
-  margin: 0;
+  margin: 0px;
   color: whitesmoke;
   height: 45px;
 }
@@ -460,7 +524,7 @@ button {
 }
 
 @media only screen and (max-width: 860px) {
-  
+
   .button-dark {
     width: 110px;
     height: 30px;
@@ -526,6 +590,11 @@ button {
     height: 40px;
     width: 40px;
     margin: 0 8px;
+  }
+
+  .span-icon-large-no-margin {
+    width: 54px;
+    height: 54px;
   }
 
   .dark-box {
@@ -612,6 +681,13 @@ button {
 }
 
 @media only screen and (max-width: 600px) {
+
+  .btn {
+    width: 240px;
+    height: 60px;
+    margin-top: 30px !important;
+  }
+
   .album_art {
     width: 200px;
     height: 200px;
@@ -680,6 +756,7 @@ button {
 }
 
 @media only screen and (max-width: 500px) {
+  
   .album_art {
     width: 170px;
     height: 170px;
@@ -749,6 +826,13 @@ button {
 
 
 @media only screen and (max-width: 400px) {
+  
+  .btn {
+    width: 240px;
+    height: 60px;
+    margin-top: 5px !important;
+  }
+
   .album_art {
     width: 130px;
     height: 130px;
