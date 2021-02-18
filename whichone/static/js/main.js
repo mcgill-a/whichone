@@ -17,6 +17,7 @@ const maxLives = 3;
 var lives = maxLives;
 var userCurrentScore = 0;
 var stopped = false;
+var paused = false;
 var cheaterMode = false;
 var countdownNumberEl = null;
 var countdown = 10;

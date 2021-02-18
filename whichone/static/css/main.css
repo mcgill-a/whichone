@@ -35,6 +35,12 @@ button:active {
   flex-direction: column;
 }
 
+.time-up {
+  position: absolute;
+  opacity: 0;
+  font-size: 2.35vw !important;
+}
+
 #countdown {
   align-self: flex-end;
   position: relative;

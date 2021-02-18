@@ -13,30 +13,62 @@ function stopGame() {
 }
 
 function startGame() {    
+    
     document.getElementById("current_score").textContent = userCurrentScore;
     stopped = false;
+    paused = false;
     randomMode();
     showChoices();
     lives = 3;
     updateLives();
+    $(".choice").css("opacity", 1);
+    $(".down").css("opacity", 1);
+    $(".time-up").css("opacity", 0);
     startCounter();
 }
 
-function wrongAnswer() {
+function wrongAnswer(temporarilyHideCards=false) {
+    
     console.log("Wrong answer");
     lives -= 1;
     updateLives();
-    if (option1 != null && option2 != null) {
-        getStats(option1[currentMode], option2[currentMode]);
-        $("#stats-popup").removeClass("hidden");
+    
+    let hideDelay = 0;
+    
+    if (temporarilyHideCards) {
+        hideDelay = 2000; // delay in ms
+        let opacityDelay = 100;
+        $(".choice").css("opacity", 0);
+        $(".down").css("opacity", 0);
+        paused = true;
+
+        setTimeout(function() {
+            $(".time-up").css("opacity", 1);
+        }, opacityDelay);
+
+        setTimeout(function() {
+            $(".time-up").css("opacity", 1);
+        }, hideDelay-opacityDelay);
     }
-    if (lives <= 0) {
-        stopGame();
-        stopCounter();
-    } else {
-        randomMode();
-        resetCounter();
-    }
+
+    setTimeout(function(){
+        $(".time-up").css("opacity", 0);
+        if (option1 != null && option2 != null) {
+            getStats(option1[currentMode], option2[currentMode]);
+            $("#stats-popup").removeClass("hidden");
+        }
+        if (lives <= 0) {
+            stopGame();
+            stopCounter();
+        } else {
+            randomMode();
+            resetCounter();
+            paused = false;
+            $(".choice").css("opacity", 1);
+            $(".down").css("opacity", 1);
+        }
+    }, hideDelay);
+    
 }
 
 function correctAnswer() {
