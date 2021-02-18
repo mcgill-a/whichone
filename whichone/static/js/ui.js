@@ -9,7 +9,6 @@ function cdwn() {
 function startCounter() {
     $("#countdown-number").css("display", "block");
     $("#inner-circle").css("display", "block");
-    console.log("Start counter");
     countdown = 10;
     countdownNumberEl.textContent = countdown;
     if (refreshIntervalId != null) {
@@ -32,7 +31,6 @@ function resetCounter() {
 }
 
 function stopCounter() {
-    console.log("Stop counter (" + countdown + ")");
     clearInterval(refreshIntervalId);
     $("#inner-circle").css("display", "none");
     $("#countdown-number").css("display", "none");
