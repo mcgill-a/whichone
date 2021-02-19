@@ -1,6 +1,6 @@
 function stopGame() {
     stopped = true;
-    console.log("Game over. Final score: " + userCurrentScore);
+    user["scores"].push(userCurrentScore);
     updateHighScore(userCurrentScore);
     updateMode("", "");
 
@@ -29,9 +29,44 @@ function startGame() {
     startCounter();
 }
 
+function calculateScoreData(array) {
+    let total = 0;
+    let min = null;
+    let max = null;
+    array.forEach(value => {
+        total += value;
+        
+        if (min == null|| value < min) {
+            min = value;
+        }
+
+        if (max == null || value > max) {
+            max = value;
+        }
+    });
+
+    let mean = total / array.length;
+
+    return {
+        scores: user.scores,
+        min: min,
+        max: max,
+        mean: mean,
+    };
+}
+
+function getScoreData() {
+    let data = calculateScoreData(user.scores)
+    data.stdev = getStandardDeviation(data.scores, data.mean);
+    return data;
+}
+
+function getStandardDeviation (array, mean) {
+    const n = array.length;
+    return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
+}
+
 function wrongAnswer(temporarilyHideCards=false) {
-    
-    console.log("Wrong answer");
     lives -= 1;
     updateLives();
     

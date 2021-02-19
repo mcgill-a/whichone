@@ -3,7 +3,8 @@ var user = {
     top_tracks: null,
     audio_features: null,
     expire: 0,
-    high_score: 0
+    high_score: 0,
+    scores: []
 };
 
 var idList = [];
