@@ -38,9 +38,14 @@ button:active {
 
 .time-up {
   z-index: 9;
-  position: absolute;
+  position: relative;
   opacity: 0;
   font-size: 2.35vw !important;
+  min-width: 100% !important;
+  text-align: center;
+  justify-content: center;
+  display: none;
+
 }
 
 #countdown {
@@ -98,7 +103,6 @@ html {
   line-height: 1.8;
   min-width: 240px;
   padding-bottom: 50px;
-  overflow: auto !important;
 }
 
 /* Create a Parallax Effect */
@@ -132,6 +136,7 @@ html {
 .container {
   height: 100%;
   z-index: 10;
+  overflow: auto !important;
 }
 
 
@@ -382,18 +387,15 @@ button:hover {
   -moz-border-radius: 10px;
   transition: all .12s ease-in-out;
   cursor: pointer;
-  outline: 0;
+  outline: 0 !important;
   opacity: 0;
 }
-
-.choice:focus {
-  outline: 0;
-}
-
+/*
 .choice:hover {
   transform: scale(1.05);
   overflow: hidden !important;
 }
+*/
 
 .end-game {
   z-index: 13;
@@ -512,6 +514,34 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media only screen and (max-height: 650px) {
+  
+  .choice {
+    max-width: 190px;
+    max-height: 240px;
+    font-size: 16px;
+  }
+
+  .album_art {
+    width: 180px;
+    height: 180px;
+  }
+  
+}
+
+@media only screen and (max-height: 620px) {
+  
+  .choice {
+    max-height: 210px;
+  }
+
+  .container-vert {
+    max-height: 70px;
+    margin-top: 5px;
+  }
+  
 }
 
 
@@ -778,13 +808,13 @@ button {
 @media only screen and (max-width: 500px) {
   
   .album_art {
-    width: 170px;
-    height: 170px;
+    width: 155px;
+    height: 155px;
   }
 
   .choice {
-    width: 190px;
-    height: 305px;
+    width: 175px;
+    height: 290px;
     padding: 10px;
     margin: 5px 10px;
   }
@@ -923,6 +953,76 @@ button {
     width: 250px;
     height: 95px;
     font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .album_art {
+    width: 94px;
+    height: 94px;
+  }
+
+  .choice {
+    width: 114px;
+    height: 229px;
+    padding: 10px;
+    margin: 5px 5px;
+  }
+
+  .score {
+    font-size: 10px;
+  }
+
+  .score-label {
+    font-size: 10px;
+  }
+
+  .options-label {
+    font-size: 10px;
+  }
+
+  .container-vert {
+    width: 260px;
+    height: 60px;
+  }
+
+  .container-options {
+    width: 260px;
+    height: 60px;
+  }
+
+  .container-score {
+    width: 130px;
+  }
+
+  .span-icon-small {
+    height: 12px;
+    width: 12px;
+    margin: 0 3px;
+  }
+
+  .gotham-small {
+    font-weight: 400;
+    font-size: 10px;
+  }
+
+  .spotify-login {
+    background-color: rgb(31, 185, 85);
+    width: 220px;
+    height: 60px;
+    font-size: 19px;
+  }
+
+  .span-icon {
+    height: 24px;
+    width: 24px;
+    margin: 0 6px;
+  }
+
+  .dark-box {
+    width: 220px;
+    height: 85px;
+    font-size: 19px;
   }
 }
 
