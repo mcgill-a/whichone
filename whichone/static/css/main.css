@@ -314,6 +314,12 @@ button:hover {
   margin: 0 8px;
 }
 
+.span-icon-score {
+  height: 32px;
+  width: 32px;
+  margin: 0 8px;
+}
+
 .gotham-header {
   font-family: 'GothamPro';
   font-weight: bold;
