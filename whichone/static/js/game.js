@@ -25,6 +25,7 @@ function startGame() {
     $(".choice").css("cursor", "pointer");
     $(".down").css("opacity", 1);
     $(".time-up").css("opacity", 0);
+    $(".time-up").css("display", "none");
     startCounter();
 }
 
@@ -38,22 +39,26 @@ function wrongAnswer(temporarilyHideCards=false) {
     
     if (temporarilyHideCards) {
         hideDelay = 2000; // delay in ms
-        let opacityDelay = 100;
+        let opacityDelay = 125;
         $(".choice").css("opacity", 0);
         $(".choice").css("cursor", "default");
         $(".down").css("opacity", 0);
+        $(".down").css("display", "none");
         paused = true;
 
         setTimeout(function() {
+            $(".time-up").css("display", "flex");
             $(".time-up").css("opacity", 1);
         }, opacityDelay);
 
         setTimeout(function() {
+            $(".time-up").css("display", "flex");
             $(".time-up").css("opacity", 1);
         }, hideDelay-opacityDelay);
     }
 
     setTimeout(function(){
+        $(".time-up").css("display", "none");
         $(".time-up").css("opacity", 0);
         if (option1 != null && option2 != null) {
             getStats(option1[currentMode], option2[currentMode]);
@@ -68,6 +73,7 @@ function wrongAnswer(temporarilyHideCards=false) {
             paused = false;
             $(".choice").css("opacity", 1);
             $(".choice").css("cursor", "pointer");
+            $(".down").css("display", "flex");
             $(".down").css("opacity", 1);
         }
     }, hideDelay);
