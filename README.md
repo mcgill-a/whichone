@@ -11,11 +11,13 @@ https://whichone.rocks/
 (Python 3.x) > pip3 install -r requirements.txt
 
 ```
+* Create and setup a 'defaults.py' file in the config directory (example file included)
+* Create a new app on the [Sotify Developer Dashboard](https://developer.spotify.com/dashboard/)
+* Add the app 'Client ID' and 'Client Secret' tokens to defaults.py
 
 ## Usage
 
-Once all of the dependencies have been installed:
-* Create and setup a 'defaults.py' file in the config directory (example file included)
+Once all of the dependencies have been installed and the config file is setup:
 * Run the server: <b>python run.py</b>
 * Go to http://localhost:8080/ to access the site
 
@@ -24,8 +26,10 @@ Once all of the dependencies have been installed:
 
 ## Screenshots
 
-<img src="whichone/demo/play1.png" width="80%">
-<img src="whichone/demo/play2.png" width="80%">
+<img src="whichone/demo/more.jpg" width="80%">
+<img src="whichone/demo/upbeat.jpg" width="80%">
+<img src="whichone/demo/danceable.jpg" width="80%">
+<img src="whichone/demo/longer.jpg" width="80%">
 
 ## Contributors
 
