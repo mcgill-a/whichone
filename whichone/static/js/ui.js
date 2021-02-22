@@ -92,9 +92,8 @@ function updateMode(mode_intro, mode_text) {
 function updateHighScore(score) {
     if (score > user.high_score && !cheaterMode) {
         user.high_score = score;
-        localStorage.setItem("user", JSON.stringify(user));
     }
-
+    localStorage.setItem("user", JSON.stringify(user));
     document.getElementById("high_score").textContent = user.high_score;
 }
 
