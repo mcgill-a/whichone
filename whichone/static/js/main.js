@@ -48,10 +48,6 @@ $(document).ready(function () {
         window.location.href = 'form';
     });
 
-    $('#go-to-play').on('click', function (event) {
-        window.location.href = 'play';
-    });
-
     initOptions();
     document.getElementById("mode_text").style.color = "#FFC789"
     countdownNumberEl = document.getElementById('countdown-number');
