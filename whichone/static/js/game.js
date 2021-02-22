@@ -1,6 +1,6 @@
 function stopGame() {
     stopped = true;
-    console.log("Game over. Final score: " + userCurrentScore);
+    user["scores"].push(userCurrentScore);
     updateHighScore(userCurrentScore);
     updateMode("", "");
 
@@ -25,12 +25,48 @@ function startGame() {
     $(".choice").css("cursor", "pointer");
     $(".down").css("opacity", 1);
     $(".time-up").css("opacity", 0);
+    $(".time-up").css("display", "none");
     startCounter();
 }
 
+function calculateScoreData(array) {
+    let total = 0;
+    let min = null;
+    let max = null;
+    array.forEach(value => {
+        total += value;
+        
+        if (min == null|| value < min) {
+            min = value;
+        }
+
+        if (max == null || value > max) {
+            max = value;
+        }
+    });
+
+    let mean = total / array.length;
+
+    return {
+        scores: user.scores,
+        min: min,
+        max: max,
+        mean: mean,
+    };
+}
+
+function getScoreData() {
+    let data = calculateScoreData(user.scores)
+    data.stdev = getStandardDeviation(data.scores, data.mean);
+    return data;
+}
+
+function getStandardDeviation (array, mean) {
+    const n = array.length;
+    return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
+}
+
 function wrongAnswer(temporarilyHideCards=false) {
-    
-    console.log("Wrong answer");
     lives -= 1;
     updateLives();
     
@@ -38,22 +74,26 @@ function wrongAnswer(temporarilyHideCards=false) {
     
     if (temporarilyHideCards) {
         hideDelay = 2000; // delay in ms
-        let opacityDelay = 100;
+        let opacityDelay = 125;
         $(".choice").css("opacity", 0);
         $(".choice").css("cursor", "default");
         $(".down").css("opacity", 0);
+        $(".down").css("display", "none");
         paused = true;
 
         setTimeout(function() {
+            $(".time-up").css("display", "flex");
             $(".time-up").css("opacity", 1);
         }, opacityDelay);
 
         setTimeout(function() {
+            $(".time-up").css("display", "flex");
             $(".time-up").css("opacity", 1);
         }, hideDelay-opacityDelay);
     }
 
     setTimeout(function(){
+        $(".time-up").css("display", "none");
         $(".time-up").css("opacity", 0);
         if (option1 != null && option2 != null) {
             getStats(option1[currentMode], option2[currentMode]);
@@ -68,6 +108,7 @@ function wrongAnswer(temporarilyHideCards=false) {
             paused = false;
             $(".choice").css("opacity", 1);
             $(".choice").css("cursor", "pointer");
+            $(".down").css("display", "flex");
             $(".down").css("opacity", 1);
         }
     }, hideDelay);
