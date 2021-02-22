@@ -12,7 +12,7 @@ https://whichone.rocks/
 
 ```
 * Create and setup a 'defaults.py' file in the config directory (example file included)
-* Create a new app on the [Sotify Developer Dashboard](https://developer.spotify.com/dashboard/)
+* Create a new app on the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
 * Add the app 'Client ID' and 'Client Secret' tokens to defaults.py
 
 ## Usage
