@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/form.js')}}"></script>
+</head>
+
+<form action="https://formspree.io/f/mdopvvey" method="POST">
+    <div class="row">
+        <div class="six columns">
+            <label for="exampleEmailInput">Your Email</label>
+            <input class="u-full-width" type="email" placeholder="test@mailbox.com" id="exampleEmailInput"
+                name="_replyto">
+        </div>
+        <div class="six columns">
+            <label for="exampleRecipientInput">Concerning</label>
+            <select class="u-full-width" id="exampleRecipientInput">
+                <option value="Option 1">Question</option>
+                <option value="Option 2">Admiration</option>
+                <option value="Option 3">Suggestion</option>
+                <option value="Option 4">Bug Report</option>
+            </select>
+        </div>
+    </div>
+    <label for="exampleMessage">Message</label>
+    <textarea class="u-full-width" placeholder="Hi chaps..." id="exampleMessage" name="message"></textarea>
+    <input class="button-primary" type="submit" value="Submit">
+</form>
+
+<div>
+    <button id="go-to-play">
+            Back to Play
+    </button>
+</div>
+
+</html>
