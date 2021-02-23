@@ -320,6 +320,13 @@ button:hover {
   margin: 0 8px;
 }
 
+.feedback-icon {
+  vertical-align:middle;
+  margin:14px 6px;
+  height: 36px;
+  width: 36px;
+}
+
 .gotham-header {
   font-family: 'GothamPro';
   font-weight: bold;
