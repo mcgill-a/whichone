@@ -168,6 +168,18 @@ html {
   border-radius: 10px;
 }
 
+
+.container-vert-clear-small {
+  display: flex;
+  flex-direction: row;
+  margin: 20px auto 40px auto;
+  min-height: 36px;
+  justify-content: center;
+  align-items: center;
+  width: 380px;
+  border-radius: 10px;
+}
+
 .container-form {
   display: flex;
   flex-direction: row;

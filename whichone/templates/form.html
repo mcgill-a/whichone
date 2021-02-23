@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <title>Which One</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/form.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/ui.js')}}"></script>
@@ -46,18 +47,20 @@
                                 </select>
                             </div>
                         </div>
-                        <div>
+                        <div class="six.columns">
                             <label for="exampleMessage">Message</label>
+                            <textarea class="u-full-width" placeholder="Hi chaps..." id="exampleMessage"
+                                name="message"></textarea>
+                                <input class="button-primary" type="submit" value="Submit">
                         </div>
-                        <textarea class="u-full-width" placeholder="Hi chaps..." id="exampleMessage"
-                            name="message"></textarea>
-                        <input class="button-primary" type="submit" value="Submit">
                     </form>
                 </div>
-                <div>
-                    <button id="go-to-play">
-                        Back to Play
-                    </button>
+                <div class="container-vert-clear-small">
+                    <a href='play'>
+                        <button id="go-to-play">
+                            Back to Play
+                        </button>
+                    </a>
                 </div>
             </div>
 </body>
