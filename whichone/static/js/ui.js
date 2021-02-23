@@ -135,6 +135,8 @@ function getStats(param1, param2) {
         timesMore = timesMore + "x";
     }
 
+    percentMore = Math.round((small/big)*100) + "%"
+
     amountMore = Math.round((big - small) * 10) / 10;
 
     durationMore = amountMore / 1000;
@@ -143,9 +145,9 @@ function getStats(param1, param2) {
     plural = "s";
 
     if (currentMode == 'danceability') {
-        document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " more danceable than " + smallChoice + ".";
+        document.getElementById("stats-text").textContent = bigChoice + " is " + percentMore + " more danceable than " + smallChoice + ".";
     } else if (currentMode == 'valence') {
-        document.getElementById("stats-text").textContent = bigChoice + " is " + timesMore + " more upbeat than " + smallChoice + ".";
+        document.getElementById("stats-text").textContent = bigChoice + " is " + percentMore + " more upbeat than " + smallChoice + ".";
     } else if (currentMode == 'duration') {
         if (durationMore == 1) {
             plural = "";
