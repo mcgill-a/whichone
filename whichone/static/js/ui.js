@@ -69,6 +69,7 @@ function updateMode(mode_intro, mode_text) {
 
     document.getElementById("mode_intro").style.color = "whitesmoke";
     document.getElementById("question_mark").textContent = "?";
+    document.getElementById("question_mark").style.color = "whitesmoke";
 
     if (mode_intro == "") {
         document.getElementById("mode_intro").style.color = "#FF0000";
