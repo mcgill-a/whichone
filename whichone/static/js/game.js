@@ -1,5 +1,12 @@
 function stopGame() {
     stopped = true;
+
+    if (!muteSound) {
+        var audio = new Audio('/static/resources/gameover.mp3');
+        audio.volume = 0.3;
+        audio.play();
+    }
+
     console.log("Game over. Final score: " + userCurrentScore);
     updateHighScore(userCurrentScore);
     updateMode("", "");
@@ -31,6 +38,13 @@ function startGame() {
 function wrongAnswer(temporarilyHideCards=false) {
     
     console.log("Wrong answer");
+
+    if (!muteSound) {
+        var audio = new Audio('/static/resources/wrong.mp3');
+        audio.volume = 0.3;
+        audio.play();
+    }
+
     lives -= 1;
     updateLives();
     
@@ -75,6 +89,13 @@ function wrongAnswer(temporarilyHideCards=false) {
 }
 
 function correctAnswer() {
+
+    if (!muteSound) {
+        var audio = new Audio('/static/resources/correct.mp3');
+        audio.volume = 0.3;
+        audio.play();
+    }
+
     userCurrentScore += 1;
     updateLives();
     document.getElementById("current_score").textContent = userCurrentScore;

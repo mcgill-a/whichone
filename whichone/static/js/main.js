@@ -6,6 +6,8 @@ var user = {
     high_score: 0
 };
 
+var muteSound = false;
+
 var idList = [];
 var featuresList = [];
 
