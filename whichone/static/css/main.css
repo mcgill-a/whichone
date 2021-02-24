@@ -173,6 +173,30 @@ html {
   border-radius: 10px;
 }
 
+
+.container-vert-clear-small {
+  display: flex;
+  flex-direction: row;
+  margin: 20px auto 40px auto;
+  min-height: 36px;
+  justify-content: center;
+  align-items: center;
+  width: 380px;
+  border-radius: 10px;
+}
+
+.container-form {
+  display: flex;
+  flex-direction: row;
+  margin: 20px auto 40px auto;
+  min-height: 80px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(49, 49, 49, 0.7);
+  width: 500px;
+  border-radius: 10px;
+}
+
 .container-vert-clear {
   display: flex;
   flex-direction: row;
@@ -323,6 +347,13 @@ button:hover {
   height: 32px;
   width: 32px;
   margin: 0 8px;
+}
+
+.feedback-icon {
+  vertical-align:middle;
+  margin:14px 6px;
+  height: 36px;
+  width: 36px;
 }
 
 .gotham-header {
