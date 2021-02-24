@@ -2,6 +2,7 @@ import os
 import uuid
 from flask import render_template, redirect, request, url_for, json, jsonify
 from flask_session import Session
+from werkzeug.exceptions import HTTPException
 from whichone import app, session, limiter
 import whichone.spotipy as spotipy
 
@@ -131,3 +132,13 @@ def audio_features():
                 return json.dumps(features), 200
             return "Could not find any audio features"
     return "Bad Request", 400
+
+
+@app.errorhandler(Exception)
+def handle_error(e):
+    code = 500
+    if isinstance(e, HTTPException):
+        code = e.code
+    print(code)
+    print(str(e))
+    return render_template('error.html', error=str(e), code=code), code
