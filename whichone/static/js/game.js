@@ -7,13 +7,37 @@ function stopGame() {
     updateLives();
     lives = maxLives;
     document.getElementById("current_score").textContent = userCurrentScore;
-    document.getElementById("final_score").textContent = "You Scored " + userCurrentScore + "!"
+    document.getElementById("final_score").textContent = getGameOverText();
     userCurrentScore = 0;
     hideChoices();
+    $(".game-over").removeClass("disabled");
+    $(".choice").addClass("disabled");
+    $(".time-display").addClass("disabled");
+}
+
+function getGameOverText() {
+    if (cheaterMode) {
+        return `why you cheating though?`; 
+    } else if (userCurrentScore == 0) {
+        return `yikes... you didn't get any right :(`
+    } else if (userCurrentScore == 1) {
+        return `at least you got one right I guess`
+    } else if (userCurrentScore > 1 && userCurrentScore < 6) {
+        return `you guessed the right answer ${userCurrentScore} times`; 
+    } else if (userCurrentScore >= 6 && userCurrentScore < 12) {
+        return `finally... you got ${userCurrentScore} right!`; 
+    } else if (userCurrentScore >= 12 && userCurrentScore < 100) {
+        return `okay you win, you chose the right one ${userCurrentScore} times`; 
+    } else {
+        return `you got ${userCurrentScore} right :)`; 
+    }
 }
 
 function startGame() {    
-    
+    $(".game-over").addClass("disabled");
+    $(".time-up").addClass("disabled");
+    $(".time-display").removeClass("disabled");
+    $(".choice").removeClass("disabled");
     document.getElementById("current_score").textContent = userCurrentScore;
     stopped = false;
     paused = false;
@@ -24,8 +48,6 @@ function startGame() {
     $(".choice").css("opacity", 1);
     $(".choice").css("cursor", "pointer");
     $(".down").css("opacity", 1);
-    $(".time-up").css("opacity", 0);
-    $(".time-up").css("display", "none");
     startCounter();
 }
 
@@ -78,26 +100,25 @@ function wrongAnswer(temporarilyHideCards=false) {
         $(".choice").css("opacity", 0);
         $(".choice").css("cursor", "default");
         $(".down").css("opacity", 0);
-        $(".down").css("display", "none");
         paused = true;
 
         setTimeout(function() {
-            $(".time-up").css("display", "flex");
+            $(".choice").addClass("disabled");
+            $(".time-up").removeClass("disabled");
             $(".time-up").css("opacity", 1);
         }, opacityDelay);
 
         setTimeout(function() {
-            $(".time-up").css("display", "flex");
-            $(".time-up").css("opacity", 1);
+            $(".time-up").css("opacity", 0);
         }, hideDelay-opacityDelay);
     }
 
     setTimeout(function(){
-        $(".time-up").css("display", "none");
-        $(".time-up").css("opacity", 0);
+        $(".choice").removeClass("disabled");
+        $(".time-up").addClass("disabled");
         if (option1 != null && option2 != null) {
             getStats(option1[currentMode], option2[currentMode]);
-            $("#stats-popup").removeClass("hidden");
+            $("#stats-popup").removeClass("disabled");
         }
         if (lives <= 0) {
             stopGame();
@@ -108,7 +129,6 @@ function wrongAnswer(temporarilyHideCards=false) {
             paused = false;
             $(".choice").css("opacity", 1);
             $(".choice").css("cursor", "pointer");
-            $(".down").css("display", "flex");
             $(".down").css("opacity", 1);
         }
     }, hideDelay);
@@ -121,7 +141,7 @@ function correctAnswer() {
     document.getElementById("current_score").textContent = userCurrentScore;
     if (option1 != null && option2 != null) {
         getStats(option1[currentMode], option2[currentMode]);
-        $("#stats-popup").removeClass("hidden");
+        $("#stats-popup").removeClass("disabled");
     }
 
     if (!stopped) {
@@ -136,7 +156,6 @@ function makeGuess(option) {
     } else {
         document.getElementById("stats-text").textContent = "";
         document.getElementById("stats-text").style.color = "white";
-
         if (
             (option == '1' && option1[currentMode] > option2[currentMode]) ||
             (option == '2' && option2[currentMode] > option1[currentMode])) {
@@ -250,7 +269,7 @@ function randomMode() {
     }
 
     currentMode = choiceArray[Math.floor(Math.random() * choiceArray.length)];
-
+    ps = userCurrentScore;
     choiceNum = Math.random();
     if (choiceNum < 0.5 && currentMode == "popularity") {
         compareArtists();
@@ -270,9 +289,9 @@ function updateLives() {
     icon1 = document.getElementById("life1");
     icon2 = document.getElementById("life2");
     icon3 = document.getElementById("life3");
-    if (Number.isNaN(lives) || lives > 3) {
+    
+    if (Number.isNaN(lives) || lives > 3 || userCurrentScore - ps > 1) {
         cheaterMode = true;
-        console.log("Cheater mode enabled.");
     }
     if (cheaterMode) {
         icon1.src = "/static/resources/spotify-icon-red.png";
