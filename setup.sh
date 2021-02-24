@@ -1,7 +1,15 @@
 #!/bin/bash
+git pull
 cd ../
-python3 -m venv ve-whichone
-source ve-whichone/Scripts/activate
+py -m venv ve-whichone
+
+case "$OSTYPE" in
+  msys*)    source ve-whichone/Scripts/activate ;;
+  *)        . $PWD/venv-whichone/bin/activate ;;
+esac
+
 pip install -r whichone/requirements.txt
-cd whichone/config
-cp defaults_example.py defaults.py
+cd whichone/whichone/
+cp config/defaults_example.py config/defaults.py
+cd ../
+py run.py
