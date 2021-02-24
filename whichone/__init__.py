@@ -25,6 +25,12 @@ if os.path.isfile(directory + "/" + config_file):
     elif ('DEFAULT_RATE_LIMITS' not in app.config):
         print("DEFAULT_RATE_LIMITS not found in /config/defaults.py")
         exit(0)
+    elif (app.config['SPOTIFY_CLIENT_ID'] == "YOUR SPOTIFY DEV CLIENT ID HERE"):
+        print("Insert a valid SPOTIFY_CLIENT_ID in /config/defaults.py")
+        exit(0)
+    elif (app.config['SPOTIFY_CLIENT_SECRET'] == "YOUR SPOTIFY DEV CLIENT SECRET'"):
+        print("Insert a valid SPOTIFY_CLIENT_SECRET in /config/defaults.py")
+        exit(0)
     else:
         app.config['SECRET_KEY'] = os.urandom(64)
         app.config['SESSION_TYPE'] = 'filesystem'
