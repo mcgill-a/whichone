@@ -1,0 +1,531 @@
+/* Default HTML elements */
+html {
+    background-image: url('https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-width: 275px;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: inherit;
+    text-decoration: inherit;
+    font-weight: inherit;
+}
+
+/* ---------------------------------- */
+
+/* Buttons */
+
+button,
+button:focus,
+button:active {
+    outline: none !important;
+    border: none !important;
+}
+
+.button-dark {
+    background-color: rgb(49, 49, 49, 0.7);
+    width: 120px;
+    height: auto;
+    color: white;
+    border-radius: 10px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgba(71, 71, 71, 0.7);
+}
+
+.play {
+    background-color: rgb(1, 189, 82);
+    border-radius: 10px;
+    outline: none;
+    transition: 0.2s ease-in-out;
+    width: auto;
+    height: auto;
+    min-height: 40px;
+    min-width: 120px;
+    padding: 1px 25px !important;
+    font-size: 2vw !important
+}
+
+.play:hover {
+    background-color: rgba(0, 211, 112);
+}
+
+.spotify-login {
+    background-color: rgb(31, 185, 85);
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    font-size: 27px;
+    border: none;
+}
+
+.spotify-login:hover,
+.spotify-login:active,
+.spotify-login:focus {
+    background-color: rgb(26, 150, 69);
+    cursor: pointer;
+}
+
+.spotify-login:active,
+.spotify-login:focus {
+    outline: 0;
+    border: none;
+}
+
+/* ---------------------------------- */
+
+/* Sliders */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    justify-content: center;
+    width: 40px;
+    height: 23px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+input:checked+.slider {
+    background-color: #ffca3a;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #e8f5ff;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+}
+
+.slider.round {
+    border-radius: 24px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
+/* ---------------------------------- */
+
+/* Sections */
+
+.game-info {
+    margin-top: 30px;
+}
+
+.header {
+    margin: 15px 15px 0 15px;
+}
+
+/* ---------------------------------- */
+
+/* Utility */
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-left {
+    justify-content: flex-start;
+}
+
+.flex-right {
+    justify-content: flex-end;
+}
+
+.right {
+    float: right;
+}
+
+.full-width {
+    width: 100% !important;
+}
+
+.no-margin {
+    margin: auto 0 !important;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 300ms, opacity 300ms;
+}
+
+.disabled {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+.margin-top-30 {
+    margin-top: 30px;
+}
+
+/* ---------------------------------- */
+
+/* Spans */
+
+.span-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: white;
+}
+
+.span-icon-logout {
+    height: 20px;
+    width: 20px;
+    margin: 0 8px 0 0;
+}
+
+.span-icon-small {
+    height: 52px;
+    width: 52px;
+    margin: 0 8px;
+}
+
+.span-icon-score {
+    height: 32px;
+    width: 32px;
+    margin: 0 8px;
+}
+
+.span-icon {
+    height: 48px;
+    width: 48px;
+    margin: 0 8px;
+}
+
+
+/* ---------------------------------- */
+
+/* Countdown timer */
+
+.down {
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    margin: auto 10px;
+}
+
+.time-display,
+.game-over {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.time-up {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    width: 100% !important;
+    z-index: 9;
+    opacity: 0;
+    font-size: 4vw !important;
+    text-align: center;
+    margin: auto !important;
+}
+
+#countdown {
+    align-self: flex-end;
+    position: relative;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+}
+
+#countdown-number {
+    color: white;
+    display: inline-block;
+    line-height: 40px;
+}
+
+svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    transform: rotateY(-180deg) rotateZ(-90deg);
+}
+
+svg circle {
+    display: block;
+    stroke-dasharray: 113px;
+    stroke-dashoffset: 0px;
+    stroke-linecap: round;
+    stroke-width: 2px;
+    stroke: white;
+    fill: none;
+    animation: none;
+}
+
+.animated {
+    animation: countdown 10s linear infinite forwards;
+}
+
+
+@keyframes countdown {
+    from {
+        stroke-dashoffset: 0px;
+    }
+
+    to {
+        stroke-dashoffset: 113px;
+    }
+}
+
+
+
+/* ---------------------------------- */
+
+/* Game over screen */
+
+.game-over {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* ---------------------------------- */
+
+/* Text */
+
+.gotham-header {
+    font-family: 'GothamPro';
+    font-weight: bold;
+    font-size: 9vw;
+    color: white;
+}
+
+.gotham-medium {
+    font-family: 'GothamPro';
+    font-weight: bold;
+    font-size: 3.5vw;
+    color: white;
+    text-align: center;
+    height: 6vw;
+}
+
+.gotham-small {
+    font-family: 'GothamPro';
+    font-weight: 300;
+    font-size: 22px;
+    color: white;
+    margin: 0 auto;
+    max-width: 90%;
+    text-align: center;
+    line-height: 22px;
+}
+
+.text-grey {
+    color: rgb(87, 83, 83) !important;
+}
+
+.small-label {
+    width: 100%;
+    font-size: 22px;
+    margin: 0;
+    color: whitesmoke;
+    text-align: center;
+    padding: 0 5px;
+}
+
+.score h2 {
+    margin: 0;
+    font-size: 25px;
+    color: whitesmoke;
+}
+
+/* ---------------------------------- */
+
+/* Choice cards */
+
+.choices {
+    width: 85%;
+    max-width: 960px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    height: 435px;
+}
+
+.choice {
+    z-index: 11;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 10px;
+    background-color: rgb(49, 49, 49, 0.7);
+    margin: auto;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    transition: all .12s ease-in-out;
+    cursor: pointer;
+    outline: 0 !important;
+    opacity: 0;
+    width: 320px;
+    height: 435px;
+}
+
+.choice-art {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    border-radius: 8px;
+}
+
+.choice-art img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.choice-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 315px;
+    height: 100px;
+    max-width: 100%;
+    margin: 5px 0;
+    white-space: initial;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+}
+
+.choice-title p {
+    max-height: 100%;
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ---------------------------------- */
+
+/* Containers */
+
+.container-vert {
+    background-color: rgb(49, 49, 49, 0.7);
+    border-radius: 10px;
+    align-items: center;
+    max-width: 100%;
+    height: auto;
+    min-height: 80px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-stats {
+    width: 33.3%;
+}
+
+.score {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.final-score {
+    width: 80%;
+    height: auto;
+    min-width: 245px;
+    min-height: 80px;
+    max-height: 160px;
+    padding: 15px;
+    text-align: center;
+}
+
+.dark-box {
+    background-color: rgb(49, 49, 49, 0.7);
+    color: white;
+    border-radius: 10px;
+    font-size: 28px;
+    border: none;
+    margin: 10px;
+}
+
+.center-display {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 75%;
+}
+
+.center-display a {
+    width: 90%;
+    height: 900%;
+    padding: 10px;
+    max-width: 400px;
+    max-height: 120px;
+}

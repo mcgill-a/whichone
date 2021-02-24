@@ -3,7 +3,8 @@ var user = {
     top_tracks: null,
     audio_features: null,
     expire: 0,
-    high_score: 0
+    high_score: 0,
+    scores: []
 };
 
 var muteSound = false;
@@ -24,6 +25,7 @@ var cheaterMode = false;
 var countdownNumberEl = null;
 var countdown = 10;
 var refreshIntervalId = null;
+var ps = 0;
 
 $(document).ready(function () {
     $(".choice").on('click', function (event) {
