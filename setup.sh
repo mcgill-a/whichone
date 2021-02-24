@@ -4,6 +4,7 @@ cd ../
 if [[ "$(py -V)" =~ "Python 3" ]]; then
   echo "Python 3 is installed"
 else
+  echo "[Error] Python 3 not found."
   exit
 fi
 py -m venv ve-whichone
