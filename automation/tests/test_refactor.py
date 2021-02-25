@@ -8,6 +8,7 @@ import pytest_html
 
 from pages import landingPage
 from pages import basePage
+from pages import spotifyPage
 
 from settings import settings
 
@@ -19,14 +20,21 @@ class BasicTest:
 
 class Test_Login(BasicTest):
     
+    def setup(self):
+        self.driver = self.driver
+        self.landing_Page = landingPage.landingPage(self.driver)
+        self.spotify_Page = spotifyPage.spotifyPage(self.driver)
+    
     def test_url(self):
-        landing_Page = landingPage.landingPage(self.driver)
-        landing_Page.load()
-        assert landing_Page.get_Title() == "Which One"
+        #landing_Page = landingPage.landingPage(self.driver)
+        self.landing_Page.load()
+        assert self.landing_Page.get_Title() == "Which One"
     
 
-    #def test_login(self):
-        #landing_Page.click_login()
-        #time.sleep(3)
+    def test_login(self):
+        self.landing_Page.click_login()
+        self.spotify_Page.spotify_login(settings.username, settings.password)
+        assert "/play" in self.spotify_Page.get_URL()
+        
         
         
