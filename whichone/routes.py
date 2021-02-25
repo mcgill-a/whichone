@@ -58,6 +58,9 @@ def play():
         return redirect('/')
     return render_template('play.html')
 
+@app.route('/feedback')
+def form():
+    return render_template('form.html')
 
 @app.route('/logout')
 def sign_out():

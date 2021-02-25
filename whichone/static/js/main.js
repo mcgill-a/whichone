@@ -23,6 +23,7 @@ var cheaterMode = false;
 var countdownNumberEl = null;
 var countdown = 10;
 var refreshIntervalId = null;
+var ps = 0;
 
 $(document).ready(function () {
     $(".choice").on('click', function (event) {
