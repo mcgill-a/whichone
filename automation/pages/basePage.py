@@ -7,3 +7,9 @@ class Page(object):
     def open(self):
         URL = self.BaseURL + self.URL
         self.driver.get(URL)
+
+    def get_Title(self):
+        return self.driver.title
+    
+    def find_element(self, loc):
+        return self.driver.find_element(loc)
