@@ -28,9 +28,9 @@ pip install -r whichone/requirements.txt
 
 * (Optional) Set the command line arguments as environment variables:
 ```sh
-export SPOTIFY_CLIENT_ID='YOUR_SPOTIFY_CLIENT_ID'
-export SPOTIFY_CLIENT_ID='YOUR_SPOTIFY_CLIENT_SECRET'
-export SPOTIFY_REDIRECT_URL='YOUR_SPOTIFY_REDIRECT_URI'
+export SPOTIFY_CLIENT_ID='YOUR SPOTIFY CLIENT ID'
+export SPOTIFY_CLIENT_SECRET='YOUR SPOTIFY CLIENT SECRET'
+export SPOTIFY_REDIRECT_URL='YOUR SPOTIFY REDIRECT URI'
 export LIMIT_ROUTE="'50 per day' '30 per hour'"
 export LIMIT_API="10 per day"
 ```
