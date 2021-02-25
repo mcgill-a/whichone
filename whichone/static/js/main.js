@@ -46,17 +46,6 @@ $(document).ready(function () {
         }
     });
 
-    $("#mute-icon").on('click', function (event) {
-        if (muteSound) {
-            muteSound = false;
-            document.getElementById('mute-icon').src = "/static/resources/volume-on.png";
-        }
-        else {
-            muteSound = true;
-            document.getElementById('mute-icon').src = "/static/resources/volume-off.png";
-        }
-    });
-
     initOptions();
     document.getElementById("mode_text").style.color = "#FFC789"
     countdownNumberEl = document.getElementById('countdown-number');

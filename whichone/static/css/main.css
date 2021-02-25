@@ -340,13 +340,6 @@ button:hover {
   color: rgb(87, 83, 83) !important;
 }
 
-.mute-icon {
-  vertical-align:middle;
-  margin:12px 4px;
-  height: 36px;
-  width: 36px;
-}
-
 .gotham-small {
   font-family: 'GothamPro';
   font-weight: 500;
