@@ -8,6 +8,7 @@ class landingPage(Page):
 
     #Locators
     
+    
     def __init__(self, driver):
         Page.__init__(self, driver)
         self.URL = "/"
