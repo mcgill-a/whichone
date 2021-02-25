@@ -9,11 +9,11 @@ app = Flask(__name__)
 app.debug = True
 
 parser = argparse.ArgumentParser() 
-parser.add_argument("-id", required=True, type=str, help = "Spotify Developer API Client ID")
-parser.add_argument("-secret", required=True, type=str, help = "Spotify Developer API Client Secret")
-parser.add_argument("-redirect", type=str, default="http://127.0.0.1:8080", help = "Spotify Login Redirect URI")
-parser.add_argument("-limit_route", default=["50 per day", "30 per hour"], nargs='+', help = "Rate limit for accessing page routes")
-parser.add_argument("-limit_api", default=["10 per day"], nargs='+', help = "Rate limit for accessing API routes")
+parser.add_argument("--id", required=True, type=str, help = "Spotify Developer API Client ID")
+parser.add_argument("--secret", required=True, type=str, help = "Spotify Developer API Client Secret")
+parser.add_argument("--redirect", type=str, default="http://127.0.0.1:8080", help = "Spotify Login Redirect URI")
+parser.add_argument("--limit_route", default=["50 per day", "30 per hour"], nargs='+', help = "Rate limit for accessing page routes")
+parser.add_argument("--limit_api", default=["10 per day"], nargs='+', help = "Rate limit for accessing API routes")
 args = parser.parse_args() 
 
 app.config['SPOTIFY_CLIENT_ID'] = args.id
