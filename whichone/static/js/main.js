@@ -4,6 +4,7 @@ var user = {
     audio_features: null,
     expire: 0,
     high_score: 0,
+    scores: [],
     muteSound: false
 };
 
@@ -55,6 +56,7 @@ $(document).ready(function () {
             user.muteSound = true;
             document.getElementById('mute-icon').src = "/static/resources/volume-off.png";
         }
+        localStorage.setItem("user", JSON.stringify(user));
     });
 
     initOptions();
@@ -68,11 +70,11 @@ $(document).ready(function () {
         // start with a random mode
         randomMode();
         startCounter();
-        setMuteIcon();
     } else {
         getSpotifyData();
         startCounter();
     }
+    setMuteIcon();
 });
 
 function initOptions() {

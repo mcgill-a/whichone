@@ -60,7 +60,7 @@ def play():
 
 @app.route('/feedback')
 def form():
-    return render_template('form.html')
+    return render_template('feedback.html')
 
 @app.route('/logout')
 def sign_out():
