@@ -542,6 +542,12 @@ button {
   align-items: center;
 }
 
+.error-gif {
+  width: 70%;
+  max-width: 200px;
+  height: auto;
+}
+
 @media only screen and (max-height: 650px) {
   
   .choice {
