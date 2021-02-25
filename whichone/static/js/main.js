@@ -3,10 +3,9 @@ var user = {
     top_tracks: null,
     audio_features: null,
     expire: 0,
-    high_score: 0
+    high_score: 0,
+    muteSound: false
 };
-
-var muteSound = false;
 
 var idList = [];
 var featuresList = [];
@@ -46,6 +45,17 @@ $(document).ready(function () {
         }
     });
 
+    $("#mute-icon").on('click', function (event) {
+        if (user.muteSound) {
+            user.muteSound = false;
+            document.getElementById('mute-icon').src = "/static/resources/volume-on.png";
+        }
+        else {
+            user.muteSound = true;
+            document.getElementById('mute-icon').src = "/static/resources/volume-off.png";
+        }
+    });
+
     initOptions();
     document.getElementById("mode_text").style.color = "#FFC789"
     countdownNumberEl = document.getElementById('countdown-number');
@@ -57,6 +67,7 @@ $(document).ready(function () {
         // start with a random mode
         randomMode();
         startCounter();
+        setMuteIcon();
     } else {
         getSpotifyData();
         startCounter();

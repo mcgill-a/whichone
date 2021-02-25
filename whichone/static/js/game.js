@@ -1,7 +1,7 @@
 function stopGame() {
     stopped = true;
 
-    if (!muteSound) {
+    if (!user.muteSound) {
         var audio = new Audio('/static/resources/gameover.mp3');
         audio.volume = 0.3;
         audio.play();
@@ -39,7 +39,7 @@ function wrongAnswer(temporarilyHideCards=false) {
     
     console.log("Wrong answer");
 
-    if (!muteSound) {
+    if (!user.muteSound) {
         var audio = new Audio('/static/resources/wrong.mp3');
         audio.volume = 0.3;
         audio.play();
@@ -90,7 +90,7 @@ function wrongAnswer(temporarilyHideCards=false) {
 
 function correctAnswer() {
 
-    if (!muteSound) {
+    if (!user.muteSound) {
         var audio = new Audio('/static/resources/correct.mp3');
         audio.volume = 0.3;
         audio.play();
