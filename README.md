@@ -26,13 +26,11 @@ pip install -r whichone/requirements.txt
 <img src="whichone/demo/redirect.png" width="50%">
 
 
-* (Optional) Set the command line arguments as environment variables:
+* (Optional) Set the Spotify parameters as environment variables:
 ```sh
 export SPOTIFY_CLIENT_ID='YOUR SPOTIFY CLIENT ID'
 export SPOTIFY_CLIENT_SECRET='YOUR SPOTIFY CLIENT SECRET'
 export SPOTIFY_REDIRECT_URI='YOUR SPOTIFY REDIRECT URI'
-export LIMIT_ROUTE="'50 per day' '30 per hour'"
-export LIMIT_API="10 per day"
 ```
 
 
@@ -44,7 +42,7 @@ python run.py -h
 python run.py --id $SPOTIFY_CLIENT_ID --secret $SPOTIFY_CLIENT_SECRET
 # Run the server using all optional parameters:
 python run.py --id $SPOTIFY_CLIENT_ID --secret $SPOTIFY_CLIENT_SECRET \
-    --redirect $SPOTIFY_REDIRECT_URI --limit_route $LIMIT_ROUTE --limit_api $LIMIT_API
+    --redirect $SPOTIFY_REDIRECT_URI --limit_route "30 per hour" "50 per day" --limit_api "10 per day"
 ```
 
 <img src="whichone/demo/help.png" width="60%">
