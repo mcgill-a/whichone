@@ -30,7 +30,7 @@ pip install -r whichone/requirements.txt
 ```sh
 export SPOTIFY_CLIENT_ID='YOUR SPOTIFY CLIENT ID'
 export SPOTIFY_CLIENT_SECRET='YOUR SPOTIFY CLIENT SECRET'
-export SPOTIFY_REDIRECT_URL='YOUR SPOTIFY REDIRECT URI'
+export SPOTIFY_REDIRECT_URI='YOUR SPOTIFY REDIRECT URI'
 export LIMIT_ROUTE="'50 per day' '30 per hour'"
 export LIMIT_API="10 per day"
 ```
@@ -38,10 +38,13 @@ export LIMIT_API="10 per day"
 
 ## Usage
 ```sh
-# Using only required parameters:
+# Get additional help regarding input parameters:
+python run.py -h
+# Run the server using only required parameters:
 python run.py --id $SPOTIFY_CLIENT_ID --secret $SPOTIFY_CLIENT_SECRET
-# Using optional parameters:
-python run.py --id $SPOTIFY_CLIENT_ID --secret $SPOTIFY_CLIENT_SECRET  --redirect $SPOTIFY_REDIRECT_URL --limit_route $LIMIT_ROUTE --limit_api $LIMIT_API
+# Run the server using all optional parameters:
+python run.py --id $SPOTIFY_CLIENT_ID --secret $SPOTIFY_CLIENT_SECRET \
+    --redirect $SPOTIFY_REDIRECT_URI --limit_route $LIMIT_ROUTE --limit_api $LIMIT_API
 ```
 
 <img src="whichone/demo/help.png" width="60%">
