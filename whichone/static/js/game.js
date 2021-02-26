@@ -43,6 +43,8 @@ function startGame() {
     $(".choice").removeClass("disabled");
     $("#data-popup").removeClass("disabled");
     $("#options-popup").addClass("disabled");
+    $("#stat-next").text("Next question");
+    $("#stat-next").append(" &#10132;");
     document.getElementById("current_score").textContent = userCurrentScore;
     stopped = false;
     paused = false;
@@ -93,80 +95,142 @@ function getStandardDeviation (array, mean) {
     return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
 }
 
-function wrongAnswer(temporarilyHideCards=false) {
+
+function wrongAnswer(option) {
+    $(".choice").css("cursor", "default");
+    $("#stat-status").text("Not quite..");
+
+    // update the player lives
     lives -= 1;
     updateLives();
+
+    if (lives <= 0) {
+        $("#stat-next").text("Finish");
+        $("#stat-next").append(" &#10132;");
+    }
+
+    // get the statistics for this round
+    if (option1 != null && option2 != null) {
+        getStats(option1[currentMode], option2[currentMode]);
+    }
+
+    // hide the timer
+    $(".down").css("opacity", 0);
+
+    // change text colour of the card they chose to red + append an X symbol
+    if (option == '1') {
+        $("#text1a").css("color", "red");
+        $("#text1a").append(" &#10008;");
+    } else if (option == '2') {
+        $("#text2a").css("color", "red");
+        $("#text2a").append(" &#10008;");
+    } else {
+        // they didn't choose either (time ran out), mark both wrong
+        $("#text1a").css("color", "red");
+        $("#text1a").append(" &#10008;");
+        $("#text2a").css("color", "red");
+        $("#text2a").append(" &#10008;");
+    }
+
+    // after 1 second, fade out cards
+    setTimeout(function() {
+        let opacityDelay = 125;
+        $(".choice").css("opacity", 0);
+        $(".choice").css("cursor", "default");
+        $(".down").css("opacity", 0);
+        $("#stats-popup").css("opacity", 0);
+
+        // after cards have faded, display the stats popup
+        setTimeout(function() {
+            $(".choice").addClass("disabled");
+            $(".time-display").addClass("disabled");
+            $("#stats-popup").removeClass("disabled");
+            $("#stats-popup").css("opacity", 1);
+        }, opacityDelay);
+    }, 1000);
+}
+
+// this will be run in an onclick when they select next question
+function nextScreen() {
+    // hide the stats popup
+    $("#stats-popup").css("opacity", 0);
+    $("#stats-popup").addClass("disabled");
+    $("#text1a").css("color", "whitesmoke");
+    $("#text2a").css("color", "whitesmoke");
     
-    let hideDelay = 0;
+    if (lives <= 0) {
+        stopGame();
+        stopCounter();
+    } else {
+        // show the cards + timer
+        $(".choice").removeClass("disabled");
+        $(".down").css("opacity", 1);
+        $(".time-display").removeClass("disabled");
+        randomMode();
+        resetCounter();
+        paused = false;
+        $(".choice").css("cursor", "pointer");
+    }
+}
+
+function correctAnswer(option) {
+    $(".choice").css("cursor", "default");
+    $("#stat-status").text("Correct!");
+    userCurrentScore += 1;
+    updateLives();
+    document.getElementById("current_score").textContent = userCurrentScore;
     
-    if (temporarilyHideCards) {
+    // get the statistics for this round
+    if (option1 != null && option2 != null) {
+        getStats(option1[currentMode], option2[currentMode]);
+    }
+
+    // hide the timer
+    $(".down").css("opacity", 0);
+
+    // change text colour of the card they chose to green
+    if (option == '1') {
+        $("#text1a").css("color", "lightgreen");
+        $("#text1a").append(" &#10004;");
+    } else if (option == '2') {
+        $("#text2a").css("color", "lightgreen");
+        $("#text2a").append(" &#10004;");
+    }
+
+    // after 1 second, fade out cards
+    setTimeout(function() {
         hideDelay = 2000; // delay in ms
         let opacityDelay = 125;
         $(".choice").css("opacity", 0);
         $(".choice").css("cursor", "default");
         $(".down").css("opacity", 0);
-        paused = true;
+        $("#stats-popup").css("opacity", 0);
 
+        // after cards have faded, display the stats popup
         setTimeout(function() {
             $(".choice").addClass("disabled");
-            $(".time-up").removeClass("disabled");
-            $(".time-up").css("opacity", 1);
-        }, opacityDelay);
-
-        setTimeout(function() {
-            $(".time-up").css("opacity", 0);
-        }, hideDelay-opacityDelay);
-    }
-
-    setTimeout(function(){
-        $(".choice").removeClass("disabled");
-        $(".time-up").addClass("disabled");
-        if (option1 != null && option2 != null) {
-            getStats(option1[currentMode], option2[currentMode]);
-            //$("#stats-popup").removeClass("disabled");
-        }
-        if (lives <= 0) {
-            stopGame();
-            stopCounter();
-        } else {
-            randomMode();
-            resetCounter();
-            paused = false;
-            $(".choice").css("opacity", 1);
-            $(".choice").css("cursor", "pointer");
-            $(".down").css("opacity", 1);
-        }
-    }, hideDelay);
-    
+            $(".time-display").addClass("disabled");
+            $("#stats-popup").removeClass("disabled");
+            $("#stats-popup").css("opacity", 1);
+        }, opacityDelay)
+    }, 1400)
 }
 
-function correctAnswer() {
-    userCurrentScore += 1;
-    updateLives();
-    document.getElementById("current_score").textContent = userCurrentScore;
-    if (option1 != null && option2 != null) {
-        getStats(option1[currentMode], option2[currentMode]);
-        //$("#stats-popup").removeClass("disabled");
-    }
 
-    if (!stopped) {
-        randomMode();
-        resetCounter();
-    }
-}
 
 function makeGuess(option) {
     if (option == null || option1 == null || option2 == null) {
         // data hasn't loaded yet
     } else {
+        paused = true;
         document.getElementById("stats-text").textContent = "";
         document.getElementById("stats-text").style.color = "white";
         if (
             (option == '1' && option1[currentMode] > option2[currentMode]) ||
             (option == '2' && option2[currentMode] > option1[currentMode])) {
-                correctAnswer();
+                correctAnswer(option);
         } else {
-            wrongAnswer();
+            wrongAnswer(option);
         }
     }
 }

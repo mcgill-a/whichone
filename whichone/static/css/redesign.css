@@ -1,6 +1,6 @@
 /* Default HTML elements */
 html {
-    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -30,6 +30,7 @@ button:focus,
 button:active {
     outline: none !important;
     border: none !important;
+    color: inherit;
 }
 
 .button-dark {
@@ -49,7 +50,7 @@ button:hover {
 }
 
 .play {
-    background-color: rgb(255,202,58);
+    background-color: rgb(255, 202, 58);
     border-radius: 10px;
     outline: none;
     transition: 0.2s ease-in-out;
@@ -87,6 +88,21 @@ button:hover {
 .spotify-login:focus {
     outline: 0;
     border: none;
+}
+
+.btn-stat {
+    background: none;
+    color: white;
+    width: auto;
+    height: auto;
+    padding: 4px !important;
+    margin: 5px !important;
+}
+
+.btn-stat:hover {
+    color:rgb(175, 175, 175);
+    background: none;
+    
 }
 
 /* ---------------------------------- */
@@ -184,6 +200,15 @@ input:checked+.slider:before {
     justify-content: flex-end;
 }
 
+.flex-between {
+    width: 100%;
+    justify-content: space-around !important;
+}
+
+.flex-between:after {
+    content: none;
+ }
+
 .right {
     float: right;
 }
@@ -212,8 +237,16 @@ input:checked+.slider:before {
     margin-top: 30px;
 }
 
+.margin-top-60 {
+    margin-top: 60px;
+}
+
 .margin-bottom-30 {
     margin-bottom: 30px !important;
+}
+
+.padding-5 {
+    padding: 5px;
 }
 
 .flex-vertical {
@@ -252,6 +285,9 @@ input:checked+.slider:before {
     height: 44px;
     width: 44px;
     margin: 0 8px;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
 }
 
 .span-icon-score {
@@ -335,10 +371,10 @@ svg circle {
     display: block;
     stroke-dasharray: 113px;
     stroke-dashoffset: 0px;
-    stroke-linecap:square;
+    stroke-linecap: square;
     stroke-width: 3px;
-    stroke: rgb(255,199,137);
-    fill: rgba(0,0,0,0.5);
+    stroke: rgb(255, 199, 137);
+    fill: rgba(0, 0, 0, 0.5);
     animation: none;
     z-index: -1;
 }
@@ -375,6 +411,10 @@ svg circle {
 /* ---------------------------------- */
 
 /* Text */
+
+#stat-status {
+    font-weight: normal !important;
+}
 
 .gotham-header {
     font-family: 'GothamPro';
@@ -431,7 +471,7 @@ svg circle {
 
 .choices {
     width: 85%;
-    max-width: 960px;
+    max-width: 720px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -527,6 +567,10 @@ svg circle {
     min-height: 80px;
     padding: 15px;
     text-align: center;
+}
+
+.stats-display {
+    height: 400px;
 }
 
 .dark-box {

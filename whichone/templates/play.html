@@ -68,7 +68,7 @@
                     <img id="image1" alt="album art photo cover">
                 </div>
                 <div class="choice-title">
-                    <p class="gotham-small" id="text1a"></p>
+                    <p class="gotham-small padding-5" id="text1a"></p>
                 </div>
             </button>
             <div class="time-display no-margin">
@@ -82,6 +82,16 @@
                         <svg id="abc">
                             <circle id="inner-circle" r="18" cx="20" cy="20"></circle>
                         </svg>
+                    </div>
+                </div>
+            </div>
+            <div id="stats-popup" class="row container-vert stats-display disabled">
+                <div class="flex-vertical">
+                    <h2 id="stat-status" class="gotham-medium"></h2>
+                    <h4 id="stats-text" class="gotham-small small-label" color="white"></h4>
+                    <div class="row flex-horizontal flex-between margin-top-60">
+                        <button id="stat-share" class="gotham-small btn-stat">Share stat</button>
+                        <button id="stat-next" class="gotham-small btn-stat">Next question &#10132;</button>
                     </div>
                 </div>
             </div>
@@ -100,7 +110,7 @@
                     <img id="image2" alt="album art photo cover">
                 </div>
                 <div class="choice-title">
-                    <p class="gotham-small" id="text2a"></p>
+                    <p class="gotham-small padding-5" id="text2a"></p>
                 </div>
         </div>
     </div>
@@ -127,9 +137,6 @@
                         src="{{url_for('static', filename='resources/trophy-gold.png')}}">
                     <h2 class="text-white" style="text-align: left;" id="high_score">0</h1>
                 </div>
-            </div>
-            <div id="stats-popup" class="row container-vert disabled">
-                <h4 class="small-label" id="stats-text" color="white"></h4>
             </div>
             <div id="options-popup" class="row container-vert disabled">
                 <div class="container-stats">

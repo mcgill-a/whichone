@@ -29,7 +29,7 @@ $(document).ready(function () {
     $(".choice").on('click', function (event) {
         event.stopPropagation();
         event.stopImmediatePropagation();
-        if (!stopped) {
+        if (!paused && !stopped) {
             makeGuess($(this).data('choice'));
         }
     });
@@ -44,6 +44,17 @@ $(document).ready(function () {
         if (stopped) {
             startGame();
         }
+    });
+
+
+    $("#stat-next").on('click', function (event) {
+        if (!stopped) {
+            nextScreen();
+        }
+    });
+
+    $("#stat-share").on('click', function (event) {
+        alert("TODO: Implement share statistics");
     });
 
     initOptions();

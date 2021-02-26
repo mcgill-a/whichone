@@ -5,8 +5,8 @@ function cdwn() {
     } else {
         $("#inner-circle").css("stroke", "rgb(255,199,137)");
     }
-    if (countdown <= 0 && !paused) {
-        wrongAnswer(true);
+    if (countdown == 0 && !paused) {
+        wrongAnswer(null);
     }
     countdownNumberEl.textContent = countdown;
 }
@@ -66,7 +66,6 @@ function hideChoices(scale = false) {
     }
     $('.end-game').removeClass("hidden");
 }
-
 
 function updateMode(mode_intro, mode_text) {
     document.getElementById("mode_intro").textContent = mode_intro;
