@@ -6,30 +6,33 @@ function stopGame() {
 
     updateLives();
     lives = maxLives;
-    document.getElementById("current_score").textContent = userCurrentScore;
-    document.getElementById("final_score").textContent = getGameOverText();
+    //document.getElementById("end_score").textContent = userCurrentScore;
+    //document.getElementById("end_high_score").textContent = userCurrentScore;
+    //document.getElementById("end_comment").textContent = getGameOverText();
     userCurrentScore = 0;
     hideChoices();
     $(".game-over").removeClass("disabled");
     $(".choice").addClass("disabled");
     $(".time-display").addClass("disabled");
+    $("#data-popup").addClass("disabled");
+    $("#options-popup").removeClass("disabled");
 }
 
 function getGameOverText() {
     if (cheaterMode) {
         return `why you cheating though?`; 
     } else if (userCurrentScore == 0) {
-        return `yikes... you didn't get any right :(`
+        return `you didn't get any right :(`
     } else if (userCurrentScore == 1) {
         return `at least you got one right I guess`
     } else if (userCurrentScore > 1 && userCurrentScore < 6) {
-        return `you guessed the right answer ${userCurrentScore} times`; 
+        return `betweeen 1 and 5`; 
     } else if (userCurrentScore >= 6 && userCurrentScore < 12) {
-        return `finally... you got ${userCurrentScore} right!`; 
+        return `between 6 and 11`; 
     } else if (userCurrentScore >= 12 && userCurrentScore < 100) {
-        return `okay you win, you chose the right one ${userCurrentScore} times`; 
+        return `between 12 and 99`; 
     } else {
-        return `you got ${userCurrentScore} right :)`; 
+        return `anything else`; 
     }
 }
 
@@ -38,6 +41,8 @@ function startGame() {
     $(".time-up").addClass("disabled");
     $(".time-display").removeClass("disabled");
     $(".choice").removeClass("disabled");
+    $("#data-popup").removeClass("disabled");
+    $("#options-popup").addClass("disabled");
     document.getElementById("current_score").textContent = userCurrentScore;
     stopped = false;
     paused = false;
@@ -118,7 +123,7 @@ function wrongAnswer(temporarilyHideCards=false) {
         $(".time-up").addClass("disabled");
         if (option1 != null && option2 != null) {
             getStats(option1[currentMode], option2[currentMode]);
-            $("#stats-popup").removeClass("disabled");
+            //$("#stats-popup").removeClass("disabled");
         }
         if (lives <= 0) {
             stopGame();
@@ -141,7 +146,7 @@ function correctAnswer() {
     document.getElementById("current_score").textContent = userCurrentScore;
     if (option1 != null && option2 != null) {
         getStats(option1[currentMode], option2[currentMode]);
-        $("#stats-popup").removeClass("disabled");
+        //$("#stats-popup").removeClass("disabled");
     }
 
     if (!stopped) {

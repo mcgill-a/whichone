@@ -1,6 +1,6 @@
 /* Default HTML elements */
 html {
-    background-image: url('https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -41,6 +41,7 @@ button:active {
     font-size: 17px;
     border: none;
     cursor: pointer;
+    font-weight: 400;
 }
 
 button:hover {
@@ -48,20 +49,20 @@ button:hover {
 }
 
 .play {
-    background-color: rgb(1, 189, 82);
+    background-color: rgb(255,202,58);
     border-radius: 10px;
     outline: none;
     transition: 0.2s ease-in-out;
-    width: auto;
-    height: auto;
-    min-height: 40px;
-    min-width: 120px;
-    padding: 1px 25px !important;
-    font-size: 2vw !important
+    width: 250px !important;
+    height: 80px !important;
+    padding: 5px 40px !important;
+    font-size: 25px !important;
+    color: black !important;
+    font-weight: 300 !important;
 }
 
 .play:hover {
-    background-color: rgba(0, 211, 112);
+    background-color: rgb(252, 197, 47);
 }
 
 .spotify-login {
@@ -211,6 +212,24 @@ input:checked+.slider:before {
     margin-top: 30px;
 }
 
+.margin-bottom-30 {
+    margin-bottom: 30px !important;
+}
+
+.flex-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 /* ---------------------------------- */
 
 /* Spans */
@@ -230,15 +249,21 @@ input:checked+.slider:before {
 }
 
 .span-icon-small {
-    height: 52px;
-    width: 52px;
+    height: 44px;
+    width: 44px;
     margin: 0 8px;
 }
 
 .span-icon-score {
-    height: 32px;
-    width: 32px;
-    margin: 0 8px;
+    height: 24px;
+    width: 24px;
+    margin: auto 8px;
+}
+
+.span-icon-reset {
+    height: 22px;
+    width: 22px;
+    margin-bottom: 3px;
 }
 
 .span-icon {
@@ -293,6 +318,7 @@ input:checked+.slider:before {
     color: white;
     display: inline-block;
     line-height: 40px;
+    z-index: 5 !important;
 }
 
 svg {
@@ -302,21 +328,24 @@ svg {
     width: 40px;
     height: 40px;
     transform: rotateY(-180deg) rotateZ(-90deg);
+    z-index: -1;
 }
 
 svg circle {
     display: block;
     stroke-dasharray: 113px;
     stroke-dashoffset: 0px;
-    stroke-linecap: round;
-    stroke-width: 2px;
-    stroke: white;
-    fill: none;
+    stroke-linecap:square;
+    stroke-width: 3px;
+    stroke: rgb(255,199,137);
+    fill: rgba(0,0,0,0.5);
     animation: none;
+    z-index: -1;
 }
 
+
 .animated {
-    animation: countdown 10s linear infinite forwards;
+    animation: countdown 12s linear infinite forwards;
 }
 
 
@@ -366,7 +395,7 @@ svg circle {
 .gotham-small {
     font-family: 'GothamPro';
     font-weight: 300;
-    font-size: 22px;
+    font-size: 18px;
     color: white;
     margin: 0 auto;
     max-width: 90%;
@@ -387,10 +416,13 @@ svg circle {
     padding: 0 5px;
 }
 
-.score h2 {
+.text-white {
+    display: inline-block;
     margin: 0;
-    font-size: 25px;
+    font-size: 23px;
     color: whitesmoke;
+    min-width: 30px;
+    vertical-align: middle;
 }
 
 /* ---------------------------------- */
@@ -413,8 +445,8 @@ svg circle {
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    padding: 10px;
-    background-color: rgb(49, 49, 49, 0.7);
+    padding: 0 0 10px 0;
+    background-color: rgba(37, 37, 37, 0.7);
     margin: auto;
     border-radius: 10px;
     -moz-border-radius: 10px;
@@ -422,8 +454,8 @@ svg circle {
     cursor: pointer;
     outline: 0 !important;
     opacity: 0;
-    width: 320px;
-    height: 435px;
+    width: 280px;
+    height: 395px;
 }
 
 .choice-art {
@@ -431,14 +463,13 @@ svg circle {
     margin: 0;
     overflow: hidden;
     position: relative;
-    border-radius: 8px;
+    border-radius: 8px 8px 0 0;
 }
 
 .choice-art img {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
     object-fit: cover;
-    border-radius: 8px;
 }
 
 .choice-title {
@@ -446,13 +477,14 @@ svg circle {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 315px;
+    width: 280px;
     height: 100px;
     max-width: 100%;
     margin: 5px 0;
     white-space: initial;
     word-wrap: break-word;
     text-overflow: ellipsis;
+    padding: 10px;
 }
 
 .choice-title p {
@@ -472,12 +504,13 @@ svg circle {
     background-color: rgb(49, 49, 49, 0.7);
     border-radius: 10px;
     align-items: center;
+    width: 620px;
     max-width: 100%;
     height: auto;
     min-height: 80px;
     padding: 10px;
     text-align: center;
-    margin-bottom: 10px;
+    margin: 0 auto 10px auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -487,19 +520,11 @@ svg circle {
     width: 33.3%;
 }
 
-.score {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
 .final-score {
     width: 80%;
     height: auto;
     min-width: 245px;
     min-height: 80px;
-    max-height: 160px;
     padding: 15px;
     text-align: center;
 }

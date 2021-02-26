@@ -1,5 +1,10 @@
 function cdwn() {
     countdown -= 1;
+    if (countdown > 0 && countdown <= 6) {
+        $("#inner-circle").css("stroke", "rgb(239,83,80)");
+    } else {
+        $("#inner-circle").css("stroke", "rgb(255,199,137)");
+    }
     if (countdown <= 0 && !paused) {
         wrongAnswer(true);
     }
@@ -9,7 +14,7 @@ function cdwn() {
 function startCounter() {
     $("#countdown-number").css("display", "block");
     $("#inner-circle").css("display", "block");
-    countdown = 10;
+    countdown = 12;
     countdownNumberEl.textContent = countdown;
     if (refreshIntervalId != null) {
         clearInterval(refreshIntervalId);
@@ -20,7 +25,7 @@ function startCounter() {
 
 function resetCounter() {
     $("#inner-circle").css("display", "none");
-    countdown = 10;
+    countdown = 12;
     countdownNumberEl.textContent = countdown;
     clearInterval(refreshIntervalId);
     refreshIntervalId = setInterval(cdwn, 1000);

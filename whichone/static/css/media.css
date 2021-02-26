@@ -12,12 +12,12 @@
     }
     
     .choice {
-        width: 270px !important;
-        height: 385px !important;
+        width: 250px !important;
+        height: 365px !important;
     }
 
     .choices {
-        height: 385px !important;
+        height: 365px !important;
     }
 
     .choice-art img {
@@ -42,12 +42,12 @@
 
 @media (max-width: 600px) {
     .choice {
-        width: 250px !important;
-        height: 365px !important;
+        width: 230px !important;
+        height: 345px !important;
     }
 
     .choices {
-        height: 365px !important;
+        height: 345px !important;
     }
 
     .choice-art img {
@@ -62,8 +62,8 @@
 
 @media (max-width: 550px) {
     .choice {
-        width: 195px !important;
-        height: 310px !important;
+        width: 175px !important;
+        height: 290px !important;
     }
 
     .choice-art img {
@@ -72,8 +72,8 @@
     }
 
     .span-icon-score {
-        height: 26px;
-        width: 26px;
+        height: 18px;
+        width: 18px;
         margin: 0 6px;
     }
 
@@ -100,12 +100,12 @@
     }
     
     .choices {
-        height: 290px !important;
+        height: 270px !important;
     }
 
     .choice {
-        width: 175px !important;
-        height: 290px !important;
+        width: 155px !important;
+        height: 270px !important;
     }
 
 
@@ -117,13 +117,13 @@
 
 
 @media (max-width: 400px) {
-    .choice {
-        width: 150px !important;
-        height: 265px !important;
+    .choices {
+        height: 225px !important;
     }
 
-    .choices {
-        height: 265px !important;
+    .choice {
+        width: 130px !important;
+        height: 225px !important;
     }
 
     .choice-art img {
@@ -140,8 +140,8 @@
     }
 
     .span-icon-score {
-        height: 20px;
-        width: 20px;
+        height: 15px;
+        width: 15px;
     }
 
     .span-icon-small {
@@ -164,31 +164,31 @@
 @media (max-width: 330px) {
     .choice {
         width: 114px !important;
-        height: 229px !important;
+        height: 209px !important;
     }
 
     .choices {
-        height: 229px !important;
+        height: 209px !important;
     }
 
     .choice-art img {
-        width: 94px !important;
-        height: 94px !important;
+        width: 114px !important;
+        height: 114px !important;
     }
 }
 
 @media (max-width: 300px) {
+    .choices {
+        height: 205px !important;
+    }
+    
     .choice {
         width: 110px !important;
-        height: 225px !important;
-    }
-
-    .choices {
-        height: 225px !important;
+        height: 205px !important;
     }
 
     .choice-art img {
-        width: 90px !important;
-        height: 90px !important;
+        width: 110px !important;
+        height: 110px !important;
     }
 }
