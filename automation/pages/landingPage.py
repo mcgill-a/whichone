@@ -20,6 +20,7 @@ class landingPage(Page):
 
     def click_login(self):
         self.find_element(*self.loginButton_loc).click()
+
         
         
         

@@ -21,12 +21,10 @@ class BasicTest:
 class Test_Login(BasicTest):
     
     def setup(self):
-        self.driver = self.driver
         self.landing_Page = landingPage.landingPage(self.driver)
         self.spotify_Page = spotifyPage.spotifyPage(self.driver)
     
     def test_url(self):
-        #landing_Page = landingPage.landingPage(self.driver)
         self.landing_Page.load()
         assert self.landing_Page.get_Title() == "Which One"
     
@@ -35,6 +33,9 @@ class Test_Login(BasicTest):
         self.landing_Page.click_login()
         self.spotify_Page.spotify_login(settings.username, settings.password)
         assert "/play" in self.spotify_Page.get_URL()
+
+    def test_leavePage(self):
+        self.landing
         
         
         
