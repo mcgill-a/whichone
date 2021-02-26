@@ -4,7 +4,8 @@ var user = {
     audio_features: null,
     expire: 0,
     high_score: 0,
-    scores: []
+    scores: [],
+    muteSound: false
 };
 
 var idList = [];
@@ -46,6 +47,18 @@ $(document).ready(function () {
         }
     });
 
+    $("#mute-icon").on('click', function (event) {
+        if (user.muteSound) {
+            user.muteSound = false;
+            document.getElementById('mute-icon').src = "/static/resources/volume-on.png";
+        }
+        else {
+            user.muteSound = true;
+            document.getElementById('mute-icon').src = "/static/resources/volume-off.png";
+        }
+        localStorage.setItem("user", JSON.stringify(user));
+    });
+
     initOptions();
     document.getElementById("mode_text").style.color = "#FFC789"
     countdownNumberEl = document.getElementById('countdown-number');
@@ -61,6 +74,7 @@ $(document).ready(function () {
         getSpotifyData();
         startCounter();
     }
+    setMuteIcon();
 });
 
 function initOptions() {

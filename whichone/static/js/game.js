@@ -1,6 +1,14 @@
 function stopGame() {
     stopped = true;
+
+    if (!user.muteSound) {
+        var audio = new Audio('/static/resources/gameover.mp3');
+        audio.volume = 0.3;
+        audio.play();
+    }
+
     user["scores"].push(userCurrentScore);
+
     updateHighScore(userCurrentScore);
     updateMode("", "");
 
@@ -89,6 +97,12 @@ function getStandardDeviation (array, mean) {
 }
 
 function wrongAnswer(temporarilyHideCards=false) {
+
+    if (!user.muteSound) {
+        var audio = new Audio('/static/resources/wrong.mp3');
+        audio.volume = 0.3;
+        audio.play();
+    }
     lives -= 1;
     updateLives();
     
@@ -136,6 +150,13 @@ function wrongAnswer(temporarilyHideCards=false) {
 }
 
 function correctAnswer() {
+
+    if (!user.muteSound) {
+        var audio = new Audio('/static/resources/correct.mp3');
+        audio.volume = 0.3;
+        audio.play();
+    }
+
     userCurrentScore += 1;
     updateLives();
     document.getElementById("current_score").textContent = userCurrentScore;

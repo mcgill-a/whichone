@@ -157,3 +157,12 @@ function getStats(param1, param2) {
         document.getElementById("stats-text").textContent = `You have listened to ${bigChoice} ${timesMore} more than ${smallChoice}.`;
     }
 }
+
+function setMuteIcon() {
+    if (user.muteSound) {
+        document.getElementById('mute-icon').src = "/static/resources/volume-off.png";
+    }
+    else {
+        document.getElementById('mute-icon').src = "/static/resources/volume-on.png";
+    }
+}
