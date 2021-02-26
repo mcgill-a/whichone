@@ -7,8 +7,6 @@ function stopGame() {
         audio.play();
     }
 
-    console.log("Game over. Final score: " + userCurrentScore);
-
     user["scores"].push(userCurrentScore);
 
     updateHighScore(userCurrentScore);
@@ -99,8 +97,6 @@ function getStandardDeviation (array, mean) {
 }
 
 function wrongAnswer(temporarilyHideCards=false) {
-
-    console.log("Wrong answer");
 
     if (!user.muteSound) {
         var audio = new Audio('/static/resources/wrong.mp3');
