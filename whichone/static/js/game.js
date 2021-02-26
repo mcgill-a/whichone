@@ -177,8 +177,6 @@ function compareArtists() {
         oldNum1 = numTracks[document.getElementById("text1a").textContent];
         oldNum2 = numTracks[document.getElementById("text2a").textContent];
 
-        console.log(oldNum1, oldNum2);
-
         num1 = Math.floor(Math.random() * numTracks);
 
         while (num1 == oldNum1 || num1 == oldNum2) {
