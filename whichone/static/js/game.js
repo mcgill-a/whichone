@@ -188,7 +188,7 @@ function compareArtists() {
         option1 = null;
         option2 = null;
 
-        // reference numbers cannot match
+        // reference numbers cannot match, option cannot match previous option
         while (option1 == null || option2 == null || num1 == num2 || num2 == oldNum2 || num2 == oldNum1 ||
             option1[currentMode] == option2[currentMode]) {
 
