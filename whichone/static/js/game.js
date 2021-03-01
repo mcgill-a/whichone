@@ -31,6 +31,7 @@ function getGameOverText() {
   } else {
     return `you got ${userCurrentScore} right :)`;
   }
+  
 }
 
 function startGame() {
