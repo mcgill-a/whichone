@@ -21,6 +21,7 @@ function stopGame() {
   $(".game-over").removeClass("disabled");
   $(".choice").addClass("disabled");
   $(".time-display").addClass("disabled");
+  
 }
 
 function getGameOverText() {
