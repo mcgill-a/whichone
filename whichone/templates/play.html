@@ -72,10 +72,6 @@
                 </div>
             </button>
             <div class="time-display no-margin">
-                <div class="time-up disabled">
-                    <h1 class="gotham-medium" aria-label="Hidden text that displays when the countdown timer reaches 0">
-                        You didn't choose a card fast enough!</h1>
-                </div>
                 <div class="down">
                     <div id="countdown" title="Choose before time runs out!">
                         <div id="countdown-number" aria-label="The current time remaining to select a card"></div>
@@ -87,23 +83,25 @@
             </div>
             <div id="stats-popup" class="row container-vert stats-display disabled">
                 <div class="flex-vertical">
-                    <h2 id="stat-status" class="gotham-medium"></h2>
+                    <h2 id="stat-status" class="gotham-medium margin-bottom-30 height-110"></h2>
                     <h4 id="stats-text" class="gotham-small small-label" color="white"></h4>
                     <div class="row flex-horizontal flex-between margin-top-60">
-                        <button id="stat-share" class="gotham-small btn-stat">Share stat</button>
+                        <span></span>
                         <button id="stat-next" class="gotham-small btn-stat">Next question &#10132;</button>
                     </div>
                 </div>
             </div>
-            <div class="game-over disabled full-width">
-                <div class="dark-box flex-vertical final-score">
-                    <h2 id="end_score">You Scored 0!</h2>
-                    <h4 id="end_comment">* A comment about your score depending on whether its good or bad *</h4>
-                    <h4 id="end_high_score">High score: 16</h4>
-                    <button id="play-again" class="play gotham-medium">
-                        <img id="reset_icon" alt="play again icon" title="Current Score" class="span-icon-reset"
-                            src="{{url_for('static', filename='resources/reset.png')}}"> Play Again</button>
+            <div class="game-over row container-vert stats-display disabled">
+                <h2 class="gotham-medium text-thin"><span id="end_score">You Scored </span> <span id="end_score_value" class="text-orange"></span>!</h2>
+                <h4 class="gotham-small" id="end_comment"></h4>
+                <div class="flex-horizontal">
+                    <img id="fire_icon" alt="current score icon" title="High Score" class="span-icon-score"
+                    src="{{url_for('static', filename='resources/trophy-gold.png')}}">
+                    <h4 class="gotham-small margin-top-30 margin-bottom-30" id="end_high_score">High score: 16</h4>
                 </div>
+                <button id="play-again" class="play gotham-medium">
+                    <img id="reset_icon" alt="play again icon" title="Current Score" class="span-icon-reset"
+                        src="{{url_for('static', filename='resources/reset.png')}}"> Play Again</button>
             </div>
             <button id="button-choice-2" class="choice no-margin choice2" data-choice="2">
                 <div class="choice-art">

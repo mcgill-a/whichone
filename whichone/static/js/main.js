@@ -26,35 +26,26 @@ var refreshIntervalId = null;
 var ps = 0;
 
 $(document).ready(function () {
-    $(".choice").on('click', function (event) {
-        event.stopPropagation();
-        event.stopImmediatePropagation();
+    $(".choice").on('click', function () {
         if (!paused && !stopped) {
             makeGuess($(this).data('choice'));
         }
     });
 
-    $("#sign-out").on('click', function (event) {
+    $("#sign-out").on('click', function () {
         localStorage.clear();
     });
 
-    $("#play-again").on('click', function (event) {
-        event.stopPropagation();
-        event.stopImmediatePropagation();
+    $("#play-again").on('click', function () {
         if (stopped) {
             startGame();
         }
     });
 
-
-    $("#stat-next").on('click', function (event) {
+    $("#stat-next").on('click', function () {
         if (!stopped) {
             nextScreen();
         }
-    });
-
-    $("#stat-share").on('click', function (event) {
-        alert("TODO: Implement share statistics");
     });
 
     initOptions();
