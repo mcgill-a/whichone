@@ -25,6 +25,5 @@ jobs:
         uses: github/super-linter@v3
         env:
           DEFAULT_BRANCH: main
-          VALIDATE_ALL_CODEBASE: false
           FILTER_REGEX_EXCLUDE: .*workflows/.*
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_PAT }}
