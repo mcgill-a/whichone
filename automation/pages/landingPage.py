@@ -13,13 +13,15 @@ class landingPage(Page):
     
     def __init__(self, driver):
         Page.__init__(self, driver)
-        self.URL = "/"
+        self.landingURL = "/"
 
-    def load(self):
-        self.open()
+    def load(self, BaseURL):
+        URL = BaseURL + self.landingURL
+        self.open(URL)
+        WebDriverWait(self.driver, 10).until(EC.title_contains("Which One"))
 
-    def click_login(self):
-        self.find_element(*self.loginButton_loc).click()
+    def findLogin(self):
+        return self.findElement(*self.loginButton_loc)
 
         
         

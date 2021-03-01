@@ -16,13 +16,11 @@ class spotifyPage(Page):
     def __init__(self, driver):
         Page.__init__(self, driver)
 
-    def spotify_login(self, Username, Password):
-        self.Username = Username
-        self.Password = Password
+    def spotifyLogin(self, Username, Password):
         WebDriverWait(self.driver, 10).until(EC.title_contains("Spotify"))
-        self.find_element(*self.emailField_loc).send_keys(self.Username)
-        self.find_element(*self.passwordField_loc).send_keys(self.Password)
-        self.find_element(*self.spotifyLoginButton_loc).click()
+        self.findElement(*self.emailField_loc).send_keys(Username)
+        self.findElement(*self.passwordField_loc).send_keys(Password)
+        self.findElement(*self.spotifyLoginButton_loc).click()
         WebDriverWait(self.driver, 10).until(EC.title_contains("Which One"))
 
         
