@@ -16,11 +16,15 @@ jobs:
       # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          # Full git history is needed to get a proper list of changed files within `super-linter`
+          fetch-depth: 0
 
       # Runs the Super-Linter action
       - name: Run Super-Linter
         uses: github/super-linter@v3
         env:
           DEFAULT_BRANCH: main
+          VALIDATE_ALL_CODEBASE: false
           FILTER_REGEX_EXCLUDE: .*workflows/.*
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_PAT }}
