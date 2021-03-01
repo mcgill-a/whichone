@@ -46,27 +46,36 @@ class Test_Login(BasicTest):
 
     @pytest.mark.dependency(name = "persist", depends=["login"])
     def test_persistance(self):
+        # not implemented yet self.play_Page.findDanceBoxButton().click()
         self.landing_Page.open(GoogleURL)
         self.landing_Page.load(BaseURL)
+        #assert self.play_Page.findDanceBoxButton().is_selected()
         assert "/play" in self.play_Page.getURL()
-
-    #def test_localstoragePersists(self):
-    #    self.landing_Page.open(GoogleURL)
-    #    self.landing_Page.load()
-    #    assert "/play" in self.play_Page.get_URL()
 
     @pytest.mark.dependency(name = "gameplay", depends=["persist"])
     def test_gameplay(self):
-        self.play_Page.wait()
-        assert self.play_Page.checkPlayAgain() == False
+        
+        self.play_Page.waitChoice()
+        assert self.play_Page.findPlayAgain().is_displayed() == False
         text_1 = self.play_Page.getModeAndChoiceText()
         self.play_Page.clickLeftChoice()
         text_2 = self.play_Page.getModeAndChoiceText()
         assert text_1 != text_2
-
-        assert 1 == 2
         self.play_Page.clickRightChoice()
-        time.sleep(2)
+        text_3 = self.play_Page.getModeAndChoiceText()
+        assert text_2 != text_3
+        
+        lives_1 = self.play_Page.getLives()
+        self.play_Page.wrongAnswer()
+        lives_2 = self.play_Page.getLives()
+        assert lives_1 != lives_2
+        self.play_Page.loseGame()
+        self.play_Page.waitPlayAgain()
+        assert self.play_Page.findPlayAgain().is_displayed()
+        
+        self.play_Page.findPlayAgain().click()
+        self.play_Page.waitChoice()
+        assert self.play_Page.findLeftChoice().is_displayed()
 
 
         

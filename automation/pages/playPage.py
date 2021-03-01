@@ -13,8 +13,8 @@ class playPage(Page):
     leftChoiceButton_loc = (By.ID, "button-choice-1")
     rightChoiceButton_loc = (By.ID, "button-choice-2")
     playAgainButton_loc = (By.ID, "play-again")
-    leftChoiceText_loc = (By.ID, "text1a")
-    rightChoiceText_loc = (By.ID, "text2a")
+    danceabilityCheck_loc = (By.XPATH, '//*[@id="danceBox"]') 
+    danceabilityButton_loc = (By.XPATH, "/html/body/div/div/div[5]/div[1]/label")
 
     def __init__(self, driver):
         Page.__init__(self, driver)
@@ -29,13 +29,30 @@ class playPage(Page):
 
     def getModeAndChoiceText(self):
         text = [self.findElement(*self.modeText_loc).text]
-        text.append(self.findElement(*self.leftChoiceText_loc).text)
-        text.append(self.findElement(*self.rightChoiceText_loc).text)
+        text.append(self.findElement(*self.leftChoiceButton_loc).text)
+        text.append(self.findElement(*self.rightChoiceButton_loc).text)
         return text
 
-    def checkPlayAgain(self):
-        return self.findElement(*self.playAgainButton_loc).is_displayed()
+    def findLeftChoice(self):
+        return self.findElement(*self.leftChoiceButton_loc)
 
+    def findPlayAgain(self):
+        return self.findElement(*self.playAgainButton_loc)
 
-    def wait(self):
+    def findDanceBoxButton(self):
+        return self.findElement(*self.danceabilityButton_loc)
+
+    def getLives(self):
+        return self.driver.execute_script('return lives;')
+
+    def wrongAnswer(self):
+        self.driver.execute_script('wrongAnswer();')
+
+    def loseGame(self):
+        self.driver.execute_script('lives = 0; wrongAnswer();')
+
+    def waitChoice(self):
         WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable(self.leftChoiceButton_loc))
+
+    def waitPlayAgain(self):
+        WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable(self.playAgainButton_loc))
