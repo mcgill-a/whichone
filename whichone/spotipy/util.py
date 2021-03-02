@@ -8,7 +8,7 @@ import logging
 import os
 import warnings
 
-import whichone.spotipy
+import whichone.spotipy as spotipy
 
 LOGGER = logging.getLogger(__name__)
 
