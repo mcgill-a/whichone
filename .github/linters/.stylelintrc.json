@@ -18,6 +18,9 @@
     "color-hex-case": null,
     "comment-empty-line-before": null,
     "declaration-block-semicolon-space-after": null, 
-    "declaration-block-single-line-max-declarations": null
+    "declaration-block-single-line-max-declarations": null,
+    "font-family-no-missing-generic-family-keyword": null,
+    "declaration-colon-space-after": null,                
+    "no-descending-specificity": null
   }
 }
