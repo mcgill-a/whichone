@@ -25,7 +25,7 @@ jobs:
         uses: github/super-linter@v3
         env:
           DEFAULT_BRANCH: main
-          FILTER_REGEX_EXCLUDE: (.*workflows/.*|.*ui-automation/.*)
+          FILTER_REGEX_EXCLUDE: (.*workflows/.*|.*ui-automation/.*|oauth2.py)
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JAVASCRIPT_DEFAULT_STYLE: prettier
           VALIDATE_JAVASCRIPT_STANDARD: false
