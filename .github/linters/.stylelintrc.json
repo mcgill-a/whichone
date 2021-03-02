@@ -22,5 +22,11 @@
     "font-family-no-missing-generic-family-keyword": null,
     "declaration-colon-space-after": null,                
     "no-descending-specificity": null
+    "length-zero-no-unit": null,
+    "block-closing-brace-empty-line-before": null,
+    "block-closing-brace-empty-line-before": null,
+    "block-closing-brace-newline-after": null,
+    "no-duplicate-selectors": null,              
+    "selector-pseudo-element-colon-notation": null
   }
 }
