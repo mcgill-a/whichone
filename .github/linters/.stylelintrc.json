@@ -27,6 +27,8 @@
     "block-closing-brace-newline-before": null,
     "no-duplicate-selectors": null,              
     "selector-pseudo-element-colon-notation": null,
-    "block-no-empty": null 
+    "block-no-empty": null,
+    "font-family-no-duplicate-names": null,  
+    "no-missing-end-of-source-newline": null
   }
 }
