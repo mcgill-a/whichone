@@ -27,3 +27,9 @@ jobs:
           DEFAULT_BRANCH: main
           FILTER_REGEX_EXCLUDE: .*workflows/.*
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+          LINTER_RULES_PATH: /.github/linters/
+          CSS_FILE_NAME: .stylelintrc.json
+          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
+          VALIDATE_CSS: true
+          VALIDATE_JAVASCRIPT_ES: true
