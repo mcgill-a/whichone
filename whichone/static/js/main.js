@@ -21,7 +21,7 @@ var stopped = false;
 var paused = false;
 var cheaterMode = false;
 var countdownNumberEl = null;
-var countdown = 10;
+var countdown = 12;
 var refreshIntervalId = null;
 var ps = 0;
 

@@ -1,6 +1,6 @@
 function cdwn() {
     countdown -= 1;
-    if (countdown > 0 && countdown <= 6) {
+    if (countdown > 0 && countdown <= 6 && !paused && !stopped) {
         $("#inner-circle").css("stroke", "rgb(239,83,80)");
     } else {
         $("#inner-circle").css("stroke", "rgb(255,199,137)");
@@ -42,17 +42,12 @@ function stopCounter() {
 }
 
 
-function showChoices(scale = false) {
+function showChoices() {
     $('.end-game').addClass("hidden");
     $('.choice').removeClass("slow-transition");
     $('.choice').addClass("fast-transition");
     $('.choice').css('cursor', 'pointer');
-
-    if (scale) {
-        $('.choice').css('transform', 'scale(1)');
-    } else {
-        $('.choice').css('opacity', '1');
-    }
+    $('.choice').css('opacity', '1');
 }
 
 function hideChoices(scale = false) {
