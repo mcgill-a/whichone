@@ -30,7 +30,7 @@ function resetCounter() {
     clearInterval(refreshIntervalId);
     refreshIntervalId = setInterval(cdwn, 1000);
     // add a delay so that the animation actually resets
-    setTimeout(function(){
+    setTimeout(function () {
         $("#inner-circle").css("display", "block");
     }, 20);
 }
@@ -41,7 +41,6 @@ function stopCounter() {
     $("#countdown-number").css("display", "none");
 }
 
-
 function showChoices() {
     $('.end-game').addClass("hidden");
     $('.choice').removeClass("slow-transition");
@@ -51,15 +50,15 @@ function showChoices() {
 }
 
 function hideChoices(scale = false) {
-    $('.choice').removeClass("fast-transition");
-    $('.choice').addClass("slow-transition");
-    $('.choice').css('cursor', 'default');
+    $(".choice").removeClass("fast-transition");
+    $(".choice").addClass("slow-transition");
+    $(".choice").css("cursor", "default");
     if (scale) {
-        $('.choice').css('transform', 'scale(0)');
+        $(".choice").css("transform", "scale(0)");
     } else {
-        $('.choice').css('opacity', '0');
+        $(".choice").css("opacity", "0");
     }
-    $('.end-game').removeClass("hidden");
+    $(".end-game").removeClass("hidden");
 }
 
 function updateMode(mode_intro, mode_text) {
@@ -88,7 +87,6 @@ function updateMode(mode_intro, mode_text) {
     }
 }
 
-
 function updateHighScore(score) {
     if (score > user.high_score && !cheaterMode) {
         user.high_score = score;
@@ -99,9 +97,7 @@ function updateHighScore(score) {
     document.getElementById("end_high_score").textContent = "High score: " + user.high_score;
 }
 
-
 function getStats(param1, param2) {
-
     var big = null;
     var small = null;
 
@@ -117,7 +113,6 @@ function getStats(param1, param2) {
 
         bigChoice = choice1;
         smallChoice = choice2;
-
     } else {
         big = param2;
         small = param1;
@@ -131,12 +126,11 @@ function getStats(param1, param2) {
         timesMore = "a lot";
     } else if (timesMore == 1) {
         timesMore = "1.1x";
-    }
-    else {
+    } else {
         timesMore = timesMore + "x";
     }
 
-    percentMore = Math.round((small/big)*100) + "%"
+    percentMore = Math.round((small / big) * 100) + "%";
 
     amountMore = Math.round((big - small) * 10) / 10;
 
@@ -145,16 +139,34 @@ function getStats(param1, param2) {
 
     plural = "s";
 
-    if (currentMode == 'danceability') {
-        document.getElementById("stats-text").textContent = `${bigChoice} is ${percentMore} more danceable than ${smallChoice}.`;
-    } else if (currentMode == 'valence') {
-        document.getElementById("stats-text").textContent = `${bigChoice} is ${percentMore} more upbeat than ${smallChoice}.`;
-    } else if (currentMode == 'duration') {
+    if (currentMode == "danceability") {
+        document.getElementById(
+            "stats-text"
+        ).textContent = `${bigChoice} is ${percentMore} more danceable than ${smallChoice}.`;
+    } else if (currentMode == "valence") {
+        document.getElementById(
+            "stats-text"
+        ).textContent = `${bigChoice} is ${percentMore} more upbeat than ${smallChoice}.`;
+    } else if (currentMode == "duration") {
         if (durationMore == 1) {
             plural = "";
         }
-        document.getElementById("stats-text").textContent = `${bigChoice} is ${durationMore} second${plural} longer than ${smallChoice}.`;
-    } else if (currentMode == 'popularity') {
-        document.getElementById("stats-text").textContent = `You have listened to ${bigChoice} ${timesMore} more than ${smallChoice}.`;
+        document.getElementById(
+            "stats-text"
+        ).textContent = `${bigChoice} is ${durationMore} second${plural} longer than ${smallChoice}.`;
+    } else if (currentMode == "popularity") {
+        document.getElementById(
+            "stats-text"
+        ).textContent = `You have listened to ${bigChoice} ${timesMore} more than ${smallChoice}.`;
+    }
+}
+
+function setMuteIcon() {
+    if (user.muteSound) {
+        document.getElementById("mute-icon").src =
+            "/static/resources/volume-off.png";
+    } else {
+        document.getElementById("mute-icon").src =
+            "/static/resources/volume-on.png";
     }
 }

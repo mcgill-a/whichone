@@ -4,7 +4,7 @@ function localDataFound() {
     const EXPIRATION_TIME = 604800000; // 1 week (milliseconds)
 
     if (data != null) {
-        
+
         user = JSON.parse(data);
         // check if their data is outdated
         if (user.expire != null) {
@@ -30,11 +30,10 @@ function localDataFound() {
     }
 }
 
-
 async function getAudioFeatures() {
     let trackIds = [];
     if (user.top_tracks != null && user.top_tracks.length > 0) {
-        user.top_tracks.forEach(track => {
+        user.top_tracks.forEach((track) => {
             trackIds.push(track.id);
         });
 
@@ -42,23 +41,23 @@ async function getAudioFeatures() {
             type: "POST",
             url: "/audio_features",
             data: JSON.stringify({
-                "track_ids": trackIds
+                track_ids: trackIds,
             }),
             contentType: "application/json",
             dataType: "json",
             success: function (data) {
-                user['audio_features'] = {};
-                data.forEach(result => {
-                    user['audio_features'][result['id']] = result;
+                user["audio_features"] = {};
+                data.forEach((result) => {
+                    user["audio_features"][result["id"]] = result;
                 });
-                user['expire'] = new Date().getTime();
+                user["expire"] = new Date().getTime();
                 localStorage.setItem("user", JSON.stringify(user));
             },
             error: function (errMsg) {
                 console.log(errMsg);
-                user['audio_features'] = {};
+                user["audio_features"] = {};
             },
-            timeout: 3000
+            timeout: 3000,
         });
     } else {
         console.error("Audio features unavailable (no tracks loaded).");
@@ -71,14 +70,14 @@ async function request(key, callback) {
         url: "/" + key,
         success: function (data) {
             user[key] = JSON.parse(data);
-            user['expire'] = new Date().getTime();
+            user["expire"] = new Date().getTime();
             localStorage.setItem("user", JSON.stringify(user));
             callback();
         },
         error: function () {
             console.error("API unavailable. Please try again later.");
         },
-        timeout: 5000
+        timeout: 5000,
     });
 }
 
