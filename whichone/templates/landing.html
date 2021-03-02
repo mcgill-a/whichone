@@ -22,21 +22,18 @@
 </head>
 
 <body>
-    <div class="bgimg-1">
-        <div class="container">
-            <div class="center-display full-height">
-                <h1 class="gotham-header">Which One?</h1>
-                <h2 class="gotham-small margin-bottom-30">A personalised Spotify quiz based on the music you listen to</h2>
-                <a href="{{auth_url}}/">
-                    <button class="spotify-login">
-                        <span class="span-container">
-                            <img class="span-icon"
-                                src="{{url_for('static', filename='resources/spotify-icon.png')}}"></img>
-                            <p class="gotham-small">Log in with Spotify</p>
-                        </span>
-                    </button>
-                </a>
-            </div>
+    <div class="container">
+        <div class="center-display">
+            <h1 class="gotham-header">Which One?</h1>
+            <h2 class="gotham-small margin-bottom-30">A personalised Spotify quiz based on the music you listen to</h2>
+            <a href="{{auth_url}}/">
+                <button class="spotify-login">
+                    <span class="span-container">
+                        <img class="span-icon" src="{{url_for('static', filename='resources/spotify-icon.png')}}"></img>
+                        <p class="gotham-small">Log in with Spotify</p>
+                    </span>
+                </button>
+            </a>
         </div>
     </div>
 </body>

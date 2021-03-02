@@ -25,6 +25,22 @@ a.feedback {
     margin: 5px;
 }
 
+textarea {
+    background-color: rgba(156, 156, 156, 0.4) !important;
+    height: 140px !important;
+    outline: none;
+    border: none !important;
+    border-radius: 10px !important;
+    resize: none;
+    font-size: 13px !important;
+}
+
+input {
+    background-color: rgba(156, 156, 156, 0.4) !important;
+    outline: none !important;
+    border: none !important;
+}
+
 /* ---------------------------------- */
 
 /* Buttons */
@@ -65,13 +81,28 @@ button:hover {
     font-weight: 300 !important;
 }
 
+.submit-feedback {
+    background-color: rgb(255, 202, 58);
+    border-radius: 10px;
+    outline: none;
+    transition: 0.2s ease-in-out;
+    height: 50px !important;
+    width: 100%;
+    padding: 5px 40px !important;
+    font-size: 14px !important;
+    color: black !important;
+    font-weight: 300 !important;
+    margin-bottom: 10px;
+}
+
+.play:hover, .submit-feedback:hover {
+    background-color: rgb(252, 197, 47);
+}
+
 .play span {
     margin-left: 5px;
 }
 
-.play:hover {
-    background-color: rgb(252, 197, 47);
-}
 
 .spotify-login {
     background-color: rgb(31, 185, 85);
@@ -203,6 +234,14 @@ input:checked+.slider:before {
     margin: 15px 15px 0 15px;
 }
 
+.feedback {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 /* ---------------------------------- */
 
 /* Utility */
@@ -224,6 +263,10 @@ input:checked+.slider:before {
 
 .flex-left {
     justify-content: flex-start;
+}
+
+.border-top {
+    border-top: 2px solid rgba(156, 156, 156, 0.4);
 }
 
 .flex-right {
@@ -492,6 +535,10 @@ svg circle {
     line-height: 20px;
 }
 
+.text-left {
+    
+}
+
 .limit-font-size {
     font-size: min(3.5vw, 36px);
 }
@@ -504,12 +551,21 @@ svg circle {
     color: rgb(87, 83, 83) !important;
 }
 
+.text-black {
+    color: rgb(0, 0, 0) !important;
+}
+
 .text-orange {
     color: rgb(246,197,132);
 }
 
 .text-thin {
     font-weight: 400 !important;
+}
+
+.feedback-label {
+    text-align: left !important;
+    font-weight: 200;
 }
 
 .small-label {
@@ -623,6 +679,18 @@ svg circle {
     justify-content: center;
 }
 
+.container-feedback {
+    background-color: rgba(19, 19, 19, 0.6);
+    border-radius: 10px;
+    width: 300px;
+    height: 470px;
+    padding: 15px 20px;
+}
+
+.container-feedback .row {
+    margin-top: 15px;
+}
+
 .container-vert {
     background-color: rgba(19, 19, 19, 0.6);
     border-radius: 10px;
@@ -680,7 +748,7 @@ svg circle {
     width: 100%;
     justify-content: center;
     align-items: center;
-    height: 75%;
+    height: 100%;
 }
 
 .center-display a {
