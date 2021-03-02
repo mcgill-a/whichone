@@ -206,7 +206,7 @@ function wrongAnswer(option) {
                 $("#stats-popup").removeClass("disabled");
                 $("#stats-popup").css("opacity", 1);
             }, opacityDelay);
-        }, 1000);
+        }, 500);
     }
 }
 
@@ -260,7 +260,7 @@ function correctAnswer(option) {
                 $("#stats-popup").removeClass("disabled");
                 $("#stats-popup").css("opacity", 1);
             }, opacityDelay)
-        }, 1400);
+        }, 500);
     }
 }
 

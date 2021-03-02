@@ -535,10 +535,6 @@ svg circle {
     line-height: 20px;
 }
 
-.text-left {
-    
-}
-
 .limit-font-size {
     font-size: min(3.5vw, 36px);
 }
