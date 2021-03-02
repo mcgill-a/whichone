@@ -1,10 +1,13 @@
-const user = {
+var user = {
+
   top_artists: null,
   top_tracks: null,
   audio_features: null,
   expire: 0,
   high_score: 0,
   scores: [],
+
+  muteSound: false,
 };
 
 const idList = [];
@@ -46,10 +49,24 @@ $(document).ready(function () {
     }
   });
 
+  $("#mute-icon").on("click", function (event) {
+    if (user.muteSound) {
+      user.muteSound = false;
+      document.getElementById("mute-icon").src =
+        "/static/resources/volume-on.png";
+    } else {
+      user.muteSound = true;
+      document.getElementById("mute-icon").src =
+        "/static/resources/volume-off.png";
+    }
+    localStorage.setItem("user", JSON.stringify(user));
+  });
+
   initOptions();
   document.getElementById("mode_text").style.color = "#FFC789";
   countdownNumberEl = document.getElementById("countdown-number");
   countdownNumberEl.textContent = countdown;
+
 
   // if their spotify data exists in the browser
   // use that instead of requesting new data
@@ -61,12 +78,14 @@ $(document).ready(function () {
     getSpotifyData();
     startCounter();
   }
+  setMuteIcon();
 });
 
 function initOptions() {
-  const danceBox = document.getElementById("danceBox");
-  const valenceBox = document.getElementById("valenceBox");
-  const durationBox = document.getElementById("durationBox");
+  var danceBox = document.getElementById("danceBox");
+  var valenceBox = document.getElementById("valenceBox");
+  var durationBox = document.getElementById("durationBox");
+
 
   danceBox.checked = true;
   valenceBox.checked = true;

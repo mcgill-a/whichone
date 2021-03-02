@@ -58,6 +58,12 @@
     .gotham-header {
         font-size: 13vw;
     }
+
+    .feedback-icon {
+        margin: 0 6px 0 0;
+        height: 28px;
+        width: 28px;
+    }
 }
 
 @media (max-width: 550px) {

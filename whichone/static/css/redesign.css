@@ -1,6 +1,6 @@
 /* Default HTML elements */
 html {
-    background-image: url('https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -86,6 +86,13 @@ button:hover {
 .spotify-login:focus {
     outline: 0;
     border: none;
+}
+
+.feedback-icon {
+    vertical-align: middle;
+    margin: 0 8px 0 0;
+    height: 36px;
+    width: 36px;
 }
 
 /* ---------------------------------- */

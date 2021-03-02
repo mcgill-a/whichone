@@ -96,11 +96,12 @@ function updateHighScore(score) {
 }
 
 function getStats(param1, param2) {
-  let big = null;
-  let small = null;
 
-  let bigChoice = null;
-  let smallChoice = null;
+  var big = null;
+  var small = null;
+
+  var bigChoice = null;
+  var smallChoice = null;
 
   choice1 = document.getElementById("text1a").textContent;
   choice2 = document.getElementById("text2a").textContent;
@@ -156,5 +157,15 @@ function getStats(param1, param2) {
     document.getElementById(
       "stats-text"
     ).textContent = `You have listened to ${bigChoice} ${timesMore} more than ${smallChoice}.`;
+  }
+}
+
+function setMuteIcon() {
+  if (user.muteSound) {
+    document.getElementById("mute-icon").src =
+      "/static/resources/volume-off.png";
+  } else {
+    document.getElementById("mute-icon").src =
+      "/static/resources/volume-on.png";
   }
 }

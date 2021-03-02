@@ -42,18 +42,25 @@
 
 <body>
     <div class="section header">
+
         <div class="row">
-            <div class="four columns u-pull-right">
-                <button id="sign-out" class="button-dark right">
-                    <a class="logout" href="/logout">
-                        <span class="span-container">
-                            <img class="span-icon-logout" alt="logout icon"
-                                src="{{url_for('static', filename='resources/spotify-icon.png')}}"></img>
-                            Sign out
-                        </span>
-                    </a>
-                </button>
+            <div class="u-pull-left">
+                <a href="feedback">
+                    <input type="image" id="feedback-icon" src="static/resources/feedback_white.png"
+                        class="feedback-icon" alt="Tell us what you think!">
+                </a>
+                <input type="image" id="mute-icon" src="static/resources/volume-on.png" class="feedback-icon"
+                    alt="Toggle Sound On/Off">
             </div>
+            <button id="sign-out" class="button-dark right u-pull-right">
+                <a class="logout" href="/logout">
+                    <span class="span-container">
+                        <img class="span-icon-logout"
+                            src="{{url_for('static', filename='resources/spotify-icon.png')}}"></img>
+                        Sign out
+                    </span>
+                </a>
+            </button>
         </div>
         <div class="row">
             <div class="twelve columns">
