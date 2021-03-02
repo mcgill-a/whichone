@@ -37,6 +37,7 @@ $(document).ready(function () {
 
   $("#sign-out").on("click", function (event) {
     localStorage.clear();
+    deleteAllCookies();
   });
 
   $("#play-again").on("click", function (event) {
