@@ -12,7 +12,12 @@
     "declaration-block-semicolon-newline-after": null,
     "rule-empty-line-before": null,
     "block-opening-brace-space-before": null,
+    "block-closing-brace-space-before": null,                      
+    "number-no-trailing-zeros": null,
     "selector-list-comma-newline-after": null,
     "color-hex-case": null
+    "comment-empty-line-before": null
+    "declaration-block-semicolon-space-after": null, 
+    "declaration-block-single-line-max-declarations": null
   }
 }
