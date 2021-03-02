@@ -1,74 +1,74 @@
-var user = {
+const user = {
   top_artists: null,
   top_tracks: null,
   audio_features: null,
   expire: 0,
   high_score: 0,
-  scores: [],
-};
+  scores: []
+}
 
-var idList = [];
-var featuresList = [];
+const idList = []
+const featuresList = []
 
-var option1 = null;
-var option2 = null;
-var currentMode = "popularity";
+const option1 = null
+const option2 = null
+const currentMode = 'popularity'
 
-const maxLives = 3;
-var lives = maxLives;
-var userCurrentScore = 0;
-var stopped = false;
-var paused = false;
-var cheaterMode = false;
-var countdownNumberEl = null;
-var countdown = 10;
-var refreshIntervalId = null;
-var ps = 0;
+const maxLives = 3
+const lives = maxLives
+const userCurrentScore = 0
+const stopped = false
+const paused = false
+const cheaterMode = false
+let countdownNumberEl = null
+const countdown = 10
+const refreshIntervalId = null
+const ps = 0
 
 $(document).ready(function () {
-  $(".choice").on("click", function (event) {
-    event.stopPropagation();
-    event.stopImmediatePropagation();
+  $('.choice').on('click', function (event) {
+    event.stopPropagation()
+    event.stopImmediatePropagation()
     if (!stopped) {
-      makeGuess($(this).data("choice"));
+      makeGuess($(this).data('choice'))
     }
-  });
+  })
 
-  $("#sign-out").on("click", function (event) {
-    localStorage.clear();
-  });
+  $('#sign-out').on('click', function (event) {
+    localStorage.clear()
+  })
 
-  $("#play-again").on("click", function (event) {
-    event.stopPropagation();
-    event.stopImmediatePropagation();
+  $('#play-again').on('click', function (event) {
+    event.stopPropagation()
+    event.stopImmediatePropagation()
     if (stopped) {
-      startGame();
+      startGame()
     }
-  });
+  })
 
-  initOptions();
-  document.getElementById("mode_text").style.color = "#FFC789";
-  countdownNumberEl = document.getElementById("countdown-number");
-  countdownNumberEl.textContent = countdown;
+  initOptions()
+  document.getElementById('mode_text').style.color = '#FFC789'
+  countdownNumberEl = document.getElementById('countdown-number')
+  countdownNumberEl.textContent = countdown
 
   // if their spotify data exists in the browser
   // use that instead of requesting new data
   if (localDataFound()) {
     // start with a random mode
-    randomMode();
-    startCounter();
+    randomMode()
+    startCounter()
   } else {
-    getSpotifyData();
-    startCounter();
+    getSpotifyData()
+    startCounter()
   }
-});
+})
 
-function initOptions() {
-  var danceBox = document.getElementById("danceBox");
-  var valenceBox = document.getElementById("valenceBox");
-  var durationBox = document.getElementById("durationBox");
+function initOptions () {
+  const danceBox = document.getElementById('danceBox')
+  const valenceBox = document.getElementById('valenceBox')
+  const durationBox = document.getElementById('durationBox')
 
-  danceBox.checked = true;
-  valenceBox.checked = true;
-  durationBox.checked = true;
+  danceBox.checked = true
+  valenceBox.checked = true
+  durationBox.checked = true
 }
