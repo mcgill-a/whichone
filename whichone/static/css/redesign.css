@@ -35,7 +35,7 @@ textarea {
     font-size: 13px !important;
 }
 
-input {
+.feedback input {
     background-color: rgba(156, 156, 156, 0.4) !important;
     outline: none !important;
     border: none !important;
