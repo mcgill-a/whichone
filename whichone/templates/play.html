@@ -83,16 +83,16 @@
             </div>
             <div id="stats-popup" class="row container-vert stats-display disabled">
                 <div class="flex-vertical">
-                    <h2 id="stat-status" class="gotham-medium margin-bottom-30 height-110"></h2>
-                    <h4 id="stats-text" class="gotham-small small-label" color="white"></h4>
-                    <div class="row flex-horizontal flex-between margin-top-60">
+                    <h2 id="stat-status" class="gotham-medium limit-font-size status-header"></h2>
+                    <h4 id="stats-text" class="gotham-small small-label margin-top-30" color="white"></h4>
+                    <div class="stats-footer">
                         <span></span>
                         <button id="stat-next" class="gotham-small btn-stat">Next question &#10132;</button>
                     </div>
                 </div>
             </div>
             <div class="game-over row container-vert stats-display disabled">
-                <h2 class="gotham-medium text-thin"><span id="end_score">You Scored </span> <span id="end_score_value" class="text-orange"></span>!</h2>
+                <h2 class="gotham-medium limit-font-size-big text-thin"><span id="end_score">You Scored </span> <span id="end_score_value" class="text-orange"></span>!</h2>
                 <h4 class="gotham-small" id="end_comment"></h4>
                 <div class="flex-horizontal">
                     <img id="fire_icon" alt="current score icon" title="High Score" class="span-icon-score"
@@ -100,8 +100,12 @@
                     <h4 class="gotham-small margin-top-30 margin-bottom-30" id="end_high_score">High score: 16</h4>
                 </div>
                 <button id="play-again" class="play gotham-medium">
-                    <img id="reset_icon" alt="play again icon" title="Current Score" class="span-icon-reset"
-                        src="{{url_for('static', filename='resources/reset.png')}}"> Play Again</button>
+                    <div class="flex-horizontal">
+                        <img id="reset_icon" alt="play again icon" title="Current Score" class="span-icon-reset"
+                        src="{{url_for('static', filename='resources/reset.png')}}">
+                        <span>Play Again</span>
+                    </div>
+                </button>
             </div>
             <button id="button-choice-2" class="choice no-margin choice2" data-choice="2">
                 <div class="choice-art">
@@ -115,14 +119,14 @@
     </div>
 
     <div class="section game-info">
-        <div class="container">
+        <div class="choices height-auto">
             <div id="data-popup" class="row container-vert">
                 <div class="flex-horizontal flex-right">
-                    <h2 class="text-white" style="text-align: right;" id="current_score">0</h1>
+                    <h2 class="gotham-small text-white" style="text-align: right;" id="current_score">0</h1>
                         <img id="fire_icon" alt="current score icon" title="Current Score" class="span-icon-score"
                             src="{{url_for('static', filename='resources/fire-icon (2).png')}}">
                 </div>
-                <div>
+                <div class="flex-horizontal">
                     <img id="life1" class="span-icon-small"
                         src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 1">
                     <img id="life2" class="span-icon-small"
@@ -133,7 +137,7 @@
                 <div class="flex-horizontal flex-left">
                     <img id="fire_icon" alt="current score icon" title="High Score" class="span-icon-score"
                         src="{{url_for('static', filename='resources/trophy-gold.png')}}">
-                    <h2 class="text-white" style="text-align: left;" id="high_score">0</h1>
+                    <h2 class="gotham-small text-white" style="text-align: left;" id="high_score">0</h1>
                 </div>
             </div>
             <div id="options-popup" class="row container-vert disabled">
@@ -142,7 +146,7 @@
                         <input type="checkbox" id="danceBox">
                         <span class="slider round"></span>
                     </label>
-                    <h4 class="small-label" id="danceToggle" color="white">Danceability</h4>
+                    <h4 class="gotham-small small-label" id="danceToggle" color="white">Danceability</h4>
                 </div>
 
                 <div class="container-stats">
@@ -150,7 +154,7 @@
                         <input type="checkbox" id="valenceBox">
                         <span class="slider round"></span>
                     </label>
-                    <h4 class="small-label" id="valenceToggle" color="white">Upbeatness</h4>
+                    <h4 class="gotham-small small-label" id="valenceToggle" color="white">Upbeatness</h4>
                 </div>
 
                 <div class="container-stats">
@@ -158,7 +162,7 @@
                         <input type="checkbox" id="durationBox">
                         <span class="slider round"></span>
                     </label>
-                    <h4 class="small-label" id="durationToggle" color="white">Duration</h4>
+                    <h4 class="gotham-small small-label" id="durationToggle" color="white">Duration</h4>
                 </div>
             </div>
         </div>

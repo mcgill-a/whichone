@@ -8,7 +8,6 @@ function stopGame() {
     lives = maxLives;
     document.getElementById("end_score").textContent = "You scored ";
     document.getElementById("end_score_value").textContent = userCurrentScore;
-    //document.getElementById("end_high_score").textContent = userCurrentScore;
     document.getElementById("end_comment").textContent = getGameOverText();
     userCurrentScore = 0;
     hideChoices();
@@ -23,17 +22,19 @@ function getGameOverText() {
     if (cheaterMode) {
         return `Looks like you enabled cheater mode..`;
     } else if (userCurrentScore == 0) {
-        return `you didn't get any right :(`
+        return `Better luck next time!`
     } else if (userCurrentScore == 1) {
-        return `at least you got one right I guess`
+        return `At least that's more than 0!`
     } else if (userCurrentScore > 1 && userCurrentScore < 6) {
-        return `betweeen 1 and 5`;
+        return `Tip: Choose the correct answers next time`;
     } else if (userCurrentScore >= 6 && userCurrentScore < 12) {
-        return `between 6 and 11`;
-    } else if (userCurrentScore >= 12 && userCurrentScore < 100) {
-        return `between 12 and 99`;
+        return `Pretty good attempt! You're starting to get the hang of this`;
+    } else if (userCurrentScore >= 12 && userCurrentScore < 20) {
+        return `Nice one! `;
+    } else if (userCurrentScore >= 20 && userCurrentScore < 100) {
+        return `Congrats! You've nailed that one. Can you beat it again?`;
     } else {
-        return `anything else`;
+        return `Something's wrong I can feel it`;
     }
 }
 

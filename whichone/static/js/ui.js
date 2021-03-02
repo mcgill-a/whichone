@@ -100,6 +100,7 @@ function updateHighScore(score) {
     }
     localStorage.setItem("user", JSON.stringify(user));
     document.getElementById("high_score").textContent = user.high_score;
+    document.getElementById("end_high_score").textContent = "High score: " + user.high_score;
 }
 
 

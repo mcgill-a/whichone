@@ -45,6 +45,12 @@
 }
 
 
+@media (max-width: 549px) {
+  .container {
+    width: 80%;
+  }
+}
+
 /* For devices larger than 550px */
 @media (min-width: 550px) {
   .container {
