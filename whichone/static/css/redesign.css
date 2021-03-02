@@ -21,6 +21,10 @@ a:active {
     font-weight: inherit;
 }
 
+a.feedback {
+    margin: 5px;
+}
+
 /* ---------------------------------- */
 
 /* Buttons */
@@ -107,11 +111,18 @@ button:hover {
     background: none;
 }
 
-.feedback-icon {
+.icon-feedback {
     vertical-align: middle;
-    margin: 0 8px 0 0;
-    height: 36px;
-    width: 36px;
+    margin: 0;
+    height: 23px;
+    width: 23px;
+}
+
+.icon-mute {
+    vertical-align: middle;
+    margin: 0;
+    height: 26px;
+    width: 26px;
 }
 
 /* ---------------------------------- */
