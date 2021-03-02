@@ -2,9 +2,9 @@ function stopGame() {
     stopped = true;
 
     if (!user.muteSound) {
-      var audio = new Audio("/static/resources/gameover.mp3");
-      audio.volume = 0.3;
-      audio.play();
+        var audio = new Audio("/static/resources/gameover.mp3");
+        audio.volume = 0.3;
+        audio.play();
     }
 
     user["scores"].push(userCurrentScore);
@@ -12,7 +12,7 @@ function stopGame() {
     updateHighScore(userCurrentScore);
     updateMode("", "");
 
-    updateLives();  
+    updateLives();
     lives = maxLives;
     document.getElementById("end_score").textContent = "You scored ";
     document.getElementById("end_score_value").textContent = userCurrentScore;
@@ -96,9 +96,9 @@ function calculateScoreData(array) {
 }
 
 function getScoreData() {
-  let data = calculateScoreData(user.scores);
-  data.stdev = getStandardDeviation(data.scores, data.mean);
-  return data;
+    let data = calculateScoreData(user.scores);
+    data.stdev = getStandardDeviation(data.scores, data.mean);
+    return data;
 }
 
 function getStandardDeviation(array, mean) {
@@ -152,13 +152,13 @@ function wrongAnswer(option) {
         paused = true;
         $(".choice").css("cursor", "default");
         $("#stat-status").text(getWrongAnswerText());
-        
+
         if (!user.muteSound) {
             var audio = new Audio("/static/resources/wrong.mp3");
             audio.volume = 0.3;
             audio.play();
         }
-      
+
         // update the player lives
         lives -= 1;
         updateLives();
@@ -215,13 +215,13 @@ function correctAnswer(option) {
         paused = true;
         $(".choice").css("cursor", "default");
         $("#stat-status").text("Correct!");
-      
+
         if (!user.muteSound) {
             var audio = new Audio("/static/resources/correct.mp3");
             audio.volume = 0.3;
             audio.play();
         }
-      
+
         userCurrentScore += 1;
         updateLives();
         document.getElementById("current_score-m").textContent = userCurrentScore;
@@ -266,16 +266,8 @@ function correctAnswer(option) {
 
 
 function makeGuess(option) {
-  if (option == null || option1 == null || option2 == null) {
-    // data hasn't loaded yet
-  } else {
-    document.getElementById("stats-text").textContent = "";
-    document.getElementById("stats-text").style.color = "white";
-    if (
-      (option == "1" && option1[currentMode] > option2[currentMode]) ||
-      (option == "2" && option2[currentMode] > option1[currentMode])
-    ) {
-      correctAnswer();
+    if (option == null || option1 == null || option2 == null) {
+        // data hasn't loaded yet
     } else {
         document.getElementById("stats-text").textContent = "";
         document.getElementById("stats-text").style.color = "white";
@@ -287,154 +279,153 @@ function makeGuess(option) {
             wrongAnswer(option);
         }
     }
-  }
 }
 
 function compareArtists() {
-  if (
-    user.top_artists == [] ||
-    user.top_artists == undefined ||
-    !user.top_artists
-  ) {
-    console.error("No data");
-  } else {
-    artistList = user.top_artists;
-    numTracks = artistList.length;
-
-    oldNum1 = numTracks[document.getElementById("text1a").textContent];
-    oldNum2 = numTracks[document.getElementById("text2a").textContent];
-
-    num1 = Math.floor(Math.random() * numTracks);
-
-    while (num1 == oldNum1 || num1 == oldNum2) {
-      num1 = Math.floor(Math.random() * numTracks);
-    }
-
-    option1 = null;
-    option2 = null;
-
-    // reference numbers cannot match, option cannot match previous option
-    while (
-      option1 == null ||
-      option2 == null ||
-      num1 == num2 ||
-      num2 == oldNum2 ||
-      num2 == oldNum1 ||
-      option1[currentMode] == option2[currentMode]
+    if (
+        user.top_artists == [] ||
+        user.top_artists == undefined ||
+        !user.top_artists
     ) {
-      // switch the index for option2
-      num2 = Math.floor(Math.random() * numTracks);
+        console.error("No data");
+    } else {
+        artistList = user.top_artists;
+        numTracks = artistList.length;
 
-      option1 = artistList[num1];
-      option2 = artistList[num2];
+        oldNum1 = numTracks[document.getElementById("text1a").textContent];
+        oldNum2 = numTracks[document.getElementById("text2a").textContent];
+
+        num1 = Math.floor(Math.random() * numTracks);
+
+        while (num1 == oldNum1 || num1 == oldNum2) {
+            num1 = Math.floor(Math.random() * numTracks);
+        }
+
+        option1 = null;
+        option2 = null;
+
+        // reference numbers cannot match, option cannot match previous option
+        while (
+            option1 == null ||
+            option2 == null ||
+            num1 == num2 ||
+            num2 == oldNum2 ||
+            num2 == oldNum1 ||
+            option1[currentMode] == option2[currentMode]
+        ) {
+            // switch the index for option2
+            num2 = Math.floor(Math.random() * numTracks);
+
+            option1 = artistList[num1];
+            option2 = artistList[num2];
+        }
+
+        updateMode("Which artist have you ", "listened to more");
+
+        document.getElementById("text1a").textContent = option1["name"];
+        document.getElementById("text2a").textContent = option2["name"];
+
+        document.getElementById("image1").src = option1["images"][1]["url"];
+        document.getElementById("image2").src = option2["images"][1]["url"];
+        $(".choice").css("opacity", "1");
     }
-
-    updateMode("Which artist have you ", "listened to more");
-
-    document.getElementById("text1a").textContent = option1["name"];
-    document.getElementById("text2a").textContent = option2["name"];
-
-    document.getElementById("image1").src = option1["images"][1]["url"];
-    document.getElementById("image2").src = option2["images"][1]["url"];
-    $(".choice").css("opacity", "1");
-  }
 }
 
 function compareTracks() {
-  if (
-    user.top_tracks == [] ||
-    user.top_tracks == undefined ||
-    !user.top_tracks
-  ) {
-    console.error("No data");
-  } else {
-    trackList = user.top_tracks;
-    numTracks = trackList.length;
-    num1 = Math.floor(Math.random() * numTracks);
-
-    option1 = null;
-    option2 = null;
-
-    // reference numbers cannot match
-    while (
-      option1 == null ||
-      option2 == null ||
-      option1[currentMode] == option2[currentMode] ||
-      option1["name"] == option2["name"]
+    if (
+        user.top_tracks == [] ||
+        user.top_tracks == undefined ||
+        !user.top_tracks
     ) {
-      // switch the index for option2
-      num2 = Math.floor(Math.random() * numTracks);
+        console.error("No data");
+    } else {
+        trackList = user.top_tracks;
+        numTracks = trackList.length;
+        num1 = Math.floor(Math.random() * numTracks);
 
-      option1 = trackList[num1];
-      option2 = trackList[num2];
+        option1 = null;
+        option2 = null;
 
-      // if features dict hasn't been initialised yet, just use popularity
-      if (user["audio_features"] == null) {
-        currentMode = "popularity";
-      } else {
-        option1["danceability"] =
-          user["audio_features"][option1["id"]]["danceability"];
-        option1["valence"] = user["audio_features"][option1["id"]]["valence"];
-        option1["duration"] =
-          user["audio_features"][option1["id"]]["duration_ms"];
+        // reference numbers cannot match
+        while (
+            option1 == null ||
+            option2 == null ||
+            option1[currentMode] == option2[currentMode] ||
+            option1["name"] == option2["name"]
+        ) {
+            // switch the index for option2
+            num2 = Math.floor(Math.random() * numTracks);
 
-        option2["danceability"] =
-          user["audio_features"][option2["id"]]["danceability"];
-        option2["valence"] = user["audio_features"][option2["id"]]["valence"];
-        option2["duration"] =
-          user["audio_features"][option2["id"]]["duration_ms"];
-      }
+            option1 = trackList[num1];
+            option2 = trackList[num2];
+
+            // if features dict hasn't been initialised yet, just use popularity
+            if (user["audio_features"] == null) {
+                currentMode = "popularity";
+            } else {
+                option1["danceability"] =
+                    user["audio_features"][option1["id"]]["danceability"];
+                option1["valence"] = user["audio_features"][option1["id"]]["valence"];
+                option1["duration"] =
+                    user["audio_features"][option1["id"]]["duration_ms"];
+
+                option2["danceability"] =
+                    user["audio_features"][option2["id"]]["danceability"];
+                option2["valence"] = user["audio_features"][option2["id"]]["valence"];
+                option2["duration"] =
+                    user["audio_features"][option2["id"]]["duration_ms"];
+            }
+        }
+
+        if (currentMode == "popularity") {
+            updateMode("Which track have you ", "listened to more");
+        } else if (currentMode == "danceability") {
+            updateMode("Which track is more ", "danceable");
+        } else if (currentMode == "valence") {
+            updateMode("Which track is more ", "upbeat");
+        } else if (currentMode == "duration") {
+            updateMode("Which track is ", "longer");
+        }
+
+        document.getElementById("text1a").textContent = option1["name"];
+        document.getElementById("text2a").textContent = option2["name"];
+
+        document.getElementById("image1").src =
+            option1["album"]["images"][1]["url"];
+        document.getElementById("image2").src =
+            option2["album"]["images"][1]["url"];
+        $(".choice").css("opacity", "1");
     }
-
-    if (currentMode == "popularity") {
-      updateMode("Which track have you ", "listened to more");
-    } else if (currentMode == "danceability") {
-      updateMode("Which track is more ", "danceable");
-    } else if (currentMode == "valence") {
-      updateMode("Which track is more ", "upbeat");
-    } else if (currentMode == "duration") {
-      updateMode("Which track is ", "longer");
-    }
-
-    document.getElementById("text1a").textContent = option1["name"];
-    document.getElementById("text2a").textContent = option2["name"];
-
-    document.getElementById("image1").src =
-      option1["album"]["images"][1]["url"];
-    document.getElementById("image2").src =
-      option2["album"]["images"][1]["url"];
-    $(".choice").css("opacity", "1");
-  }
 }
 
 function randomMode() {
-  let choiceArray = ["popularity", "popularity"];
+    let choiceArray = ["popularity", "popularity"];
 
-  if (danceBox.checked) {
-    choiceArray.push("danceability");
-  }
-  if (valenceBox.checked) {
-    choiceArray.push("valence");
-  }
-  if (durationBox.checked) {
-    choiceArray.push("duration");
-  }
+    if (danceBox.checked) {
+        choiceArray.push("danceability");
+    }
+    if (valenceBox.checked) {
+        choiceArray.push("valence");
+    }
+    if (durationBox.checked) {
+        choiceArray.push("duration");
+    }
 
-  currentMode = choiceArray[Math.floor(Math.random() * choiceArray.length)];
-  ps = userCurrentScore;
-  choiceNum = Math.random();
-  if (choiceNum < 0.5 && currentMode == "popularity") {
-    compareArtists();
-  } else if (choiceNum >= 0.5 && currentMode == "popularity") {
-    compareTracks();
-  } else if (currentMode == "danceability") {
-    compareTracks();
-  } else if (currentMode == "duration") {
-    compareTracks();
-  } else {
-    // currentMode == "valence"
-    compareTracks();
-  }
+    currentMode = choiceArray[Math.floor(Math.random() * choiceArray.length)];
+    ps = userCurrentScore;
+    choiceNum = Math.random();
+    if (choiceNum < 0.5 && currentMode == "popularity") {
+        compareArtists();
+    } else if (choiceNum >= 0.5 && currentMode == "popularity") {
+        compareTracks();
+    } else if (currentMode == "danceability") {
+        compareTracks();
+    } else if (currentMode == "duration") {
+        compareTracks();
+    } else {
+        // currentMode == "valence"
+        compareTracks();
+    }
 }
 
 function updateLives() {
