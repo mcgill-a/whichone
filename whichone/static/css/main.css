@@ -10,7 +10,7 @@ h6 {
 
 .btn {
   background-color: rgba(255, 88, 88, 0.7);
-  border-radius: 10px;;
+  border-radius: 10px;
   outline: none;
   transition: 0.4s ease-in-out;
   width: 300px;
@@ -443,7 +443,7 @@ button {
 .user-card {
   width: 650px;
   height: 200px;
-  background-color: #FF000000;
+  background-color: #F000;
   display: flex;
   flex-direction: row;
   font-family: 'GothamPro';
