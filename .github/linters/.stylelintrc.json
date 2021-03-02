@@ -11,8 +11,7 @@
     "selector-combinator-space-after": null,
     "declaration-block-semicolon-newline-after": null,
     "rule-empty-line-before": null,
-    "block-opening-brace-space-before": null,
-    "block-closing-brace-space-before": null,                      
+    "block-opening-brace-space-before": null,                   
     "number-no-trailing-zeros": null,
     "selector-list-comma-newline-after": null,
     "color-hex-case": null,
@@ -24,11 +23,10 @@
     "no-descending-specificity": null,
     "length-zero-no-unit": null,
     "block-closing-brace-empty-line-before": null,
-    "block-closing-brace-empty-line-before": null,
     "block-closing-brace-newline-after": null,
+    "block-closing-brace-newline-before": null,
     "no-duplicate-selectors": null,              
     "selector-pseudo-element-colon-notation": null,
-    "block-closing-brace-newline-before": null,
     "block-no-empty": null 
   }
 }
