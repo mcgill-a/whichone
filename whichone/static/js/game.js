@@ -448,14 +448,14 @@ function updateLives() {
     } else if (lives == 2) {
         icon1.src = "/static/resources/spotify-icon.png";
         icon2.src = "/static/resources/spotify-icon.png";
-        icon3.src = "/static/resources/spotify-icon-black.png";
+        icon3.src = "/static/resources/spotify-icon-dark.png";
     } else if (lives == 1) {
         icon1.src = "/static/resources/spotify-icon.png";
-        icon2.src = "/static/resources/spotify-icon-black.png";
-        icon3.src = "/static/resources/spotify-icon-black.png";
+        icon2.src = "/static/resources/spotify-icon-dark.png";
+        icon3.src = "/static/resources/spotify-icon-dark.png";
     } else {
-        icon1.src = "/static/resources/spotify-icon-black.png";
-        icon2.src = "/static/resources/spotify-icon-black.png";
-        icon3.src = "/static/resources/spotify-icon-black.png";
+        icon1.src = "/static/resources/spotify-icon-dark.png";
+        icon2.src = "/static/resources/spotify-icon-dark.png";
+        icon3.src = "/static/resources/spotify-icon-dark.png";
     }
 }
