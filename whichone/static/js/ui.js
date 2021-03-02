@@ -96,7 +96,6 @@ function updateHighScore(score) {
 }
 
 function getStats(param1, param2) {
-
   var big = null;
   var small = null;
 

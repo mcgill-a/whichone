@@ -29,8 +29,7 @@ function localDataFound() {
 }
 
 async function getAudioFeatures() {
-
-let trackIds = [];
+  let trackIds = [];
 
   if (user.top_tracks != null && user.top_tracks.length > 0) {
     user.top_tracks.forEach((track) => {

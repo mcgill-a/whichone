@@ -86,7 +86,6 @@ function calculateScoreData(array) {
 }
 
 function getScoreData() {
-
   let data = calculateScoreData(user.scores);
 
   data.stdev = getStandardDeviation(data.scores, data.mean);
@@ -101,7 +100,6 @@ function getStandardDeviation(array, mean) {
 }
 
 function wrongAnswer(temporarilyHideCards = false) {
-
   if (!user.muteSound) {
     var audio = new Audio("/static/resources/wrong.mp3");
     audio.volume = 0.3;
@@ -113,47 +111,46 @@ function wrongAnswer(temporarilyHideCards = false) {
 
   let hideDelay = 0;
 
-function correctAnswer() {
+  function correctAnswer() {
+    if (temporarilyHideCards) {
+      hideDelay = 2000; // delay in ms
+      let opacityDelay = 125;
+      $(".choice").css("opacity", 0);
+      $(".choice").css("cursor", "default");
+      $(".down").css("opacity", 0);
+      paused = true;
 
-  if (temporarilyHideCards) {
-    hideDelay = 2000; // delay in ms
-    let opacityDelay = 125;
-    $(".choice").css("opacity", 0);
-    $(".choice").css("cursor", "default");
-    $(".down").css("opacity", 0);
-    paused = true;
+      setTimeout(function () {
+        $(".choice").addClass("disabled");
+        $(".time-up").removeClass("disabled");
+        $(".time-up").css("opacity", 1);
+      }, opacityDelay);
+
+      setTimeout(function () {
+        $(".time-up").css("opacity", 0);
+      }, hideDelay - opacityDelay);
+    }
 
     setTimeout(function () {
-      $(".choice").addClass("disabled");
-      $(".time-up").removeClass("disabled");
-      $(".time-up").css("opacity", 1);
-    }, opacityDelay);
-
-    setTimeout(function () {
-      $(".time-up").css("opacity", 0);
-    }, hideDelay - opacityDelay);
+      $(".choice").removeClass("disabled");
+      $(".time-up").addClass("disabled");
+      if (option1 != null && option2 != null) {
+        getStats(option1[currentMode], option2[currentMode]);
+        $("#stats-popup").removeClass("disabled");
+      }
+      if (lives <= 0) {
+        stopGame();
+        stopCounter();
+      } else {
+        randomMode();
+        resetCounter();
+        paused = false;
+        $(".choice").css("opacity", 1);
+        $(".choice").css("cursor", "pointer");
+        $(".down").css("opacity", 1);
+      }
+    }, hideDelay);
   }
-
-  setTimeout(function () {
-    $(".choice").removeClass("disabled");
-    $(".time-up").addClass("disabled");
-    if (option1 != null && option2 != null) {
-      getStats(option1[currentMode], option2[currentMode]);
-      $("#stats-popup").removeClass("disabled");
-    }
-    if (lives <= 0) {
-      stopGame();
-      stopCounter();
-    } else {
-      randomMode();
-      resetCounter();
-      paused = false;
-      $(".choice").css("opacity", 1);
-      $(".choice").css("cursor", "pointer");
-      $(".down").css("opacity", 1);
-    }
-  }, hideDelay);
-}
 
   userCurrentScore += 1;
   updateLives();
@@ -238,7 +235,7 @@ function compareArtists() {
 
     document.getElementById("image1").src = option1["images"][1]["url"];
     document.getElementById("image2").src = option2["images"][1]["url"];
-    
+
     $(".choice").css("opacity", "1");
   }
 }
@@ -263,9 +260,7 @@ function compareTracks() {
       option1 == null ||
       option2 == null ||
       option1[currentMode] == option2[currentMode] ||
-
       option1["name"] == option2["name"]
-
     ) {
       // switch the index for option2
       num2 = Math.floor(Math.random() * numTracks);
@@ -289,7 +284,6 @@ function compareTracks() {
         option2["valence"] = user["audio_features"][option2["id"]]["valence"];
         option2["duration"] =
           user["audio_features"][option2["id"]]["duration_ms"];
-
       }
     }
 
@@ -316,7 +310,6 @@ function compareTracks() {
 }
 
 function randomMode() {
-
   let choiceArray = ["popularity", "popularity"];
 
   if (danceBox.checked) {

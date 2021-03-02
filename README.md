@@ -28,7 +28,7 @@ pip install -r whichone/requirements.txt
 - Create a new app on the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
 - Add the app 'Client ID' and 'Client Secret' tokens to defaults.py
 
-```
+````
 
 - Create a new app on the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
 - Whitelist the website address to the Spotify Developer app redirect URIs to redirect after Spotify authentication
@@ -40,7 +40,7 @@ pip install -r whichone/requirements.txt
 export SPOTIFY_CLIENT_ID='YOUR SPOTIFY CLIENT ID'
 export SPOTIFY_CLIENT_SECRET='YOUR SPOTIFY CLIENT SECRET'
 export SPOTIFY_REDIRECT_URI='YOUR SPOTIFY REDIRECT URI'
-```
+````
 
 ## Usage
 

@@ -1,5 +1,4 @@
 var user = {
-
   top_artists: null,
   top_tracks: null,
   audio_features: null,
@@ -67,7 +66,6 @@ $(document).ready(function () {
   countdownNumberEl = document.getElementById("countdown-number");
   countdownNumberEl.textContent = countdown;
 
-
   // if their spotify data exists in the browser
   // use that instead of requesting new data
   if (localDataFound()) {
@@ -85,7 +83,6 @@ function initOptions() {
   var danceBox = document.getElementById("danceBox");
   var valenceBox = document.getElementById("valenceBox");
   var durationBox = document.getElementById("durationBox");
-
 
   danceBox.checked = true;
   valenceBox.checked = true;
