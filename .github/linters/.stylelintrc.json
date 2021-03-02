@@ -6,6 +6,13 @@
     "linebreaks": null,
     "max-empty-lines": null,
     "max-line-length": null,
-    "no-eol-whitespace": null
+    "no-eol-whitespace": null,
+    "selector-combinator-space-before": null,
+    "selector-combinator-space-after": null,
+    "declaration-block-semicolon-newline-after": null,
+    "rule-empty-line-before": null,
+    "block-opening-brace-space-before": null,
+    "selector-list-comma-newline-after": null,
+    "color-hex-case": null
   }
 }
