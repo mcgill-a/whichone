@@ -15,8 +15,8 @@
     "block-closing-brace-space-before": null,                      
     "number-no-trailing-zeros": null,
     "selector-list-comma-newline-after": null,
-    "color-hex-case": null
-    "comment-empty-line-before": null
+    "color-hex-case": null,
+    "comment-empty-line-before": null,
     "declaration-block-semicolon-space-after": null, 
     "declaration-block-single-line-max-declarations": null
   }
