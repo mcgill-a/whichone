@@ -20,7 +20,8 @@ function localDataFound() {
             if (Number.isNaN(user.high_score)) {
                 user.high_score = 0;
             } else {
-                document.getElementById("high_score").textContent = user.high_score;
+                document.getElementById("high_score-m").textContent = user.high_score;
+                document.getElementById("high_score-d").textContent = user.high_score;
             }
         }
         return true;

@@ -94,7 +94,8 @@ function updateHighScore(score) {
         user.high_score = score;
     }
     localStorage.setItem("user", JSON.stringify(user));
-    document.getElementById("high_score").textContent = user.high_score;
+    document.getElementById("high_score-m").textContent = user.high_score;
+    document.getElementById("high_score-d").textContent = user.high_score;
     document.getElementById("end_high_score").textContent = "High score: " + user.high_score;
 }
 

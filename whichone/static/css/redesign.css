@@ -262,6 +262,10 @@ input:checked+.slider:before {
     margin-bottom: 30px !important;
 }
 
+.margin-left-10 {
+    margin-left: 10px !important;
+}
+
 .padding-5 {
     padding: 5px;
 }
@@ -671,6 +675,6 @@ svg circle {
 }
 
 .container-score {
-    width: 150px;
+    width: 135px;
     margin-top: 5px;
 }

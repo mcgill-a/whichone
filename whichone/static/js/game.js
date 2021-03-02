@@ -47,7 +47,8 @@ function startGame() {
     $("#options-popup").addClass("disabled");
     $("#stat-next").text("Next question");
     $("#stat-next").append(" &#10132;");
-    document.getElementById("current_score").textContent = userCurrentScore;
+    document.getElementById("current_score-m").textContent = userCurrentScore;
+    document.getElementById("current_score-d").textContent = userCurrentScore;
     stopped = false;
     paused = false;
     randomMode();
@@ -202,7 +203,8 @@ function correctAnswer(option) {
         $("#stat-status").text("Correct!");
         userCurrentScore += 1;
         updateLives();
-        document.getElementById("current_score").textContent = userCurrentScore;
+        document.getElementById("current_score-m").textContent = userCurrentScore;
+        document.getElementById("current_score-d").textContent = userCurrentScore;
 
         // get the statistics for this round
         if (option1 != null && option2 != null) {
