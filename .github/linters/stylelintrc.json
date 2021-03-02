@@ -1,6 +1,7 @@
 {
   "extends": "stylelint-config-standard"
-  "rules" {
+   "rules" {
+    "number-leading-zero": null,
     "indentation": null
   }
 }
