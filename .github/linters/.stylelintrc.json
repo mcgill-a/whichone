@@ -1,11 +1,11 @@
 {
-  "extends": "stylelint-config-standard"
-  "rules" {
+  "extends": "stylelint-config-standard",
+  "rules": {
     "number-leading-zero": null,
-    "indentation": null
-    "linebreaks": null
-    "max-empty-lines": null
-    "max-line-length": null
+    "indentation": null,
+    "linebreaks": null,
+    "max-empty-lines": null,
+    "max-line-length": null,
     "no-eol-whitespace": null
   }
 }
