@@ -188,34 +188,43 @@ function makeGuess(option) {
 }
 
 function compareArtists() {
-    if (user.top_artists == [] || user.top_artists == undefined || !user.top_artists) {
-        console.error("No data")
-    } else {
-        artistList = user.top_artists;
-        numTracks = artistList.length;
+  if (
+    user.top_artists == [] ||
+    user.top_artists == undefined ||
+    !user.top_artists
+  ) {
+    console.error("No data");
+  } else {
+    artistList = user.top_artists;
+    numTracks = artistList.length;
 
-        oldNum1 = numTracks[document.getElementById("text1a").textContent];
-        oldNum2 = numTracks[document.getElementById("text2a").textContent];
+    oldNum1 = numTracks[document.getElementById("text1a").textContent];
+    oldNum2 = numTracks[document.getElementById("text2a").textContent];
 
-        num1 = Math.floor(Math.random() * numTracks);
+    num1 = Math.floor(Math.random() * numTracks);
 
-        while (num1 == oldNum1 || num1 == oldNum2) {
-            num1 = Math.floor(Math.random() * numTracks);
-        }
+    while (num1 == oldNum1 || num1 == oldNum2) {
+      num1 = Math.floor(Math.random() * numTracks);
+    }
 
-        option1 = null;
-        option2 = null;
+    option1 = null;
+    option2 = null;
 
-        // reference numbers cannot match, option cannot match previous option
-        while (option1 == null || option2 == null || num1 == num2 || num2 == oldNum2 || num2 == oldNum1 ||
-            option1[currentMode] == option2[currentMode]) {
+    // reference numbers cannot match, option cannot match previous option
+    while (
+      option1 == null ||
+      option2 == null ||
+      num1 == num2 ||
+      num2 == oldNum2 ||
+      num2 == oldNum1 ||
+      option1[currentMode] == option2[currentMode]
+    ) {
+      // switch the index for option2
+      num2 = Math.floor(Math.random() * numTracks);
 
-            // switch the index for option2
-            num2 = Math.floor(Math.random() * numTracks);
-
-            option1 = artistList[num1];
-            option2 = artistList[num2];
-        }
+      option1 = artistList[num1];
+      option2 = artistList[num2];
+    }
 
     updateMode("Which artist have you ", "listened to more");
 
