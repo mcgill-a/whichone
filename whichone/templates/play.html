@@ -92,17 +92,18 @@
                 </div>
             </div>
             <div class="game-over row container-vert stats-display disabled">
-                <h2 class="gotham-medium limit-font-size-big text-thin"><span id="end_score">You Scored </span> <span id="end_score_value" class="text-orange"></span>!</h2>
+                <h2 class="gotham-medium limit-font-size-big text-thin"><span id="end_score">You Scored </span> <span
+                        id="end_score_value" class="text-orange"></span>!</h2>
                 <h4 class="gotham-small" id="end_comment"></h4>
                 <div class="flex-horizontal">
                     <img id="fire_icon" alt="current score icon" title="High Score" class="span-icon-score"
-                    src="{{url_for('static', filename='resources/trophy-gold.png')}}">
+                        src="{{url_for('static', filename='resources/trophy-gold.png')}}">
                     <h4 class="gotham-small margin-top-30 margin-bottom-30" id="end_high_score">High score: 16</h4>
                 </div>
                 <button id="play-again" class="play gotham-medium">
                     <div class="flex-horizontal">
                         <img id="reset_icon" alt="play again icon" title="Current Score" class="span-icon-reset"
-                        src="{{url_for('static', filename='resources/reset.png')}}">
+                            src="{{url_for('static', filename='resources/reset.png')}}">
                         <span>Play Again</span>
                     </div>
                 </button>
@@ -121,11 +122,22 @@
     <div class="section game-info">
         <div class="choices height-auto">
             <div id="data-popup" class="row container-vert">
-                <div class="flex-horizontal flex-right">
-                    <h2 class="gotham-small text-white" style="text-align: right;" id="current_score">0</h1>
+                <div class="flex-right">
+                    <div id="score-mobile">
+                        <h2 class="gotham-small text-white" style="text-align: right;" id="current_score">0</h1>
                         <img id="fire_icon" alt="current score icon" title="Current Score" class="span-icon-score"
                             src="{{url_for('static', filename='resources/fire-icon (2).png')}}">
+                    </div>
+                    <div id="score-desktop">
+                        <h2 class="gotham-small text-white" id="current_score">0</h2>
+                        <div class="flex-horizontal  container-score">
+                            <img id="fire_icon" alt="current score icon" title="Current Score" class="span-icon-score"
+                                src="{{url_for('static', filename='resources/fire-icon (2).png')}}">
+                            <span class="gotham-extra-small">Current Streak</span>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="flex-horizontal">
                     <img id="life1" class="span-icon-small"
                         src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 1">
@@ -134,11 +146,24 @@
                     <img id="life3" class="span-icon-small"
                         src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 3">
                 </div>
-                <div class="flex-horizontal flex-left">
-                    <img id="fire_icon" alt="current score icon" title="High Score" class="span-icon-score"
-                        src="{{url_for('static', filename='resources/trophy-gold.png')}}">
-                    <h2 class="gotham-small text-white" style="text-align: left;" id="high_score">0</h1>
+
+                <div class="flex-left">
+                    <div id="score-mobile">
+                        <img id="fire_icon" alt="current score icon" title="High Score" class="span-icon-score"
+                            src="{{url_for('static', filename='resources/trophy-gold.png')}}">
+                        <h2 class="gotham-small text-white" style="text-align: left;" id="high_score">0</h1>
+                    </div>
+                    <div id="score-desktop">
+                        <h2 class="gotham-small text-white" id="high_score">0</h2>
+                        <div class="flex-horizontal container-score">
+                            <img id="fire_icon" alt="current score icon" title="High Score" class="span-icon-score"
+                                src="{{url_for('static', filename='resources/trophy-gold.png')}}">
+                            <span class="gotham-extra-small">High Score</span>
+                        </div>
+                    </div>
                 </div>
+
+
             </div>
             <div id="options-popup" class="row container-vert disabled">
                 <div class="container-stats">

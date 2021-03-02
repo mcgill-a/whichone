@@ -310,7 +310,7 @@ input:checked+.slider:before {
 .span-icon-score {
     height: 24px;
     width: 24px;
-    margin: auto 8px;
+    margin: auto 0;
 }
 
 .span-icon-reset {
@@ -460,6 +460,17 @@ svg circle {
     line-height: 22px;
 }
 
+.gotham-extra-small {
+    font-family: 'GothamPro';
+    font-weight: 300;
+    font-size: 14px;
+    color: white;
+    margin: 0 0 0 1px;
+    max-width: 90%;
+    text-align: center;
+    line-height: 20px;
+}
+
 .limit-font-size {
     font-size: min(3.5vw, 36px);
 }
@@ -580,6 +591,17 @@ svg circle {
 
 /* Containers */
 
+
+#score-mobile {
+    display: none !important;
+}
+
+#score-desktop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .container-vert {
     background-color: rgba(19, 19, 19, 0.6);
     border-radius: 10px;
@@ -646,4 +668,9 @@ svg circle {
     padding: 10px;
     max-width: 340px;
     max-height: 120px;
+}
+
+.container-score {
+    width: 150px;
+    margin-top: 5px;
 }
