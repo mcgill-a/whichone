@@ -8,14 +8,14 @@ function cdwn() {
     if (countdown == 0 && !paused) {
         wrongAnswer(null);
     }
-    countdownNumberEl.textContent = countdown;
+    countdownNumberElement.textContent = countdown;
 }
 
 function startCounter() {
     $("#countdown-number").css("display", "block");
     $("#inner-circle").css("display", "block");
-    countdown = 12;
-    countdownNumberEl.textContent = countdown;
+    countdown = DEFAULT_COUNTDOWN_VALUE;
+    countdownNumberElement.textContent = countdown;
     if (refreshIntervalId != null) {
         clearInterval(refreshIntervalId);
     }
@@ -25,8 +25,8 @@ function startCounter() {
 
 function resetCounter() {
     $("#inner-circle").css("display", "none");
-    countdown = 12;
-    countdownNumberEl.textContent = countdown;
+    countdown = DEFAULT_COUNTDOWN_VALUE;
+    countdownNumberElement.textContent = countdown;
     clearInterval(refreshIntervalId);
     refreshIntervalId = setInterval(cdwn, 1000);
     // add a delay so that the animation actually resets

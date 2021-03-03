@@ -13,7 +13,7 @@ function stopGame() {
     updateMode("", "");
 
     updateLives();
-    lives = maxLives;
+    lives = MAX_LIVES;
     document.getElementById("end_score").textContent = "You scored ";
     document.getElementById("end_score_value").textContent = userCurrentScore;
     document.getElementById("end_comment").textContent = getGameOverText();

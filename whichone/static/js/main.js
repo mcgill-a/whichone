@@ -8,21 +8,20 @@ var user = {
     muteSound: false,
 };
 
-var idList = [];
-var featuresList = [];
-
 var option1 = null;
 var option2 = null;
 var currentMode = "popularity";
 
-const maxLives = 3;
-var lives = maxLives;
+const MAX_LIVES = 3;
+const DEFAULT_COUNTDOWN_VALUE = 12;
+
+var lives = MAX_LIVES;
 var userCurrentScore = 0;
 var stopped = false;
 var paused = false;
 var cheaterMode = false;
-var countdownNumberEl = null;
-var countdown = 12;
+var countdownNumberElement = null;
+var countdown = DEFAULT_COUNTDOWN_VALUE;
 var refreshIntervalId = null;
 var ps = 0;
 
@@ -64,8 +63,8 @@ $(document).ready(function () {
 
     initOptions();
     document.getElementById("mode_text").style.color = "#FFC789"
-    countdownNumberEl = document.getElementById('countdown-number');
-    countdownNumberEl.textContent = countdown;
+    countdownNumberElement = document.getElementById('countdown-number');
+    countdownNumberElement.textContent = countdown;
 
     // if their spotify data exists in the browser
     // use that instead of requesting new data
