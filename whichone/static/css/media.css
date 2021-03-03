@@ -1,28 +1,28 @@
 /* Media queries */
 @media (max-width: 950px) {
     .gotham-medium {
-        font-size: 4vw;
+        font-size: 4vw !important;
     }
 }
 
 @media (max-width: 650px) {
     
     .gotham-medium {
-        font-size: 5vw;
+        font-size: 5vw !important;
     }
     
     .choice {
-        width: 270px !important;
-        height: 385px !important;
+        width: 250px ;
+        height: 365px ;
     }
 
     .choices {
-        height: 385px !important;
+        height: 365px ;
     }
 
     .choice-art img {
-        width: 250px !important;
-        height: 250px !important;
+        width: 250px ;
+        height: 250px ;
     }
 
     .span-icon-small {
@@ -31,55 +31,53 @@
     }
 
     .gotham-small {
-        font-weight: 400;
-        font-size: 13px;
+        font-weight: 400 !important;
+        font-size: 15px !important;
     }
 
     .play {
-        font-size: 5vw !important
+        font-size: 5vw !important;
+    }
+
+    .game-controls {
+        margin-top: 50px;
     }
 }
 
 @media (max-width: 600px) {
     .choice {
-        width: 250px !important;
-        height: 365px !important;
+        width: 230px ;
+        height: 345px ;
     }
 
     .choices {
-        height: 365px !important;
+        height: 345px ;
     }
 
     .choice-art img {
-        width: 230px !important;
-        height: 230px !important;
+        width: 230px ;
+        height: 230px ;
     }
 
     .gotham-header {
-        font-size: 13vw;
-    }
-
-    .feedback-icon {
-        margin: 0 6px 0 0;
-        height: 28px;
-        width: 28px;
+        font-size: 13vw !important;
     }
 }
 
 @media (max-width: 550px) {
     .choice {
-        width: 195px !important;
-        height: 310px !important;
+        width: 175px ;
+        height: 290px ;
     }
 
     .choice-art img {
-        width: 175px !important;
-        height: 175px !important;
+        width: 175px ;
+        height: 175px ;
     }
 
     .span-icon-score {
-        height: 26px;
-        width: 26px;
+        height: 18px;
+        width: 18px;
         margin: 0 6px;
     }
 
@@ -94,60 +92,80 @@
 
     .button-dark {
         width: 110px;
-        font-weight: 300;
-        font-size: 14px;
+        font-weight: 300 !important;
+        font-size: 14px !important;
     }
 }
 
 @media (max-width: 500px) {
     
+    #score-mobile {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    #score-desktop {
+        display: none !important;
+    }
+
     .header {
         margin: 5px 5px 0 5px;
     }
     
     .choices {
-        height: 290px !important;
+        height: 270px ;
     }
 
     .choice {
-        width: 175px !important;
-        height: 290px !important;
+        width: 155px ;
+        height: 270px ;
     }
 
 
     .choice-art img {
-        width: 155px !important;
-        height: 155px !important;
+        width: 155px ;
+        height: 155px ;
     }
+
+    .game-controls {
+        margin-top: 30px;
+    }
+
+    .span-icon-reset {
+        height: 16px;
+        width: 16px;
+    }
+
 }
 
 
 @media (max-width: 400px) {
-    .choice {
-        width: 150px !important;
-        height: 265px !important;
+    .choices {
+        height: 225px ;
     }
 
-    .choices {
-        height: 265px !important;
+    .choice {
+        width: 130px ;
+        height: 225px ;
     }
 
     .choice-art img {
-        width: 130px !important;
-        height: 130px !important;
+        width: 130px ;
+        height: 130px ;
     }
 
     .small-label {
-        font-size: 15px;
+        font-size: 15px !important;
     }
 
     .score h2 {
-        font-size: 17px;
+        font-size: 17px !important;
     }
 
     .span-icon-score {
-        height: 20px;
-        width: 20px;
+        height: 22px;
+        width: 22px;
     }
 
     .span-icon-small {
@@ -163,38 +181,51 @@
 
     .button-dark {
         width: 100px;
-        font-size: 12px;
+        font-size: 12px !important;
+    }
+
+    .game-controls {
+        margin-top: 15px;
+    }
+
+    .span-icon-reset {
+        height: 12px;
+        width: 12px;
     }
 }
 
 @media (max-width: 330px) {
     .choice {
-        width: 114px !important;
-        height: 229px !important;
+        width: 114px ;
+        height: 209px ;
     }
 
     .choices {
-        height: 229px !important;
+        height: 209px ;
     }
 
     .choice-art img {
-        width: 94px !important;
-        height: 94px !important;
+        width: 114px ;
+        height: 114px ;
+    }
+
+    .small-label {
+        font-size: 12px !important;
     }
 }
 
 @media (max-width: 300px) {
-    .choice {
-        width: 110px !important;
-        height: 225px !important;
-    }
-
     .choices {
-        height: 225px !important;
+        height: 205px ;
+    }
+    
+    .choice {
+        width: 110px ;
+        height: 205px ;
     }
 
     .choice-art img {
-        width: 90px !important;
-        height: 90px !important;
+        width: 110px ;
+        height: 110px ;
     }
 }
