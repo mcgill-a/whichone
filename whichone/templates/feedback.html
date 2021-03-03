@@ -4,7 +4,6 @@
 <head>
     <title>Which One</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='js/form.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/ui.js')}}"></script>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="{{url_for('static', filename='resources/favicon.ico')}}">
@@ -17,52 +16,43 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/skeleton.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/normalize.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/skeleton/skeleton.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/skeleton/normalize.css')}}">
     {% endblock %}
 </head>
 
 <body>
-    <div class="bgimg-1">
-        <div class="center-display full-height">
-            <h1 class="gotham-medium">Feedback Form</h1>
-            <div>
-                <div class="container-form">
-                    <form action="https://formspree.io/f/mdopvvey" method="POST">
-                        <div class="row">
+    <div class="section feedback">
+        <div class="center-display">
+            <div class="container-feedback gotham-extra-small">
+                <form action="https://formspree.io/f/mdopvvey" method="POST">
+                    <div class="row">
 
-                            <div class="six.columns">
-                                <label for="exampleEmailInput">Your Email</label>
-                                <input class="u-full-width" type="email" placeholder="test@mailbox.com"
-                                    id="exampleEmailInput" name="_replyto" title="So we can get in contact with you about the feedback!">
+                        <label class="feedback-label" for="exampleEmailInput">Your Email</label>
+                        <input required class="u-full-width" type="email" placeholder="email@provider.com" id="exampleEmailInput"
+                            name="_replyto" title="So we can get in contact with you about the feedback!">
+                    </div>
+                    <div class="row">
+                        <label class="feedback-label" for="exampleMessage">Comments</label>
+                        <textarea required class="u-full-width" placeholder=". . ." id="exampleMessage"
+                            name="message"></textarea>
+                    </div>
+                    <div class="row">
+                        <button class="submit-feedback" type="submit" value="Submit">
+                            <div class="flex-horizontal">
+                                <span>Submit feedback</span>
                             </div>
-
-                            <div class="six.columns">
-                                <label for="exampleRecipientInput">Concerning</label>
-                                <select class="u-full-width" id="exampleRecipientInput">
-                                    <option value="Option 1">Question</option>
-                                    <option value="Option 2">Admiration</option>
-                                    <option value="Option 3">Suggestion</option>
-                                    <option value="Option 4">Bug Report</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="six.columns">
-                            <label for="exampleMessage">Message</label>
-                            <textarea class="u-full-width" placeholder="Hi chaps..." id="exampleMessage"
-                                name="message" maxlength="300"></textarea>
-                                <input class="button-primary" type="submit" value="Submit">
-                        </div>
-                    </form>
-                </div>
-                <div class="container-vert-clear-small">
-                    <a href='play'>
-                        <button id="go-to-play">
-                            Back to Play
                         </button>
+                    </div>
+                </form>
+                <div class="row border-top">
+                    <a href='play'>
+                        <button class="gotham-extra-small btn-stat">&#129144; Back to game</button>
                     </a>
                 </div>
+                
             </div>
+        </div>
 </body>
 
 </html>
