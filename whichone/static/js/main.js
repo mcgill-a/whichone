@@ -37,7 +37,6 @@ $(document).ready(function () {
 
   $("#sign-out").on("click", function (event) {
     localStorage.clear();
-    deleteAllCookies();
     spotifyLogout();
   });
 
@@ -89,7 +88,6 @@ function initOptions() {
   valenceBox.checked = true;
   durationBox.checked = true;
 }
-
 
 function spotifyLogout() {
   const url = 'https://accounts.spotify.com/en/logout';
