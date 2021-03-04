@@ -1,6 +1,6 @@
 function localDataFound() {
   // get data from local storage instead of the web server
-  const data = localStorage.getItem("user");
+  let data = localStorage.getItem("user");
   const EXPIRATION_TIME = 604800000; // 1 week (milliseconds)
 
   if (data != null) {
@@ -29,7 +29,7 @@ function localDataFound() {
 }
 
 async function getAudioFeatures() {
-  const trackIds = [];
+  let trackIds = [];
   if (user.top_tracks != null && user.top_tracks.length > 0) {
     user.top_tracks.forEach((track) => {
       trackIds.push(track.id);
@@ -44,16 +44,16 @@ async function getAudioFeatures() {
       contentType: "application/json",
       dataType: "json",
       success: function (data) {
-        user.audio_features = {};
+        user["audio_features"] = {};
         data.forEach((result) => {
-          user.audio_features[result.id] = result;
+          user["audio_features"][result["id"]] = result;
         });
-        user.expire = new Date().getTime();
+        user["expire"] = new Date().getTime();
         localStorage.setItem("user", JSON.stringify(user));
       },
       error: function (errMsg) {
         console.log(errMsg);
-        user.audio_features = {};
+        user["audio_features"] = {};
       },
       timeout: 3000,
     });
@@ -68,7 +68,7 @@ async function request(key, callback) {
     url: "/" + key,
     success: function (data) {
       user[key] = JSON.parse(data);
-      user.expire = new Date().getTime();
+      user["expire"] = new Date().getTime();
       localStorage.setItem("user", JSON.stringify(user));
       callback();
     },

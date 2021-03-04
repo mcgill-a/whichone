@@ -1,6 +1,14 @@
 function stopGame() {
   stopped = true;
-  user.scores.push(userCurrentScore);
+
+  if (!user.muteSound) {
+    var audio = new Audio("/static/resources/gameover.mp3");
+    audio.volume = 0.3;
+    audio.play();
+  }
+
+  user["scores"].push(userCurrentScore);
+
   updateHighScore(userCurrentScore);
   updateMode("", "");
 
@@ -17,11 +25,11 @@ function stopGame() {
 
 function getGameOverText() {
   if (cheaterMode) {
-    return "why you cheating though?";
+    return `why you cheating though?`;
   } else if (userCurrentScore == 0) {
-    return "yikes... you didn't get any right :(";
+    return `yikes... you didn't get any right :(`;
   } else if (userCurrentScore == 1) {
-    return "at least you got one right I guess";
+    return `at least you got one right I guess`;
   } else if (userCurrentScore > 1 && userCurrentScore < 6) {
     return `you guessed the right answer ${userCurrentScore} times`;
   } else if (userCurrentScore >= 6 && userCurrentScore < 12) {
@@ -67,7 +75,7 @@ function calculateScoreData(array) {
     }
   });
 
-  const mean = total / array.length;
+  let mean = total / array.length;
 
   return {
     scores: user.scores,
@@ -78,7 +86,7 @@ function calculateScoreData(array) {
 }
 
 function getScoreData() {
-  const data = calculateScoreData(user.scores);
+  let data = calculateScoreData(user.scores);
   data.stdev = getStandardDeviation(data.scores, data.mean);
   return data;
 }
@@ -91,6 +99,11 @@ function getStandardDeviation(array, mean) {
 }
 
 function wrongAnswer(temporarilyHideCards = false) {
+  if (!user.muteSound) {
+    var audio = new Audio("/static/resources/wrong.mp3");
+    audio.volume = 0.3;
+    audio.play();
+  }
   lives -= 1;
   updateLives();
 
@@ -98,7 +111,7 @@ function wrongAnswer(temporarilyHideCards = false) {
 
   if (temporarilyHideCards) {
     hideDelay = 2000; // delay in ms
-    const opacityDelay = 125;
+    let opacityDelay = 125;
     $(".choice").css("opacity", 0);
     $(".choice").css("cursor", "default");
     $(".down").css("opacity", 0);
@@ -137,6 +150,12 @@ function wrongAnswer(temporarilyHideCards = false) {
 }
 
 function correctAnswer() {
+  if (!user.muteSound) {
+    var audio = new Audio("/static/resources/correct.mp3");
+    audio.volume = 0.3;
+    audio.play();
+  }
+
   userCurrentScore += 1;
   updateLives();
   document.getElementById("current_score").textContent = userCurrentScore;
@@ -199,11 +218,11 @@ function compareArtists() {
 
     updateMode("Which artist have you ", "listened to more");
 
-    document.getElementById("text1a").textContent = option1.name;
-    document.getElementById("text2a").textContent = option2.name;
+    document.getElementById("text1a").textContent = option1["name"];
+    document.getElementById("text2a").textContent = option2["name"];
 
-    document.getElementById("image1").src = option1.images[1].url;
-    document.getElementById("image2").src = option2.images[1].url;
+    document.getElementById("image1").src = option1["images"][1]["url"];
+    document.getElementById("image2").src = option2["images"][1]["url"];
     $(".choice").css("opacity", "1");
   }
 }
@@ -228,7 +247,7 @@ function compareTracks() {
       option1 == null ||
       option2 == null ||
       option1[currentMode] == option2[currentMode] ||
-      option1.name == option2.name
+      option1["name"] == option2["name"]
     ) {
       // switch the index for option2
       num2 = Math.floor(Math.random() * numTracks);
@@ -237,16 +256,20 @@ function compareTracks() {
       option2 = trackList[num2];
 
       // if features dict hasn't been initialised yet, just use popularity
-      if (user.audio_features == null) {
+      if (user["audio_features"] == null) {
         currentMode = "popularity";
       } else {
-        option1.danceability = user.audio_features[option1.id].danceability;
-        option1.valence = user.audio_features[option1.id].valence;
-        option1.duration = user.audio_features[option1.id].duration_ms;
+        option1["danceability"] =
+          user["audio_features"][option1["id"]]["danceability"];
+        option1["valence"] = user["audio_features"][option1["id"]]["valence"];
+        option1["duration"] =
+          user["audio_features"][option1["id"]]["duration_ms"];
 
-        option2.danceability = user.audio_features[option2.id].danceability;
-        option2.valence = user.audio_features[option2.id].valence;
-        option2.duration = user.audio_features[option2.id].duration_ms;
+        option2["danceability"] =
+          user["audio_features"][option2["id"]]["danceability"];
+        option2["valence"] = user["audio_features"][option2["id"]]["valence"];
+        option2["duration"] =
+          user["audio_features"][option2["id"]]["duration_ms"];
       }
     }
 
@@ -260,17 +283,19 @@ function compareTracks() {
       updateMode("Which track is ", "longer");
     }
 
-    document.getElementById("text1a").textContent = option1.name;
-    document.getElementById("text2a").textContent = option2.name;
+    document.getElementById("text1a").textContent = option1["name"];
+    document.getElementById("text2a").textContent = option2["name"];
 
-    document.getElementById("image1").src = option1.album.images[1].url;
-    document.getElementById("image2").src = option2.album.images[1].url;
+    document.getElementById("image1").src =
+      option1["album"]["images"][1]["url"];
+    document.getElementById("image2").src =
+      option2["album"]["images"][1]["url"];
     $(".choice").css("opacity", "1");
   }
 }
 
 function randomMode() {
-  const choiceArray = ["popularity", "popularity"];
+  let choiceArray = ["popularity", "popularity"];
 
   if (danceBox.checked) {
     choiceArray.push("danceability");
