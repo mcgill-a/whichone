@@ -25,16 +25,6 @@ a.feedback {
     margin: 5px;
 }
 
-<<<<<<< HEAD
-.btn {
-  background-color: rgba(255, 88, 88, 0.7);
-  border-radius: 10px;
-  outline: none;
-  transition: 0.4s ease-in-out;
-  width: 300px;
-  height: 100px;
-  margin-top: 30px !important;
-=======
 textarea {
     background-color: rgba(156, 156, 156, 0.4) !important;
     height: 140px !important;
@@ -43,7 +33,6 @@ textarea {
     border-radius: 10px !important;
     resize: none;
     font-size: 13px !important;
->>>>>>> origin/main
 }
 
 .feedback input {
@@ -318,143 +307,8 @@ input:checked+.slider:before {
     width: 100% !important;
 }
 
-<<<<<<< HEAD
-
-.choice {
-  z-index: 11;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  width: 320px;
-  height: 435px;
-  padding: 10px;
-  background-color: rgb(49, 49, 49, 0.7);
-  margin: 10px;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  transition: all .12s ease-in-out;
-  cursor: pointer;
-  outline: 0 !important;
-  opacity: 0;
-}
-/*
-.choice:hover {
-  transform: scale(1.05);
-  overflow: hidden !important;
-}
-*/
-
-.end-game {
-  z-index: 13;
-  position: absolute; 
-  left: 0; 
-  right: 0; 
-  margin: 120px auto 0 auto;
-  width: auto;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-
-button {
-  cursor: pointer;
-}
-
-.user-card {
-  width: 650px;
-  height: 200px;
-  background-color: #F000;
-  display: flex;
-  flex-direction: row;
-  font-family: 'GothamPro';
-  font-weight: bold;
-  color: black;
-}
-
-.user-card-left {
-  width: 180px;
-  background-color: none;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.user-card-right {
-  background-color: none;
-  overflow: hidden;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  width: 490px;
-  padding: 10px;
-
-}
-
-.user-profile {
-  width: 150px;
-  height: 150px;
-  border-radius: 100%;
-  object-fit: cover;
-}
-
-.name {
-  font-size: 35px;
-  font-weight: bold;
-  font-family: 'GothamPro';
-  color: whitesmoke;
-  margin: 0 auto;
-}
-
-.title {
-  text-align: center;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.made-with {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  color: whitesmoke;
-  font-size: 20px;
-}
-
-.score {
-  width: 100%;
-  font-size: 25px;
-  margin: 0px;
-  color: whitesmoke;
-  height: 45px;
-}
-
-.score-label {
-  width: 100%;
-  font-size: 22px;
-  margin: 0;
-  color: whitesmoke;
-  text-align: center;
-  padding: 0 5px;
-}
-
-.options-label {
-  width: 100%;
-  font-size: 20px;
-  margin: 0;
-  color: whitesmoke;
-  text-align: center;
-  padding: 0px;
-}
-
-.negative-margin {
-  margin: -30px auto !important;
-=======
 .full-height {
     height: 100% !important;
->>>>>>> origin/main
 }
 
 .no-margin {
