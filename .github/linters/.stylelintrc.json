@@ -29,6 +29,7 @@
     "selector-pseudo-element-colon-notation": null,
     "block-no-empty": null,
     "font-family-no-duplicate-names": null,  
-    "no-missing-end-of-source-newline": null
+    "no-missing-end-of-source-newline": null,
+    "function-parentheses-space-inside": null
   }
 }
