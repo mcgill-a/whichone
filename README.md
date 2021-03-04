@@ -34,7 +34,7 @@ pip install -r whichone/requirements.txt
 export SPOTIFY_CLIENT_ID='YOUR SPOTIFY CLIENT ID'
 export SPOTIFY_CLIENT_SECRET='YOUR SPOTIFY CLIENT SECRET'
 export SPOTIFY_REDIRECT_URI='YOUR SPOTIFY REDIRECT URI'
-````
+```
 
 ## Usage
 
