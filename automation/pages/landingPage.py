@@ -28,7 +28,7 @@ class landingPage(basePage):
         play_Page = playPage(self.driver)
         play_Page.checkPage()
 
-    def persistenceCheck(self):
+    def persistenceCheck(self): #checking that cookies persist and local storage is cached
         play_Page = playPage(self.driver)
         checkScore_1 = play_Page.getHighScore()
         self.driver.get("https://www.bing.com")
