@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Which One</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/ui.js')}}"></script>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{url_for('static', filename='resources/favicon.ico')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Which One? A guessing/quiz game based on your spotify listening history.">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% block styles -%}
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/skeleton/skeleton.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/skeleton/normalize.css')}}">
+    {% endblock %}
+</head>
+
+<body>
+    <div class="section feedback">
+        <div class="center-display">
+            <div class="container-feedback gotham-extra-small">
+                <form action="https://formspree.io/f/mdopvvey" method="POST">
+                    <div class="row">
+
+                        <label class="feedback-label" for="exampleEmailInput">Your Email</label>
+                        <input required class="u-full-width" type="email" placeholder="email@provider.com" id="exampleEmailInput"
+                            name="_replyto" title="So we can get in contact with you about the feedback!">
+                    </div>
+                    <div class="row">
+                        <label class="feedback-label" for="exampleMessage">Comments</label>
+                        <textarea required class="u-full-width" placeholder=". . ." id="exampleMessage"
+                            name="message"></textarea>
+                    </div>
+                    <div class="row">
+                        <button class="submit-feedback" type="submit" value="Submit">
+                            <div class="flex-horizontal">
+                                <span>Submit feedback</span>
+                            </div>
+                        </button>
+                    </div>
+                </form>
+                <div class="row border-top">
+                    <a href='play'>
+                        <button class="gotham-extra-small btn-stat">&#129144; Back to game</button>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+</body>
+
+</html>

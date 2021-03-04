@@ -2,6 +2,7 @@ import os
 import uuid
 from flask import render_template, redirect, request, url_for, json, jsonify
 from flask_session import Session
+from werkzeug.exceptions import HTTPException
 from whichone import app, session, limiter
 import whichone.spotipy as spotipy
 
@@ -58,6 +59,9 @@ def play():
         return redirect('/')
     return render_template('play.html')
 
+@app.route('/feedback')
+def form():
+    return render_template('feedback.html')
 
 @app.route('/logout')
 def sign_out():
@@ -71,7 +75,7 @@ def sign_out():
 
 
 @app.route('/top_tracks')
-@limiter.limit(app.config['API_RATE_LIMITS'])
+@limiter.limit(app.config['LIMIT_API'])
 def top_tracks():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
@@ -90,7 +94,7 @@ def top_tracks():
     return json.dumps([]), 204
 
 @app.route('/top_artists')
-@limiter.limit(app.config['API_RATE_LIMITS'])
+@limiter.limit(app.config['LIMIT_API'])
 def top_artists():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
@@ -110,7 +114,7 @@ def top_artists():
 
 
 @app.route('/audio_features', methods=['POST'])
-@limiter.limit(app.config['API_RATE_LIMITS'])
+@limiter.limit(app.config['LIMIT_API'])
 def audio_features():
     if request.method == 'POST':
         data = request.get_json()
@@ -131,3 +135,13 @@ def audio_features():
                 return json.dumps(features), 200
             return "Could not find any audio features"
     return "Bad Request", 400
+
+
+@app.errorhandler(Exception)
+def handle_error(e):
+    code = 500
+    if isinstance(e, HTTPException):
+        code = e.code
+    print(code)
+    print(str(e))
+    return render_template('error.html', error=str(e), code=code), code

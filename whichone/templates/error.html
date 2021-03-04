@@ -13,28 +13,22 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/media.css')}}">
-
     {% endblock %}
-    <script type="text/javascript">
-        localStorage.clear();
-    </script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="center-display">
-            <h1 class="gotham-header">Which One?</h1>
-            <h2 class="gotham-small margin-bottom-30">A personalised Spotify quiz based on the music you listen to</h2>
-            <a href="{{auth_url}}/">
-                <button class="spotify-login">
-                    <span class="span-container">
-                        <img class="span-icon" src="{{url_for('static', filename='resources/spotify-icon.png')}}"></img>
-                        <p class="gotham-small">Log in with Spotify</p>
-                    </span>
-                </button>
-            </a>
+    <div class="bgimg-1">
+        <div class="container">
+            <div class="center-display">
+                <h1 class="gotham-medium">Something went wrong!</h1>
+                <img class="error-gif" src="{{url_for('static', filename='resources/error.gif')}}" alt="Error reaction gif"/>
+                <a href="/" class="flex-horizontal">
+                    <button class="button-dark">Return</button>
+                </a>
+                <p class="gotham-small">Error code: {{code}}</p>
+            </div>
         </div>
+    </div>
     </div>
 </body>
 
