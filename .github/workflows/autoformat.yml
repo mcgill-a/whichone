@@ -1,9 +1,7 @@
 name: Prettier Auto Format
 
 # This action works with pull requests and pushes
-on:
-  push:
-    branches-ignore: [main]
+on: [push, pull_request]
 
 jobs:
   prettier:
