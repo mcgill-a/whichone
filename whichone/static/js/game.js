@@ -109,51 +109,45 @@ function wrongAnswer(temporarilyHideCards = false) {
 
   let hideDelay = 0;
 
-  if (temporarilyHideCards) {
-    hideDelay = 2000; // delay in ms
-    let opacityDelay = 125;
-    $(".choice").css("opacity", 0);
-    $(".choice").css("cursor", "default");
-    $(".down").css("opacity", 0);
-    paused = true;
+  function correctAnswer() {
+    if (temporarilyHideCards) {
+      hideDelay = 2000; // delay in ms
+      let opacityDelay = 125;
+      $(".choice").css("opacity", 0);
+      $(".choice").css("cursor", "default");
+      $(".down").css("opacity", 0);
+      paused = true;
+
+      setTimeout(function () {
+        $(".choice").addClass("disabled");
+        $(".time-up").removeClass("disabled");
+        $(".time-up").css("opacity", 1);
+      }, opacityDelay);
+
+      setTimeout(function () {
+        $(".time-up").css("opacity", 0);
+      }, hideDelay - opacityDelay);
+    }
 
     setTimeout(function () {
-      $(".choice").addClass("disabled");
-      $(".time-up").removeClass("disabled");
-      $(".time-up").css("opacity", 1);
-    }, opacityDelay);
-
-    setTimeout(function () {
-      $(".time-up").css("opacity", 0);
-    }, hideDelay - opacityDelay);
-  }
-
-  setTimeout(function () {
-    $(".choice").removeClass("disabled");
-    $(".time-up").addClass("disabled");
-    if (option1 != null && option2 != null) {
-      getStats(option1[currentMode], option2[currentMode]);
-      $("#stats-popup").removeClass("disabled");
-    }
-    if (lives <= 0) {
-      stopGame();
-      stopCounter();
-    } else {
-      randomMode();
-      resetCounter();
-      paused = false;
-      $(".choice").css("opacity", 1);
-      $(".choice").css("cursor", "pointer");
-      $(".down").css("opacity", 1);
-    }
-  }, hideDelay);
-}
-
-function correctAnswer() {
-  if (!user.muteSound) {
-    var audio = new Audio("/static/resources/correct.mp3");
-    audio.volume = 0.3;
-    audio.play();
+      $(".choice").removeClass("disabled");
+      $(".time-up").addClass("disabled");
+      if (option1 != null && option2 != null) {
+        getStats(option1[currentMode], option2[currentMode]);
+        $("#stats-popup").removeClass("disabled");
+      }
+      if (lives <= 0) {
+        stopGame();
+        stopCounter();
+      } else {
+        randomMode();
+        resetCounter();
+        paused = false;
+        $(".choice").css("opacity", 1);
+        $(".choice").css("cursor", "pointer");
+        $(".down").css("opacity", 1);
+      }
+    }, hideDelay);
   }
 
   userCurrentScore += 1;
@@ -167,6 +161,12 @@ function correctAnswer() {
   if (!stopped) {
     randomMode();
     resetCounter();
+  }
+
+  if (!user.muteSound) {
+    var audio = new Audio("/static/resources/correct.mp3");
+    audio.volume = 0.3;
+    audio.play();
   }
 }
 
@@ -197,16 +197,26 @@ function compareArtists() {
   } else {
     artistList = user.top_artists;
     numTracks = artistList.length;
+
+    oldNum1 = numTracks[document.getElementById("text1a").textContent];
+    oldNum2 = numTracks[document.getElementById("text2a").textContent];
+
     num1 = Math.floor(Math.random() * numTracks);
+
+    while (num1 == oldNum1 || num1 == oldNum2) {
+      num1 = Math.floor(Math.random() * numTracks);
+    }
 
     option1 = null;
     option2 = null;
 
-    // reference numbers cannot match
+    // reference numbers cannot match, option cannot match previous option
     while (
       option1 == null ||
       option2 == null ||
       num1 == num2 ||
+      num2 == oldNum2 ||
+      num2 == oldNum1 ||
       option1[currentMode] == option2[currentMode]
     ) {
       // switch the index for option2

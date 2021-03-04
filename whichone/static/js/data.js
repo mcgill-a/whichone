@@ -44,6 +44,11 @@ async function getAudioFeatures() {
       contentType: "application/json",
       dataType: "json",
       success: function (data) {
+        user.audio_features = {};
+        data.forEach((result) => {
+          user.audio_features[result.id] = result;
+        });
+        user.expire = new Date().getTime();
         user["audio_features"] = {};
         data.forEach((result) => {
           user["audio_features"][result["id"]] = result;

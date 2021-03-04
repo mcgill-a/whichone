@@ -1,8 +1,8 @@
-[![Super-Linter](https://github.com/mcgill-a/whichone/actions/workflows/superlinter.yml/badge.svg)](https://github.com/mcgill-a/whichone/actions/workflows/superlinter.yml)
-
 # whichone
 
 https://whichone.rocks/
+
+[![Super-Linter](https://github.com/mcgill-a/whichone/actions/workflows/superlinter.yml/badge.svg)](https://github.com/mcgill-a/whichone/actions/workflows/superlinter.yml)
 
 ## Command Line Arguments
 
@@ -24,6 +24,12 @@ source ve-whichone/Scripts/activate
 pip install -r whichone/requirements.txt
 ```
 
+- Create and setup a 'defaults.py' file in the config directory (example file included)
+- Create a new app on the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
+- Add the app 'Client ID' and 'Client Secret' tokens to defaults.py
+
+````
+
 - Create a new app on the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
 - Whitelist the website address to the Spotify Developer app redirect URIs to redirect after Spotify authentication
   <img src="whichone/demo/redirect.png" width="50%">
@@ -34,7 +40,7 @@ pip install -r whichone/requirements.txt
 export SPOTIFY_CLIENT_ID='YOUR SPOTIFY CLIENT ID'
 export SPOTIFY_CLIENT_SECRET='YOUR SPOTIFY CLIENT SECRET'
 export SPOTIFY_REDIRECT_URI='YOUR SPOTIFY REDIRECT URI'
-```
+````
 
 ## Usage
 
@@ -47,6 +53,10 @@ python run.py --id $SPOTIFY_CLIENT_ID --secret $SPOTIFY_CLIENT_SECRET
 python run.py --id $SPOTIFY_CLIENT_ID --secret $SPOTIFY_CLIENT_SECRET \
     --redirect $SPOTIFY_REDIRECT_URI --limit_route "30 per hour" "50 per day" --limit_api "10 per day"
 ```
+
+- Go to http://localhost:8080/ to access the site
+
+<img src="whichone/demo/running.png" width="50%">
 
 <img src="whichone/demo/help.png" width="60%">
 <img src="whichone/demo/running.png" width="50%">
