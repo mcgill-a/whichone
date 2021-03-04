@@ -31,6 +31,8 @@
     "font-family-no-duplicate-names": null,  
     "no-missing-end-of-source-newline": null,
     "function-parentheses-space-inside": null,
-    "declaration-block-semicolon-space-before": null
+    "declaration-block-semicolon-space-before": null,
+    "declaration-block-trailing-semicolon": null,
+    "function-comma-space-after": null
   }
 }
