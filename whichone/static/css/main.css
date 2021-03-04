@@ -156,6 +156,23 @@ button:hover {
     width: 26px;
 }
 
+.icon-github {
+    vertical-align: middle;
+    margin: 0;
+    height: 20px;
+    width: 20px;
+}
+
+.icons a {
+    margin-right: 8px;
+    width: 25px !important;
+    padding: 0 !important
+}
+
+.icons .mid {
+    margin-right: 4px;
+}
+
 /* ---------------------------------- */
 
 /* Sliders */
