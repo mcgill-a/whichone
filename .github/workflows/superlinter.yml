@@ -1,9 +1,9 @@
 name: Super-Linter
 
 # Run this workflow every time a new pull request is initiated
-on: 
-  pull_request:
-    branches: [main]
+on:
+  push:
+    branches: all
 
 jobs:
   # Set the job key. The key is displayed as the job name
