@@ -2,6 +2,8 @@
 
 https://whichone.rocks/
 
+[![Super-Linter](https://github.com/mcgill-a/whichone/actions/workflows/superlinter.yml/badge.svg)](https://github.com/mcgill-a/whichone/actions/workflows/superlinter.yml)
+
 ## Command Line Arguments
 
 | Parameter     | Description                                          | Default                    | Required                 | Type   |

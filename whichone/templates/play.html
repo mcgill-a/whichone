@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -57,6 +58,7 @@
                 <a class="logout" href="/logout">
                     <span class="span-container">
                         <img class="span-icon-logout"
+                            alt="logout button"
                             src="{{url_for('static', filename='resources/spotify-icon.png')}}"></img>
                         Sign out
                     </span>
@@ -135,7 +137,7 @@
                 <div class="flex-right">
                     <div id="score-mobile">
                         <h2 class="gotham-small text-white" id="current_score-m">0</h1>
-                        <img id="fire_icon" alt="current score icon" title="Current Score" class="span-icon-score"
+                        <img id="fire_icon_mob" alt="current score icon" title="Current Score" class="span-icon-score"
                             src="{{url_for('static', filename='resources/fire-icon (2).png')}}">
                     </div>
                     <div id="score-desktop">
@@ -159,14 +161,14 @@
 
                 <div class="flex-left">
                     <div id="score-mobile">
-                        <img id="fire_icon" alt="current score icon" title="High Score" class="span-icon-score"
+                        <img id="high_icon_mob" alt="current score icon" title="High Score" class="span-icon-score"
                             src="{{url_for('static', filename='resources/trophy-gold.png')}}">
                         <h2 class="gotham-small text-white" id="high_score-m">0</h1>
                     </div>
                     <div id="score-desktop">
                         <h2 class="gotham-small text-white margin-left-10" id="high_score-d">0</h2>
                         <div class="flex-horizontal container-score">
-                            <img id="fire_icon" alt="current score icon" title="High Score" class="span-icon-score"
+                            <img id="high_icon" alt="current score icon" title="High Score" class="span-icon-score"
                                 src="{{url_for('static', filename='resources/trophy-gold.png')}}">
                             <span class="gotham-extra-small">High Score</span>
                         </div>

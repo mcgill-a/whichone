@@ -717,7 +717,6 @@ svg circle {
     margin: 0 auto 10px auto;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .container-stats {
