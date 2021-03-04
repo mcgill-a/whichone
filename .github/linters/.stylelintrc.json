@@ -30,6 +30,7 @@
     "block-no-empty": null,
     "font-family-no-duplicate-names": null,  
     "no-missing-end-of-source-newline": null,
-    "function-parentheses-space-inside": null
+    "function-parentheses-space-inside": null,
+    "declaration-block-semicolon-space-before": null
   }
 }
