@@ -13,7 +13,6 @@ class basePage(ABC):
     def open(self,URL):
         self.driver.get(self.baseURL + URL)
         WebDriverWait(self.driver, 10).until(EC.title_contains("Which One"))
-        assert self.driver.title == "Which One"
     
     def findElement(self, *loc):
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(loc))

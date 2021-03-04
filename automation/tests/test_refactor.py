@@ -11,9 +11,6 @@ from pages.playPage import playPage
 
 from settings import settings
 
-# Test Parameters
-GoogleURL = "https://www.google.com/"
-
 @pytest.mark.usefixtures("driver_init")
 class BasicTest:
     pass
