@@ -1,13 +1,31 @@
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Lato", sans-serif;
+/* Default HTML elements */
+html {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-width: 275px;
 }
 
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: inherit;
+    text-decoration: inherit;
+    font-weight: inherit;
+}
+
+a.feedback {
+    margin: 5px;
+}
+
+<<<<<<< HEAD
 .btn {
   background-color: rgba(255, 88, 88, 0.7);
   border-radius: 10px;
@@ -16,387 +34,291 @@ h6 {
   width: 300px;
   height: 100px;
   margin-top: 30px !important;
+=======
+textarea {
+    background-color: rgba(156, 156, 156, 0.4) !important;
+    height: 140px !important;
+    outline: none;
+    border: none !important;
+    border-radius: 10px !important;
+    resize: none;
+    font-size: 13px !important;
+>>>>>>> origin/main
 }
 
-.btn:hover {
-  background-color: rgb(255, 88, 88, 1) !important;
+.feedback input {
+    background-color: rgba(156, 156, 156, 0.4) !important;
+    outline: none !important;
+    border: none !important;
 }
+
+/* ---------------------------------- */
+
+/* Buttons */
 
 button,
 button:focus,
 button:active {
-  outline: none !important;
-  border: none !important;
+    outline: none !important;
+    border: none !important;
+    color: inherit;
 }
 
-.down {
-  z-index: 9;
-  display: flex;
-  height: 100% !important;
-  flex-direction: column;
+.button-dark {
+    background-color: rgb(49, 49, 49, 0.7);
+    width: 120px;
+    height: auto;
+    color: white;
+    border-radius: 10px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    font-weight: 400;
 }
 
-.time-up {
-  z-index: 9;
-  position: relative;
-  opacity: 0;
-  font-size: 2.35vw !important;
-  min-width: 100% !important;
-  text-align: center;
-  justify-content: center;
-  display: none;
+button:hover {
+    background-color: rgba(71, 71, 71, 0.7);
 }
 
-#countdown {
-  align-self: flex-end;
-  position: relative;
-  height: 40px;
-  width: 40px;
-  text-align: center;
+.play {
+    background-color: rgb(255, 202, 58);
+    border-radius: 10px;
+    outline: none;
+    transition: 0.2s ease-in-out;
+    height: 80px !important;
+    padding: 5px 40px !important;
+    font-size: 25px !important;
+    color: black !important;
+    font-weight: 300 !important;
 }
 
-#countdown-number {
-  color: white;
-  display: inline-block;
-  line-height: 40px;
+.submit-feedback {
+    background-color: rgb(255, 202, 58);
+    border-radius: 10px;
+    outline: none;
+    transition: 0.2s ease-in-out;
+    height: 50px !important;
+    width: 100%;
+    padding: 5px 40px !important;
+    font-size: 14px !important;
+    color: black !important;
+    font-weight: 300 !important;
+    margin-bottom: 10px;
 }
 
-svg {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  transform: rotateY(-180deg) rotateZ(-90deg);
+.play:hover, .submit-feedback:hover {
+    background-color: rgb(252, 197, 47);
 }
 
-svg circle {
-  display: block;
-  stroke-dasharray: 113px;
-  stroke-dashoffset: 0px;
-  stroke-linecap: round;
-  stroke-width: 2px;
-  stroke: white;
-  fill: none;
-  animation: none;
-}
-
-.animated {
-  animation: countdown 10s linear infinite forwards;
-}
-
-
-@keyframes countdown {
-  from {
-    stroke-dashoffset: 0px;
-  }
-  to {
-    stroke-dashoffset: 113px;
-  }
-}
-
-body,
-html {
-  height: 100%;
-  color: #777;
-  line-height: 1.8;
-  min-width: 240px;
-  padding-bottom: 50px;
-}
-
-/* Create a Parallax Effect */
-.bgimg-1,
-.bgimg-2,
-.bgimg-3 {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 100% !important;
-  position: absolute !important;
-  overflow: hidden;
-  z-index: 0;
-}
-
-/* First image (Logo. Full height) */
-.bgimg-1 {
-  background-image: url('https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-}
-
-.w3-wide {
-  letter-spacing: 10px;
-}
-
-.w3-hover-opacity {
-  cursor: pointer;
-}
-
-.container {
-  height: 100%;
-  z-index: 10;
-  overflow: auto !important;
-}
-
-
-.container-score {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 10px;
-  height: 100%;
-  width: 200px;
-  overflow: hidden;
-}
-
-.container-stats {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2px;
-  height: 80px;
-  width: 700px;
-  overflow: hidden;
-}
-
-.container-vert {
-  display: flex;
-  flex-direction: row;
-  margin: 20px auto 40px auto;
-  min-height: 80px;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(49, 49, 49, 0.7);
-  width: 700px;
-  border-radius: 10px;
-}
-
-
-.container-vert-clear-small {
-  display: flex;
-  flex-direction: row;
-  margin: 20px auto 40px auto;
-  min-height: 36px;
-  justify-content: center;
-  align-items: center;
-  width: 380px;
-  border-radius: 10px;
-}
-
-.container-form {
-  display: flex;
-  flex-direction: row;
-  margin: 20px auto 40px auto;
-  min-height: 80px;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(49, 49, 49, 0.7);
-  width: 500px;
-  border-radius: 10px;
-}
-
-.container-vert-clear {
-  display: flex;
-  flex-direction: row;
-  height: 40px;
-  justify-content: center;
-  align-items: center;
-  width: 250px;
-  border-radius: 10px;
-}
-
-.container-options {
-  display: flex;
-  flex-direction: row;
-  margin: 40px auto;
-  height: 80px;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(49, 49, 49, 0.7);
-  width: 700px;
-  border-radius: 10px;
-}
-
-#stats-popup {
-  visibility: visible;
-}
-
-.hidden {
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s linear 300ms, opacity 300ms;
-}
-
-
-.center-display {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  height: 75%;
+.play span {
+    margin-left: 5px;
 }
 
 
 .spotify-login {
-  background-color: rgb(31, 185, 85);
-  width: 400px;
-  height: 90px;
-  color: white;
-  border-radius: 10px;
-  font-size: 32px;
-  border: none;
+    background-color: rgb(31, 185, 85);
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    font-size: 27px;
+    border: none;
 }
 
 .spotify-login:hover,
 .spotify-login:active,
 .spotify-login:focus {
-  background-color: rgb(26, 150, 69);
-  cursor: pointer;
+    background-color: rgb(26, 150, 69);
+    cursor: pointer;
 }
 
 .spotify-login:active,
 .spotify-login:focus {
-  outline: 0;
-  border: none;
+    outline: 0;
+    border: none;
 }
 
-.nav-bar {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0 0 -60px 0;
+.btn-stat {
+    background: none;
+    color: white;
+    width: auto;
+    height: auto;
+    padding: 15px !important;
+    margin: 5px !important;
 }
 
-.logout {
-  display: block;
-  text-decoration: none;
+.btn-stat:hover {
+    color:rgb(175, 175, 175);
+    background: none;
 }
 
-.button-dark {
-  background-color: rgb(49, 49, 49, 0.7);
-  width: 120px;
-  height: 35px;
-  color: white;
-  border-radius: 10px;
-  font-size: 17px;
-  border: none;
-  margin: 10px;
-  cursor: pointer;
+.icon-feedback {
+    vertical-align: middle;
+    margin: 0;
+    height: 23px;
+    width: 23px;
 }
 
-.dark-box {
-  background-color: rgb(49, 49, 49, 0.7);
-  width: 360px;
-  height: 140px;
-  color: white;
-  border-radius: 10px;
-  font-size: 28px;
-  border: none;
-  margin: 10px;
+.icon-mute {
+    vertical-align: middle;
+    margin: 0;
+    height: 26px;
+    width: 26px;
 }
 
-.you-scored {
-  width: 360px;
-  height: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.icon-github {
+    vertical-align: middle;
+    margin: 0;
+    height: 20px;
+    width: 20px;
 }
 
-.you-scored h4 {
-  font-size: 24px;
+.icons a {
+    margin-right: 8px;
+    width: 25px !important;
+    padding: 0 !important
 }
 
-button:hover {
-  background-color: rgba(71, 71, 71, 0.7);
+.icons .mid {
+    margin-right: 4px;
 }
 
-.span-icon-logout {
-  height: 20px;
-  width: 20px;
-  margin: 0 8px 0 0;
+/* ---------------------------------- */
+
+/* Sliders */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    justify-content: center;
+    width: 40px;
+    height: 23px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+input:checked+.slider {
+    background-color: #ffca3a;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #e8f5ff;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+}
+
+.slider.round {
+    border-radius: 24px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
 }
 
 
-.span-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+/* ---------------------------------- */
+
+/* Sections */
+
+.game-info {
+    margin-top: 30px;
 }
 
-.span-icon {
-  height: 48px;
-  width: 48px;
-  margin: 0 8px;
+.header {
+    margin: 15px 15px 0 15px;
 }
 
-.span-icon-small {
-  height: 52px;
-  width: 52px;
-  margin: 0 8px;
+.feedback {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
-.span-icon-score {
-  height: 32px;
-  width: 32px;
-  margin: 0 8px;
+/* ---------------------------------- */
+
+/* Utility */
+
+.height-30-percent {
+    height: auto;
+    min-height: 30%;
 }
 
-.feedback-icon {
-  vertical-align:middle;
-  margin:14px 6px;
-  height: 36px;
-  width: 36px;
+.height-auto {
+    height: auto !important;
+    min-height: 80px;
 }
 
-.gotham-header {
-  font-family: 'GothamPro';
-  font-weight: bold;
-  font-size: 9vw;
-  color: white;
+.center {
+    display: flex;
+    justify-content: center;
 }
 
-.gotham-medium {
-  font-family: 'GothamPro';
-  font-weight: bold;
-  font-size: 3.5vw;
-  color: white;
-  text-align: center;
-  height: 6vw;
+.flex-left {
+    justify-content: flex-start;
 }
 
-.text-grey {
-  color: rgb(87, 83, 83) !important;
+.border-top {
+    border-top: 2px solid rgba(156, 156, 156, 0.4);
 }
 
-.gotham-small {
-  font-family: 'GothamPro';
-  font-weight: 500;
-  font-size: 22px;
-  color: white;
-  margin: 0 auto;
-  max-width: 90%;
-  text-align: center;
-  overflow:hidden;
+.flex-right {
+    justify-content: flex-end;
 }
 
-.album_art {
-  width: 300px;
-  height: 300px;
-  border-radius: 8px;
-  object-fit: cover;
-  margin-bottom: 10px;
+.flex-between {
+    width: 100%;
+    justify-content: space-around !important;
 }
 
-.choice-display {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+.flex-between:after {
+    content: none;
+ }
+
+.right {
+    float: right;
 }
 
+.full-width {
+    width: 100% !important;
+}
+
+<<<<<<< HEAD
 
 .choice {
   z-index: 11;
@@ -529,664 +451,474 @@ button {
 
 .negative-margin {
   margin: -30px auto !important;
+=======
+.full-height {
+    height: 100% !important;
+>>>>>>> origin/main
 }
 
-.name-small {
-  width: 100%;
-  font-size: 20px;
-  margin: 0;
-  color: whitesmoke;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.no-margin {
+    margin: auto 0 !important;
 }
 
-.error-gif {
-  width: 70%;
-  max-width: 200px;
-  height: auto;
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 300ms, opacity 300ms;
 }
 
-@media only screen and (max-height: 650px) {
-  
-  .choice {
-    max-width: 190px;
-    max-height: 240px;
-    font-size: 16px;
-  }
-
-  .album_art {
-    width: 180px;
-    height: 180px;
-  }
-  
+.disabled {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
 }
 
-@media only screen and (max-height: 620px) {
-  
-  .choice {
-    max-height: 210px;
-  }
-
-  .container-vert {
-    max-height: 70px;
-    margin-top: 5px;
-  }
-  
-}
-
-
-/* Turn off parallax scrolling for tablets and phones */
-@media only screen and (max-device-width: 1600px) {
-
-  .bgimg-1,
-  .bgimg-2,
-  .bgimg-3 {
-    background-attachment: scroll;
-    min-height: 400px;
-  }
-}
-
-@media only screen and (max-width: 980px) {
-  .nav-bar {
-    margin: 0;
-  }
-  
-  .button-dark {
-    width: 120px;
-    height: 35px;
-    font-size: 17px;
-    margin: 10px 10px 0 10px;
-  }
-}
-
-@media only screen and (max-width: 860px) {
-
-  .button-dark {
-    width: 110px;
-    height: 30px;
-    font-size: 15px;
-    margin: 10px 10px 0 10px;
-  }
-  
-  .album_art {
-    width: 260px;
-    height: 260px;
-  }
-
-  .choice {
-    width: 280px;
-    height: 395px;
-    padding: 10px;
-    margin: 10px 20px;
-  }
-
-  .score {
-    font-size: 20px;
-  }
-
-  .score-label {
-    font-size: 20px;
-  }
-
-  .options-label {
-    font-size: 20px;
-  }
-
-  .container-vert {
-    width: 600px;
-  }
-
-  .container-options {
-    width: 600px;
-  }
-
-  .container-score {
-    width: 180px;
-  }
-
-  .span-icon-small {
-    height: 48px;
-    width: 48px;
-    margin: 0 6px;
-  }
-
-  .gotham-small {
-    font-weight: 500;
-    font-size: 17px;
-  }
-
-  .spotify-login {
-    background-color: rgb(31, 185, 85);
-    width: 360px;
-    height: 80px;
-    font-size: 28px;
-  }
-
-  .span-icon {
-    height: 40px;
-    width: 40px;
-    margin: 0 8px;
-  }
-
-  .span-icon-large-no-margin {
-    width: 54px;
-    height: 54px;
-  }
-
-  .dark-box {
-    width: 360px;
-    height: 140px;
-    font-size: 28px;
-  }
-}
-
-@media only screen and (max-width: 700px) {
-
-  .button-dark {
-    width: 105px;
-    height: 30px;
-    font-size: 14px;
-    margin: 10px 10px 0 10px;
-  }
-
-  .album_art {
-    width: 220px;
-    height: 220px;
-  }
-
-  .choice {
-    width: 240px;
-    height: 355px;
-    padding: 10px;
-    margin: 5px 10px;
-  }
-
-  .score {
-    font-size: 18px;
-  }
-
-  .score-label {
-    font-size: 18px;
-  }
-
-  .options-label {
-    font-size: 18px;
-  }
-
-  .container-vert {
-    width: 500px;
-  }
-
-  .container-options {
-    width: 500px;
-  }
-
-  .container-score {
-    width: 180px;
-  }
-
-  .span-icon-small {
-    height: 43px;
-    width: 43px;
-    margin: 0 6px;
-  }
-
-  .gotham-small {
-    font-weight: 400;
-    font-size: 16px;
-  }
-
-  .spotify-login {
-    background-color: rgb(31, 185, 85);
-    width: 360px;
-    height: 80px;
-    font-size: 28px;
-  }
-
-  .span-icon {
-    height: 40px;
-    width: 40px;
-    margin: 0 8px;
-  }
-
-  .dark-box {
-    width: 360px;
-    height: 140px;
-    font-size: 28px;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-
-  .time-up {
-    font-size: 3.2vw !important;
-  }
-
-  .btn {
-    width: 240px;
-    height: 60px;
+.margin-top-30 {
     margin-top: 30px !important;
-  }
-
-  .album_art {
-    width: 200px;
-    height: 200px;
-  }
-
-  .choice {
-    width: 220px;
-    height: 335px;
-    padding: 10px;
-    margin: 5px 10px;
-  }
-
-  .score {
-    font-size: 15px;
-  }
-
-  .score-label {
-    font-size: 15px;
-  } 
-  
-  .options-label {
-    font-size: 15px;
-  }
-
-  .container-vert {
-    width: 450px;
-  }
-
-  .container-options {
-    width: 450px;
-  }
-
-  .container-score {
-    width: 180px;
-  }
-
-  .span-icon-small {
-    height: 32px;
-    width: 32px;
-    margin: 0 6px;
-  }
-
-  .gotham-small {
-    font-weight: 400;
-    font-size: 15px;
-  }
-
-  .spotify-login {
-    background-color: rgb(31, 185, 85);
-    width: 360px;
-    height: 80px;
-    font-size: 28px;
-  }
-
-  .span-icon {
-    height: 40px;
-    width: 40px;
-    margin: 0 8px;
-  }
-
-  .dark-box {
-    width: 360px;
-    height: 140px;
-    font-size: 28px;
-  }
 }
 
-@media only screen and (max-width: 500px) {
-  
-  .album_art {
-    width: 155px;
-    height: 155px;
-  }
-
-  .choice {
-    width: 175px;
-    height: 290px;
-    padding: 10px;
-    margin: 5px 10px;
-  }
-
-  .score {
-    font-size: 13px;
-  }
-
-  .score-label {
-    font-size: 13px;
-  }
-
-  .options-label {
-    font-size: 13px;
-  }
-
-  .container-vert {
-    width: 400px;
-  }
-
-  .container-options {
-    width: 400px;
-  }
-
-  .container-score {
-    width: 175px;
-  }
-
-  .span-icon-small {
-    height: 25px;
-    width: 25px;
-    margin: 0 6px;
-  }
-
-  .gotham-small {
-    font-weight: 400;
-    font-size: 13px;
-  }
-
-  .spotify-login {
-    background-color: rgb(31, 185, 85);
-    width: 300px;
-    height: 70px;
-    font-size: 22px;
-  }
-
-  .span-icon {
-    height: 30px;
-    width: 30px;
-    margin: 0 6px;
-  }
-
-  .dark-box {
-    width: 300px;
-    height: 115px;
-    font-size: 22px;
-  }
+.margin-top-60 {
+    margin-top: 60px !important;
 }
 
+.margin-bottom-30 {
+    margin-bottom: 30px !important;
+}
 
-@media only screen and (max-width: 400px) {
-  
-  .btn {
-    width: 240px;
-    height: 60px;
-    margin-top: 5px !important;
-  }
+.margin-left-10 {
+    margin-left: 10px !important;
+}
 
-  .album_art {
-    width: 130px;
-    height: 130px;
-  }
+.padding-5 {
+    padding: 5px;
+}
 
-  .choice {
-    width: 150px;
-    height: 265px;
-    padding: 10px;
-    margin: 5px 10px;
-  }
+.flex-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-  .score {
-    font-size: 12px;
-  }
+.flex-horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
 
-  .score-label {
-    font-size: 12px;
-  }
+/* ---------------------------------- */
 
-  .options-label {
-    font-size: 12px;
-  }
+/* Spans */
 
-  .container-vert {
-    width: 320px;
-  }
+.span-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: white;
+}
 
-  .container-options {
-    width: 320px;
-  }
-
-  .container-score {
-    width: 160px;
-  }
-
-  .span-icon-small {
+.span-icon-logout {
     height: 20px;
     width: 20px;
-    margin: 0 5px;
-  }
+    margin: 0 8px 0 0;
+}
 
-  .gotham-small {
-    font-weight: 400;
-    font-size: 12px;
-  }
+.span-icon-small {
+    height: 44px;
+    width: 44px;
+    margin: 0 8px;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
 
-  .span-icon {
+.span-icon-score {
+    height: 24px;
+    width: 24px;
+    margin: auto 0;
+}
+
+.span-icon-reset {
+    height: 22px;
+    width: 22px;
+    margin: auto 0;
+}
+
+.span-icon {
     height: 48px;
     width: 48px;
     margin: 0 8px;
-  }
-
-  .spotify-login {
-    background-color: rgb(31, 185, 85);
-    width: 250px;
-    height: 70px;
-    font-size: 20px;
-  }
-
-  .span-icon {
-    height: 26px;
-    width: 26px;
-    margin: 0 6px;
-  }
-
-  .dark-box {
-    width: 250px;
-    height: 95px;
-    font-size: 20px;
-  }
 }
 
-@media only screen and (max-width: 330px) {
-  .album_art {
-    width: 94px;
-    height: 94px;
-  }
 
-  .choice {
-    width: 114px;
-    height: 229px;
+/* ---------------------------------- */
+
+/* Countdown timer */
+
+.down {
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    margin: auto 10px;
+}
+
+.time-display,
+.game-over {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.time-up {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    width: 100% !important;
+    z-index: 9;
+    opacity: 0;
+    font-size: 4vw !important;
+    text-align: center;
+    margin: auto !important;
+}
+
+#countdown {
+    align-self: flex-end;
+    position: relative;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+}
+
+#countdown-number {
+    color: white;
+    display: inline-block;
+    line-height: 40px;
+    z-index: 5 !important;
+}
+
+svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    transform: rotateY(-180deg) rotateZ(-90deg);
+    z-index: -1;
+}
+
+svg circle {
+    display: block;
+    stroke-dasharray: 113px;
+    stroke-dashoffset: 0px;
+    stroke-linecap: square;
+    stroke-width: 3px;
+    stroke: rgb(255, 199, 137);
+    fill: rgba(0, 0, 0, 0.5);
+    animation: none;
+    z-index: -1;
+}
+
+
+.animated {
+    animation: countdown 12s linear infinite forwards;
+}
+
+
+@keyframes countdown {
+    from {
+        stroke-dashoffset: 0px;
+    }
+
+    to {
+        stroke-dashoffset: 113px;
+    }
+}
+
+
+
+/* ---------------------------------- */
+
+/* Game over screen */
+
+.game-over {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* ---------------------------------- */
+
+/* Text */
+
+#stat-status {
+    font-weight: normal !important;
+}
+
+.gotham-header {
+    font-family: 'GothamPro';
+    font-weight: bold;
+    font-size: 9vw;
+    color: white;
+}
+
+.gotham-medium {
+    font-family: 'GothamPro';
+    font-weight: bold;
+    font-size: 3.5vw;
+    color: white;
+    text-align: center;
+    height: 6vw;
+}
+
+.gotham-small {
+    font-family: 'GothamPro';
+    font-weight: 300;
+    font-size: 18px;
+    color: white;
+    margin: 0 auto;
+    max-width: 90%;
+    text-align: center;
+    line-height: 22px;
+}
+
+.gotham-extra-small {
+    font-family: 'GothamPro';
+    font-weight: 300;
+    font-size: 14px;
+    color: white;
+    margin: 0 0 0 1px;
+    max-width: 90%;
+    text-align: center;
+    line-height: 20px;
+}
+
+.limit-font-size {
+    font-size: min(3.5vw, 36px);
+}
+
+.limit-font-size-big {
+    font-size: min(3.5vw, 52px);
+}
+
+.text-grey {
+    color: rgb(87, 83, 83) !important;
+}
+
+.text-black {
+    color: rgb(0, 0, 0) !important;
+}
+
+.text-orange {
+    color: rgb(246,197,132);
+}
+
+.text-thin {
+    font-weight: 400 !important;
+}
+
+.feedback-label {
+    text-align: left !important;
+    font-weight: 200;
+}
+
+.small-label {
+    width: 100%;
+    font-size: 22px;
+    margin: 0;
+    color: whitesmoke;
+    text-align: center;
+    padding: 0 5px;
+}
+
+.text-white {
+    display: inline-block;
+    margin: 0;
+    font-size: 23px;
+    color: whitesmoke;
+    min-width: 30px;
+    vertical-align: middle;
+}
+
+
+.status-header {
+    margin: 40px 5px 0 5px;
+    height: auto;
+    min-height: 30%;
+}
+
+/* ---------------------------------- */
+
+/* Choice cards */
+
+.choices {
+    width: 85%;
+    max-width: 720px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    height: 435px;
+}
+
+.choice {
+    z-index: 11;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 0 0 10px 0;
+    background-color: rgba(37, 37, 37, 0.7);
+    margin: auto;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    transition: all .12s ease-in-out;
+    cursor: pointer;
+    outline: 0 !important;
+    opacity: 0;
+    width: 280px;
+    height: 395px;
+}
+
+.choice-art {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    border-radius: 8px 8px 0 0;
+}
+
+.choice-art img {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+}
+
+.choice-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 280px;
+    height: 100px;
+    max-width: 100%;
+    margin: 5px 0;
+    white-space: initial;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
     padding: 10px;
-    margin: 5px 5px;
-  }
-
-  .score {
-    font-size: 10px;
-  }
-
-  .score-label {
-    font-size: 10px;
-  }
-
-  .options-label {
-    font-size: 10px;
-  }
-
-  .container-vert {
-    width: 260px;
-    height: 60px;
-  }
-
-  .container-options {
-    width: 260px;
-    height: 60px;
-  }
-
-  .container-score {
-    width: 130px;
-  }
-
-  .span-icon-small {
-    height: 12px;
-    width: 12px;
-    margin: 0 3px;
-  }
-
-  .gotham-small {
-    font-weight: 400;
-    font-size: 10px;
-  }
-
-  .spotify-login {
-    background-color: rgb(31, 185, 85);
-    width: 220px;
-    height: 60px;
-    font-size: 19px;
-  }
-
-  .span-icon {
-    height: 24px;
-    width: 24px;
-    margin: 0 6px;
-  }
-
-  .dark-box {
-    width: 220px;
-    height: 85px;
-    font-size: 19px;
-  }
 }
 
-@media only screen and (max-width: 300px) {
-  .album_art {
-    width: 90px;
-    height: 90px;
-  }
+.choice-title p {
+    max-height: 100%;
+    display: -webkit-box;
+    max-width: 95%;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 
-  .choice {
-    width: 110px;
-    height: 225px;
+/* ---------------------------------- */
+
+/* Containers */
+
+
+#score-mobile {
+    display: none !important;
+}
+
+#score-desktop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container-feedback {
+    background-color: rgba(19, 19, 19, 0.6);
+    border-radius: 10px;
+    width: 300px;
+    height: 470px;
+    padding: 15px 20px;
+}
+
+.container-feedback .row {
+    margin-top: 15px;
+}
+
+.container-vert {
+    background-color: rgba(19, 19, 19, 0.6);
+    border-radius: 10px;
+    align-items: center;
+    width: 620px;
+    max-width: 100%;
+    height: auto;
+    min-height: 80px;
     padding: 10px;
-    margin: 5px 5px;
-  }
-
-  .score {
-    font-size: 10px;
-  }
-
-  .score-label {
-    font-size: 10px;
-  }
-
-  .options-label {
-    font-size: 10px;
-  }
-
-  .container-vert {
-    width: 230px;
-    height: 60px;
-  }
-
-  .container-options {
-    width: 230px;
-    height: 60px;
-  }
-
-  .container-score {
-    width: 130px;
-  }
-
-  .span-icon-small {
-    height: 12px;
-    width: 12px;
-    margin: 0 3px;
-  }
-
-  .gotham-small {
-    font-weight: 400;
-    font-size: 10px;
-  }
-
-  .spotify-login {
-    background-color: rgb(31, 185, 85);
-    width: 220px;
-    height: 60px;
-    font-size: 19px;
-  }
-
-  .span-icon {
-    height: 24px;
-    width: 24px;
-    margin: 0 6px;
-  }
-
-  .dark-box {
-    width: 220px;
-    height: 85px;
-    font-size: 19px;
-  }
+    text-align: center;
+    margin: 0 auto 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.switch {
-  position: relative;
-  display: inline-block;
-  justify-content: center;
-  width: 40px;
-  height: 23px;
+.container-stats {
+    width: 33.3%;
 }
 
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+.stats-footer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 12% 0 10px 0;
 }
 
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .2s;
-  transition: .2s;
+.final-score {
+    width: 80%;
+    height: auto;
+    min-width: 245px;
+    min-height: 80px;
+    padding: 15px;
+    text-align: center;
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .2s;
-  transition: .2s;
+.stats-display {
+    height: 400px;
+    max-height: 100%;
 }
 
-input:checked+.slider {
-  background-color: #ffca3a;
+.dark-box {
+    background-color: rgb(49, 49, 49, 0.7);
+    color: white;
+    border-radius: 10px;
+    font-size: 28px;
+    border: none;
+    margin: 10px;
 }
 
-input:focus+.slider {
-  box-shadow: 0 0 1px #e8f5ff;
+.center-display {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
-input:checked+.slider:before {
-  -webkit-transform: translateX(16px);
-  -ms-transform: translateX(16px);
-  transform: translateX(16px);
+.center-display a {
+    width: 85%;
+    height: 100px;
+    padding: 10px;
+    max-width: 340px;
+    max-height: 120px;
 }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 24px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
+.container-score {
+    width: 135px;
+    margin-top: 5px;
 }
