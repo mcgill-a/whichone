@@ -44,7 +44,7 @@ def index():
 
     # Step 4. Signed in, display data
     spotify = spotipy.Spotify(auth_manager=auth_manager)
-    return redirect('/play')
+    return redirect('https://whichone.rocks/play')
 
 
 @application.route('/play')
