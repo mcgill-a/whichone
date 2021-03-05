@@ -161,14 +161,11 @@ function getStats(param1, param2) {
       "stats-text"
     ).textContent = `${bigChoice} is ${durationMore} second${plural} longer than ${smallChoice}.`;
   } else if (currentMode == "popularity") {
-
-    if (usePercent = true) {
+    if ((usePercent = true)) {
       document.getElementById(
         "stats-text"
       ).textContent = `You have listened to ${bigChoice} ${percentMore} more than ${smallChoice}.`;
-    }
-    
-    else {
+    } else {
       document.getElementById(
         "stats-text"
       ).textContent = `You have listened to ${bigChoice} ${timesMore} more than ${smallChoice}.`;

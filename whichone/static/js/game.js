@@ -6,13 +6,11 @@ function stopGame() {
       var audio = new Audio("/static/resources/gameover_10plus.mp3");
       audio.volume = 0.3;
       audio.play();
-    }
-    else {
+    } else {
       var audio = new Audio("/static/resources/gameover.mp3");
       audio.volume = 0.3;
       audio.play();
     }
-
   }
 
   user["scores"].push(userCurrentScore);
@@ -315,7 +313,7 @@ function compareArtists() {
 
     // reference numbers cannot match, option cannot match previous option
     while (
-      option1 == null || 
+      option1 == null ||
       option2 == null ||
       num1 == num2 ||
       num2 == oldNum2 ||
