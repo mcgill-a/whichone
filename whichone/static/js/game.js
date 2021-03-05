@@ -174,6 +174,11 @@ function wrongAnswer(option) {
       getStats(option1[currentMode], option2[currentMode]);
     }
 
+    $("#data-popup").addClass("red-border");
+    setTimeout(function () {
+      $("#data-popup").removeClass("red-border");
+    }, 800);
+
     // hide the timer
     $(".down").css("opacity", 0);
 
@@ -232,6 +237,11 @@ function correctAnswer(option) {
     if (option1 != null && option2 != null) {
       getStats(option1[currentMode], option2[currentMode]);
     }
+
+    $("#data-popup").addClass("green-border");
+    setTimeout(function () {
+      $("#data-popup").removeClass("green-border");
+    }, 800);
 
     // hide the timer
     $(".down").css("opacity", 0);

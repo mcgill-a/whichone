@@ -130,7 +130,9 @@ button:hover {
 
 .btn-stat {
     background: none;
-    color: white;
+    border-radius: 10px !important;
+    border: 2px solid rgb(252,195,47) !important;
+    color: rgb(252,197,47) !important;
     width: auto;
     height: auto;
     padding: 15px !important;
@@ -138,7 +140,8 @@ button:hover {
 }
 
 .btn-stat:hover {
-    color:rgb(175, 175, 175);
+    color: rgb(246,197,132) !important;
+    border: 2px solid rgb(246,197,132) !important;
     background: none;
 }
 
@@ -262,6 +265,14 @@ input:checked+.slider:before {
 /* ---------------------------------- */
 
 /* Utility */
+
+.red-border {
+    border: 2px solid red !important;
+}
+
+.green-border {
+    border: 2px solid lightgreen !important;
+}
 
 .height-30-percent {
     height: auto;
@@ -705,7 +716,9 @@ svg circle {
 }
 
 .container-vert {
+    border: 2px solid transparent;
     background-color: rgba(19, 19, 19, 0.6);
+    transition: all .25s;
     border-radius: 10px;
     align-items: center;
     width: 620px;
