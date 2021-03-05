@@ -3,7 +3,7 @@ import uuid
 from flask import render_template, redirect, request, url_for, json, jsonify
 from flask_session import Session
 from werkzeug.exceptions import HTTPException
-from whichone import app, session, limiter
+from whichone import application, session
 import whichone.spotipy as spotipy
 
 caches_folder = './.spotify_caches/'
@@ -16,7 +16,7 @@ def session_cache_path():
     return caches_folder + session.get('uuid') 
 
 
-@app.route('/')
+@application.route('/')
 def index():
     if not session.get('uuid'):
         # Step 1. Visitor is unknown, give random ID
@@ -24,9 +24,9 @@ def index():
 
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=app.config['SPOTIFY_CLIENT_ID'],
-        client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
-        redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
+        client_id=application.config['SPOTIFY_CLIENT_ID'],
+        client_secret=application.config['SPOTIFY_CLIENT_SECRET'],
+        redirect_uri=application.config['SPOTIFY_REDIRECT_URI'],
         scope='user-top-read',
         cache_handler=cache_handler,
         show_dialog=True)
@@ -47,41 +47,40 @@ def index():
     return redirect('/play')
 
 
-@app.route('/play')
+@application.route('/play')
 def play():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=app.config['SPOTIFY_CLIENT_ID'],
-        client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
-        redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
+        client_id=application.config['SPOTIFY_CLIENT_ID'],
+        client_secret=application.config['SPOTIFY_CLIENT_SECRET'],
+        redirect_uri=application.config['SPOTIFY_REDIRECT_URI'],
         cache_handler=cache_handler)
     if not auth_manager.validate_token(cache_handler.get_cached_token()):
         return redirect('/')
     return render_template('play.html')
 
-@app.route('/feedback')
+@application.route('/feedback')
 def form():
     return render_template('feedback.html')
 
-@app.route('/logout')
+@application.route('/logout')
 def sign_out():
     try:
         # Remove the CACHE file (.cache-test) so that a new user can authorize.
         os.remove(session_cache_path())
         session.clear()
     except OSError as e:
-        print ("Error: %s - %s." % (e.filename, e.strerror))
+        pass
     return redirect('/')
 
 
-@app.route('/top_tracks')
-@limiter.limit(app.config['LIMIT_API'])
+@application.route('/top_tracks')
 def top_tracks():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=app.config['SPOTIFY_CLIENT_ID'],
-        client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
-        redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
+        client_id=application.config['SPOTIFY_CLIENT_ID'],
+        client_secret=application.config['SPOTIFY_CLIENT_SECRET'],
+        redirect_uri=application.config['SPOTIFY_REDIRECT_URI'],
         cache_handler=cache_handler)
     if not auth_manager.validate_token(cache_handler.get_cached_token()):
         return redirect('/')
@@ -93,14 +92,13 @@ def top_tracks():
         return json.dumps(tracks['items'])
     return json.dumps([]), 204
 
-@app.route('/top_artists')
-@limiter.limit(app.config['LIMIT_API'])
+@application.route('/top_artists')
 def top_artists():
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=app.config['SPOTIFY_CLIENT_ID'],
-        client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
-        redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
+        client_id=application.config['SPOTIFY_CLIENT_ID'],
+        client_secret=application.config['SPOTIFY_CLIENT_SECRET'],
+        redirect_uri=application.config['SPOTIFY_REDIRECT_URI'],
         cache_handler=cache_handler)
     if not auth_manager.validate_token(cache_handler.get_cached_token()):
         return redirect('/')
@@ -113,21 +111,18 @@ def top_artists():
     return json.dumps([]), 204
 
 
-@app.route('/audio_features', methods=['POST'])
-@limiter.limit(app.config['LIMIT_API'])
+@application.route('/audio_features', methods=['POST'])
 def audio_features():
     if request.method == 'POST':
         data = request.get_json()
-        print(data)
         if data != None and "track_ids" in data:
             cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
             auth_manager = spotipy.oauth2.SpotifyOAuth(
-                client_id=app.config['SPOTIFY_CLIENT_ID'],
-                client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
-                redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
+                client_id=application.config['SPOTIFY_CLIENT_ID'],
+                client_secret=application.config['SPOTIFY_CLIENT_SECRET'],
+                redirect_uri=application.config['SPOTIFY_REDIRECT_URI'],
                 cache_handler=cache_handler)
             if not auth_manager.validate_token(cache_handler.get_cached_token()):
-                print("no auth")
                 return redirect('/')
             spotify = spotipy.Spotify(auth_manager=auth_manager)
             features = spotify.audio_features(tracks=data["track_ids"])
@@ -137,11 +132,9 @@ def audio_features():
     return "Bad Request", 400
 
 
-@app.errorhandler(Exception)
+@application.errorhandler(Exception)
 def handle_error(e):
     code = 500
     if isinstance(e, HTTPException):
         code = e.code
-    print(code)
-    print(str(e))
     return render_template('error.html', error=str(e), code=code), code

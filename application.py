@@ -1,4 +1,4 @@
-from whichone import app
+from whichone import application
 
 if __name__ == '__main__':
     print("")
@@ -6,4 +6,4 @@ if __name__ == '__main__':
     print("-- Which One Web Server --")
     print("--- --- --- --- --- --- ---")
     print("")
-    app.run(threaded=True, port=8080) 
+    application.run() 
