@@ -16,14 +16,6 @@ def session_cache_path():
     return caches_folder + session.get('uuid') 
 
 
-@application.before_request
-def before_request():
-    if request.url.startswith('http://'):
-        url = request.url.replace('http://', 'https://', 1)
-        code = 301
-        return redirect(url, code=code)
-
-
 @application.route('/')
 def index():
     if not session.get('uuid'):
@@ -79,7 +71,7 @@ def sign_out():
         session.clear()
     except OSError as e:
         pass
-    return redirect('/')
+    return redirect('https://whichone.rocks')
 
 
 @application.route('/top_tracks')
