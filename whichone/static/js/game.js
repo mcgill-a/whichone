@@ -148,6 +148,8 @@ function getWrongAnswerText() {
   return responses[Math.floor(Math.random() * responses.length)];
 }
 
+
+
 function wrongAnswer(option) {
   if (!paused) {
     paused = true;
@@ -173,6 +175,12 @@ function wrongAnswer(option) {
     if (option1 != null && option2 != null) {
       getStats(option1[currentMode], option2[currentMode]);
     }
+
+    $("#data-popup").addClass("red-border");
+    setTimeout(function() {
+      $("#data-popup").removeClass("red-border");
+    }, 800);
+
 
     // hide the timer
     $(".down").css("opacity", 0);
@@ -233,6 +241,11 @@ function correctAnswer(option) {
       getStats(option1[currentMode], option2[currentMode]);
     }
 
+    $("#data-popup").addClass("green-border");
+    setTimeout(function() {
+      $("#data-popup").removeClass("green-border");
+    }, 1000);
+
     // hide the timer
     $(".down").css("opacity", 0);
 
@@ -261,7 +274,7 @@ function correctAnswer(option) {
         $("#stats-popup").removeClass("disabled");
         $("#stats-popup").css("opacity", 1);
       }, opacityDelay);
-    }, 500);
+    }, 800);
   }
 }
 
