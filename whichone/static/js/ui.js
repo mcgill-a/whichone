@@ -134,6 +134,9 @@ function getStats(param1, param2) {
   }
 
   percentMore = Math.round((small / big) * 100) + "%";
+  if (percentMore == "0%") {
+    percentMore = "1%";
+  }
 
   amountMore = Math.round((big - small) * 10) / 10;
 
