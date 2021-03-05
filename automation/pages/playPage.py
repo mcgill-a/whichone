@@ -5,11 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from pages.basePage import basePage
 
-import time
-
 class playPage(basePage):
-    # Elements
-
     # Locators
     modeText_loc= (By.ID, "mode_text")
     leftChoiceButton_loc = (By.ID, "button-choice-1")
@@ -18,13 +14,18 @@ class playPage(basePage):
     currentScore_loc = (By.ID, "current_score-d")
     highScore_loc = (By.ID, "high_score-d")
     nextQuestionButton_loc = (By.ID, "stat-next")
+    feedBackButton_loc = (By.ID, "feedback-icon")
     
     def __init__(self, driver):
         super().__init__(driver)
-        self.landingURL = "/play"
+        self.playURL = "/play"
+
+    
+    def goToFeedback(self):
+        super().clickElement(*self.feedBackButton_loc)
 
     def checkPage(self):
-        assert self.landingURL in super().getURL()
+        assert self.playURL in super().getURL()
         assert super().checkButtonDisplayed(*self.leftChoiceButton_loc)
 
     def playGame(self):

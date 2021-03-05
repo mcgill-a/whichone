@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from pages.basePage import basePage
 from pages.spotifyPage import spotifyPage
 from pages.playPage import playPage
-import time
+
 class landingPage(basePage):
     #Elements
 

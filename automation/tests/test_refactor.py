@@ -8,6 +8,7 @@ import pytest_html
 
 from pages.landingPage import landingPage
 from pages.playPage import playPage
+from pages.formPage import formPage
 
 from settings import settings
 
@@ -32,9 +33,10 @@ class Test_1(BasicTest):
         playGame = playPage(self.driver)
         playGame.playGame()
 
-    #@pytest.mark.dependency(depends=["login"])
-    #def test_form(self):
-    #    assert 1==2
+    @pytest.mark.dependency(depends=["login"])
+    def test_form(self):
+        feedbackForm = formPage(self.driver)
+        assert 1==2
 
     @pytest.mark.dependency(name = "persist", depends=["gameplay"])
     def test_persistance(self):
