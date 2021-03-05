@@ -244,7 +244,7 @@ function correctAnswer(option) {
     $("#data-popup").addClass("green-border");
     setTimeout(function() {
       $("#data-popup").removeClass("green-border");
-    }, 1000);
+    }, 800);
 
     // hide the timer
     $(".down").css("opacity", 0);
@@ -274,7 +274,7 @@ function correctAnswer(option) {
         $("#stats-popup").removeClass("disabled");
         $("#stats-popup").css("opacity", 1);
       }, opacityDelay);
-    }, 800);
+    }, 500);
   }
 }
 
