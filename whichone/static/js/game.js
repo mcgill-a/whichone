@@ -2,9 +2,15 @@ function stopGame() {
   stopped = true;
 
   if (!user.muteSound) {
-    var audio = new Audio("/static/resources/gameover.mp3");
-    audio.volume = 0.3;
-    audio.play();
+    if (userCurrentScore > 9) {
+      var audio = new Audio("/static/resources/gameover_10plus.mp3");
+      audio.volume = 0.3;
+      audio.play();
+    } else {
+      var audio = new Audio("/static/resources/gameover.mp3");
+      audio.volume = 0.3;
+      audio.play();
+    }
   }
 
   user["scores"].push(userCurrentScore);
