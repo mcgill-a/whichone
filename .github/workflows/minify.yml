@@ -21,6 +21,5 @@ jobs:
         repository: 'mini_js'
         commit_message: "Github Action: Auto Minified JS and CSS files"
         branch: ${{ github.ref }}
-        skip_dirty_check: true   
 
 
