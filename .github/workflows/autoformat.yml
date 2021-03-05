@@ -3,8 +3,8 @@ name: Prettier Auto Format
 # This action works with pull requests and pushes
 on: 
   push:
-    paths:
-      - '!mini_js/**'
+    paths-ignore:
+      - 'mini_js/**'
 
 jobs:
   prettier:
