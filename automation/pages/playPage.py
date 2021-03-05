@@ -15,8 +15,9 @@ class playPage(basePage):
     leftChoiceButton_loc = (By.ID, "button-choice-1")
     rightChoiceButton_loc = (By.ID, "button-choice-2")
     playAgainButton_loc = (By.ID, "play-again")
-    currentScore_loc = (By.ID, "current_score")
-    highScore_loc = (By.ID, "high_score")
+    currentScore_loc = (By.ID, "current_score-d")
+    highScore_loc = (By.ID, "high_score-d")
+    nextQuestionButton_loc = (By.ID, "stat-next")
     
     def __init__(self, driver):
         super().__init__(driver)
@@ -42,9 +43,11 @@ class playPage(basePage):
     def checkButtons(self):
         text_1 = self.getModeAndChoiceText()
         super().clickElement(*self.leftChoiceButton_loc)
+        super().clickElement(*self.nextQuestionButton_loc)
         text_2 = self.getModeAndChoiceText()
         assert text_2 != text_1
         super().clickElement(*self.rightChoiceButton_loc)
+        super().clickElement(*self.nextQuestionButton_loc)
         text_3 = self.getModeAndChoiceText()
         assert text_3 != text_2
 
@@ -57,6 +60,7 @@ class playPage(basePage):
     def checkCorrectAnswer(self):
         score_1 = self.getCurrentScore()
         self.driver.execute_script('correctAnswer();')
+        super().clickElement(*self.nextQuestionButton_loc)
         score_2 = self.getCurrentScore()
         assert score_1 != score_2
     
@@ -64,11 +68,13 @@ class playPage(basePage):
         currentLives = ('return lives;')
         lives_1 = self.driver.execute_script(currentLives)
         self.driver.execute_script('wrongAnswer();')
+        super().clickElement(*self.nextQuestionButton_loc)
         lives_2 = self.driver.execute_script(currentLives)
         assert lives_1 != lives_2
 
     def checkLoseGame(self):
         self.driver.execute_script('lives = 1; wrongAnswer();')
+        super().clickElement(*self.nextQuestionButton_loc)
         assert super().checkButtonDisplayed(*self.playAgainButton_loc)
         
     def playAgain(self):
