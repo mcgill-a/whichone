@@ -148,8 +148,6 @@ function getWrongAnswerText() {
   return responses[Math.floor(Math.random() * responses.length)];
 }
 
-
-
 function wrongAnswer(option) {
   if (!paused) {
     paused = true;
@@ -177,10 +175,9 @@ function wrongAnswer(option) {
     }
 
     $("#data-popup").addClass("red-border");
-    setTimeout(function() {
+    setTimeout(function () {
       $("#data-popup").removeClass("red-border");
     }, 800);
-
 
     // hide the timer
     $(".down").css("opacity", 0);
@@ -242,7 +239,7 @@ function correctAnswer(option) {
     }
 
     $("#data-popup").addClass("green-border");
-    setTimeout(function() {
+    setTimeout(function () {
       $("#data-popup").removeClass("green-border");
     }, 800);
 
