@@ -1,3 +1,3 @@
-$(document).ready(function() {
-    $('form').get(0).reset();
+$(document).ready(function () {
+  $("form").get(0).reset();
 });
