@@ -7,10 +7,10 @@ var user = {
   scores: [],
   muteSound: false,
   modes: {
-    'dance': true,
-    'upbeat': true,
-    'duration': true
-  }
+    dance: true,
+    upbeat: true,
+    duration: true,
+  },
 };
 
 var option1 = null;

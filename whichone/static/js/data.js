@@ -8,7 +8,11 @@ function localDataFound() {
     // check if modes are present
     let resetModes = false;
     if (user.modes != null) {
-      if (user.modes.dance == null || user.modes.upbeat == null || user.modes.duration == null) {
+      if (
+        user.modes.dance == null ||
+        user.modes.upbeat == null ||
+        user.modes.duration == null
+      ) {
         resetModes = true;
       }
     } else {
@@ -17,9 +21,9 @@ function localDataFound() {
 
     if (resetModes) {
       user.modes = {
-        'dance': true,
-        'upbeat': true,
-        'duration': true
+        dance: true,
+        upbeat: true,
+        duration: true,
       };
     }
 
