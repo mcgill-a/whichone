@@ -95,7 +95,8 @@ button:hover {
     margin-bottom: 10px;
 }
 
-.play:hover, .submit-feedback:hover {
+.play:hover,
+.submit-feedback:hover {
     background-color: rgb(252, 197, 47);
 }
 
@@ -138,7 +139,7 @@ button:hover {
 }
 
 .btn-stat:hover {
-    color:rgb(175, 175, 175);
+    color: rgb(175, 175, 175);
     background: none;
 }
 
@@ -297,7 +298,7 @@ input:checked+.slider:before {
 
 .flex-between:after {
     content: none;
- }
+}
 
 .right {
     float: right;
@@ -529,7 +530,6 @@ svg circle {
 .gotham-medium {
     font-family: 'GothamPro';
     font-weight: bold;
-    
     font-size: min(3.5vw, 60px);
     color: white;
     text-align: center;
@@ -575,7 +575,7 @@ svg circle {
 }
 
 .text-orange {
-    color: rgb(246,197,132);
+    color: rgb(246, 197, 132);
 }
 
 .text-thin {
