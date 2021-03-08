@@ -103,7 +103,8 @@ button:hover {
     margin-bottom: 10px;
 }
 
-.play:hover, .submit-feedback:hover {
+.play:hover,
+.submit-feedback:hover {
     background-color: rgb(252, 197, 47);
 }
 
@@ -258,7 +259,7 @@ input:checked+.slider:before {
     margin-top: 30px;
 }
 
-.header {
+.navigation {
     margin: 15px 15px 0 15px;
 }
 
@@ -316,7 +317,7 @@ input:checked+.slider:before {
 
 .flex-between:after {
     content: none;
- }
+}
 
 .right {
     float: right;
@@ -326,8 +327,13 @@ input:checked+.slider:before {
     width: 100% !important;
 }
 
+.limit-max-width {
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
 .full-height {
-    height: 100% !important;
+    height: 98vh !important;
 }
 
 .no-margin {
@@ -536,14 +542,14 @@ svg circle {
 .gotham-header {
     font-family: 'GothamPro';
     font-weight: bold;
-    font-size: 9vw;
+    font-size: min(9vw, 150px);
     color: white;
 }
 
 .gotham-medium {
     font-family: 'GothamPro';
     font-weight: bold;
-    font-size: 3.5vw;
+    font-size: min(3.5vw, 60px);
     color: white;
     text-align: center;
     height: 6vw;
@@ -588,7 +594,7 @@ svg circle {
 }
 
 .text-orange {
-    color: rgb(246,197,132);
+    color: rgb(246, 197, 132);
 }
 
 .text-thin {
