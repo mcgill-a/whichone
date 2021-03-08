@@ -40,165 +40,170 @@
 </head>
 
 <body>
-    <div class="section header">
-        <div class="row">
-            <div class="u-pull-left icons">
-                <a href="https://github.com/mcgill-a/whichone" target="_blank">
-                    <input type="image" id="github-icon" src="static/resources/github-icon.png"
-                        class="icon-github" title="View the source code on Github" alt="View the source code on Github">
-                </a>
-                <a href="feedback" class="mid">
-                    <input type="image" id="feedback-icon" src="static/resources/feedback_white.png"
-                        class="icon-feedback" title="Submit a feedback form" alt="Submit a feedback form">
-                </a>
-                <input type="image" id="mute-icon" src="static/resources/volume-on.png" class="icon-mute"
-                    alt="Toggle sound effects" title="Toggle sound effects">
-            </div>
-            <button id="sign-out" class="button-dark right u-pull-right">
-                <a class="logout" href="/logout">
-                    <span class="span-container">
-                        <img class="span-icon-logout"
-                            alt="logout button"
-                            src="{{url_for('static', filename='resources/spotify-icon.png')}}"></img>
-                        Sign out
-                    </span>
-                </a>
-            </button>
-        </div>
-        <div class="row">
-            <div class="twelve columns">
-                <h1 class="gotham-medium">
-                    <span id="mode_intro"></span><span id="mode_text"></span><span id="question_mark"></span>
-                </h1>
-            </div>
-        </div>
-    </div>
-    <div class="section game-controls">
-        <div class="choices">
-            <button id="button-choice-1" class="choice no-margin choice1" data-choice="1">
-                <div class="choice-art">
-                    <img id="image1" alt="album art photo cover">
+    <div class="full-height flex-mobile limit-max-width">
+        
+        <div class="section navigation">
+            <div class="row">
+                <div class="u-pull-left icons">
+                    <a href="https://github.com/mcgill-a/whichone" target="_blank">
+                        <input type="image" id="github-icon" src="static/resources/github-icon.png" class="icon-github"
+                            title="View the source code on Github" alt="View the source code on Github">
+                    </a>
+                    <a href="feedback" class="mid">
+                        <input type="image" id="feedback-icon" src="static/resources/feedback_white.png"
+                            class="icon-feedback" title="Submit a feedback form" alt="Submit a feedback form">
+                    </a>
+                    <input type="image" id="mute-icon" src="static/resources/volume-on.png" class="icon-mute"
+                        alt="Toggle sound effects" title="Toggle sound effects">
                 </div>
-                <div class="choice-title">
-                    <p class="gotham-small padding-5" id="text1a"></p>
-                </div>
-            </button>
-            <div class="time-display no-margin">
-                <div class="down">
-                    <div id="countdown" title="Choose before time runs out!">
-                        <div id="countdown-number" aria-label="The current time remaining to select a card"></div>
-                        <svg id="abc">
-                            <circle id="inner-circle" r="18" cx="20" cy="20"></circle>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            <div id="stats-popup" class="row container-vert stats-display disabled">
-                <div class="flex-vertical">
-                    <h2 id="stat-status" class="gotham-medium limit-font-size status-header"></h2>
-                    <h4 id="stats-text" class="gotham-small small-label margin-top-30" color="white"></h4>
-                    <div class="stats-footer">
-                        <button id="stat-next" class="gotham-small btn-stat">Next question &#10132;</button>
-                    </div>
-                </div>
-            </div>
-            <div class="game-over row container-vert stats-display disabled">
-                <h2 class="gotham-medium limit-font-size-big text-thin"><span id="end_score">You Scored </span> <span
-                        id="end_score_value" class="text-orange"></span>!</h2>
-                <h4 class="gotham-small" id="end_comment"></h4>
-                <div class="flex-horizontal">
-                    <img id="fire_icon" alt="current score icon" title="High Score" class="span-icon-score"
-                        src="{{url_for('static', filename='resources/trophy-gold.png')}}">
-                    <h4 class="gotham-small margin-top-30 margin-bottom-30" id="end_high_score">High score: 16</h4>
-                </div>
-                <button id="play-again" class="play gotham-medium">
-                    <div class="flex-horizontal">
-                        <img id="reset_icon" alt="play again icon" title="Current Score" class="span-icon-reset"
-                            src="{{url_for('static', filename='resources/reset.png')}}">
-                        <span>Play Again</span>
-                    </div>
+                <button id="sign-out" class="button-dark right u-pull-right">
+                    <a class="logout" href="/logout">
+                        <span class="span-container line-height-small">
+                            <img class="span-icon-logout" alt="logout button"
+                                src="{{url_for('static', filename='resources/spotify-icon.png')}}"></img>
+                            Sign out
+                        </span>
+                    </a>
                 </button>
             </div>
-            <button id="button-choice-2" class="choice no-margin choice2" data-choice="2">
-                <div class="choice-art">
-                    <img id="image2" alt="album art photo cover">
-                </div>
-                <div class="choice-title">
-                    <p class="gotham-small padding-5" id="text2a"></p>
-                </div>
         </div>
-    </div>
-    </div>
-
-    <div class="section game-info">
-        <div class="choices height-auto">
-            <div id="data-popup" class="row container-vert">
-                <div class="flex-right">
-                    <div id="score-mobile">
-                        <h2 class="gotham-small text-white" id="current_score-m">0</h1>
-                        <img id="fire_icon_mob" alt="current score icon" title="Current Score" class="span-icon-score"
-                            src="{{url_for('static', filename='resources/fire-icon (2).png')}}">
-                    </div>
-                    <div id="score-desktop">
-                        <h2 class="gotham-small text-white margin-left-10" id="current_score-d">0</h2>
-                        <div class="flex-horizontal  container-score">
-                            <img id="fire_icon" alt="current score icon" title="Current Score" class="span-icon-score"
-                                src="{{url_for('static', filename='resources/fire-icon (2).png')}}">
-                            <span class="gotham-extra-small">Current Streak</span>
-                        </div>
-                    </div>
+        <div class="section header">
+            <div class="row">
+                <div class="twelve columns">
+                    <h1 class="gotham-medium">
+                        <span id="mode_intro"></span><span id="mode_text"></span><span id="question_mark"></span>
+                    </h1>
                 </div>
-
-                <div class="flex-horizontal">
-                    <img id="life1" class="span-icon-small"
-                        src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 1">
-                    <img id="life2" class="span-icon-small"
-                        src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 2">
-                    <img id="life3" class="span-icon-small"
-                        src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 3">
-                </div>
-
-                <div class="flex-left">
-                    <div id="score-mobile">
-                        <img id="high_icon_mob" alt="current score icon" title="High Score" class="span-icon-score"
-                            src="{{url_for('static', filename='resources/trophy-gold.png')}}">
-                        <h2 class="gotham-small text-white" id="high_score-m">0</h1>
-                    </div>
-                    <div id="score-desktop">
-                        <h2 class="gotham-small text-white margin-left-10" id="high_score-d">0</h2>
-                        <div class="flex-horizontal container-score">
-                            <img id="high_icon" alt="current score icon" title="High Score" class="span-icon-score"
-                                src="{{url_for('static', filename='resources/trophy-gold.png')}}">
-                            <span class="gotham-extra-small">High Score</span>
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
-            <div id="options-popup" class="row container-vert disabled">
-                <div class="container-stats">
-                    <label class="switch" title="Toggle whether you are quizzed on danceability">
-                        <input type="checkbox" id="danceBox">
-                        <span class="slider round"></span>
-                    </label>
-                    <h4 class="gotham-small small-label" id="danceToggle" color="white">Danceability</h4>
+        </div>
+        <div class="section game-controls">
+            <div class="choices">
+                <button id="button-choice-1" class="choice no-margin choice1" data-choice="1">
+                    <div class="choice-art">
+                        <img id="image1" alt="album art photo cover">
+                    </div>
+                    <div class="choice-title">
+                        <p class="gotham-small padding-5" id="text1a"></p>
+                    </div>
+                </button>
+                <div class="time-display no-margin">
+                    <div class="down">
+                        <div id="countdown" title="Choose before time runs out!">
+                            <div id="countdown-number" aria-label="The current time remaining to select a card"></div>
+                            <svg id="abc">
+                                <circle id="inner-circle" r="18" cx="20" cy="20"></circle>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="container-stats">
-                    <label class="switch" title="Toggle whether you are quizzed on upbeatness">
-                        <input type="checkbox" id="valenceBox">
-                        <span class="slider round"></span>
-                    </label>
-                    <h4 class="gotham-small small-label" id="valenceToggle" color="white">Upbeatness</h4>
+                <div id="stats-popup" class="row container-vert stats-display disabled">
+                    <div class="flex-vertical">
+                        <h2 id="stat-status" class="gotham-medium limit-font-size status-header"></h2>
+                        <h4 id="stats-text" class="gotham-small small-label margin-top-30" color="white"></h4>
+                        <div class="stats-footer">
+                            <button id="stat-next" class="gotham-small btn-stat">Next question &#10132;</button>
+                        </div>
+                    </div>
                 </div>
+                <div class="game-over row container-vert stats-display disabled">
+                    <h2 class="gotham-medium limit-font-size-big text-thin"><span id="end_score">You Scored </span>
+                        <span id="end_score_value" class="text-orange"></span>!</h2>
+                    <h4 class="gotham-small" id="end_comment"></h4>
+                    <div class="flex-horizontal">
+                        <img id="fire_icon" alt="current score icon" title="High Score" class="span-icon-score"
+                            src="{{url_for('static', filename='resources/trophy-gold.png')}}">
+                        <h4 class="gotham-small margin-top-30 margin-bottom-30" id="end_high_score">High score: 16</h4>
+                    </div>
+                    <button id="play-again" class="play gotham-medium">
+                        <div class="flex-horizontal">
+                            <img id="reset_icon" alt="play again icon" title="Current Score" class="span-icon-reset"
+                                src="{{url_for('static', filename='resources/reset.png')}}">
+                            <span>Play Again</span>
+                        </div>
+                    </button>
+                </div>
+                <button id="button-choice-2" class="choice no-margin choice2" data-choice="2">
+                    <div class="choice-art">
+                        <img id="image2" alt="album art photo cover">
+                    </div>
+                    <div class="choice-title">
+                        <p class="gotham-small padding-5" id="text2a"></p>
+                    </div>
+            </div>
+        </div>
 
-                <div class="container-stats">
-                    <label class="switch" title="Toggle whether you are quizzed on duration">
-                        <input type="checkbox" id="durationBox">
-                        <span class="slider round"></span>
-                    </label>
-                    <h4 class="gotham-small small-label" id="durationToggle" color="white">Duration</h4>
+        <div id="info" class="section game-info" data-user={{user_id}}>
+            <div class="choices height-auto">
+                <div id="data-popup" class="row container-vert">
+                    <div class="flex-right">
+                        <div id="score-mobile">
+                            <h2 class="gotham-small text-white" id="current_score-m">0</h1>
+                                <img id="fire_icon_mob" alt="current score icon" title="Current Score"
+                                    class="span-icon-score"
+                                    src="{{url_for('static', filename='resources/fire-icon (2).png')}}">
+                        </div>
+                        <div id="score-desktop">
+                            <h2 class="gotham-small text-white margin-left-10" id="current_score-d">0</h2>
+                            <div class="flex-horizontal  container-score">
+                                <img id="fire_icon" alt="current score icon" title="Current Score"
+                                    class="span-icon-score"
+                                    src="{{url_for('static', filename='resources/fire-icon (2).png')}}">
+                                <span class="gotham-extra-small">Current Streak</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex-horizontal">
+                        <img id="life1" class="span-icon-small"
+                            src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 1">
+                        <img id="life2" class="span-icon-small"
+                            src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 2">
+                        <img id="life3" class="span-icon-small"
+                            src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 3">
+                    </div>
+
+                    <div class="flex-left">
+                        <div id="score-mobile">
+                            <img id="high_icon_mob" alt="current score icon" title="High Score" class="span-icon-score"
+                                src="{{url_for('static', filename='resources/trophy-gold.png')}}">
+                            <h2 class="gotham-small text-white" id="high_score-m">0</h1>
+                        </div>
+                        <div id="score-desktop">
+                            <h2 class="gotham-small text-white margin-left-10" id="high_score-d">0</h2>
+                            <div class="flex-horizontal container-score">
+                                <img id="high_icon" alt="current score icon" title="High Score" class="span-icon-score"
+                                    src="{{url_for('static', filename='resources/trophy-gold.png')}}">
+                                <span class="gotham-extra-small">High Score</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div id="options-popup" class="row container-vert disabled">
+                    <div class="container-stats">
+                        <label class="switch" title="Toggle whether you are quizzed on danceability">
+                            <input type="checkbox" id="danceBox">
+                            <span class="slider round"></span>
+                        </label>
+                        <h4 class="gotham-small small-label" id="danceToggle" color="white">Danceability</h4>
+                    </div>
+
+                    <div class="container-stats">
+                        <label class="switch" title="Toggle whether you are quizzed on upbeatness">
+                            <input type="checkbox" id="valenceBox">
+                            <span class="slider round"></span>
+                        </label>
+                        <h4 class="gotham-small small-label" id="valenceToggle" color="white">Upbeatness</h4>
+                    </div>
+
+                    <div class="container-stats">
+                        <label class="switch" title="Toggle whether you are quizzed on duration">
+                            <input type="checkbox" id="durationBox">
+                            <span class="slider round"></span>
+                        </label>
+                        <h4 class="gotham-small small-label" id="durationToggle" color="white">Duration</h4>
+                    </div>
                 </div>
             </div>
         </div>

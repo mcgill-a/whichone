@@ -1,18 +1,30 @@
 function localDataFound() {
   // get data from local storage instead of the web server
-  let data = localStorage.getItem("user");
+  let data = localStorage.getItem(spotify_id);
   const EXPIRATION_TIME = 604800000; // 1 week (milliseconds)
 
   if (data != null) {
     user = JSON.parse(data);
-    // check if their data is outdated
-    if (user.expire != null) {
-      // If the expiration time has passed, we need to get new data instead of using the local storage
-      if (new Date().getTime() - new Date(user.expire) > EXPIRATION_TIME) {
-        return false;
+    // check if modes are present
+    let resetModes = false;
+    if (user.modes != null) {
+      if (
+        user.modes.dance == null ||
+        user.modes.upbeat == null ||
+        user.modes.duration == null
+      ) {
+        resetModes = true;
       }
     } else {
-      return false;
+      resetModes = true;
+    }
+
+    if (resetModes) {
+      user.modes = {
+        dance: true,
+        upbeat: true,
+        duration: true,
+      };
     }
 
     if (user.high_score != null) {
@@ -22,7 +34,20 @@ function localDataFound() {
         document.getElementById("high_score-m").textContent = user.high_score;
         document.getElementById("high_score-d").textContent = user.high_score;
       }
+    } else {
+      user.high_score = 0;
     }
+
+    // check if their spotify data is outdated
+    if (user.expire != null) {
+      // If the expiration time has passed, we need to get new data instead of using the local storage
+      if (new Date().getTime() - new Date(user.expire) > EXPIRATION_TIME) {
+        return false;
+      }
+    } else {
+      return false;
+    }
+
     return true;
   } else {
     return false;
@@ -50,7 +75,7 @@ async function getAudioFeatures() {
           user["audio_features"][result["id"]] = result;
         });
         user["expire"] = new Date().getTime();
-        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem(spotify_id, JSON.stringify(user));
       },
       error: function (errMsg) {
         console.log(errMsg);
@@ -70,7 +95,7 @@ async function request(key, callback) {
     success: function (data) {
       user[key] = JSON.parse(data);
       user["expire"] = new Date().getTime();
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem(spotify_id, JSON.stringify(user));
       callback();
     },
     error: function () {
@@ -83,4 +108,11 @@ async function request(key, callback) {
 async function getSpotifyData() {
   await request("top_artists", compareArtists);
   await request("top_tracks", getAudioFeatures);
+}
+
+function storeEnabledModes() {
+  user.modes.dance = danceBox.checked;
+  user.modes.upbeat = valenceBox.checked;
+  user.modes.duration = durationBox.checked;
+  localStorage.setItem(spotify_id, JSON.stringify(user));
 }

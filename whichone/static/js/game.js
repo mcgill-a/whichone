@@ -65,6 +65,7 @@ function startGame() {
   document.getElementById("current_score-d").textContent = userCurrentScore;
   stopped = false;
   paused = false;
+  storeEnabledModes();
   randomMode();
   showChoices();
   lives = 3;
