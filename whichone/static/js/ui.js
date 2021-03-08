@@ -91,7 +91,7 @@ function updateHighScore(score) {
   if (score > user.high_score && !cheaterMode) {
     user.high_score = score;
   }
-  localStorage.setItem("user", JSON.stringify(user));
+  localStorage.setItem(spotify_id, JSON.stringify(user));
   document.getElementById("high_score-m").textContent = user.high_score;
   document.getElementById("high_score-d").textContent = user.high_score;
   document.getElementById("end_high_score").textContent =

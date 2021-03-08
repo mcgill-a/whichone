@@ -247,7 +247,7 @@ input:checked+.slider:before {
     margin-top: 30px;
 }
 
-.header {
+.navigation {
     margin: 15px 15px 0 15px;
 }
 
@@ -308,7 +308,7 @@ input:checked+.slider:before {
 }
 
 .full-height {
-    height: 100% !important;
+    height: 98vh !important;
 }
 
 .no-margin {

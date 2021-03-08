@@ -95,6 +95,15 @@
         font-weight: 300 !important;
         font-size: 14px !important;
     }
+    .line-height-small {
+        line-height: 30px;
+    }
+
+    .flex-mobile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 500px) {
@@ -109,7 +118,7 @@
         display: none !important;
     }
 
-    .header {
+    .navigation {
         margin: 5px 5px 0 5px;
     }
     

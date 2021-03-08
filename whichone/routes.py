@@ -57,7 +57,7 @@ def play():
         cache_handler=cache_handler)
     if not auth_manager.validate_token(cache_handler.get_cached_token()):
         return redirect('/')
-    return render_template('play.html')
+    return render_template('play.html', user_id=auth_manager.client_id)
 
 @app.route('/feedback')
 def form():
