@@ -307,6 +307,11 @@ input:checked+.slider:before {
     width: 100% !important;
 }
 
+.limit-max-width {
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
 .full-height {
     height: 98vh !important;
 }
@@ -517,14 +522,15 @@ svg circle {
 .gotham-header {
     font-family: 'GothamPro';
     font-weight: bold;
-    font-size: 9vw;
+    font-size: min(9vw, 150px);
     color: white;
 }
 
 .gotham-medium {
     font-family: 'GothamPro';
     font-weight: bold;
-    font-size: 3.5vw;
+    
+    font-size: min(3.5vw, 60px);
     color: white;
     text-align: center;
     height: 6vw;
