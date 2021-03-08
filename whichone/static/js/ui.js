@@ -122,16 +122,21 @@ function getStats(param1, param2) {
     smallChoice = choice1;
   }
 
+  let usePercent = false;
+
   timesMore = Math.round((big / small) * 10) / 10;
   if (timesMore == Infinity) {
     timesMore = "a lot";
-  } else if (timesMore == 1) {
-    timesMore = "1.1x";
+  } else if (timesMore < 2) {
+    usePercent = true;
   } else {
     timesMore = timesMore + "x";
   }
 
   percentMore = Math.round((small / big) * 100) + "%";
+  if (percentMore == "0%") {
+    percentMore = "1%";
+  }
 
   amountMore = Math.round((big - small) * 10) / 10;
 
@@ -156,9 +161,15 @@ function getStats(param1, param2) {
       "stats-text"
     ).textContent = `${bigChoice} is ${durationMore} second${plural} longer than ${smallChoice}.`;
   } else if (currentMode == "popularity") {
-    document.getElementById(
-      "stats-text"
-    ).textContent = `You have listened to ${bigChoice} ${timesMore} more than ${smallChoice}.`;
+    if ((usePercent = true)) {
+      document.getElementById(
+        "stats-text"
+      ).textContent = `You have listened to ${bigChoice} ${percentMore} more than ${smallChoice}.`;
+    } else {
+      document.getElementById(
+        "stats-text"
+      ).textContent = `You have listened to ${bigChoice} ${timesMore} more than ${smallChoice}.`;
+    }
   }
 }
 

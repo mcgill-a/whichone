@@ -2,9 +2,15 @@ function stopGame() {
   stopped = true;
 
   if (!user.muteSound) {
-    var audio = new Audio("/static/resources/gameover.mp3");
-    audio.volume = 0.3;
-    audio.play();
+    if (userCurrentScore > 9) {
+      var audio = new Audio("/static/resources/gameover_10plus.mp3");
+      audio.volume = 0.3;
+      audio.play();
+    } else {
+      var audio = new Audio("/static/resources/gameover.mp3");
+      audio.volume = 0.3;
+      audio.play();
+    }
   }
 
   user["scores"].push(userCurrentScore);
@@ -175,6 +181,11 @@ function wrongAnswer(option) {
       getStats(option1[currentMode], option2[currentMode]);
     }
 
+    $("#data-popup").addClass("red-border");
+    setTimeout(function () {
+      $("#data-popup").removeClass("red-border");
+    }, 800);
+
     // hide the timer
     $(".down").css("opacity", 0);
 
@@ -233,6 +244,11 @@ function correctAnswer(option) {
     if (option1 != null && option2 != null) {
       getStats(option1[currentMode], option2[currentMode]);
     }
+
+    $("#data-popup").addClass("green-border");
+    setTimeout(function () {
+      $("#data-popup").removeClass("green-border");
+    }, 800);
 
     // hide the timer
     $(".down").css("opacity", 0);
