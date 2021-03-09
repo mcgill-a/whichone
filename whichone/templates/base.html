@@ -1,1 +1,39 @@
 <!DOCTYPE html>
+
+<head>
+    {% block head %}
+    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+    <title>Which One</title>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{url_for('static', filename='resources/favicon.ico')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Which One? A guessing/quiz game based on your spotify listening history.">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/skeleton/normalize.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/skeleton/skeleton.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/media.css')}}">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DJEB04N9V3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-DJEB04N9V3');
+    </script>
+    {% endblock head %}
+</head>
+
+{% block body %}
+
+{% block content %}
+{% endblock content %}
+
+{% endblock body%}
+
+</html>
