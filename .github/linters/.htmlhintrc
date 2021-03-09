@@ -4,7 +4,7 @@
   "attr-value-double-quotes": false,
   "attr-value-not-empty": false,
   "attr-no-duplication": true,
-  "doctype-first": true,
+  "doctype-first": false,
   "tag-pair": false,
   "tag-self-close": false,
   "spec-char-escape": true,
