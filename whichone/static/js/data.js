@@ -77,8 +77,8 @@ async function getAudioFeatures() {
         user["expire"] = new Date().getTime();
         localStorage.setItem(spotify_id, JSON.stringify(user));
       },
-      error: function (errMsg) {
-        console.log(errMsg);
+      error: function () {
+        console.error("API unavailable. Please try again later.");
         user["audio_features"] = {};
       },
       timeout: 3000,
@@ -96,7 +96,9 @@ async function request(key, callback) {
       user[key] = JSON.parse(data);
       user["expire"] = new Date().getTime();
       localStorage.setItem(spotify_id, JSON.stringify(user));
-      callback();
+      if (callback != null) {
+        callback();
+      }
     },
     error: function () {
       console.error("API unavailable. Please try again later.");
@@ -106,7 +108,7 @@ async function request(key, callback) {
 }
 
 async function getSpotifyData() {
-  await request("top_artists", compareArtists);
+  await request("top_artists", null);
   await request("top_tracks", getAudioFeatures);
 }
 
