@@ -118,10 +118,9 @@ function wrongAnswer(option) {
     if (option1 != null && option2 != null) {
       getStats(option1[currentMode], option2[currentMode]);
     }
-    wrongAnswerUI(option)
+    wrongAnswerUI(option);
   }
 }
-
 
 function correctAnswer(option) {
   if (!paused) {
@@ -343,7 +342,6 @@ function updateLives() {
     icon3.src = "/static/resources/spotify-icon-dark.png";
   }
 }
-
 
 function calculateScoreData(array) {
   let total = 0;
