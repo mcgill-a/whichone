@@ -1,36 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/form.js')}}"></script>
+{% endblock %}
 
-<head>
-    <title>Which One</title>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" href="{{url_for('static', filename='resources/favicon.ico')}}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Which One? A guessing/quiz game based on your spotify listening history.">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    {% block styles -%}
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
-    {% endblock %}
-</head>
-
-<body>
-    <div class="bgimg-1">
-        <div class="container">
-            <div class="center-display">
-                <h1 class="gotham-medium">Something went wrong!</h1>
-                <img class="error-gif" src="{{url_for('static', filename='resources/error.gif')}}" alt="Error reaction gif"/>
-                <a href="/" class="flex-horizontal">
-                    <button class="button-dark">Return</button>
-                </a>
-                <p class="gotham-small">Error code: {{code}}</p>
-            </div>
+{% block content %}
+<div class="bgimg-1">
+    <div class="container">
+        <div class="center-display">
+            <h1 class="gotham-medium">Something went wrong!</h1>
+            <img class="error-gif" src="{{url_for('static', filename='resources/error.gif')}}"
+                alt="Error reaction gif" />
+            <a href="/" class="flex-horizontal">
+                <button class="button-dark">Return</button>
+            </a>
+            <p class="gotham-small">Error code: {{code}}</p>
         </div>
     </div>
-    </div>
-</body>
-
-</html>
+</div>
+{% endblock %}
