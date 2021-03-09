@@ -317,7 +317,7 @@ function updateLives() {
   icon2 = document.getElementById("life2");
   icon3 = document.getElementById("life3");
 
-  if (Number.isNaN(lives) || lives > 3 || userCurrentScore - ps > 1) {
+  if (Number.isNaN(lives) || lives > MAX_LIVES || userCurrentScore - ps > 1) {
     cheaterMode = true;
   }
   if (cheaterMode) {
