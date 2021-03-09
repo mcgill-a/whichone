@@ -74,7 +74,6 @@ function showEndGameUI() {
   $("#options-popup").removeClass("disabled");
   $("#game-over-headline").append("!");
   $("#game-over-button-text").text("Play Again");
-
 }
 
 function getGameOverText() {
