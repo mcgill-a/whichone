@@ -9,18 +9,23 @@ var user = {
   modes: {
     dance: true,
     upbeat: true,
-    duration: true,
+    duration: true
   },
+};
+
+const MAX_LIVES = 3;
+const DEFAULT_COUNTDOWN_VALUE = 12;
+const sounds = {
+  correct: "/static/resources/correct.mp3",
+  wrong: "/static/resources/wrong.mp3",
+  gameover: "/static/resources/gameover.mp3",
+  gameover10: "/static/resources/gameover_10plus.mp3"
 };
 
 var option1 = null;
 var option2 = null;
 var currentMode = "popularity";
-
-const MAX_LIVES = 3;
-const DEFAULT_COUNTDOWN_VALUE = 12;
 var spotify_id = null;
-
 var lives = MAX_LIVES;
 var userCurrentScore = 0;
 var stopped = true;

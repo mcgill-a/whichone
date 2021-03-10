@@ -97,6 +97,14 @@ function getGameOverText() {
 }
 
 function wrongAnswerUI(option) {
+  $(".choice").css("cursor", "default");
+  $("#stat-status").text(getWrongAnswerText());
+  
+  if (lives <= 0) {
+    $("#stat-next").text("Finish");
+    $("#stat-next").append(" &#10132;");
+  }
+  
   $("#data-popup").addClass("red-border");
   setTimeout(function () {
     $("#data-popup").removeClass("red-border");
@@ -139,6 +147,8 @@ function wrongAnswerUI(option) {
 }
 
 function correctAnswerUI(option) {
+  $(".choice").css("cursor", "default");
+  $("#stat-status").text("Correct!");
   $("#data-popup").addClass("green-border");
   setTimeout(function () {
     $("#data-popup").removeClass("green-border");
@@ -295,4 +305,5 @@ function setMuteIcon() {
     document.getElementById("mute-icon").src =
       "/static/resources/volume-on.png";
   }
+  localStorage.setItem(spotify_id, JSON.stringify(user));
 }

@@ -5,7 +5,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#sign-out").on("click", function (event) {
+  $("#sign-out").on("click", function () {
     spotifyLogout();
   });
 
@@ -21,28 +21,12 @@ $(document).ready(function () {
     }
   });
 
-  $("#mute-icon").on("click", function (event) {
-    if (user.muteSound) {
-      user.muteSound = false;
-      document.getElementById("mute-icon").src =
-        "/static/resources/volume-on.png";
-    } else {
-      user.muteSound = true;
-      document.getElementById("mute-icon").src =
-        "/static/resources/volume-off.png";
-    }
-    localStorage.setItem(spotify_id, JSON.stringify(user));
+  $("#mute-icon").on("click", function () {
+    user.muteSound = !user.muteSound;
+    setMuteIcon();
   });
 
-  $("input[name=dance]").change(function () {
-    storeEnabledModes();
-  });
-
-  $("input[name=valence]").change(function () {
-    storeEnabledModes();
-  });
-
-  $("input[name=duration]").change(function () {
+  $("input[name=toggle]").change(function () {
     storeEnabledModes();
   });
 });

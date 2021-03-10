@@ -1,17 +1,12 @@
 function stopGame() {
   stopped = true;
 
-  if (!user.muteSound) {
-    if (userCurrentScore > 9) {
-      var audio = new Audio("/static/resources/gameover_10plus.mp3");
-      audio.volume = 0.3;
-      audio.play();
-    } else {
-      var audio = new Audio("/static/resources/gameover.mp3");
-      audio.volume = 0.3;
-      audio.play();
-    }
+  if (userCurrentScore > 9) {
+    triggerSound(sounds.gameover10);
+  } else {
+    triggerSound(sounds.gameover);
   }
+
 
   user["scores"].push(userCurrentScore);
 
@@ -96,24 +91,11 @@ function getWrongAnswerText() {
 function wrongAnswer(option) {
   if (!paused) {
     paused = true;
-    $(".choice").css("cursor", "default");
-    $("#stat-status").text(getWrongAnswerText());
-
-    if (!user.muteSound) {
-      var audio = new Audio("/static/resources/wrong.mp3");
-      audio.volume = 0.3;
-      audio.play();
-    }
+    triggerSound(sounds.wrong);
 
     // update the player lives
     lives -= 1;
     updateLives();
-
-    if (lives <= 0) {
-      $("#stat-next").text("Finish");
-      $("#stat-next").append(" &#10132;");
-    }
-
     // get the statistics for this round
     if (option1 != null && option2 != null) {
       getStats(option1[currentMode], option2[currentMode]);
@@ -125,14 +107,7 @@ function wrongAnswer(option) {
 function correctAnswer(option) {
   if (!paused) {
     paused = true;
-    $(".choice").css("cursor", "default");
-    $("#stat-status").text("Correct!");
-
-    if (!user.muteSound) {
-      var audio = new Audio("/static/resources/correct.mp3");
-      audio.volume = 0.3;
-      audio.play();
-    }
+    triggerSound(sounds.correct);
 
     userCurrentScore += 1;
     updateLives();
@@ -306,7 +281,6 @@ function randomMode() {
   } else if (currentMode == "duration") {
     compareTracks();
   } else {
-    // currentMode == "valence"
     compareTracks();
   }
 }
@@ -343,11 +317,11 @@ function updateLives() {
   }
 }
 
-function calculateScoreData(array) {
+function calculateScoreData() {
   let total = 0;
   let min = null;
   let max = null;
-  array.forEach((value) => {
+  user.scores.forEach((value) => {
     total += value;
 
     if (min == null || value < min) {
@@ -359,25 +333,28 @@ function calculateScoreData(array) {
     }
   });
 
-  let mean = total / array.length;
-
+  const mean = total / user.scores.length;
+  const stdev = Math.sqrt(user.scores.map((x) => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / user.scores.length);
   return {
     scores: user.scores,
-    min: min,
-    max: max,
-    mean: mean,
+    stdev,
+    min,
+    max,
+    mean,
   };
 }
 
-function getScoreData() {
-  let data = calculateScoreData(user.scores);
-  data.stdev = getStandardDeviation(data.scores, data.mean);
-  return data;
-}
+function triggerSound(src) {
+  if (!user.muteSound) {
+    const audio = new Audio(src);
+    
+    audio.onload = function () {
+      audio.volume = 0.3;
+      audio.play();
+    };
 
-function getStandardDeviation(array, mean) {
-  const n = array.length;
-  return Math.sqrt(
-    array.map((x) => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n
-  );
+    audio.onerror = function () {
+      console.error(`Audio source not found (${src})`);
+    };
+  }
 }
