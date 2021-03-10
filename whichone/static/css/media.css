@@ -90,11 +90,6 @@
         height: 22px;
     }
 
-    .span-icon {
-        height: 30px;
-        width: 30px;
-    }
-
     .down {
         margin: auto 3px;
     }
@@ -213,6 +208,12 @@
 }
 
 @media (max-width: 330px) {
+    
+    .span-icon {
+        height: 30px;
+        width: 30px;
+    }
+    
     .choice {
         width: 114px ;
         height: 209px ;
