@@ -108,7 +108,7 @@ function wrongAnswerUI(option) {
   $("#data-popup").addClass("red-border");
   setTimeout(function () {
     $("#data-popup").removeClass("red-border");
-  }, 800);
+  }, 1000);
 
   // hide the timer
   $(".down").css("opacity", 0);
@@ -116,16 +116,12 @@ function wrongAnswerUI(option) {
   // change text colour of the card they chose to red + append an X symbol
   if (option == "1") {
     $("#text1a").css("color", "red");
-    $("#text1a").append(" &#10008;");
   } else if (option == "2") {
     $("#text2a").css("color", "red");
-    $("#text2a").append(" &#10008;");
   } else {
     // they didn't choose either (time ran out), mark both wrong
     $("#text1a").css("color", "red");
-    $("#text1a").append(" &#10008;");
     $("#text2a").css("color", "red");
-    $("#text2a").append(" &#10008;");
   }
 
   // after 1 second, fade out cards
@@ -143,7 +139,7 @@ function wrongAnswerUI(option) {
       $("#stats-popup").removeClass("disabled");
       $("#stats-popup").css("opacity", 1);
     }, opacityDelay);
-  }, 500);
+  }, 1000);
 }
 
 function correctAnswerUI(option) {
@@ -152,7 +148,7 @@ function correctAnswerUI(option) {
   $("#data-popup").addClass("green-border");
   setTimeout(function () {
     $("#data-popup").removeClass("green-border");
-  }, 800);
+  }, 1000);
 
   // hide the timer
   $(".down").css("opacity", 0);
@@ -160,10 +156,8 @@ function correctAnswerUI(option) {
   // change text colour of the card they chose to green
   if (option == "1") {
     $("#text1a").css("color", "lightgreen");
-    $("#text1a").append(" &#10004;");
   } else if (option == "2") {
     $("#text2a").css("color", "lightgreen");
-    $("#text2a").append(" &#10004;");
   }
 
   // after 1 second, fade out cards
@@ -182,7 +176,7 @@ function correctAnswerUI(option) {
       $("#stats-popup").removeClass("disabled");
       $("#stats-popup").css("opacity", 1);
     }, opacityDelay);
-  }, 500);
+  }, 1000);
 }
 
 function updateMode(mode_intro, mode_text) {
