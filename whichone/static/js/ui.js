@@ -72,7 +72,11 @@ function showEndGameUI() {
   $(".time-display").addClass("disabled");
   $("#data-popup").addClass("disabled");
   $("#options-popup").removeClass("disabled");
-  $("#game-over-headline").append("!");
+
+  if (!$("#game-over-headline").text().endsWith("!")) {
+    $("#game-over-headline").append("!");
+  }
+  
   $("#game-over-button-text").text("Play Again");
 }
 
