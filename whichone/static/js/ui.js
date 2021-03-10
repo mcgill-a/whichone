@@ -76,7 +76,7 @@ function showEndGameUI() {
   if (!$("#game-over-headline").text().endsWith("!")) {
     $("#game-over-headline").append("!");
   }
-  
+
   $("#game-over-button-text").text("Play Again");
 }
 
