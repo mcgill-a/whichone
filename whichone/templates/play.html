@@ -6,6 +6,7 @@
 <script type="text/javascript" src="{{url_for('static', filename='js/ui.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/game.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/buttons.js')}}"></script>
 
 <!-- Prevent logout then returning back-->
 <script type="text/javascript">
@@ -28,7 +29,7 @@
                     <input type="image" id="github-icon" src="static/resources/github-icon.png" class="icon-github"
                         title="View the source code on Github" alt="View the source code on Github">
                 </a>
-                <a href="https://whichone.rocks/feedback" class="mid">
+                <a href="feedback" class="mid">
                     <input type="image" id="feedback-icon" src="static/resources/feedback_white.png"
                         class="icon-feedback" title="Submit a feedback form" alt="Submit a feedback form">
                 </a>
@@ -36,7 +37,7 @@
                     alt="Toggle sound effects" title="Toggle sound effects">
             </div>
             <button id="sign-out" class="button-dark right u-pull-right">
-                <a class="logout" href="https://whichone.rocks/logout">
+                <a class="logout" href="/logout">
                     <span class="span-container line-height-small">
                         <img class="span-icon-logout" alt="logout button"
                             src="{{url_for('static', filename='resources/spotify-icon.png')}}"></img>
@@ -57,7 +58,7 @@
     </div>
     <div class="section game-controls">
         <div class="choices">
-            <button id="button-choice-1" class="choice no-margin choice1" data-choice="1">
+            <button id="button-choice-1" class="choice no-margin choice1 disabled" data-choice="1">
                 <div class="choice-art">
                     <img id="image1" alt="album art photo cover">
                 </div>
@@ -65,7 +66,7 @@
                     <p class="gotham-small padding-5" id="text1a"></p>
                 </div>
             </button>
-            <div class="time-display no-margin">
+            <div class="time-display no-margin disabled">
                 <div class="down">
                     <div id="countdown" title="Choose before time runs out!">
                         <div id="countdown-number" aria-label="The current time remaining to select a card"></div>
@@ -84,24 +85,24 @@
                     </div>
                 </div>
             </div>
-            <div class="game-over row container-vert stats-display disabled">
-                <h2 class="gotham-medium limit-font-size-big text-thin"><span id="end_score">You Scored </span>
-                    <span id="end_score_value" class="text-orange"></span>!</h2>
+            <div class="game-over row container-vert stats-display">
+                <h2 id="game-over-headline" class="gotham-medium limit-font-size-big text-thin"><span id="end_score">Ready to play?</span>
+                    <span id="end_score_value" class="text-orange"></span></h2>
                 <h4 class="gotham-small" id="end_comment"></h4>
-                <div class="flex-horizontal">
+                <div class="flex-horizontal disabled enable-after-end">
                     <img id="fire_icon" alt="current score icon" title="High Score" class="span-icon-score"
                         src="{{url_for('static', filename='resources/trophy-gold.png')}}">
-                    <h4 class="gotham-small margin-top-30 margin-bottom-30" id="end_high_score">High score: 16</h4>
+                    <h4 class="gotham-small margin-top-30 margin-bottom-30" id="end_high_score"></h4>
                 </div>
                 <button id="play-again" class="play gotham-medium">
                     <div class="flex-horizontal">
-                        <img id="reset_icon" alt="play again icon" title="Current Score" class="span-icon-reset"
+                        <img id="reset_icon" alt="play again icon" title="Current Score" class="span-icon-reset disabled enable-after-end"
                             src="{{url_for('static', filename='resources/reset.png')}}">
-                        <span>Play Again</span>
+                        <span id="game-over-button-text">Start Game</span>
                     </div>
                 </button>
             </div>
-            <button id="button-choice-2" class="choice no-margin choice2" data-choice="2">
+            <button id="button-choice-2" class="choice no-margin choice2 disabled" data-choice="2">
                 <div class="choice-art">
                     <img id="image2" alt="album art photo cover">
                 </div>
@@ -113,7 +114,7 @@
 
     <div id="info" class="section game-info" data-user={{user_id}}>
         <div class="choices height-auto">
-            <div id="data-popup" class="row container-vert">
+            <div id="data-popup" class="row container-vert disabled">
                 <div class="flex-right">
                     <div id="score-mobile">
                         <h2 class="gotham-small text-white" id="current_score-m">0</h1>
@@ -158,10 +159,10 @@
 
 
             </div>
-            <div id="options-popup" class="row container-vert disabled">
+            <div id="options-popup" class="row container-vert">
                 <div class="container-stats">
                     <label class="switch" title="Toggle whether you are quizzed on danceability">
-                        <input type="checkbox" id="danceBox">
+                        <input name="toggle" type="checkbox" id="danceBox">
                         <span class="slider round"></span>
                     </label>
                     <h4 class="gotham-small small-label" id="danceToggle" color="white">Danceability</h4>
@@ -169,7 +170,7 @@
 
                 <div class="container-stats">
                     <label class="switch" title="Toggle whether you are quizzed on upbeatness">
-                        <input type="checkbox" id="valenceBox">
+                        <input name="toggle" type="checkbox" id="valenceBox">
                         <span class="slider round"></span>
                     </label>
                     <h4 class="gotham-small small-label" id="valenceToggle" color="white">Upbeatness</h4>
@@ -177,7 +178,7 @@
 
                 <div class="container-stats">
                     <label class="switch" title="Toggle whether you are quizzed on duration">
-                        <input type="checkbox" id="durationBox">
+                        <input name="toggle" type="checkbox" id="durationBox">
                         <span class="slider round"></span>
                     </label>
                     <h4 class="gotham-small small-label" id="durationToggle" color="white">Duration</h4>
