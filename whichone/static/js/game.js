@@ -14,7 +14,6 @@ function stopGame() {
 
   updateLives();
   lives = MAX_LIVES;
-  userCurrentScore = 0;
   hideChoices();
   showEndGameUI();
 }
@@ -39,6 +38,7 @@ function startGame() {
   stopped = false;
   paused = false;
   lives = 3;
+  userCurrentScore = 0;
   storeEnabledModes();
   randomMode();
   showChoices();
