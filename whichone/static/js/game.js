@@ -1,16 +1,10 @@
 function stopGame() {
   stopped = true;
 
-  if (!user.muteSound) {
-    if (userCurrentScore > 9) {
-      var audio = new Audio("/static/resources/gameover_10plus.mp3");
-      audio.volume = 0.3;
-      audio.play();
-    } else {
-      var audio = new Audio("/static/resources/gameover.mp3");
-      audio.volume = 0.3;
-      audio.play();
-    }
+  if (userCurrentScore > 9) {
+    triggerSound(sounds.gameover10);
+  } else {
+    triggerSound(sounds.gameover);
   }
 
   user["scores"].push(userCurrentScore);
@@ -20,39 +14,12 @@ function stopGame() {
 
   updateLives();
   lives = MAX_LIVES;
-  document.getElementById("end_score").textContent = "You scored ";
-  document.getElementById("end_score_value").textContent = userCurrentScore;
-  document.getElementById("end_comment").textContent = getGameOverText();
   userCurrentScore = 0;
   hideChoices();
-  $(".game-over").removeClass("disabled");
-  $(".choice").addClass("disabled");
-  $(".time-display").addClass("disabled");
-  $("#data-popup").addClass("disabled");
-  $("#options-popup").removeClass("disabled");
+  showEndGameUI();
 }
 
-function getGameOverText() {
-  if (cheaterMode) {
-    return `Looks like you enabled cheater mode..`;
-  } else if (userCurrentScore == 0) {
-    return `Better luck next time!`;
-  } else if (userCurrentScore == 1) {
-    return `At least that's more than 0!`;
-  } else if (userCurrentScore > 1 && userCurrentScore < 6) {
-    return `Tip: Choose the correct answers next time`;
-  } else if (userCurrentScore >= 6 && userCurrentScore < 12) {
-    return `Pretty good attempt! You're starting to get the hang of this`;
-  } else if (userCurrentScore >= 12 && userCurrentScore < 20) {
-    return `Nice one! `;
-  } else if (userCurrentScore >= 20 && userCurrentScore < 100) {
-    return `Congrats! You've nailed that one. Can you beat it again?`;
-  } else {
-    return `Something's wrong I can feel it`;
-  }
-}
-
-function startGame() {
+function showStartGameUI() {
   $(".game-over").addClass("disabled");
   $(".time-up").addClass("disabled");
   $(".time-display").removeClass("disabled");
@@ -63,56 +30,21 @@ function startGame() {
   $("#stat-next").append(" &#10132;");
   document.getElementById("current_score-m").textContent = userCurrentScore;
   document.getElementById("current_score-d").textContent = userCurrentScore;
-  stopped = false;
-  paused = false;
-  storeEnabledModes();
-  randomMode();
-  showChoices();
-  lives = 3;
-  updateLives();
   $(".choice").css("opacity", 1);
   $(".choice").css("cursor", "pointer");
   $(".down").css("opacity", 1);
+}
+
+function startGame() {
+  stopped = false;
+  paused = false;
+  lives = 3;
+  storeEnabledModes();
+  randomMode();
+  showChoices();
+  updateLives();
+  showStartGameUI();
   startCounter();
-}
-
-function calculateScoreData(array) {
-  let total = 0;
-  let min = null;
-  let max = null;
-  array.forEach((value) => {
-    total += value;
-
-    if (min == null || value < min) {
-      min = value;
-    }
-
-    if (max == null || value > max) {
-      max = value;
-    }
-  });
-
-  let mean = total / array.length;
-
-  return {
-    scores: user.scores,
-    min: min,
-    max: max,
-    mean: mean,
-  };
-}
-
-function getScoreData() {
-  let data = calculateScoreData(user.scores);
-  data.stdev = getStandardDeviation(data.scores, data.mean);
-  return data;
-}
-
-function getStandardDeviation(array, mean) {
-  const n = array.length;
-  return Math.sqrt(
-    array.map((x) => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n
-  );
 }
 
 // this will be run in an onclick when they select next question
@@ -158,82 +90,23 @@ function getWrongAnswerText() {
 function wrongAnswer(option) {
   if (!paused) {
     paused = true;
-    $(".choice").css("cursor", "default");
-    $("#stat-status").text(getWrongAnswerText());
-
-    if (!user.muteSound) {
-      var audio = new Audio("/static/resources/wrong.mp3");
-      audio.volume = 0.3;
-      audio.play();
-    }
+    triggerSound(sounds.wrong);
 
     // update the player lives
     lives -= 1;
     updateLives();
-
-    if (lives <= 0) {
-      $("#stat-next").text("Finish");
-      $("#stat-next").append(" &#10132;");
-    }
-
     // get the statistics for this round
     if (option1 != null && option2 != null) {
       getStats(option1[currentMode], option2[currentMode]);
     }
-
-    $("#data-popup").addClass("red-border");
-    setTimeout(function () {
-      $("#data-popup").removeClass("red-border");
-    }, 800);
-
-    // hide the timer
-    $(".down").css("opacity", 0);
-
-    // change text colour of the card they chose to red + append an X symbol
-    if (option == "1") {
-      $("#text1a").css("color", "red");
-      $("#text1a").append(" &#10008;");
-    } else if (option == "2") {
-      $("#text2a").css("color", "red");
-      $("#text2a").append(" &#10008;");
-    } else {
-      // they didn't choose either (time ran out), mark both wrong
-      $("#text1a").css("color", "red");
-      $("#text1a").append(" &#10008;");
-      $("#text2a").css("color", "red");
-      $("#text2a").append(" &#10008;");
-    }
-
-    // after 1 second, fade out cards
-    setTimeout(function () {
-      let opacityDelay = 125;
-      $(".choice").css("opacity", 0);
-      $(".choice").css("cursor", "default");
-      $(".down").css("opacity", 0);
-      $("#stats-popup").css("opacity", 0);
-
-      // after cards have faded, display the stats popup
-      setTimeout(function () {
-        $(".choice").addClass("disabled");
-        $(".time-display").addClass("disabled");
-        $("#stats-popup").removeClass("disabled");
-        $("#stats-popup").css("opacity", 1);
-      }, opacityDelay);
-    }, 500);
+    wrongAnswerUI(option);
   }
 }
 
 function correctAnswer(option) {
   if (!paused) {
     paused = true;
-    $(".choice").css("cursor", "default");
-    $("#stat-status").text("Correct!");
-
-    if (!user.muteSound) {
-      var audio = new Audio("/static/resources/correct.mp3");
-      audio.volume = 0.3;
-      audio.play();
-    }
+    triggerSound(sounds.correct);
 
     userCurrentScore += 1;
     updateLives();
@@ -244,41 +117,7 @@ function correctAnswer(option) {
     if (option1 != null && option2 != null) {
       getStats(option1[currentMode], option2[currentMode]);
     }
-
-    $("#data-popup").addClass("green-border");
-    setTimeout(function () {
-      $("#data-popup").removeClass("green-border");
-    }, 800);
-
-    // hide the timer
-    $(".down").css("opacity", 0);
-
-    // change text colour of the card they chose to green
-    if (option == "1") {
-      $("#text1a").css("color", "lightgreen");
-      $("#text1a").append(" &#10004;");
-    } else if (option == "2") {
-      $("#text2a").css("color", "lightgreen");
-      $("#text2a").append(" &#10004;");
-    }
-
-    // after 1 second, fade out cards
-    setTimeout(function () {
-      hideDelay = 2000; // delay in ms
-      let opacityDelay = 125;
-      $(".choice").css("opacity", 0);
-      $(".choice").css("cursor", "default");
-      $(".down").css("opacity", 0);
-      $("#stats-popup").css("opacity", 0);
-
-      // after cards have faded, display the stats popup
-      setTimeout(function () {
-        $(".choice").addClass("disabled");
-        $(".time-display").addClass("disabled");
-        $("#stats-popup").removeClass("disabled");
-        $("#stats-popup").css("opacity", 1);
-      }, opacityDelay);
-    }, 500);
+    correctAnswerUI(option);
   }
 }
 
@@ -441,7 +280,6 @@ function randomMode() {
   } else if (currentMode == "duration") {
     compareTracks();
   } else {
-    // currentMode == "valence"
     compareTracks();
   }
 }
@@ -451,7 +289,7 @@ function updateLives() {
   icon2 = document.getElementById("life2");
   icon3 = document.getElementById("life3");
 
-  if (Number.isNaN(lives) || lives > 3 || userCurrentScore - ps > 1) {
+  if (Number.isNaN(lives) || lives > MAX_LIVES || userCurrentScore - ps > 1) {
     cheaterMode = true;
   }
   if (cheaterMode) {
@@ -475,5 +313,50 @@ function updateLives() {
     icon1.src = "/static/resources/spotify-icon-dark.png";
     icon2.src = "/static/resources/spotify-icon-dark.png";
     icon3.src = "/static/resources/spotify-icon-dark.png";
+  }
+}
+
+function calculateScoreData() {
+  let total = 0;
+  let min = null;
+  let max = null;
+  user.scores.forEach((value) => {
+    total += value;
+
+    if (min == null || value < min) {
+      min = value;
+    }
+
+    if (max == null || value > max) {
+      max = value;
+    }
+  });
+
+  const mean = total / user.scores.length;
+  const stdev = Math.sqrt(
+    user.scores.map((x) => Math.pow(x - mean, 2)).reduce((a, b) => a + b) /
+      user.scores.length
+  );
+  return {
+    scores: user.scores,
+    stdev,
+    min,
+    max,
+    mean,
+  };
+}
+
+function triggerSound(src) {
+  if (!user.muteSound) {
+    const audio = new Audio(src);
+
+    audio.onload = function () {
+      audio.volume = 0.3;
+      audio.play();
+    };
+
+    audio.onerror = function () {
+      console.error(`Audio source not found (${src})`);
+    };
   }
 }

@@ -13,17 +13,22 @@ var user = {
   },
 };
 
+const MAX_LIVES = 3;
+const DEFAULT_COUNTDOWN_VALUE = 12;
+const sounds = {
+  correct: "/static/resources/correct.mp3",
+  wrong: "/static/resources/wrong.mp3",
+  gameover: "/static/resources/gameover.mp3",
+  gameover10: "/static/resources/gameover_10plus.mp3",
+};
+
 var option1 = null;
 var option2 = null;
 var currentMode = "popularity";
-
-const MAX_LIVES = 3;
-const DEFAULT_COUNTDOWN_VALUE = 12;
 var spotify_id = null;
-
 var lives = MAX_LIVES;
 var userCurrentScore = 0;
-var stopped = false;
+var stopped = true;
 var paused = false;
 var cheaterMode = false;
 var countdownNumberElement = null;
@@ -32,57 +37,19 @@ var refreshIntervalId = null;
 var ps = 0;
 
 $(document).ready(function () {
-  $(".choice").on("click", function () {
-    if (!paused && !stopped) {
-      makeGuess($(this).data("choice"));
-    }
-  });
-
-  $("#sign-out").on("click", function (event) {
-    spotifyLogout();
-  });
-
-  $("#play-again").on("click", function () {
-    if (stopped) {
-      startGame();
-    }
-  });
-
-  $("#stat-next").on("click", function () {
-    if (!stopped) {
-      nextScreen();
-    }
-  });
-
-  $("#mute-icon").on("click", function (event) {
-    if (user.muteSound) {
-      user.muteSound = false;
-      document.getElementById("mute-icon").src =
-        "/static/resources/volume-on.png";
-    } else {
-      user.muteSound = true;
-      document.getElementById("mute-icon").src =
-        "/static/resources/volume-off.png";
-    }
-    localStorage.setItem(spotify_id, JSON.stringify(user));
-  });
-
   document.getElementById("mode_text").style.color = "#FFC789";
   countdownNumberElement = document.getElementById("countdown-number");
   countdownNumberElement.textContent = countdown;
   spotify_id = $("#info").data("user");
-  // if their spotify data exists in the browser
-  // use that instead of requesting new data
-  if (localDataFound()) {
-    // start with a random mode
-    initOptions();
-    randomMode();
-    startCounter();
-  } else {
-    initOptions();
+
+  // if the current user has spotify data
+  // in the local storage, user that
+  // instead of requesting new data
+  if (!localDataFound()) {
     getSpotifyData();
-    startCounter();
   }
+
+  initOptions();
   setMuteIcon();
 });
 

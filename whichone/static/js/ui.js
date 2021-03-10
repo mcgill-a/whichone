@@ -61,6 +61,130 @@ function hideChoices(scale = false) {
   $(".end-game").removeClass("hidden");
 }
 
+function showEndGameUI() {
+  document.getElementById("end_score").textContent = "You scored ";
+  document.getElementById("end_score_value").textContent = userCurrentScore;
+  document.getElementById("end_comment").textContent = getGameOverText();
+
+  $(".game-over").removeClass("disabled");
+  $(".enable-after-end").removeClass("disabled");
+  $(".choice").addClass("disabled");
+  $(".time-display").addClass("disabled");
+  $("#data-popup").addClass("disabled");
+  $("#options-popup").removeClass("disabled");
+  $("#game-over-headline").append("!");
+  $("#game-over-button-text").text("Play Again");
+}
+
+function getGameOverText() {
+  if (cheaterMode) {
+    return `Looks like you enabled cheater mode..`;
+  } else if (userCurrentScore == 0) {
+    return `Better luck next time!`;
+  } else if (userCurrentScore == 1) {
+    return `At least that's more than 0!`;
+  } else if (userCurrentScore > 1 && userCurrentScore < 6) {
+    return `Tip: Choose the correct answers next time`;
+  } else if (userCurrentScore >= 6 && userCurrentScore < 12) {
+    return `Pretty good attempt! You're starting to get the hang of this`;
+  } else if (userCurrentScore >= 12 && userCurrentScore < 20) {
+    return `Nice one! `;
+  } else if (userCurrentScore >= 20 && userCurrentScore < 100) {
+    return `Congrats! You've nailed that one. Can you beat it again?`;
+  } else {
+    return `Something's wrong I can feel it`;
+  }
+}
+
+function wrongAnswerUI(option) {
+  $(".choice").css("cursor", "default");
+  $("#stat-status").text(getWrongAnswerText());
+
+  if (lives <= 0) {
+    $("#stat-next").text("Finish");
+    $("#stat-next").append(" &#10132;");
+  }
+
+  $("#data-popup").addClass("red-border");
+  setTimeout(function () {
+    $("#data-popup").removeClass("red-border");
+  }, 800);
+
+  // hide the timer
+  $(".down").css("opacity", 0);
+
+  // change text colour of the card they chose to red + append an X symbol
+  if (option == "1") {
+    $("#text1a").css("color", "red");
+    $("#text1a").append(" &#10008;");
+  } else if (option == "2") {
+    $("#text2a").css("color", "red");
+    $("#text2a").append(" &#10008;");
+  } else {
+    // they didn't choose either (time ran out), mark both wrong
+    $("#text1a").css("color", "red");
+    $("#text1a").append(" &#10008;");
+    $("#text2a").css("color", "red");
+    $("#text2a").append(" &#10008;");
+  }
+
+  // after 1 second, fade out cards
+  setTimeout(function () {
+    let opacityDelay = 125;
+    $(".choice").css("opacity", 0);
+    $(".choice").css("cursor", "default");
+    $(".down").css("opacity", 0);
+    $("#stats-popup").css("opacity", 0);
+
+    // after cards have faded, display the stats popup
+    setTimeout(function () {
+      $(".choice").addClass("disabled");
+      $(".time-display").addClass("disabled");
+      $("#stats-popup").removeClass("disabled");
+      $("#stats-popup").css("opacity", 1);
+    }, opacityDelay);
+  }, 500);
+}
+
+function correctAnswerUI(option) {
+  $(".choice").css("cursor", "default");
+  $("#stat-status").text("Correct!");
+  $("#data-popup").addClass("green-border");
+  setTimeout(function () {
+    $("#data-popup").removeClass("green-border");
+  }, 800);
+
+  // hide the timer
+  $(".down").css("opacity", 0);
+
+  // change text colour of the card they chose to green
+  if (option == "1") {
+    $("#text1a").css("color", "lightgreen");
+    $("#text1a").append(" &#10004;");
+  } else if (option == "2") {
+    $("#text2a").css("color", "lightgreen");
+    $("#text2a").append(" &#10004;");
+  }
+
+  // after 1 second, fade out cards
+  setTimeout(function () {
+    hideDelay = 2000; // delay in ms
+    let opacityDelay = 125;
+    $(".choice").css("opacity", 0);
+    $(".choice").css("cursor", "default");
+    $(".down").css("opacity", 0);
+    $("#stats-popup").css("opacity", 0);
+
+    // after cards have faded, display the stats popup
+    setTimeout(function () {
+      $(".choice").addClass("disabled");
+      $(".time-display").addClass("disabled");
+      $("#stats-popup").removeClass("disabled");
+      $("#stats-popup").css("opacity", 1);
+    }, opacityDelay);
+  }, 500);
+}
+
 function updateMode(mode_intro, mode_text) {
   document.getElementById("mode_intro").textContent = mode_intro;
   document.getElementById("mode_text").textContent = mode_text;
@@ -161,7 +285,7 @@ function getStats(param1, param2) {
       "stats-text"
     ).textContent = `${bigChoice} is ${durationMore} second${plural} longer than ${smallChoice}.`;
   } else if (currentMode == "popularity") {
-    if ((usePercent = true)) {
+    if (usePercent) {
       document.getElementById(
         "stats-text"
       ).textContent = `You have listened to ${bigChoice} ${percentMore} more than ${smallChoice}.`;
@@ -181,4 +305,5 @@ function setMuteIcon() {
     document.getElementById("mute-icon").src =
       "/static/resources/volume-on.png";
   }
+  localStorage.setItem(spotify_id, JSON.stringify(user));
 }
