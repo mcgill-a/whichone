@@ -7,7 +7,6 @@ function stopGame() {
     triggerSound(sounds.gameover);
   }
 
-
   user["scores"].push(userCurrentScore);
 
   updateHighScore(userCurrentScore);
@@ -334,7 +333,10 @@ function calculateScoreData() {
   });
 
   const mean = total / user.scores.length;
-  const stdev = Math.sqrt(user.scores.map((x) => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / user.scores.length);
+  const stdev = Math.sqrt(
+    user.scores.map((x) => Math.pow(x - mean, 2)).reduce((a, b) => a + b) /
+      user.scores.length
+  );
   return {
     scores: user.scores,
     stdev,
@@ -347,7 +349,7 @@ function calculateScoreData() {
 function triggerSound(src) {
   if (!user.muteSound) {
     const audio = new Audio(src);
-    
+
     audio.onload = function () {
       audio.volume = 0.3;
       audio.play();

@@ -9,7 +9,7 @@ var user = {
   modes: {
     dance: true,
     upbeat: true,
-    duration: true
+    duration: true,
   },
 };
 
@@ -19,7 +19,7 @@ const sounds = {
   correct: "/static/resources/correct.mp3",
   wrong: "/static/resources/wrong.mp3",
   gameover: "/static/resources/gameover.mp3",
-  gameover10: "/static/resources/gameover_10plus.mp3"
+  gameover10: "/static/resources/gameover_10plus.mp3",
 };
 
 var option1 = null;

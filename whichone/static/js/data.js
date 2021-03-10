@@ -103,15 +103,14 @@ async function request(key) {
       error: function (error) {
         reject(error);
       },
-    })
-  })
+    });
+  });
 }
 
 async function getSpotifyData() {
-  request("top_artists")
-    .catch(() => {
-      console.error("API unavailable. Please try again later.");
-    });
+  request("top_artists").catch(() => {
+    console.error("API unavailable. Please try again later.");
+  });
 
   request("top_tracks")
     .then(() => {

@@ -99,12 +99,12 @@ function getGameOverText() {
 function wrongAnswerUI(option) {
   $(".choice").css("cursor", "default");
   $("#stat-status").text(getWrongAnswerText());
-  
+
   if (lives <= 0) {
     $("#stat-next").text("Finish");
     $("#stat-next").append(" &#10132;");
   }
-  
+
   $("#data-popup").addClass("red-border");
   setTimeout(function () {
     $("#data-popup").removeClass("red-border");
