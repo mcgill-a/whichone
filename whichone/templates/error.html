@@ -2,7 +2,6 @@
 {% block head %}
 {{ super() }}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/form.js')}}"></script>
 {% endblock %}
 
 {% block content %}
@@ -12,7 +11,7 @@
             <h1 class="gotham-medium">Something went wrong!</h1>
             <img class="error-gif" src="{{url_for('static', filename='resources/error.gif')}}"
                 alt="Error reaction gif" />
-            <a href="/" class="flex-horizontal">
+            <a href="https://whichone.rocks/" class="flex-horizontal">
                 <button class="button-dark">Return</button>
             </a>
             <p class="gotham-small">Error code: {{code}}</p>
