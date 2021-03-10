@@ -349,12 +349,10 @@ function calculateScoreData() {
 function triggerSound(src) {
   if (!user.muteSound) {
     const audio = new Audio(src);
-
-    audio.onload = function () {
+    audio.oncanplay = function() {
       audio.volume = 0.3;
       audio.play();
-    };
-
+    }
     audio.onerror = function () {
       console.error(`Audio source not found (${src})`);
     };
