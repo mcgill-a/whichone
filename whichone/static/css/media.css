@@ -208,6 +208,12 @@
 }
 
 @media (max-width: 330px) {
+    
+    .span-icon {
+        width: 32px;
+        height: 32px;
+    }
+    
     .choice {
         width: 114px ;
         height: 209px ;
