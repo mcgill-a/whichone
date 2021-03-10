@@ -90,6 +90,11 @@
         height: 22px;
     }
 
+    .span-icon {
+        height: 30px;
+        width: 30px;
+    }
+
     .down {
         margin: auto 3px;
     }
