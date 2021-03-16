@@ -31,7 +31,6 @@ class playPage(basePage):
         assert super().checkButtonDisplayed(*self.playAgainButton_loc)
 
     def playGame(self):
-        time.sleep(1)
         self.playAgain()
         highScore_1 = self.getHighScore()
         self.checkButtons()
@@ -77,11 +76,13 @@ class playPage(basePage):
         assert lives_1 != lives_2
 
     def checkLoseGame(self):
+        time.sleep(0.5)
         self.driver.execute_script('lives = 1; wrongAnswer();')
         super().clickElement(*self.nextQuestionButton_loc)
         assert super().checkButtonDisplayed(*self.playAgainButton_loc)
         
     def playAgain(self):
+        time.sleep(1)
         super().clickElement(*self.playAgainButton_loc)
         assert super().checkButtonDisplayed(*self.leftChoiceButton_loc)
         assert self.getCurrentScore() == "0"

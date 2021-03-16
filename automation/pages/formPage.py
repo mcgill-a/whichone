@@ -20,12 +20,12 @@ class formPage(basePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.feedbackURL = "/feedback"
-    
+
     def feedbackForm(self):
         play_Page = playPage(self.driver)
         play_Page.goToFeedback()
         self.checkPage()
-        self.testForm("test@sl.com", "hello, this is a test form")
+        #self.testForm("test@sl.com", "hello, this is a test form")
         self.backToGame()
         play_Page.checkPage()
 
@@ -41,6 +41,7 @@ class formPage(basePage):
         super().open(self.feedbackURL)
 
     def backToGame(self):
+        time.sleep(0.5)
         super().clickElement(*self.backToGameButton_loc)
 
 
