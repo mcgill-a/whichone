@@ -3,7 +3,7 @@ import uuid
 from flask import render_template, redirect, request, url_for, json, jsonify
 from flask_session import Session
 from werkzeug.exceptions import HTTPException
-from whichone import application, session
+from whichone import app, session, limiter
 import whichone.spotipy as spotipy
 
 caches_folder = './.spotify_caches/'
@@ -16,7 +16,27 @@ def session_cache_path():
     return caches_folder + session.get('uuid') 
 
 
-@application.route('/')
+def spotify_login_required(function):
+    """
+    Spotify login detection decorator
+    """
+    def wrap(*args, **kwargs):
+        cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
+        auth_manager = spotipy.oauth2.SpotifyOAuth(
+            client_id=app.config['SPOTIFY_CLIENT_ID'],
+            client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
+            redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
+            cache_handler=cache_handler)
+        if not auth_manager.validate_token(cache_handler.get_cached_token()):
+            return redirect('/')
+        else:
+            spotify = spotipy.Spotify(auth_manager=auth_manager)
+            return function(auth_manager, spotify)
+    wrap.__name__ = function.__name__
+    return wrap
+
+
+@app.route('/')
 def index():
     if not session.get('uuid'):
         # Step 1. Visitor is unknown, give random ID
@@ -24,9 +44,9 @@ def index():
 
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=application.config['SPOTIFY_CLIENT_ID'],
-        client_secret=application.config['SPOTIFY_CLIENT_SECRET'],
-        redirect_uri=application.config['SPOTIFY_REDIRECT_URI'],
+        client_id=app.config['SPOTIFY_CLIENT_ID'],
+        client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
+        redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
         scope='user-top-read',
         cache_handler=cache_handler,
         show_dialog=True)
@@ -44,87 +64,57 @@ def index():
 
     # Step 4. Signed in, display data
     spotify = spotipy.Spotify(auth_manager=auth_manager)
-    return redirect('https://whichone.rocks/play')
+    return redirect('/play')
 
 
-@application.route('/play')
-def play():
-    cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
-    auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=application.config['SPOTIFY_CLIENT_ID'],
-        client_secret=application.config['SPOTIFY_CLIENT_SECRET'],
-        redirect_uri=application.config['SPOTIFY_REDIRECT_URI'],
-        cache_handler=cache_handler)
-    if not auth_manager.validate_token(cache_handler.get_cached_token()):
-        return redirect('/')
+@app.route('/play')
+@spotify_login_required
+def play(auth_manager, spotify):
     return render_template('play.html', user_id=auth_manager.client_id)
 
-@application.route('/feedback')
+@app.route('/feedback')
 def form():
     return render_template('feedback.html')
 
-@application.route('/logout')
+@app.route('/logout')
 def sign_out():
     try:
         # Remove the CACHE file (.cache-test) so that a new user can authorize.
         os.remove(session_cache_path())
         session.clear()
     except OSError as e:
-        pass
-    return redirect('https://whichone.rocks')
+        print ("Error: %s - %s." % (e.filename, e.strerror))
+    return redirect('/')
 
 
-@application.route('/top_tracks')
-def top_tracks():
-    cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
-    auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=application.config['SPOTIFY_CLIENT_ID'],
-        client_secret=application.config['SPOTIFY_CLIENT_SECRET'],
-        redirect_uri=application.config['SPOTIFY_REDIRECT_URI'],
-        cache_handler=cache_handler)
-    if not auth_manager.validate_token(cache_handler.get_cached_token()):
-        return redirect('/')
-    spotify = spotipy.Spotify(auth_manager=auth_manager)
+@app.route('/top_tracks')
+@spotify_login_required
+def top_tracks(auth_manager, spotify):
     tracks = spotify.current_user_top_tracks(time_range="long_term", limit=50)
     tracks2 = spotify.current_user_top_tracks(time_range="long_term", limit=50, offset=49)
-    if tracks is not None and tracks2 is not None:
+    if tracks and tracks2:
         tracks['items'].extend(tracks2['items'][1:])
         return json.dumps(tracks['items'])
     return json.dumps([]), 204
 
-@application.route('/top_artists')
-def top_artists():
-    cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
-    auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=application.config['SPOTIFY_CLIENT_ID'],
-        client_secret=application.config['SPOTIFY_CLIENT_SECRET'],
-        redirect_uri=application.config['SPOTIFY_REDIRECT_URI'],
-        cache_handler=cache_handler)
-    if not auth_manager.validate_token(cache_handler.get_cached_token()):
-        return redirect('/')
-    spotify = spotipy.Spotify(auth_manager=auth_manager)
+@app.route('/top_artists')
+@spotify_login_required
+def top_artists(auth_manager, spotify):
     artists = spotify.current_user_top_artists(time_range="long_term", limit=50)
     artists2 = spotify.current_user_top_artists(time_range="long_term", limit=50, offset=49)
-    if artists is not None and artists2 is not None:
+    if artists and artists2:
         artists['items'].extend(artists2['items'][1:])
         return json.dumps(artists['items'])
     return json.dumps([]), 204
 
 
-@application.route('/audio_features', methods=['POST'])
-def audio_features():
+@app.route('/audio_features', methods=['POST'])
+@spotify_login_required
+def audio_features(auth_manager, spotify):
     if request.method == 'POST':
         data = request.get_json()
+        print(data)
         if data != None and "track_ids" in data:
-            cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
-            auth_manager = spotipy.oauth2.SpotifyOAuth(
-                client_id=application.config['SPOTIFY_CLIENT_ID'],
-                client_secret=application.config['SPOTIFY_CLIENT_SECRET'],
-                redirect_uri=application.config['SPOTIFY_REDIRECT_URI'],
-                cache_handler=cache_handler)
-            if not auth_manager.validate_token(cache_handler.get_cached_token()):
-                return redirect('/')
-            spotify = spotipy.Spotify(auth_manager=auth_manager)
             features = spotify.audio_features(tracks=data["track_ids"])
             if not features is None:
                 return json.dumps(features), 200
@@ -132,9 +122,11 @@ def audio_features():
     return "Bad Request", 400
 
 
-@application.errorhandler(Exception)
+@app.errorhandler(Exception)
 def handle_error(e):
     code = 500
     if isinstance(e, HTTPException):
         code = e.code
+    print(code)
+    print(str(e))
     return render_template('error.html', error=str(e), code=code), code
