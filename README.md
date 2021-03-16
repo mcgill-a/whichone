@@ -53,10 +53,11 @@ python run.py --id $SPOTIFY_CLIENT_ID --secret $SPOTIFY_CLIENT_SECRET \
 
 ## Screenshots
 
-<img src="whichone/demo/more.jpg" width="80%">
-<img src="whichone/demo/upbeat.jpg" width="80%">
-<img src="whichone/demo/danceable.jpg" width="80%">
-<img src="whichone/demo/longer.jpg" width="80%">
+<img src="whichone/demo/landing.png" width="80%">
+<img src="whichone/demo/game.png" width="80%">
+<img src="whichone/demo/stats.png" width="80%">
+<img src="whichone/demo/endgame.png" width="80%">
+<img src="whichone/demo/feedback.png" width="80%">
 
 ## Contributors
 
