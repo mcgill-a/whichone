@@ -92,3 +92,15 @@ class playPage(basePage):
 
     def getHighScore(self):
         return super().findElement(*self.highScore_loc).text
+
+    def persistenceCheck(self): #checking that cookies persist and local storage is cached
+        super().open(self.playURL)
+        self.checkPage()
+        checkScore_1 = self.getHighScore()
+        self.driver.get("https://www.bing.com")
+        super().open(self.playURL)
+        self.checkPage()
+        checkScore_2 = self.getHighScore()
+        print(checkScore_1)
+        print(checkScore_2)
+        assert checkScore_2 == checkScore_1

@@ -39,9 +39,9 @@ class Test_1(BasicTest):
         feedbackForm.feedbackForm()
         assert 1==2
     
-    @pytest.mark.dependency(name = "persist", depends=["feedback"])
+    @pytest.mark.dependency(name = "persist")
     def test_persistance(self):
-        persistTest = landingPage(self.driver)
+        persistTest = playPage(self.driver)
         persistTest.persistenceCheck()
     
 
