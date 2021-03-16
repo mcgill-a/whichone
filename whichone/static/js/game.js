@@ -19,7 +19,6 @@ function stopGame() {
 }
 
 function showStartGameUI() {
-
   document.getElementById("current_score-m").textContent = userCurrentScore;
   document.getElementById("current_score-d").textContent = userCurrentScore;
   countdownNumberElement = document.getElementById("countdown-number");

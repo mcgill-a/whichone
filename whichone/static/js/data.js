@@ -7,7 +7,7 @@ function isLocalDataExpired(storedTimestamp, currentTimestamp, expirationTime) {
   return currentTimestamp - storedTimestamp > expirationTime;
 }
 
-const isBoolean = val => 'boolean' === typeof val;
+const isBoolean = (val) => "boolean" === typeof val;
 
 function getLocalData(user_id) {
   // get data from local storage instead of the web server
@@ -41,16 +41,16 @@ async function post_request(url, track_ids) {
       type: "POST",
       url,
       data: JSON.stringify({
-        track_ids
+        track_ids,
       }),
       contentType: "application/json",
       dataType: "json",
       timeout: 5000,
       success: function (data) {
-        resolve(data)
+        resolve(data);
       },
       error: function (error) {
-        reject(error)
+        reject(error);
       },
     });
   });
@@ -77,27 +77,36 @@ function processAudioFeatures(audio_features) {
   audio_features.forEach((result) => {
     output[result["id"]] = result;
   });
-  return output
+  return output;
 }
 
-async function getSpotifyData(url_artists="/top_artists", url_tracks="/top_tracks", url_features="/audio_features") {
+async function getSpotifyData(
+  url_artists = "/top_artists",
+  url_tracks = "/top_tracks",
+  url_features = "/audio_features"
+) {
   return new Promise((resolve, reject) => {
     let data = {};
-    get_request(url_artists).then((result) => {
-      data.top_artists = JSON.parse(result);
-    }).then(() => {
-      get_request(url_tracks).then((result) => {
-        data.top_tracks = JSON.parse(result);
-        return track_ids = data.top_tracks.map(track => track.id);
-      }).then((track_ids) => {
-        post_request(url_features, track_ids).then((result) => {
-          data.audio_features = processAudioFeatures(result);
-          resolve(data);
-        });
-      }).catch((error) => {
-        reject(error)
+    get_request(url_artists)
+      .then((result) => {
+        data.top_artists = JSON.parse(result);
+      })
+      .then(() => {
+        get_request(url_tracks)
+          .then((result) => {
+            data.top_tracks = JSON.parse(result);
+            return (track_ids = data.top_tracks.map((track) => track.id));
+          })
+          .then((track_ids) => {
+            post_request(url_features, track_ids).then((result) => {
+              data.audio_features = processAudioFeatures(result);
+              resolve(data);
+            });
+          })
+          .catch((error) => {
+            reject(error);
+          });
       });
-    })
   });
 }
 

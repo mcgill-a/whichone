@@ -49,15 +49,17 @@ async function initData() {
     user = getLocalData(spotify_id);
   }
   if (isLocalDataExpired) {
-    getSpotifyData().then((data) => {
-      user.top_artists = data.top_artists;
-      user.top_tracks = data.top_tracks;
-      user.audio_features = data.audio_features;
-      user["expire"] = new Date().getTime();
-      localStorage.setItem(spotify_id, JSON.stringify(user));
-    }).catch((error) => {
-      console.error(error);
-    });
+    getSpotifyData()
+      .then((data) => {
+        user.top_artists = data.top_artists;
+        user.top_tracks = data.top_tracks;
+        user.audio_features = data.audio_features;
+        user["expire"] = new Date().getTime();
+        localStorage.setItem(spotify_id, JSON.stringify(user));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 }
 
