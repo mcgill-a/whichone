@@ -7,9 +7,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 class basePage(ABC):
-    def __init__(self, driver):
+    def __init__(self, driver, baseURL):
         self.driver = driver
-        self.baseURL = "http://127.0.0.1:8080"
+        self.baseURL = baseURL
 
     def open(self, URL):
         self.driver.get(self.baseURL + URL)
