@@ -3,7 +3,7 @@ import uuid
 from flask import render_template, redirect, request, url_for, json, jsonify
 from flask_session import Session
 from werkzeug.exceptions import HTTPException
-from whichone import app, session, limiter
+from whichone import application, session
 import whichone.spotipy as spotipy
 
 caches_folder = './.spotify_caches/'
@@ -36,7 +36,7 @@ def spotify_login_required(function):
     return wrap
 
 
-@app.route('/')
+@application.route('/')
 def index():
     if not session.get('uuid'):
         # Step 1. Visitor is unknown, give random ID
@@ -67,16 +67,16 @@ def index():
     return redirect('/play')
 
 
-@app.route('/play')
+@application.route('/play')
 @spotify_login_required
 def play(auth_manager, spotify):
     return render_template('play.html', user_id=auth_manager.client_id)
 
-@app.route('/feedback')
+@application.route('/feedback')
 def form():
     return render_template('feedback.html')
 
-@app.route('/logout')
+@application.route('/logout')
 def sign_out():
     try:
         # Remove the CACHE file (.cache-test) so that a new user can authorize.
@@ -87,7 +87,7 @@ def sign_out():
     return redirect('/')
 
 
-@app.route('/top_tracks')
+@application.route('/top_tracks')
 @spotify_login_required
 def top_tracks(auth_manager, spotify):
     tracks = spotify.current_user_top_tracks(time_range="long_term", limit=50)
@@ -97,7 +97,7 @@ def top_tracks(auth_manager, spotify):
         return json.dumps(tracks['items'])
     return json.dumps([]), 204
 
-@app.route('/top_artists')
+@application.route('/top_artists')
 @spotify_login_required
 def top_artists(auth_manager, spotify):
     artists = spotify.current_user_top_artists(time_range="long_term", limit=50)
@@ -108,12 +108,11 @@ def top_artists(auth_manager, spotify):
     return json.dumps([]), 204
 
 
-@app.route('/audio_features', methods=['POST'])
+@application.route('/audio_features', methods=['POST'])
 @spotify_login_required
 def audio_features(auth_manager, spotify):
     if request.method == 'POST':
         data = request.get_json()
-        print(data)
         if data != None and "track_ids" in data:
             features = spotify.audio_features(tracks=data["track_ids"])
             if not features is None:
@@ -122,11 +121,9 @@ def audio_features(auth_manager, spotify):
     return "Bad Request", 400
 
 
-@app.errorhandler(Exception)
+@application.errorhandler(Exception)
 def handle_error(e):
     code = 500
     if isinstance(e, HTTPException):
         code = e.code
-    print(code)
-    print(str(e))
     return render_template('error.html', error=str(e), code=code), code
