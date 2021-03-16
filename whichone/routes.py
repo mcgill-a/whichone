@@ -23,9 +23,9 @@ def spotify_login_required(function):
     def wrap(*args, **kwargs):
         cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
         auth_manager = spotipy.oauth2.SpotifyOAuth(
-            client_id=app.config['SPOTIFY_CLIENT_ID'],
-            client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
-            redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
+            client_id=application.config['SPOTIFY_CLIENT_ID'],
+            client_secret=application.config['SPOTIFY_CLIENT_SECRET'],
+            redirect_uri=application.config['SPOTIFY_REDIRECT_URI'],
             cache_handler=cache_handler)
         if not auth_manager.validate_token(cache_handler.get_cached_token()):
             return redirect('/')
@@ -44,12 +44,14 @@ def index():
 
     cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path=session_cache_path())
     auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id=app.config['SPOTIFY_CLIENT_ID'],
-        client_secret=app.config['SPOTIFY_CLIENT_SECRET'],
-        redirect_uri=app.config['SPOTIFY_REDIRECT_URI'],
+        client_id=application.config['SPOTIFY_CLIENT_ID'],
+        client_secret=application.config['SPOTIFY_CLIENT_SECRET'],
+        redirect_uri=application.config['SPOTIFY_REDIRECT_URI'],
         scope='user-top-read',
         cache_handler=cache_handler,
         show_dialog=True)
+
+    
 
     if request.args.get("code"):
         # Step 3. Being redirected from Spotify auth page
@@ -126,5 +128,4 @@ def handle_error(e):
     code = 500
     if isinstance(e, HTTPException):
         code = e.code
-    print(e)
     return render_template('error.html', error=str(e), code=code), code
