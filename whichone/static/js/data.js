@@ -3,7 +3,7 @@ function isLocalDataAvailable() {
 }
 
 function isLocalDataExpired(storedTimestamp, currentTimestamp, expirationTime) {
-  // check if their spotify data is outdated
+  // check if their spotify data has expired
   return currentTimestamp - storedTimestamp > expirationTime;
 }
 

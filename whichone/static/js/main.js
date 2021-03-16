@@ -15,6 +15,7 @@ var user = {
 
 const MAX_LIVES = 3;
 const DEFAULT_COUNTDOWN_VALUE = 12;
+const EXPIRATION_TIME = 604800000; // 1 week (milliseconds)
 const sounds = {
   correct: "/static/resources/correct.mp3",
   wrong: "/static/resources/wrong.mp3",
@@ -38,23 +39,22 @@ var ps = 0;
 
 $(document).ready(function () {
   spotify_id = $("#info").data("user");
-
   initData();
   initOptions();
   setMuteIcon();
 });
 
-async function initData() {
+async function initData(currentTime=Date.now()) {
   if (isLocalDataAvailable()) {
     user = getLocalData(spotify_id);
   }
-  if (isLocalDataExpired) {
+  if (isLocalDataExpired(user.expire, currentTime, EXPIRATION_TIME)) {
     getSpotifyData()
       .then((data) => {
         user.top_artists = data.top_artists;
         user.top_tracks = data.top_tracks;
         user.audio_features = data.audio_features;
-        user["expire"] = new Date().getTime();
+        user["expire"] = currentTime;
         localStorage.setItem(spotify_id, JSON.stringify(user));
       })
       .catch((error) => {
