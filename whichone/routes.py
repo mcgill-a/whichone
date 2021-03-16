@@ -126,4 +126,5 @@ def handle_error(e):
     code = 500
     if isinstance(e, HTTPException):
         code = e.code
+    print(e)
     return render_template('error.html', error=str(e), code=code), code
