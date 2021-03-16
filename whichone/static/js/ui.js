@@ -100,7 +100,7 @@ function getGameOverText() {
   }
 }
 
-function wrongAnswerUI(option) {
+async function wrongAnswerUI(option) {
   $(".choice").css("cursor", "default");
   $("#stat-status").text(getWrongAnswerText());
 
@@ -128,22 +128,7 @@ function wrongAnswerUI(option) {
     $("#text2a").css("color", "red");
   }
 
-  // after 1 second, fade out cards
-  setTimeout(function () {
-    let opacityDelay = 125;
-    $(".choice").css("opacity", 0);
-    $(".choice").css("cursor", "default");
-    $(".down").css("opacity", 0);
-    $("#stats-popup").css("opacity", 0);
-
-    // after cards have faded, display the stats popup
-    setTimeout(function () {
-      $(".choice").addClass("disabled");
-      $(".time-display").addClass("disabled");
-      $("#stats-popup").removeClass("disabled");
-      $("#stats-popup").css("opacity", 1);
-    }, opacityDelay);
-  }, 1000);
+  transitionCardsOut();
 }
 
 function correctAnswerUI(option) {
@@ -164,23 +149,23 @@ function correctAnswerUI(option) {
     $("#text2a").css("color", "lightgreen");
   }
 
-  // after 1 second, fade out cards
-  setTimeout(function () {
-    hideDelay = 2000; // delay in ms
-    let opacityDelay = 125;
-    $(".choice").css("opacity", 0);
-    $(".choice").css("cursor", "default");
-    $(".down").css("opacity", 0);
-    $("#stats-popup").css("opacity", 0);
+  transitionCardsOut();
+}
 
-    // after cards have faded, display the stats popup
-    setTimeout(function () {
-      $(".choice").addClass("disabled");
-      $(".time-display").addClass("disabled");
-      $("#stats-popup").removeClass("disabled");
-      $("#stats-popup").css("opacity", 1);
-    }, opacityDelay);
-  }, 1000);
+async function transitionCardsOut(primaryDelay=1000, secondaryDelay=125) {
+  // after 1 second, fade out cards
+  await new Promise(resolve => setTimeout(resolve, primaryDelay));
+  $(".choice").css("opacity", 0);
+  $(".choice").css("cursor", "default");
+  $(".down").css("opacity", 0);
+  $("#stats-popup").css("opacity", 0);
+
+  // after cards have faded, display the stats popup
+  await new Promise(resolve => setTimeout(resolve, secondaryDelay));
+  $(".choice").addClass("disabled");
+  $(".time-display").addClass("disabled");
+  $("#stats-popup").removeClass("disabled");
+  $("#stats-popup").css("opacity", 1);
 }
 
 function updateMode(mode_intro, mode_text) {
