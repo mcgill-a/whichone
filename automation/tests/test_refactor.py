@@ -33,12 +33,13 @@ class Test_1(BasicTest):
         playGame = playPage(self.driver)
         playGame.playGame()
 
-    @pytest.mark.dependency(depends=["login"])
+    @pytest.mark.dependency(name = "feedback", depends=["login"])
     def test_form(self):
         feedbackForm = formPage(self.driver)
+        feedbackForm.feedbackForm()
         assert 1==2
 
-    @pytest.mark.dependency(name = "persist", depends=["gameplay"])
+    @pytest.mark.dependency(name = "persist", depends=["feedback"])
     def test_persistance(self):
         persistTest = landingPage(self.driver)
         persistTest.persistenceCheck()

@@ -37,7 +37,9 @@ class landingPage(basePage):
         checkScore_2 = play_Page.getHighScore()
         print(checkScore_1)
         print(checkScore_2)
-        assert checkScore_2 == checkScore_2
+        assert checkScore_2 == checkScore_1
+
+
 
 
         

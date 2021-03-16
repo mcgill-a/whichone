@@ -5,6 +5,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from pages.basePage import basePage
 
+import time
+
 class playPage(basePage):
     # Locators
     modeText_loc= (By.ID, "mode_text")
@@ -26,10 +28,11 @@ class playPage(basePage):
 
     def checkPage(self):
         assert self.playURL in super().getURL()
-        assert super().checkButtonDisplayed(*self.leftChoiceButton_loc)
+        assert super().checkButtonDisplayed(*self.playAgainButton_loc)
 
     def playGame(self):
-        assert super().findElement(*self.playAgainButton_loc).is_displayed() == False
+        time.sleep(1)
+        self.playAgain()
         highScore_1 = self.getHighScore()
         self.checkButtons()
         self.checkCorrectAnswer()
