@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from pages.basePage import basePage
 
+
 class spotifyPage(basePage):
     # Elements
 
@@ -22,5 +23,3 @@ class spotifyPage(basePage):
         super().findElement(*self.passwordField_loc).send_keys(password)
         super().clickElement(*self.spotifyLoginButton_loc)
         WebDriverWait(self.driver, 10).until(EC.title_contains("Which One"))
-
-        

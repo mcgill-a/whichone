@@ -8,6 +8,7 @@ from pages.playPage import playPage
 
 import time
 
+
 class formPage(basePage):
     # Locators
     emailInput_loc = (By.ID, "exampleEmailInput")
@@ -15,8 +16,6 @@ class formPage(basePage):
     submitButton_loc = (By.CLASS_NAME, "submit-feedback")
     backToGameButton_loc = (By.ID, "backToGame")
 
-
-    
     def __init__(self, driver):
         super().__init__(driver)
         self.feedbackURL = "/feedback"
@@ -43,8 +42,3 @@ class formPage(basePage):
     def backToGame(self):
         time.sleep(0.5)
         super().clickElement(*self.backToGameButton_loc)
-
-
-    
-
-        

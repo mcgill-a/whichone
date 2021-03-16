@@ -7,12 +7,13 @@ from pages.basePage import basePage
 from pages.spotifyPage import spotifyPage
 from pages.playPage import playPage
 
-class landingPage(basePage):
-    #Elements
 
-    #Locators
+class landingPage(basePage):
+    # Elements
+
+    # Locators
     loginButton_loc = (By.CLASS_NAME, "spotify-login")
-    
+
     def __init__(self, driver):
         super().__init__(driver)
         self.landingURL = "/"
@@ -28,7 +29,9 @@ class landingPage(basePage):
         play_Page = playPage(self.driver)
         play_Page.checkPage()
 
-    def persistenceCheck(self): #checking that cookies persist and local storage is cached
+    def persistenceCheck(
+        self,
+    ):  # checking that cookies persist and local storage is cached
         play_Page = playPage(self.driver)
         checkScore_1 = play_Page.getHighScore()
         self.driver.get("https://www.bing.com")
@@ -38,12 +41,3 @@ class landingPage(basePage):
         print(checkScore_1)
         print(checkScore_2)
         assert checkScore_2 == checkScore_1
-
-
-
-
-        
-        
-        
-        
-    
