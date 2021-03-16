@@ -152,16 +152,16 @@ function correctAnswerUI(option) {
   transitionCardsOut();
 }
 
-async function transitionCardsOut(primaryDelay=1000, secondaryDelay=125) {
+async function transitionCardsOut(primaryDelay = 1000, secondaryDelay = 125) {
   // after 1 second, fade out cards
-  await new Promise(resolve => setTimeout(resolve, primaryDelay));
+  await new Promise((resolve) => setTimeout(resolve, primaryDelay));
   $(".choice").css("opacity", 0);
   $(".choice").css("cursor", "default");
   $(".down").css("opacity", 0);
   $("#stats-popup").css("opacity", 0);
 
   // after cards have faded, display the stats popup
-  await new Promise(resolve => setTimeout(resolve, secondaryDelay));
+  await new Promise((resolve) => setTimeout(resolve, secondaryDelay));
   $(".choice").addClass("disabled");
   $(".time-display").addClass("disabled");
   $("#stats-popup").removeClass("disabled");
