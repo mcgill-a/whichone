@@ -66,7 +66,7 @@ def index():
 
     # Step 4. Signed in, display data
     spotify = spotipy.Spotify(auth_manager=auth_manager)
-    return redirect('/play')
+    return redirect('https://whichone.rocks/play')
 
 
 @application.route('/play')
@@ -86,7 +86,7 @@ def sign_out():
         session.clear()
     except OSError as e:
         print ("Error: %s - %s." % (e.filename, e.strerror))
-    return redirect('/')
+    return redirect('https://whichone.rocks/')
 
 
 @application.route('/top_tracks')
