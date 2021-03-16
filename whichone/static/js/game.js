@@ -19,6 +19,12 @@ function stopGame() {
 }
 
 function showStartGameUI() {
+
+  document.getElementById("current_score-m").textContent = userCurrentScore;
+  document.getElementById("current_score-d").textContent = userCurrentScore;
+  countdownNumberElement = document.getElementById("countdown-number");
+  countdownNumberElement.textContent = countdown;
+
   $(".game-over").addClass("disabled");
   $(".time-up").addClass("disabled");
   $(".time-display").removeClass("disabled");
@@ -27,8 +33,6 @@ function showStartGameUI() {
   $("#options-popup").addClass("disabled");
   $("#stat-next").text("Next question");
   $("#stat-next").append(" &#10132;");
-  document.getElementById("current_score-m").textContent = userCurrentScore;
-  document.getElementById("current_score-d").textContent = userCurrentScore;
   $(".choice").css("opacity", 1);
   $(".choice").css("cursor", "pointer");
   $(".down").css("opacity", 1);

@@ -1,103 +1,68 @@
-function localDataFound() {
+function isLocalDataAvailable() {
+  return localStorage.getItem(spotify_id) != null;
+}
+
+function isLocalDataExpired(storedTimestamp, currentTimestamp, expirationTime) {
+  // check if their spotify data is outdated
+  return currentTimestamp - storedTimestamp > expirationTime;
+}
+
+const isBoolean = val => 'boolean' === typeof val;
+
+function getLocalData(user_id) {
   // get data from local storage instead of the web server
-  let data = localStorage.getItem(spotify_id);
-  const EXPIRATION_TIME = 604800000; // 1 week (milliseconds)
+  let data = localStorage.getItem(user_id);
+  let local = JSON.parse(data);
 
-  if (data != null) {
-    user = JSON.parse(data);
-    // check if modes are present
-    let resetModes = false;
-    if (user.modes != null) {
-      if (
-        user.modes.dance == null ||
-        user.modes.upbeat == null ||
-        user.modes.duration == null
-      ) {
-        resetModes = true;
-      }
-    } else {
-      resetModes = true;
-    }
-
-    if (resetModes) {
-      user.modes = {
+  // check if modes are present and valid
+  if (local.modes != null) {
+    if (
+      !isBoolean(local.modes.dance) ||
+      !isBoolean(local.modes.upbeat) ||
+      !isBoolean(local.modes.duration)
+    ) {
+      local.modes = {
         dance: true,
         upbeat: true,
         duration: true,
       };
     }
-
-    if (user.high_score != null) {
-      if (Number.isNaN(user.high_score)) {
-        user.high_score = 0;
-      } else {
-        document.getElementById("high_score-m").textContent = user.high_score;
-        document.getElementById("high_score-d").textContent = user.high_score;
-      }
-    } else {
-      user.high_score = 0;
-    }
-
-    // check if their spotify data is outdated
-    if (user.expire != null) {
-      // If the expiration time has passed, we need to get new data instead of using the local storage
-      if (new Date().getTime() - new Date(user.expire) > EXPIRATION_TIME) {
-        return false;
-      }
-    } else {
-      return false;
-    }
-
-    return true;
-  } else {
-    return false;
   }
+
+  if (local.high_score == null || Number.isNaN(local.high_score)) {
+    local.high_score = 0;
+  }
+  return local;
 }
 
-async function getAudioFeatures() {
-  let trackIds = [];
-  if (user.top_tracks != null && user.top_tracks.length > 0) {
-    user.top_tracks.forEach((track) => {
-      trackIds.push(track.id);
-    });
-
+async function post_request(url, track_ids) {
+  return new Promise((resolve, reject) => {
     $.ajax({
       type: "POST",
-      url: "/audio_features",
+      url,
       data: JSON.stringify({
-        track_ids: trackIds,
+        track_ids
       }),
       contentType: "application/json",
       dataType: "json",
+      timeout: 5000,
       success: function (data) {
-        user["audio_features"] = {};
-        data.forEach((result) => {
-          user["audio_features"][result["id"]] = result;
-        });
-        user["expire"] = new Date().getTime();
-        localStorage.setItem(spotify_id, JSON.stringify(user));
+        resolve(data)
       },
-      error: function () {
-        console.error("API unavailable. Please try again later.");
-        user["audio_features"] = {};
+      error: function (error) {
+        reject(error)
       },
-      timeout: 3000,
     });
-  } else {
-    console.error("Audio features unavailable (no tracks loaded).");
-  }
+  });
 }
 
-async function request(key) {
+async function get_request(url) {
   return new Promise((resolve, reject) => {
     $.ajax({
       type: "GET",
-      url: "/" + key,
+      url,
       timeout: 5000,
       success: function (data) {
-        user[key] = JSON.parse(data);
-        user["expire"] = new Date().getTime();
-        localStorage.setItem(spotify_id, JSON.stringify(user));
         resolve(data);
       },
       error: function (error) {
@@ -107,18 +72,33 @@ async function request(key) {
   });
 }
 
-async function getSpotifyData() {
-  request("top_artists").catch(() => {
-    console.error("API unavailable. Please try again later.");
+function processAudioFeatures(audio_features) {
+  let output = {};
+  audio_features.forEach((result) => {
+    output[result["id"]] = result;
   });
+  return output
+}
 
-  request("top_tracks")
-    .then(() => {
-      getAudioFeatures();
+async function getSpotifyData(url_artists="/top_artists", url_tracks="/top_tracks", url_features="/audio_features") {
+  return new Promise((resolve, reject) => {
+    let data = {};
+    get_request(url_artists).then((result) => {
+      data.top_artists = JSON.parse(result);
+    }).then(() => {
+      get_request(url_tracks).then((result) => {
+        data.top_tracks = JSON.parse(result);
+        return track_ids = data.top_tracks.map(track => track.id);
+      }).then((track_ids) => {
+        post_request(url_features, track_ids).then((result) => {
+          data.audio_features = processAudioFeatures(result);
+          resolve(data);
+        });
+      }).catch((error) => {
+        reject(error)
+      });
     })
-    .catch(() => {
-      console.error("API unavailable. Please try again later.");
-    });
+  });
 }
 
 function storeEnabledModes() {

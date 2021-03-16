@@ -37,21 +37,29 @@ var refreshIntervalId = null;
 var ps = 0;
 
 $(document).ready(function () {
-  document.getElementById("mode_text").style.color = "#FFC789";
-  countdownNumberElement = document.getElementById("countdown-number");
-  countdownNumberElement.textContent = countdown;
   spotify_id = $("#info").data("user");
 
-  // if the current user has spotify data
-  // in the local storage, user that
-  // instead of requesting new data
-  if (!localDataFound()) {
-    getSpotifyData();
-  }
-
+  initData();
   initOptions();
   setMuteIcon();
 });
+
+async function initData() {
+  if (isLocalDataAvailable()) {
+    user = getLocalData(spotify_id);
+  }
+  if (isLocalDataExpired) {
+    getSpotifyData().then((data) => {
+      user.top_artists = data.top_artists;
+      user.top_tracks = data.top_tracks;
+      user.audio_features = data.audio_features;
+      user["expire"] = new Date().getTime();
+      localStorage.setItem(spotify_id, JSON.stringify(user));
+    }).catch((error) => {
+      console.error(error);
+    });
+  }
+}
 
 function initOptions() {
   var danceBox = document.getElementById("danceBox");
