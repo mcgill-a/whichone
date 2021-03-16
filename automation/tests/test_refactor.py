@@ -37,7 +37,6 @@ class Test_1(BasicTest):
     def test_form(self):
         feedbackForm = formPage(self.driver)
         feedbackForm.feedbackForm()
-        assert 1==2
     
     @pytest.mark.dependency(name = "persist")
     def test_persistance(self):
