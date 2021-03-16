@@ -13,7 +13,7 @@ class formPage(basePage):
     emailInput_loc = (By.ID, "exampleEmailInput")
     textInput_loc = (By.ID, "exampleMessage")
     submitButton_loc = (By.CLASS_NAME, "submit-feedback")
-    backToGameButton_loc = (By.PARTIAL_LINK_TEXT, "play")
+    backToGameButton_loc = (By.ID, "backToGame")
 
 
     
@@ -25,7 +25,7 @@ class formPage(basePage):
         play_Page = playPage(self.driver)
         play_Page.goToFeedback()
         self.checkPage()
-        #self.testForm("test@sl.com", "hello, this is a test form")
+        self.testForm("test@sl.com", "hello, this is a test form")
         self.backToGame()
         play_Page.checkPage()
 
