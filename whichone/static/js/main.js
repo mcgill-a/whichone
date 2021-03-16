@@ -44,7 +44,7 @@ $(document).ready(function () {
   setMuteIcon();
 });
 
-async function initData(currentTime=Date.now()) {
+async function initData(currentTime = Date.now()) {
   if (isLocalDataAvailable()) {
     user = getLocalData(spotify_id);
   }
