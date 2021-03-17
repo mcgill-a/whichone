@@ -7,12 +7,13 @@ from pages.basePage import basePage
 from pages.spotifyPage import spotifyPage
 from pages.playPage import playPage
 
-class landingPage(basePage):
-    #Elements
 
-    #Locators
+class landingPage(basePage):
+    # Elements
+
+    # Locators
     loginButton_loc = (By.CLASS_NAME, "spotify-login")
-    
+
     def __init__(self, driver, baseURL):
         super().__init__(driver)
         self.baseURL = baseURL

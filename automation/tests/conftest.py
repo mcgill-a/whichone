@@ -1,4 +1,7 @@
 import pytest
+import json
+from pathlib import Path
+
 from selenium import webdriver
 
 
@@ -13,10 +16,18 @@ def driver_init(request):
     yield
     web_driver.close()
 
+
 @pytest.fixture(scope="function")
 def test_data():
-    data = {
-        "email": "test@sl.com",
-        "text": "this is a test"
-    }
-    return data
+    filename = str(
+        Path(__file__).parent.parent.absolute() / "settings" / "formtest.json"
+    )
+    with open(filename) as json_file:
+        data = json.load(json_file)
+        """
+        data = {
+            "email": "test@sl.com",
+            "text": "this is a test"
+        }
+        """
+        return data
