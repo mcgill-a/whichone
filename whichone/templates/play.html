@@ -2,11 +2,14 @@
 {% block head %}
 {{ super() }}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--
+
 <script type="text/javascript" src="{{url_for('static', filename='js/data.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/ui.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/game.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/buttons.js')}}"></script>
+-->
 
 <!-- Prevent logout then returning back-->
 <script type="text/javascript">
@@ -187,4 +190,9 @@
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript" src="{{url_for('static', filename='js/data_mod.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/main_mod.js')}}"></script>
+
 {% endblock %}
