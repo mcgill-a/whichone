@@ -21,11 +21,11 @@ class formPage(basePage):
         self.baseURL = baseURL
         self.feedbackURL = f"{baseURL}/feedback"
 
-    def feedbackForm(self):
+    def feedbackForm(self, data):
         play_Page = playPage(self.driver, self.baseURL)
         play_Page.goToFeedback()
         self.checkPage()
-        self.testForm("test@sl.com", "hello, this is a test form")
+        self.testForm(data["email"], data["text"])
         self.backToGame()
         play_Page.checkPage()
 

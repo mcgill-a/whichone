@@ -38,9 +38,12 @@ class Test_1(BasicTest):
         playGame.playGame()
 
     @pytest.mark.dependency(name="feedback", depends=["login"])
-    def test_form(self):
+    def test_form(self, test_data):
+        data = test_data
+        print (data)
         feedbackForm = formPage(self.driver, baseURL)
-        feedbackForm.feedbackForm()
+        feedbackForm.feedbackForm(data)
+
 
     @pytest.mark.dependency(name="persist")
     def test_persistance(self):

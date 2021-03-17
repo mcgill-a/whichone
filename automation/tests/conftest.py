@@ -12,3 +12,11 @@ def driver_init(request):
     request.cls.driver = web_driver
     yield
     web_driver.close()
+
+@pytest.fixture(scope="function")
+def test_data():
+    data = {
+        "email": "test@sl.com",
+        "text": "this is a test"
+    }
+    return data
