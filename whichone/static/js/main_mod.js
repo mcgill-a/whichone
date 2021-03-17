@@ -6,17 +6,15 @@ const data = { user: null };
 Data(inData, data);
 console.log(data.user);
 
-
 // Game module dependencies
-const inGame = { data:data }
+const inGame = { data: data };
 // Game module exports
-const game = { }
+const game = {};
 Game(inGame, game);
 
 game.startGame();
 
 game.stopGame();
-
 
 /*
 const inB = { 
