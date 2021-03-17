@@ -7,10 +7,8 @@ function Data(input, output) {
 
   initialiseData();
 
-  output.storeEnabledModes = function storeEnabledModes(id = args.spotify_id) {
-    output.user.modes.dance = danceBox.checked;
-    output.user.modes.upbeat = valenceBox.checked;
-    output.user.modes.duration = durationBox.checked;
+  output.storeEnabledModes = function storeEnabledModes(toggle, id = args.spotify_id) {
+    output.user.modes[toggle.id] = toggle.checked;
     updateLocalUser(id);
   };
 
@@ -27,8 +25,8 @@ function Data(input, output) {
         scores: [],
         muteSound: false,
         modes: {
-          dance: true,
-          upbeat: true,
+          danceability: true,
+          valence: true,
           duration: true,
         },
       };
@@ -74,12 +72,12 @@ function Data(input, output) {
     if (local.modes !== null) {
       if (
         !isBoolean(local.modes.dance) ||
-        !isBoolean(local.modes.upbeat) ||
+        !isBoolean(local.modes.valence) ||
         !isBoolean(local.modes.duration)
       ) {
         local.modes = {
           dance: true,
-          upbeat: true,
+          valence: true,
           duration: true,
         };
       }
@@ -91,7 +89,7 @@ function Data(input, output) {
     return local;
   }
 
-  function post_request(url, track_ids) {
+  function post_request(url, track_ids, timeout = 5000) {
     return new Promise((resolve, reject) => {
       $.ajax({
         type: "POST",
@@ -101,7 +99,7 @@ function Data(input, output) {
         }),
         contentType: "application/json",
         dataType: "json",
-        timeout: 5000,
+        timeout,
         success: function (data) {
           resolve(data);
         },
@@ -112,12 +110,12 @@ function Data(input, output) {
     });
   }
 
-  function get_request(url) {
+  function get_request(url, timeout = 5000) {
     return new Promise((resolve, reject) => {
       $.ajax({
         type: "GET",
         url,
-        timeout: 5000,
+        timeout,
         success: function (data) {
           resolve(data);
         },

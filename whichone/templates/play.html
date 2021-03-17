@@ -136,11 +136,11 @@
                 </div>
 
                 <div class="flex-horizontal">
-                    <img id="life1" class="span-icon-small"
+                    <img id="life1" class="life span-icon-small"
                         src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 1">
-                    <img id="life2" class="span-icon-small"
+                    <img id="life2" class="life span-icon-small"
                         src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 2">
-                    <img id="life3" class="span-icon-small"
+                    <img id="life3" class="life span-icon-small"
                         src="{{url_for('static', filename='resources/spotify-icon.png')}}" alt="life 3">
                 </div>
 
@@ -165,7 +165,7 @@
             <div id="options-popup" class="row container-vert">
                 <div class="container-stats">
                     <label class="switch" title="Toggle whether you are quizzed on danceability">
-                        <input name="toggle" type="checkbox" id="danceBox">
+                        <input name="toggle" type="checkbox" id="danceability">
                         <span class="slider round"></span>
                     </label>
                     <h4 class="gotham-small small-label" id="danceToggle" color="white">Danceability</h4>
@@ -173,7 +173,7 @@
 
                 <div class="container-stats">
                     <label class="switch" title="Toggle whether you are quizzed on upbeatness">
-                        <input name="toggle" type="checkbox" id="valenceBox">
+                        <input name="toggle" type="checkbox" id="valence">
                         <span class="slider round"></span>
                     </label>
                     <h4 class="gotham-small small-label" id="valenceToggle" color="white">Upbeatness</h4>
@@ -181,7 +181,7 @@
 
                 <div class="container-stats">
                     <label class="switch" title="Toggle whether you are quizzed on duration">
-                        <input name="toggle" type="checkbox" id="durationBox">
+                        <input name="toggle" type="checkbox" id="duration">
                         <span class="slider round"></span>
                     </label>
                     <h4 class="gotham-small small-label" id="durationToggle" color="white">Duration</h4>
@@ -194,6 +194,8 @@
 
 <script type="text/javascript" src="{{url_for('static', filename='js/data_mod.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/game_mod.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/controller_mod.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/view_mod.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/main_mod.js')}}"></script>
 
 {% endblock %}

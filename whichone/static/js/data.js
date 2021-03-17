@@ -23,7 +23,7 @@ function getLocalData(user_id) {
     ) {
       local.modes = {
         dance: true,
-        upbeat: true,
+        valence: true,
         duration: true,
       };
     }

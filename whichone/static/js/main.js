@@ -73,12 +73,13 @@ function initOptions() {
   durationBox.checked = user.modes.duration;
 }
 
-function spotifyLogout() {
+async function spotifyLogout() {
   const url = "https://accounts.spotify.com/en/logout";
   const spotifyLogoutWindow = window.open(
     url,
     "Spotify Logout",
     "width=700,height=500,top=40,left=40"
   );
-  setTimeout(() => spotifyLogoutWindow.close(), 2000);
+  
+  await new Promise(() => setTimeout(() => spotifyLogoutWindow.close(), 2000));
 }
