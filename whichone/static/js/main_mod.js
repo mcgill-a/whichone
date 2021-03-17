@@ -6,6 +6,18 @@ const data = { user: null };
 Data(inData, data);
 console.log(data.user);
 
+
+// Game module dependencies
+const inGame = { data:data }
+// Game module exports
+const game = { }
+Game(inGame, game);
+
+game.startGame();
+
+game.stopGame();
+
+
 /*
 const inB = { 
     window,     // this is how you pass a host object to a module - never call a host object directly from your code 
