@@ -7,7 +7,10 @@ function Data(input, output) {
 
   initialiseData();
 
-  output.storeEnabledModes = function storeEnabledModes(toggle, id = args.spotify_id) {
+  output.storeEnabledModes = function storeEnabledModes(
+    toggle,
+    id = args.spotify_id
+  ) {
     output.user.modes[toggle.id] = toggle.checked;
     updateLocalUser(id);
   };

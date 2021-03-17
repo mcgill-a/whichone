@@ -80,6 +80,6 @@ async function spotifyLogout() {
     "Spotify Logout",
     "width=700,height=500,top=40,left=40"
   );
-  
+
   await new Promise(() => setTimeout(() => spotifyLogoutWindow.close(), 2000));
 }

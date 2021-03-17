@@ -5,8 +5,8 @@ function View(input, output) {
   const ICON_SOURCES = {
     ENABLED: "/static/resources/spotify-icon.png",
     DISABLED: "/static/resources/spotify-icon-dark.png",
-    CHEATER: "/static/resources/spotify-icon-red.png"
-  }
+    CHEATER: "/static/resources/spotify-icon-red.png",
+  };
 
   output.updateLifeIcons = function updateLifeIcons() {
     for (let i = 0; i++; i < icons.length) {
@@ -20,5 +20,5 @@ function View(input, output) {
         }
       }
     }
-  }
+  };
 }

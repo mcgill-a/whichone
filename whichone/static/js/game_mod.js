@@ -16,7 +16,7 @@ function Game(input, output) {
 
   output.startGame = function startGame() {
     console.log("Start game");
-    output.state = getDefaultState(stopped=false);
+    output.state = getDefaultState((stopped = false));
   };
 
   output.stopGame = function stopGame() {
@@ -26,11 +26,7 @@ function Game(input, output) {
 
   output.makeGuess = function makeGuess(choice) {
     console.log(choice);
-
-    
-
-
-  }
+  };
 
   output.spotifyLogout = function spotifyLogout() {
     const url = "https://accounts.spotify.com/en/logout";
@@ -39,21 +35,21 @@ function Game(input, output) {
       "Spotify Logout",
       "width=700,height=500,top=40,left=40"
     );
-  }
+  };
 
   function getRandomMode() {
-    const choiceArray = [modes.ARTIST_POPULARITY, modes.TRACK_POPULARITY]; 
-    if(args.data.user.modes) {
-      for (const [mode,enabled] of Object.entries(args.data.user.modes)) {
+    const choiceArray = [modes.ARTIST_POPULARITY, modes.TRACK_POPULARITY];
+    if (args.data.user.modes) {
+      for (const [mode, enabled] of Object.entries(args.data.user.modes)) {
         if (enabled) {
           choiceArray.push(mode);
         }
       }
     }
-    return choiceArray[Math.floor(Math.random() * choiceArray.length)]
+    return choiceArray[Math.floor(Math.random() * choiceArray.length)];
   }
 
-  function getDefaultState(stopped=true) {
+  function getDefaultState(stopped = true) {
     return {
       stopped,
       paused: false,

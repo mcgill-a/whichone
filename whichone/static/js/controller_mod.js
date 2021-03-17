@@ -9,40 +9,40 @@ function Controller(input, output) {
   const choices = args.document.querySelectorAll(".choice");
   const mode_toggles = args.document.querySelectorAll("input[name=toggle]");
 
-  sign_out.onclick = function() {
+  sign_out.onclick = function () {
     console.log("Sign out");
     args.game.spotifyLogout();
-  }
+  };
 
-  play_again.onclick = function() {
+  play_again.onclick = function () {
     if (args.game.state.stopped) {
       console.log("Play again");
       args.game.startGame();
     }
-  }
+  };
 
-  stat_next.onclick = function() {
+  stat_next.onclick = function () {
     if (!args.game.state.stopped) {
       args.game.nextScreen();
     }
-  }
+  };
 
-  mute_icon.onclick = function() {
+  mute_icon.onclick = function () {
     console.log("Update mute icon");
-  }
+  };
 
-  choices.forEach(choice => {
-    choice.onclick = function() {
+  choices.forEach((choice) => {
+    choice.onclick = function () {
       if (!args.game.state.paused && !args.game.state.stopped) {
-        args.game.makeGuess(choice.getAttribute("data-choice"))
+        args.game.makeGuess(choice.getAttribute("data-choice"));
         console.log("Make guess");
       }
-    }
+    };
   });
 
-  mode_toggles.forEach(toggle => {
-    toggle.onclick = function() {
+  mode_toggles.forEach((toggle) => {
+    toggle.onclick = function () {
       args.data.storeEnabledModes(toggle);
-    }
+    };
   });
 }
