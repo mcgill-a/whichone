@@ -16,12 +16,13 @@ class formPage(basePage):
     submitButton_loc = (By.CLASS_NAME, "submit-feedback")
     backToGameButton_loc = (By.ID, "backToGame")
 
-    def __init__(self, driver):
+    def __init__(self, driver, baseURL):
         super().__init__(driver)
-        self.feedbackURL = "/feedback"
+        self.baseURL = baseURL
+        self.feedbackURL = f"{baseURL}/feedback"
 
     def feedbackForm(self):
-        play_Page = playPage(self.driver)
+        play_Page = playPage(self.driver, self.baseURL)
         play_Page.goToFeedback()
         self.checkPage()
         self.testForm("test@sl.com", "hello, this is a test form")

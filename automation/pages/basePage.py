@@ -7,12 +7,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 class basePage(ABC):
-    def __init__(self, driver, baseURL):
+    def __init__(self, driver):
         self.driver = driver
-        self.baseURL = baseURL
 
     def open(self, URL):
-        self.driver.get(self.baseURL + URL)
+        self.driver.get(URL)
         WebDriverWait(self.driver, 10).until(EC.title_contains("Which One"))
 
     def findElement(self, *loc):

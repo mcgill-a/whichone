@@ -13,9 +13,10 @@ class landingPage(basePage):
     #Locators
     loginButton_loc = (By.CLASS_NAME, "spotify-login")
     
-    def __init__(self, driver):
+    def __init__(self, driver, baseURL):
         super().__init__(driver)
-        self.landingURL = "/"
+        self.baseURL = baseURL
+        self.landingURL = f"{baseURL}/"
 
     def load(self):
         super().open(self.landingURL)
@@ -25,5 +26,5 @@ class landingPage(basePage):
         super().clickElement(*self.loginButton_loc)
         spotify_Page = spotifyPage(self.driver)
         spotify_Page.login(username, password)
-        play_Page = playPage(self.driver)
+        play_Page = playPage(self.driver, self.baseURL)
         play_Page.checkPage()

@@ -19,9 +19,10 @@ class playPage(basePage):
     nextQuestionButton_loc = (By.ID, "stat-next")
     feedBackButton_loc = (By.ID, "feedback-icon")
 
-    def __init__(self, driver):
+    def __init__(self, driver, baseURL):
         super().__init__(driver)
-        self.playURL = "/play"
+        self.baseURL = baseURL
+        self.playURL = f"{baseURL}/play"
 
     def goToFeedback(self):
         super().clickElement(*self.feedBackButton_loc)
@@ -76,7 +77,7 @@ class playPage(basePage):
         assert lives_1 != lives_2
 
     def checkLoseGame(self):
-        time.sleep(0.5)
+        time.sleep(1)
         self.driver.execute_script("lives = 1; wrongAnswer();")
         super().clickElement(*self.nextQuestionButton_loc)
         assert super().checkButtonDisplayed(*self.playAgainButton_loc)
