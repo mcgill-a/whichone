@@ -18,6 +18,9 @@ function View(input, output) {
   const choice_2_text = args.document.getElementById("text2");
   const choice_2_image = args.document.getElementById("image2");
 
+  /* Countdown timer */
+  const counter = args.document.getElementById("countdown-number");
+
   /* End game */
   const end_score = document.getElementById("end_score");
   const end_comment = document.getElementById("end_comment");
@@ -74,6 +77,19 @@ function View(input, output) {
       console.error(`Audio source not found (${src})`);
     };
   };
+
+  output.updateCounter = function updateCounter(time) {
+    counter.textContent = time;
+    // TODO: if time < x, set outline border to red
+  }
+
+  output.showCounter = function showCounter() {
+
+  }
+
+  output.hideCounter = function hideCounter() {
+
+  }
 
   output.showStats = function showStats(mode, options, choice, answer) {
     $(".choice").css("cursor", "default");

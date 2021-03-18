@@ -78,28 +78,35 @@ function Game(input, output) {
   function stopGame() {
     console.log("Stop game");
     output.state.stopped = true;
-    if (output.state.lives >= 10) {
-      args.view.triggerSound(SOUNDS.GAMEOVER10);
-    } else {
-      args.view.triggerSound(SOUNDS.GAMEOVER);
+    if (args.data.isAudioEnabled()) {
+      if (output.state.lives >= 10) {
+        args.view.triggerSound(SOUNDS.GAMEOVER10);
+      } else {
+        args.view.triggerSound(SOUNDS.GAMEOVER);
+      }
     }
+    
 
     args.view.endGameTransition(output.state.score, output.state.cheaterMode);
   }
 
   function correctAnswer() {
-    console.log("correct");
     output.state.score++;
     if (output.state.score > output.state.highScore) {
       output.state.highScore = output.state.score;
     }
-    args.view.triggerSound(SOUNDS.CORRECT);
+    if (args.data.isAudioEnabled()) {
+      args.view.triggerSound(SOUNDS.CORRECT);
+    }
   }
 
   function incorrectAnswer() {
-    console.log("incorrect");
     output.state.lives--;
-    args.view.triggerSound(SOUNDS.INCORRECT);
+
+    if (args.data.isAudioEnabled()) {
+      args.view.triggerSound(SOUNDS.INCORRECT);
+    }
+
     args.view.updateLifeIcons(output.state.lives, output.state.cheaterMode);
   }
 
