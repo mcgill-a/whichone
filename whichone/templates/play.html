@@ -54,7 +54,7 @@
         <div class="row">
             <div class="twelve columns">
                 <h1 class="gotham-medium">
-                    <span id="mode_intro"></span><span id="mode_text" class="text-orange"></span><span id="question_mark"></span>
+                    <span id="mode_prefix" class="text-default"></span><span id="mode_text" class="text-orange"></span><span id="mode_suffix" class="text-default"></span>
                 </h1>
             </div>
         </div>
@@ -66,7 +66,7 @@
                     <img id="image1" alt="album art photo cover">
                 </div>
                 <div class="choice-title">
-                    <p class="gotham-small padding-5" id="text1a"></p>
+                    <p class="gotham-small padding-5" id="text1"></p>
                 </div>
             </button>
             <div class="time-display no-margin disabled">
@@ -110,7 +110,7 @@
                     <img id="image2" alt="album art photo cover">
                 </div>
                 <div class="choice-title">
-                    <p class="gotham-small padding-5" id="text2a"></p>
+                    <p class="gotham-small padding-5" id="text2"></p>
                 </div>
         </div>
     </div>
@@ -120,13 +120,13 @@
             <div id="data-popup" class="row container-vert disabled">
                 <div class="flex-right">
                     <div id="score-mobile">
-                        <h2 class="gotham-small text-white" id="current_score-m">0</h1>
+                        <h2 class="gotham-small text-white current-score" id="current_score-m">0</h1>
                             <img id="fire_icon_mob" alt="current score icon" title="Current Score"
                                 class="span-icon-score"
                                 src="{{url_for('static', filename='resources/fire-icon (2).png')}}">
                     </div>
                     <div id="score-desktop">
-                        <h2 class="gotham-small text-white margin-left-xs" id="current_score-d">0</h2>
+                        <h2 class="gotham-small text-white margin-left-xs current-score" id="current_score-d">0</h2>
                         <div class="flex-horizontal  container-score">
                             <img id="fire_icon" alt="current score icon" title="Current Score" class="span-icon-score"
                                 src="{{url_for('static', filename='resources/fire-icon (2).png')}}">
@@ -148,10 +148,10 @@
                     <div id="score-mobile">
                         <img id="high_icon_mob" alt="current score icon" title="High Score" class="span-icon-score"
                             src="{{url_for('static', filename='resources/trophy-gold.png')}}">
-                        <h2 class="gotham-small text-white" id="high_score-m">0</h1>
+                        <h2 class="gotham-small text-white high-score" id="high_score-m">0</h1>
                     </div>
                     <div id="score-desktop">
-                        <h2 class="gotham-small text-white margin-left-xs" id="high_score-d">0</h2>
+                        <h2 class="gotham-small text-white margin-left-xs high-score" id="high_score-d">0</h2>
                         <div class="flex-horizontal container-score">
                             <img id="high_icon" alt="current score icon" title="High Score" class="span-icon-score"
                                 src="{{url_for('static', filename='resources/trophy-gold.png')}}">

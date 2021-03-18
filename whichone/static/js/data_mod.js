@@ -2,12 +2,22 @@
 function Data(input, output) {
   const args = input;
   const EXPIRATION_TIME = 604800000; // 1 week (milliseconds)
-
   const isBoolean = (val) => "boolean" === typeof val;
 
   initialiseData();
 
-  output.storeEnabledModes = function storeEnabledModes(
+  output.isDataReady = function isDataReady() {
+    return  output.user.top_artists !== null &&
+            output.user.top_tracks !== null &&
+            output.audio_features !== null;
+  };
+
+  output.toggleMute = function toggleMute() {
+    output.user.muteSound = !output.user.muteSound;
+    updateLocalUser(args.spotify_id);
+  };
+
+  output.toggleMode = function toggleMode(
     toggle,
     id = args.spotify_id
   ) {
@@ -24,7 +34,7 @@ function Data(input, output) {
         top_tracks: null,
         audio_features: null,
         expire: 0,
-        high_score: 0,
+        highScore: 0,
         scores: [],
         muteSound: false,
         modes: {
@@ -86,8 +96,8 @@ function Data(input, output) {
       }
     }
 
-    if (local.high_score === null || Number.isNaN(local.high_score)) {
-      local.high_score = 0;
+    if (local.highScore === null || Number.isNaN(local.highScore)) {
+      local.highScore = 0;
     }
     return local;
   }

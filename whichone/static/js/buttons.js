@@ -27,6 +27,6 @@ $(document).ready(function () {
   });
 
   $("input[name=toggle]").change(function () {
-    storeEnabledModes();
+    toggleMode();
   });
 });

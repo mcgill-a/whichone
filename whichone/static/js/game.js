@@ -42,7 +42,7 @@ function startGame() {
   paused = false;
   lives = 3;
   userCurrentScore = 0;
-  storeEnabledModes();
+  toggleMode();
   randomMode();
   showChoices();
   updateLives();

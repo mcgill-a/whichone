@@ -596,6 +596,26 @@ svg circle {
     color: rgb(246, 197, 132);
 }
 
+.text-popularity {
+    color: rgb(255,199,137);
+}
+
+.text-default {
+    color: whitesmoke;
+}
+
+.text-danceable {
+    color: rgb(236,137,255);
+}
+
+.text-valence {
+    color: rgb(160,255,137);
+}
+
+.text-duration {
+    color: rgb(144,145,255);
+}
+
 .text-thin {
     font-weight: 400 !important;
 }

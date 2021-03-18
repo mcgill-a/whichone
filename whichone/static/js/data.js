@@ -110,7 +110,7 @@ async function getSpotifyData(
   });
 }
 
-function storeEnabledModes() {
+function toggleMode() {
   user.modes.dance = danceBox.checked;
   user.modes.upbeat = valenceBox.checked;
   user.modes.duration = durationBox.checked;

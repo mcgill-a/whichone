@@ -15,34 +15,30 @@ function Controller(input, output) {
   };
 
   play_again.onclick = function () {
-    if (args.game.state.stopped) {
-      console.log("Play again");
-      args.game.startGame();
-    }
+    console.log("Play again");
+    args.game.startGame();
   };
 
   stat_next.onclick = function () {
-    if (!args.game.state.stopped) {
-      args.game.nextScreen();
-    }
+    console.log("Next screen");
+    args.game.nextScreen();
   };
 
   mute_icon.onclick = function () {
-    console.log("Update mute icon");
+    args.data.toggleMute();
+    args.view.updateMuteIcon(args.data.user.muteSound);
   };
 
   choices.forEach((choice) => {
     choice.onclick = function () {
-      if (!args.game.state.paused && !args.game.state.stopped) {
-        args.game.makeGuess(choice.getAttribute("data-choice"));
-        console.log("Make guess");
-      }
+      console.log("Make guess");
+      args.game.makeGuess(choice.getAttribute("data-choice"));
     };
   });
 
   mode_toggles.forEach((toggle) => {
     toggle.onclick = function () {
-      args.data.storeEnabledModes(toggle);
+      args.data.toggleMode(toggle);
     };
   });
 }
