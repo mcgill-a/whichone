@@ -23,21 +23,21 @@ function View(input, output) {
   const end_comment = document.getElementById("end_comment");
 
   const ICONS = {
-    LIFE_ENABLED:   "/static/resources/spotify-icon.png",
-    LIFE_DISABLED:  "/static/resources/spotify-icon-dark.png",
-    LIFE_CHEATER:   "/static/resources/spotify-icon-red.png",
-    SOUND_ENABLED:  "/static/resources/volume-on.png",
+    LIFE_ENABLED: "/static/resources/spotify-icon.png",
+    LIFE_DISABLED: "/static/resources/spotify-icon-dark.png",
+    LIFE_CHEATER: "/static/resources/spotify-icon-red.png",
+    SOUND_ENABLED: "/static/resources/volume-on.png",
     SOUND_DISABLED: "/static/resources/volume-off.png",
   };
 
   output.showChoices = function showChoices() {
     sceneChoices();
-  }
+  };
 
   output.endGameTransition = function endGameTransition(score, cheaterMode) {
     sceneEndGame(score, cheaterMode);
-  }
-  
+  };
+
   output.updateScores = function updateScores(currentScore, highScore) {
     // scores are displayed in multiple places, update them all
     current_score.forEach((score) => {
@@ -45,7 +45,7 @@ function View(input, output) {
     });
     console.log(`High score ${highScore}`);
     console.log(high_score);
-    high_score.forEach(score => {
+    high_score.forEach((score) => {
       score.textContent = highScore;
     });
   };
@@ -73,21 +73,25 @@ function View(input, output) {
     audio.onerror = function () {
       console.error(`Audio source not found (${src})`);
     };
-  }
+  };
 
   output.showStats = function showStats(mode, options, choice, answer) {
     $(".choice").css("cursor", "default");
-    
+
     if (choice === answer) {
       $("#stat-status").text("Correct!");
       $("#data-popup").addClass("green-border");
-      setTimeout(function () {$("#data-popup").removeClass("green-border");}, 1000);
+      setTimeout(function () {
+        $("#data-popup").removeClass("green-border");
+      }, 1000);
       $(`#text${choice}`).addClass("text-correct");
     } else {
       $("#stat-status").text(getWrongAnswerText());
       $("#data-popup").addClass("red-border");
-      setTimeout(function () {$("#data-popup").removeClass("red-border");}, 1000);
-      
+      setTimeout(function () {
+        $("#data-popup").removeClass("red-border");
+      }, 1000);
+
       // if they didn't choose anything and the timer expired
       if (choice === "") {
         $(`#text1`).addClass("text-wrong");
@@ -102,7 +106,7 @@ function View(input, output) {
 
     // Transition scenes from the cards to the stats display
     sceneStats();
-  }
+  };
 
   output.updateMuteIcon = function updateMuteIcon(enabled) {
     if (enabled) {
@@ -144,10 +148,10 @@ function View(input, output) {
     mode_text.textContent = text;
     mode_suffix.textContent = suffix;
 
-    choice_1_text.textContent = options['1'].data.name;
-    choice_2_text.textContent = options['2'].data.name;
-    choice_1_text.classList.remove("text-wrong","text-correct");
-    choice_2_text.classList.remove("text-wrong","text-correct");
+    choice_1_text.textContent = options["1"].data.name;
+    choice_2_text.textContent = options["2"].data.name;
+    choice_1_text.classList.remove("text-wrong", "text-correct");
+    choice_2_text.classList.remove("text-wrong", "text-correct");
 
     if (mode === "artist_popularity") {
       choice_1_image.src = options["1"].data.images[1].url;
@@ -181,7 +185,7 @@ function View(input, output) {
     $(".choice").css("cursor", "default");
     $(".down").css("opacity", 0);
     $("#stats-popup").css("opacity", 0);
-  
+
     // after cards have faded, display the stats popup
     await new Promise((resolve) => setTimeout(resolve, secondaryDelay));
     $(".choice").addClass("disabled");

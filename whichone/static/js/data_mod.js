@@ -77,8 +77,8 @@ function Data(input, output) {
         danceability: true,
         valence: true,
         duration: true,
-      }
-    }
+      },
+    };
   }
 
   function getLocalData(id) {
