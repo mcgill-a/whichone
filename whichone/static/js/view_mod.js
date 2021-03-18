@@ -201,7 +201,6 @@ function View(input, output) {
     /* Other */
     next_question.textContent("Next question &#10132;");
     choice.classList.addClass("pointer");
-
   }
 
   async function sceneStats(primaryDelay = 1000, secondaryDelay = 125) {
