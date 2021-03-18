@@ -18,16 +18,24 @@ function View(input, output) {
   const choice_2_text = args.document.getElementById("text2");
   const choice_2_image = args.document.getElementById("image2");
 
-  const ICON_SOURCES = {
-    LIFE_ENABLED: "/static/resources/spotify-icon.png",
-    LIFE_DISABLED: "/static/resources/spotify-icon-dark.png",
-    LIFE_CHEATER: "/static/resources/spotify-icon-red.png",
-    SOUND_ENABLED: "/static/resources/volume-on.png",
-    SOUND_DISABLED:"/static/resources/volume-off.png",
+  /* End game */
+  const end_score = document.getElementById("end_score");
+  const end_comment = document.getElementById("end_comment");
+
+  const ICONS = {
+    LIFE_ENABLED:   "/static/resources/spotify-icon.png",
+    LIFE_DISABLED:  "/static/resources/spotify-icon-dark.png",
+    LIFE_CHEATER:   "/static/resources/spotify-icon-red.png",
+    SOUND_ENABLED:  "/static/resources/volume-on.png",
+    SOUND_DISABLED: "/static/resources/volume-off.png",
   };
 
-  output.startGameTransition = function startGameTransition() {
-    toggleStartGameClasses();
+  output.showChoices = function showChoices() {
+    sceneChoices();
+  }
+
+  output.endGameTransition = function endGameTransition(score, cheaterMode) {
+    sceneEndGame(score, cheaterMode);
   }
   
   output.updateScores = function updateScores(currentScore, highScore) {
@@ -35,39 +43,77 @@ function View(input, output) {
     current_score.forEach(score => {
       score.textContent = currentScore;
     });
-
+    console.log(`High score ${highScore}`);
+    console.log(high_score);
     high_score.forEach(score => {
       score.textContent = highScore;
     });
   }
 
   output.updateLifeIcons = function updateLifeIcons(lives, cheaterMode) {
-    for (let i = 0; i++; i < life_icons.length) {
+    for (let i = 0; i < life_icons.length; i++) {
       if (cheaterMode) {
-        life_icons[i].src = ICON_SOURCES.LIFE_CHEATER;
+        life_icons[i].src = ICONS.LIFE_CHEATER;
       } else {
         if (i < lives) {
-          life_icons[i].src = ICON_SOURCES.LIFE_ENABLED;
+          life_icons[i].src = ICONS.LIFE_ENABLED;
         } else {
-          life_icons[i].src = ICON_SOURCES.LIFE_DISABLED;
+          life_icons[i].src = ICONS.LIFE_DISABLED;
         }
       }
     }
   };
 
-  output.displayStats = function displayStats(mode, options, choice, answer) {
-    console.log("next screen");
+  output.triggerSound = function triggerSound(src) {
+    const audio = new Audio(src);
+    audio.oncanplay = function () {
+      audio.volume = 0.3;
+      audio.play();
+    };
+    audio.onerror = function () {
+      console.error(`Audio source not found (${src})`);
+    };
+  }
+
+  output.showStats = function showStats(mode, options, choice, answer) {
+    $(".choice").css("cursor", "default");
+    
+    if (choice === answer) {
+      $("#stat-status").text("Correct!");
+      $("#data-popup").addClass("green-border");
+      setTimeout(function () {$("#data-popup").removeClass("green-border");}, 1000);
+      $(`#text${choice}`).addClass("text-correct");
+    } else {
+      $("#stat-status").text(getWrongAnswerText());
+      $("#data-popup").addClass("red-border");
+      setTimeout(function () {$("#data-popup").removeClass("red-border");}, 1000);
+      
+      // if they didn't choose anything and the timer expired
+      if (choice === "") {
+        $(`#text1`).addClass("text-wrong");
+        $(`#text2`).addClass("text-wrong");
+      } else {
+        $(`#text${choice}`).addClass("text-wrong");
+      }
+    }
+
+    // hide the timer
+    $(".down").css("opacity", 0);
+
+    // Transition scenes from the cards to the stats display
+    sceneStats();
   }
 
   output.updateMuteIcon = function updateMuteIcon(enabled) {
     if (enabled) {
-      mute_icon.src = ICON_SOURCES.SOUND_ENABLED;
+      mute_icon.src = ICONS.SOUND_ENABLED;
     } else {
-      mute_icon.src = ICON_SOURCES.SOUND_DISABLED;
+      mute_icon.src = ICONS.SOUND_DISABLED;
     }
   }
 
   output.updateQuestion = function updateQuestion(mode, options) {
+    console.log(mode);
     let prefix = "";
     let text = "";
     let suffix = "?";
@@ -80,7 +126,7 @@ function View(input, output) {
       prefix = "Which track have you ";
       text = "listened to more"
       mode_text.className = "text-popularity";
-    } else if (mode === "dance") {
+    } else if (mode === "danceability") {
       prefix = "Which track is more ";
       text = "danceable"
       mode_text.className = "text-danceable";
@@ -97,9 +143,11 @@ function View(input, output) {
     mode_prefix.textContent = prefix;
     mode_text.textContent = text; 
     mode_suffix.textContent = suffix;
-    console.log(options);
+
     choice_1_text.textContent = options['1'].data.name;
     choice_2_text.textContent = options['2'].data.name;
+    choice_1_text.classList.remove("text-wrong","text-correct");
+    choice_2_text.classList.remove("text-wrong","text-correct");
 
     if (mode === "artist_popularity") {
       choice_1_image.src = options['1'].data.images[1].url;
@@ -110,17 +158,91 @@ function View(input, output) {
     }
   }
 
-  function toggleStartGameClasses() {
+  function sceneChoices() {
     $(".game-over").addClass("disabled");
     $(".time-up").addClass("disabled");
     $(".time-display").removeClass("disabled");
     $(".choice").removeClass("disabled");
     $("#data-popup").removeClass("disabled");
     $("#options-popup").addClass("disabled");
-    $("#stat-next").text("Next question");
-    $("#stat-next").append(" &#10132;");
+    $("#stats-popup").css("opacity", 0);
+    $("#stats-popup").addClass("disabled");
+    $("#next-question").text("Next question");
+    $("#next-question").append(" &#10132;");
     $(".choice").css("opacity", 1);
     $(".choice").css("cursor", "pointer");
     $(".down").css("opacity", 1);
+  }
+
+  async function sceneStats(primaryDelay = 1000, secondaryDelay = 125) {
+    // after 1 second, fade out cards
+    await new Promise((resolve) => setTimeout(resolve, primaryDelay));
+    $(".choice").css("opacity", 0);
+    $(".choice").css("cursor", "default");
+    $(".down").css("opacity", 0);
+    $("#stats-popup").css("opacity", 0);
+  
+    // after cards have faded, display the stats popup
+    await new Promise((resolve) => setTimeout(resolve, secondaryDelay));
+    $(".choice").addClass("disabled");
+    $(".time-display").addClass("disabled");
+    $("#stats-popup").removeClass("disabled");
+    $("#stats-popup").css("opacity", 1);
+  }
+
+  function sceneEndGame(score, cheaterMode) {
+    end_score.textContent = "You scored ";
+    end_comment.textContent = getGameOverText(score, cheaterMode);
+    $("#stats-popup").css("opacity", 0);
+    $("#stats-popup").addClass("disabled");
+    $(".game-over").removeClass("disabled");
+    $(".enable-after-end").removeClass("disabled");
+    $(".choice").addClass("disabled");
+    $(".time-display").addClass("disabled");
+    $("#data-popup").addClass("disabled");
+    $("#options-popup").removeClass("disabled");
+
+    if (!$("#game-over-headline").text().endsWith("!")) {
+      $("#game-over-headline").append("!");
+    }
+
+    $("#game-over-button-text").text("Play Again");
+  }
+
+  function getWrongAnswerText() {
+    let responses = [
+      "Not quite...",
+      "Swing and a miss, incorrect.",
+      "Close but no banana.",
+      "Unfortunately not...",
+      "Better luck next time!",
+      "Thanks for trying, but no.",
+      "I can see why you might've thought that.",
+      "Did you accidentally choose the wrong one?",
+      "You’re on the right track, but not there yet.",
+      "Not exactly what we were looking for.",
+      "How did you arrive at your answer?",
+    ];
+    return responses[Math.floor(Math.random() * responses.length)];
+  }
+
+  function getGameOverText(score, cheaterMode) {
+    if (cheaterMode) {
+      return `Looks like you triggered cheater mode..`;
+    } else if (score == 0) {
+      return `Better luck next time!`;
+    } else if (score == 1) {
+      return `At least that's more than 0!`;
+    } else if (score > 1 && score < 6) {
+      return `Tip: Choose the correct answers next time`;
+    } else if (score >= 6 && score < 12) {
+      return `Pretty good attempt! You're starting to get the hang of this`;
+    } else if (score >= 12 && score < 20) {
+      return `Nice one! `;
+    } else if (score >= 20 && score < 100) {
+      return `Congrats! You've nailed that one. Can you beat it again?`;
+    } else {
+      return `Something's wrong I can feel it`;
+    }
   }
 }

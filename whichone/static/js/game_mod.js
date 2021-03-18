@@ -12,29 +12,22 @@ function Game(input, output) {
     DURATION: "duration",
   };
 
-  output.startGame = function startGame() {
-    output.state = getDefaultState();
-    if (output.state.ready && output.state.stopped) {
-      console.log("Start game");
-      output.state.stopped = false;
-      runMode(output.state.currentMode);
-      args.view.startGameTransition(output.state.score, output.state.highScore);
-    }
-  };
-
-  output.stopGame = function stopGame() {
-    console.log("Stop game");
-    output.state.stopped = true;
-  };
+  const SOUNDS = {
+    CORRECT:    "/static/resources/correct.mp3",
+    INCORRECT:  "/static/resources/wrong.mp3",
+    GAMEOVER:   "/static/resources/gameover.mp3",
+    GAMEOVER10: "/static/resources/gameover_10plus.mp3",
+  }
 
   output.makeGuess = function makeGuess(choice) {
     if (!output.state.stopped && !output.state.paused) {
+      output.state.paused = true;
       if (choice === evaluateChoices()) {
         correctAnswer();
       } else {
-        wrongAnswer();
+        incorrectAnswer();
       }
-      args.view.displayStats(
+      args.view.showStats(
         output.state.currentMode,
         options,
         choice,
@@ -44,14 +37,70 @@ function Game(input, output) {
     }
   };
 
+  output.spotifyLogout = function spotifyLogout() {
+    const url = "https://accounts.spotify.com/en/logout";
+    const spotifyLogoutWindow = window.open(
+      url,
+      "Spotify Logout",
+      "width=700,height=500,top=40,left=40"
+    );
+  };
+
+  output.nextQuestion = function nextQuestion() {
+    console.log("Next question");
+    
+    // TODO: hide the stats popup
+    
+    if (output.state.lives > 0) {
+      output.state.paused = false;
+      // get a random new question
+      output.state.currentMode = getRandomMode();
+      runMode(output.state.currentMode);
+      // show question + cards / timer
+      args.view.showChoices(output.state.score, output.state.highScore);
+      // TODO: reset counter
+
+    } else {
+      stopGame();
+      // TODO: stop counter
+    }
+  }
+
+  output.startGame = function startGame() {
+    output.state = getDefaultState();
+    if (output.state.ready && output.state.stopped) {
+      console.log("Start game");
+      output.state.stopped = false;
+      runMode(output.state.currentMode);
+      args.view.showChoices(output.state.score, output.state.highScore);
+    }
+  };
+
+  function stopGame() {
+    console.log("Stop game");
+    output.state.stopped = true;
+    if (output.state.lives >= 10) {
+      args.view.triggerSound(SOUNDS.GAMEOVER10);
+    } else {
+      args.view.triggerSound(SOUNDS.GAMEOVER);
+    }
+    
+    args.view.endGameTransition(output.state.score, output.state.cheaterMode);
+  };
+
   function correctAnswer() {
     console.log("correct");
     output.state.score++;
+    if (output.state.score > output.state.highScore) {
+      output.state.highScore = output.state.score;
+    }
+    args.view.triggerSound(SOUNDS.CORRECT);
   }
 
-  function wrongAnswer() {
+  function incorrectAnswer() {
     console.log("incorrect");
     output.state.lives--;
+    args.view.triggerSound(SOUNDS.INCORRECT);
     args.view.updateLifeIcons(output.state.lives, output.state.cheaterMode);
   }
 
@@ -68,15 +117,6 @@ function Game(input, output) {
       return option.features[mode];
     }
   }
-
-  output.spotifyLogout = function spotifyLogout() {
-    const url = "https://accounts.spotify.com/en/logout";
-    const spotifyLogoutWindow = window.open(
-      url,
-      "Spotify Logout",
-      "width=700,height=500,top=40,left=40"
-    );
-  };
 
 
   function runMode(mode) {

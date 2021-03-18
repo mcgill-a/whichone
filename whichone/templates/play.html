@@ -84,18 +84,18 @@
                     <h2 id="stat-status" class="gotham-medium limit-font-size status-header"></h2>
                     <h4 id="stats-text" class="gotham-small small-label margin-top-m" color="white"></h4>
                     <div class="stats-footer">
-                        <button id="stat-next" class="gotham-small btn-stat">Next question &#10132;</button>
+                        <button id="next-question" class="gotham-small btn-stat">Next question &#10132;</button>
                     </div>
                 </div>
             </div>
             <div class="game-over row container-vert stats-display">
                 <h2 id="game-over-headline" class="gotham-medium limit-font-size-big text-thin"><span id="end_score">Ready to play?</span>
-                    <span id="end_score_value" class="text-orange"></span></h2>
+                    <span id="end_score_value" class="text-orange current-score"></span></h2>
                 <h4 class="gotham-small" id="end_comment"></h4>
                 <div class="flex-horizontal disabled enable-after-end">
                     <img id="fire_icon" alt="current score icon" title="High Score" class="span-icon-score"
                         src="{{url_for('static', filename='resources/trophy-gold.png')}}">
-                    <h4 class="gotham-small margin-top-m margin-bottom-m" id="end_high_score"></h4>
+                    <h4 class="high-score gotham-small margin-top-m margin-bottom-m" id="end_high_score"></h4>
                 </div>
                 <button id="play-again" class="play gotham-medium">
                     <div class="flex-horizontal">

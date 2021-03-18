@@ -616,6 +616,14 @@ svg circle {
     color: rgb(144,145,255);
 }
 
+.text-wrong {
+    color: red;
+}
+
+.text-correct {
+    color: lightgreen;
+}
+
 .text-thin {
     font-weight: 400 !important;
 }

@@ -4,7 +4,7 @@ function Controller(input, output) {
 
   const sign_out = args.document.getElementById("sign-out");
   const play_again = args.document.getElementById("play-again");
-  const stat_next = args.document.getElementById("stat-next");
+  const next_question = args.document.getElementById("next-question");
   const mute_icon = args.document.getElementById("mute-icon");
   const choices = args.document.querySelectorAll(".choice");
   const mode_toggles = args.document.querySelectorAll("input[name=toggle]");
@@ -19,9 +19,9 @@ function Controller(input, output) {
     args.game.startGame();
   };
 
-  stat_next.onclick = function () {
+  next_question.onclick = function () {
     console.log("Next screen");
-    args.game.nextScreen();
+    args.game.nextQuestion();
   };
 
   mute_icon.onclick = function () {

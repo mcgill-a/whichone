@@ -2,7 +2,7 @@
 function Data(input, output) {
   const args = input;
   const EXPIRATION_TIME = 604800000; // 1 week (milliseconds)
-  const isBoolean = (val) => "boolean" === typeof val;
+  const isBoolean = (val) => val != null && "boolean" === typeof val;
 
   initialiseData();
 
@@ -28,23 +28,12 @@ function Data(input, output) {
   function initialiseData(currentTime = Date.now(), id = args.spotify_id) {
     if (isLocalDataAvailable(id)) {
       output.user = getLocalData(id);
+      updateLocalUser(id);
     } else {
-      output.user = {
-        top_artists: null,
-        top_tracks: null,
-        audio_features: null,
-        expire: 0,
-        highScore: 0,
-        scores: [],
-        muteSound: false,
-        modes: {
-          danceability: true,
-          valence: true,
-          duration: true,
-        },
-      };
+      output.user = getDefaultData();
     }
-
+    // if 1 week has passed or default data (0),
+    // it is expired, get spotify data
     if (isLocalDataExpired(output.user.expire, currentTime, EXPIRATION_TIME)) {
       getSpotifyData()
         .then((data) => {
@@ -76,20 +65,37 @@ function Data(input, output) {
     localStorage.setItem(id, JSON.stringify(userObject));
   }
 
+  function getDefaultData() {
+    return {
+      top_artists: null,
+      top_tracks: null,
+      audio_features: null,
+      expire: 0,
+      highScore: 0,
+      scores: [],
+      muteSound: false,
+      modes: {
+        danceability: true,
+        valence: true,
+        duration: true,
+      }
+    }
+  }
+
   function getLocalData(id) {
     // get data from local storage instead of the web server
     let data = localStorage.getItem(id);
     let local = JSON.parse(data);
 
-    // check if modes are present and valid
+    // reset modes if they are not valid
     if (local.modes !== null) {
       if (
-        !isBoolean(local.modes.dance) ||
+        !isBoolean(local.modes.danceability) ||
         !isBoolean(local.modes.valence) ||
         !isBoolean(local.modes.duration)
       ) {
         local.modes = {
-          dance: true,
+          danceability: true,
           valence: true,
           duration: true,
         };
