@@ -81,15 +81,11 @@ function View(input, output) {
   output.updateCounter = function updateCounter(time) {
     counter.textContent = time;
     // TODO: if time < x, set outline border to red
-  }
+  };
 
-  output.showCounter = function showCounter() {
+  output.showCounter = function showCounter() {};
 
-  }
-
-  output.hideCounter = function hideCounter() {
-
-  }
+  output.hideCounter = function hideCounter() {};
 
   output.showStats = function showStats(mode, options, choice, answer) {
     $(".choice").css("cursor", "default");

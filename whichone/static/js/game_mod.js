@@ -85,7 +85,6 @@ function Game(input, output) {
         args.view.triggerSound(SOUNDS.GAMEOVER);
       }
     }
-    
 
     args.view.endGameTransition(output.state.score, output.state.cheaterMode);
   }

@@ -16,7 +16,7 @@ function Data(input, output) {
 
   output.isAudioEnabled = function isAudioEnabled() {
     return !output.user.muteSound;
-  }
+  };
 
   output.toggleMute = function toggleMute() {
     output.user.muteSound = !output.user.muteSound;
