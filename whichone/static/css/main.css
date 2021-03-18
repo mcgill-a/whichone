@@ -51,6 +51,16 @@ textarea {
 
 /* ---------------------------------- */
 
+/* Cursors */
+
+.cursor-default {
+    cursor: default;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
 /* Buttons */
 
 button,
@@ -388,6 +398,10 @@ input:checked+.slider:before {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.transparent {
+    opacity: 0;
 }
 
 /* ---------------------------------- */

@@ -12,15 +12,27 @@ function View(input, output) {
   const mode_prefix = args.document.getElementById("mode_prefix");
   const mode_text = args.document.getElementById("mode_text");
   const mode_suffix = args.document.getElementById("mode_suffix");
+  const next_question = args.document.getElementById("next-question");
   /* Choice */
   const choice_1_text = args.document.getElementById("text1");
   const choice_1_image = args.document.getElementById("image1");
   const choice_2_text = args.document.getElementById("text2");
   const choice_2_image = args.document.getElementById("image2");
-
+  const choice = args.document.querySelectorAll(".choice");
+  /* Options */
+  const options_popup = args.document.getElementById("options-popup");
+  /* Data */
+  const data_popup = args.document.getElementById("data-popup");
+  /* Timer */
+  const time_up = args.document.querySelectorAll(".time-up");
+  const time_display = args.document.querySelectorAll(".time-display");
+  const down = args.document.querySelectorAll(".down");
+  /* Stats */
+  const stats_popup = args.document.getElementById("stats-popup");
   /* End game */
-  const end_score = document.getElementById("end_score");
-  const end_comment = document.getElementById("end_comment");
+  const game_over = args.document.querySelectorAll(".game-over");
+  const end_score = args.document.getElementById("end_score");
+  const end_comment = args.document.getElementById("end_comment");
 
   const ICONS = {
     LIFE_ENABLED:   "/static/resources/spotify-icon.png",
@@ -159,19 +171,23 @@ function View(input, output) {
   };
 
   function sceneChoices() {
-    $(".game-over").addClass("disabled");
-    $(".time-up").addClass("disabled");
-    $(".time-display").removeClass("disabled");
-    $(".choice").removeClass("disabled");
-    $("#data-popup").removeClass("disabled");
-    $("#options-popup").addClass("disabled");
-    $("#stats-popup").css("opacity", 0);
-    $("#stats-popup").addClass("disabled");
-    $("#next-question").text("Next question");
-    $("#next-question").append(" &#10132;");
-    $(".choice").css("opacity", 1);
-    $(".choice").css("cursor", "pointer");
-    $(".down").css("opacity", 1);
+    /* Add "disabled" */
+    game_over.classList.addClass("disabled");
+    time_up.classList.addClass("disabled");
+    options_popup.classList.addClass("disabled");
+    stats_popup.classList.addClass("disabled");
+    /* Remove "disabled" */
+    time_display.classList.removeClass("disabled");
+    choice.classList.removeClass("disabled");
+    data_popup.classList.removeClass("disabled");
+    /* Opacity */
+    stats_popup.classList.addClass("transparent");
+    choice.classList.addClass("transparent");
+    down.classList.addClass("transparent");
+    /* Other */
+    next_question.textContent("Next question &#10132;");
+    choice.classList.addClass("pointer");
+
   }
 
   async function sceneStats(primaryDelay = 1000, secondaryDelay = 125) {
