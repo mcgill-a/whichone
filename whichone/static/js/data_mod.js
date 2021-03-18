@@ -14,6 +14,10 @@ function Data(input, output) {
     );
   };
 
+  output.isAudioEnabled = function isAudioEnabled() {
+    return !output.user.muteSound;
+  }
+
   output.toggleMute = function toggleMute() {
     output.user.muteSound = !output.user.muteSound;
     updateLocalUser(args.spotify_id);
@@ -77,8 +81,8 @@ function Data(input, output) {
         danceability: true,
         valence: true,
         duration: true,
-      }
-    }
+      },
+    };
   }
 
   function getLocalData(id) {

@@ -13,11 +13,11 @@ function Game(input, output) {
   };
 
   const SOUNDS = {
-    CORRECT:    "/static/resources/correct.mp3",
-    INCORRECT:  "/static/resources/wrong.mp3",
-    GAMEOVER:   "/static/resources/gameover.mp3",
+    CORRECT: "/static/resources/correct.mp3",
+    INCORRECT: "/static/resources/wrong.mp3",
+    GAMEOVER: "/static/resources/gameover.mp3",
     GAMEOVER10: "/static/resources/gameover_10plus.mp3",
-  }
+  };
 
   output.makeGuess = function makeGuess(choice) {
     if (!output.state.stopped && !output.state.paused) {
@@ -48,9 +48,9 @@ function Game(input, output) {
 
   output.nextQuestion = function nextQuestion() {
     console.log("Next question");
-    
+
     // TODO: hide the stats popup
-    
+
     if (output.state.lives > 0) {
       output.state.paused = false;
       // get a random new question
@@ -59,12 +59,11 @@ function Game(input, output) {
       // show question + cards / timer
       args.view.showChoices(output.state.score, output.state.highScore);
       // TODO: reset counter
-
     } else {
       stopGame();
       // TODO: stop counter
     }
-  }
+  };
 
   output.startGame = function startGame() {
     output.state = getDefaultState();
@@ -79,28 +78,35 @@ function Game(input, output) {
   function stopGame() {
     console.log("Stop game");
     output.state.stopped = true;
-    if (output.state.lives >= 10) {
-      args.view.triggerSound(SOUNDS.GAMEOVER10);
-    } else {
-      args.view.triggerSound(SOUNDS.GAMEOVER);
+    if (args.data.isAudioEnabled()) {
+      if (output.state.lives >= 10) {
+        args.view.triggerSound(SOUNDS.GAMEOVER10);
+      } else {
+        args.view.triggerSound(SOUNDS.GAMEOVER);
+      }
     }
     
+
     args.view.endGameTransition(output.state.score, output.state.cheaterMode);
-  };
+  }
 
   function correctAnswer() {
-    console.log("correct");
     output.state.score++;
     if (output.state.score > output.state.highScore) {
       output.state.highScore = output.state.score;
     }
-    args.view.triggerSound(SOUNDS.CORRECT);
+    if (args.data.isAudioEnabled()) {
+      args.view.triggerSound(SOUNDS.CORRECT);
+    }
   }
 
   function incorrectAnswer() {
-    console.log("incorrect");
     output.state.lives--;
-    args.view.triggerSound(SOUNDS.INCORRECT);
+
+    if (args.data.isAudioEnabled()) {
+      args.view.triggerSound(SOUNDS.INCORRECT);
+    }
+
     args.view.updateLifeIcons(output.state.lives, output.state.cheaterMode);
   }
 
@@ -118,7 +124,6 @@ function Game(input, output) {
       return option.features[mode];
     }
   }
-
 
   function runMode(mode) {
     let modeData = [];
