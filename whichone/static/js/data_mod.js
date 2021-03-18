@@ -7,9 +7,11 @@ function Data(input, output) {
   initialiseData();
 
   output.isDataReady = function isDataReady() {
-    return  output.user.top_artists !== null &&
-            output.user.top_tracks !== null &&
-            output.audio_features !== null;
+    return (
+      output.user.top_artists !== null &&
+      output.user.top_tracks !== null &&
+      output.audio_features !== null
+    );
   };
 
   output.toggleMute = function toggleMute() {
@@ -17,10 +19,7 @@ function Data(input, output) {
     updateLocalUser(args.spotify_id);
   };
 
-  output.toggleMode = function toggleMode(
-    toggle,
-    id = args.spotify_id
-  ) {
+  output.toggleMode = function toggleMode(toggle, id = args.spotify_id) {
     output.user.modes[toggle.id] = toggle.checked;
     updateLocalUser(id);
   };
