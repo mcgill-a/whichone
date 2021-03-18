@@ -23,23 +23,23 @@ function View(input, output) {
     LIFE_DISABLED: "/static/resources/spotify-icon-dark.png",
     LIFE_CHEATER: "/static/resources/spotify-icon-red.png",
     SOUND_ENABLED: "/static/resources/volume-on.png",
-    SOUND_DISABLED:"/static/resources/volume-off.png",
+    SOUND_DISABLED: "/static/resources/volume-off.png",
   };
 
   output.startGameTransition = function startGameTransition() {
     toggleStartGameClasses();
-  }
-  
+  };
+
   output.updateScores = function updateScores(currentScore, highScore) {
     // scores are displayed in multiple places, update them all
-    current_score.forEach(score => {
+    current_score.forEach((score) => {
       score.textContent = currentScore;
     });
 
-    high_score.forEach(score => {
+    high_score.forEach((score) => {
       score.textContent = highScore;
     });
-  }
+  };
 
   output.updateLifeIcons = function updateLifeIcons(lives, cheaterMode) {
     for (let i = 0; i++; i < life_icons.length) {
@@ -57,7 +57,7 @@ function View(input, output) {
 
   output.displayStats = function displayStats(mode, options, choice, answer) {
     console.log("next screen");
-  }
+  };
 
   output.updateMuteIcon = function updateMuteIcon(enabled) {
     if (enabled) {
@@ -65,7 +65,7 @@ function View(input, output) {
     } else {
       mute_icon.src = ICON_SOURCES.SOUND_DISABLED;
     }
-  }
+  };
 
   output.updateQuestion = function updateQuestion(mode, options) {
     let prefix = "";
@@ -74,41 +74,41 @@ function View(input, output) {
 
     if (mode === "artist_popularity") {
       prefix = "Which artist have you ";
-      text = "listened to more"
+      text = "listened to more";
       mode_text.className = "text-popularity";
     } else if (mode === "track_popularity") {
       prefix = "Which track have you ";
-      text = "listened to more"
+      text = "listened to more";
       mode_text.className = "text-popularity";
     } else if (mode === "dance") {
       prefix = "Which track is more ";
-      text = "danceable"
+      text = "danceable";
       mode_text.className = "text-danceable";
     } else if (mode === "valence") {
       prefix = "Which track is more ";
-      text = "upbeat"
+      text = "upbeat";
       mode_text.className = "text-valence";
     } else if (mode === "duration") {
       prefix = "Which track is ";
-      text = "longer"
+      text = "longer";
       mode_text.className = "text-duration";
     }
 
     mode_prefix.textContent = prefix;
-    mode_text.textContent = text; 
+    mode_text.textContent = text;
     mode_suffix.textContent = suffix;
     console.log(options);
-    choice_1_text.textContent = options['1'].data.name;
-    choice_2_text.textContent = options['2'].data.name;
+    choice_1_text.textContent = options["1"].data.name;
+    choice_2_text.textContent = options["2"].data.name;
 
     if (mode === "artist_popularity") {
-      choice_1_image.src = options['1'].data.images[1].url;
-      choice_2_image.src = options['2'].data.images[1].url;
+      choice_1_image.src = options["1"].data.images[1].url;
+      choice_2_image.src = options["2"].data.images[1].url;
     } else {
-      choice_1_image.src = options['1'].data.album.images[1].url;
-      choice_2_image.src = options['2'].data.album.images[1].url;
+      choice_1_image.src = options["1"].data.album.images[1].url;
+      choice_2_image.src = options["2"].data.album.images[1].url;
     }
-  }
+  };
 
   function toggleStartGameClasses() {
     $(".game-over").addClass("disabled");

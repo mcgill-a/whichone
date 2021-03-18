@@ -3,7 +3,7 @@ function Game(input, output) {
   const args = input;
 
   const MAX_LIVES = 3;
-  const options = { '1': {}, '2': {} };
+  const options = { 1: {}, 2: {} };
   const MODES = {
     ARTIST_POPULARITY: "artist_popularity",
     TRACK_POPULARITY: "track_popularity",
@@ -38,7 +38,7 @@ function Game(input, output) {
         output.state.currentMode,
         options,
         choice,
-        answer=evaluateChoices()
+        (answer = evaluateChoices())
       );
       args.view.updateScores(output.state.score, output.state.highScore);
     }
@@ -55,10 +55,11 @@ function Game(input, output) {
     args.view.updateLifeIcons(output.state.lives, output.state.cheaterMode);
   }
 
-
   function evaluateChoices() {
-    return getValue(output.state.currentMode, options['1']) >
-      getValue(output.state.currentMode, options['2']) ? "1" : "2";
+    return getValue(output.state.currentMode, options["1"]) >
+      getValue(output.state.currentMode, options["2"])
+      ? "1"
+      : "2";
   }
 
   function getValue(mode, option) {
@@ -78,7 +79,6 @@ function Game(input, output) {
     );
   };
 
-
   function runMode(mode) {
     let modeData = [];
     if (mode === MODES.ARTIST_POPULARITY) {
@@ -87,23 +87,25 @@ function Game(input, output) {
       modeData = args.data.user.top_tracks;
     }
 
-    options['1'].data = getRandomListItem(modeData);
-    options['2'].data = getRandomListItem(modeData);
+    options["1"].data = getRandomListItem(modeData);
+    options["2"].data = getRandomListItem(modeData);
 
-    while (options['1'].data == options['2'].data) {
-      options['2'].data = getRandomListItem(modeData);
+    while (options["1"].data == options["2"].data) {
+      options["2"].data = getRandomListItem(modeData);
     }
 
     if (mode !== MODES.ARTIST_POPULARITY) {
-      options['1'].features = args.data.user.audio_features[options['1'].data.id];
-      options['2'].features = args.data.user.audio_features[options['2'].data.id];
+      options["1"].features =
+        args.data.user.audio_features[options["1"].data.id];
+      options["2"].features =
+        args.data.user.audio_features[options["2"].data.id];
     }
 
     args.view.updateQuestion(mode, options);
   }
 
   function getRandomListItem(list) {
-    return list[Math.floor(Math.random()*list.length)];
+    return list[Math.floor(Math.random() * list.length)];
   }
 
   function getRandomMode() {
