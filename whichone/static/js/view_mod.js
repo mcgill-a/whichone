@@ -112,14 +112,17 @@ function View(input, output) {
   output.updateCountdown = function updateCountdown(maxTime, time) {
     counter.textContent = time;
     console.log(time);
-    if (time <= maxTime/2) {
+    if (time <= maxTime / 2) {
       counter_progress.classList.add("stroke-red");
     } else {
       counter_progress.classList.remove("stroke-red");
     }
   };
 
-  output.toggleCountdownAnimation = function toggleCountdownAnimation(enabled, visibleAfter) {
+  output.toggleCountdownAnimation = function toggleCountdownAnimation(
+    enabled,
+    visibleAfter
+  ) {
     if (enabled) {
       counter_progress.classList.add("animated");
       counter_progress.classList.remove("transparent");
@@ -130,9 +133,8 @@ function View(input, output) {
         counter_progress.classList.add("transparent");
         counter.classList.add("transparent");
       }
-      
     }
-  }
+  };
 
   output.showCountdown = function showCountdown() {
     down.classList.remove("disabled");
@@ -169,7 +171,7 @@ function View(input, output) {
       } else {
         choice_1_text.classList.add("text-wrong");
         choice_2_text.classList.add("text-wrong");
-      } 
+      }
     }
 
     // hide the timer

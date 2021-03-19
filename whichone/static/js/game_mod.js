@@ -112,7 +112,6 @@ function Game(input, output) {
     args.view.updateLifeIcons(output.state.lives, output.state.cheaterMode);
   }
 
-
   function countdown() {
     output.state.counter--;
     console.log("countdown", output.state.counter);
@@ -138,7 +137,6 @@ function Game(input, output) {
   function stopCountdown() {
     clearInterval(refreshIntervalId);
     args.view.toggleCountdownAnimation(false, output.state.counter === 0);
-    
   }
 
   function evaluateChoices() {

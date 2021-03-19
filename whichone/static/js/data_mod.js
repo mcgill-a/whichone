@@ -56,7 +56,7 @@ function Data(input, output) {
           console.error(error);
         });
     }
-  }
+  };
 
   function isLocalDataAvailable(id) {
     return localStorage.getItem(id) !== null;
