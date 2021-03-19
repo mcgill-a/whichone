@@ -38,7 +38,7 @@ function Data(input, output) {
     } else {
       output.user = getDefaultData();
     }
-
+    // now that data has been loaded, setup the page settings
     args.initialisePage(output.user.audioEnabled, output.user.modes);
 
     // if 1 week has passed or default data (0),

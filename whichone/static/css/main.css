@@ -516,6 +516,13 @@ svg circle {
     animation: none;
 }
 
+.stroke-red {
+    stroke: rgb(239,83,80);
+}
+
+.stroke-yellow {
+    stroke: rgb(255,199,137);
+}
 
 .animated {
     animation: countdown 12s linear infinite forwards;
