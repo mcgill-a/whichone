@@ -33,8 +33,12 @@ function View(input, output) {
   const stats_status = args.document.getElementById("stats-status");
   /* End game */
   const game_over = args.document.getElementById("game-over");
+  const game_over_headline = args.document.getElementById("game-over-headline");
+  const game_over_button_txt = args.document.getElementById("game-over-button-text");
   const end_score = args.document.getElementById("end_score");
+  const end_score_value = args.document.getElementById("end_score_value");
   const end_comment = args.document.getElementById("end_comment");
+  const enabled_after_end = args.document.querySelectorAll(".enable-after-end");
 
   const ICONS = {
     LIFE_ENABLED: "/static/resources/spotify-icon.png",
@@ -59,7 +63,11 @@ function View(input, output) {
     });
 
     high_score.forEach((score) => {
-      score.textContent = highScore;
+      if (score.id === "end_high_score") {
+        score.textContent = "High score: " + highScore;
+      } else {
+        score.textContent = highScore;
+      }
     });
   };
 
@@ -166,7 +174,7 @@ function View(input, output) {
       prefix = "Which track is more ";
       text = "upbeat";
       mode_text.className = "text-valence";
-    } else if (mode === "duration") {
+    } else if (mode === "duration_ms") {
       prefix = "Which track is ";
       text = "longer";
       mode_text.className = "text-duration";
@@ -187,6 +195,12 @@ function View(input, output) {
       choice_2_image.src = options["2"].data.album.images[1].url;
     }
   };
+
+  function clearQuestion() {
+    mode_prefix.textContent = "";
+    mode_text.textContent = "";
+    mode_suffix.textContent = "";
+  }
 
   function sceneChoices() {
     // reset the text colour for choices
@@ -246,22 +260,26 @@ function View(input, output) {
   }
 
   function sceneEndGame(score, cheaterMode) {
+    clearQuestion();
     end_score.textContent = "You scored ";
+    end_score_value.textContent = score;
     end_comment.textContent = getGameOverText(score, cheaterMode);
-    $("#stats-popup").css("opacity", 0);
-    $("#stats-popup").addClass("disabled");
-    $(".game-over").removeClass("disabled");
-    $(".enable-after-end").removeClass("disabled");
-    $(".choice").addClass("disabled");
-    $(".time-display").addClass("disabled");
-    $("#data-popup").addClass("disabled");
-    $("#options-popup").removeClass("disabled");
+    stats_popup.classList.add("disabled");
+    stats_popup.classList.add("transparent");
+    game_over.classList.remove("disabled");
 
-    if (!$("#game-over-headline").text().endsWith("!")) {
-      $("#game-over-headline").append("!");
+    enabled_after_end.forEach((item) => {
+      item.classList.remove("disabled");
+    });
+
+    data_popup.classList.add("disabled");
+    options_popup.classList.remove("disabled");
+
+    if (!game_over_headline.textContent.endsWith("!")) {
+      game_over_headline.innerHTML += "!";
     }
 
-    $("#game-over-button-text").text("Play Again");
+    game_over_button_txt.textContent = "Play Again";
   }
 
   function getWrongAnswerText() {

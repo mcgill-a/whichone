@@ -9,7 +9,7 @@ function Game(input, output) {
     TRACK_POPULARITY: "track_popularity",
     DANCEABILITY: "danceability",
     VALENCE: "valence",
-    DURATION: "duration",
+    DURATION: "duration_ms",
   };
 
   const SOUNDS = {
@@ -67,6 +67,8 @@ function Game(input, output) {
     if (output.state.ready && output.state.stopped) {
       output.state.stopped = false;
       runMode(output.state.currentMode);
+      args.view.updateLifeIcons(output.state.lives, output.state.cheaterMode);
+      args.view.updateScores(output.state.score, output.state.highScore);
       args.view.showChoices(output.state.score, output.state.highScore);
     }
   };
@@ -87,6 +89,7 @@ function Game(input, output) {
     output.state.score++;
     if (output.state.score > output.state.highScore) {
       output.state.highScore = output.state.score;
+      args.data.updateHighScore(output.state.highScore);
     }
     if (args.data.isAudioEnabled()) {
       args.view.triggerSound(SOUNDS.CORRECT);
