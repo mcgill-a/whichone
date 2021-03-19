@@ -69,8 +69,8 @@
                     <p class="gotham-small padding-5" id="text1"></p>
                 </div>
             </button>
-            <div class="time-display no-margin disabled">
-                <div class="down">
+            <div id="time-display" class="time-display no-margin disabled">
+                <div id="down" class="down">
                     <div id="countdown" title="Choose before time runs out!">
                         <div id="countdown-number" aria-label="The current time remaining to select a card"></div>
                         <svg id="abc">
@@ -84,11 +84,11 @@
                     <h2 id="stat-status" class="gotham-medium limit-font-size status-header"></h2>
                     <h4 id="stats-text" class="gotham-small small-label margin-top-m" color="white"></h4>
                     <div class="stats-footer">
-                        <button id="next-question" class="gotham-small btn-stat">Next question &#10132;</button>
+                        <button id="next-question" class="gotham-small btn-stat"></button>
                     </div>
                 </div>
             </div>
-            <div class="game-over row container-vert stats-display">
+            <div id="game-over" class="game-over row container-vert stats-display">
                 <h2 id="game-over-headline" class="gotham-medium limit-font-size-big text-thin"><span id="end_score">Ready to play?</span>
                     <span id="end_score_value" class="text-orange current-score"></span></h2>
                 <h4 class="gotham-small" id="end_comment"></h4>

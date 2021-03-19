@@ -18,20 +18,20 @@ function View(input, output) {
   const choice_1_image = args.document.getElementById("image1");
   const choice_2_text = args.document.getElementById("text2");
   const choice_2_image = args.document.getElementById("image2");
-  const choice = args.document.querySelectorAll(".choice");
+  const choices = args.document.querySelectorAll(".choice");
   /* Options */
   const options_popup = args.document.getElementById("options-popup");
   /* Data */
   const data_popup = args.document.getElementById("data-popup");
   /* Timer */
-  const time_up = args.document.querySelectorAll(".time-up");
-  const time_display = args.document.querySelectorAll(".time-display");
-  const down = args.document.querySelectorAll(".down");
+  //const time_up = args.document.querySelectorAll(".time-up");
+  const time_display = args.document.getElementById("time-display");
+  const down = args.document.getElementById("down");
   const counter = args.document.getElementById("countdown-number");
   /* Stats */
   const stats_popup = args.document.getElementById("stats-popup");
   /* End game */
-  const game_over = args.document.querySelectorAll(".game-over");
+  const game_over = args.document.getElementById("game-over");
   const end_score = args.document.getElementById("end_score");
   const end_comment = args.document.getElementById("end_comment");
 
@@ -97,7 +97,7 @@ function View(input, output) {
 
   output.hideCounter = function hideCounter() {};
 
-  output.showStats = function showStats(mode, options, choice, answer) {
+  output.showStats = function showStats(mode, options, choice, lives, answer) {
     $(".choice").css("cursor", "default");
 
     if (choice === answer) {
@@ -127,7 +127,7 @@ function View(input, output) {
     $(".down").css("opacity", 0);
 
     // Transition scenes from the cards to the stats display
-    sceneStats();
+    sceneStats(lives);
   };
 
   output.updateMuteIcon = function updateMuteIcon(enabled) {
@@ -186,24 +186,33 @@ function View(input, output) {
 
   function sceneChoices() {
     /* Add "disabled" */
-    game_over.classList.addClass("disabled");
-    time_up.classList.addClass("disabled");
-    options_popup.classList.addClass("disabled");
-    stats_popup.classList.addClass("disabled");
+    game_over.classList.add("disabled");
+    //time_up.classList.addClass("disabled");
+    options_popup.classList.add("disabled");
+    stats_popup.classList.add("disabled");
     /* Remove "disabled" */
-    time_display.classList.removeClass("disabled");
-    choice.classList.removeClass("disabled");
-    data_popup.classList.removeClass("disabled");
+    time_display.classList.remove("disabled");
+    
+    choices.forEach((choice) => {
+      choice.classList.remove("disabled");
+      choice.classList.add("transparent");
+      choice.classList.add("pointer");
+    });
+    
+    data_popup.classList.remove("disabled");
     /* Opacity */
-    stats_popup.classList.addClass("transparent");
-    choice.classList.addClass("transparent");
-    down.classList.addClass("transparent");
-    /* Other */
-    next_question.textContent("Next question &#10132;");
-    choice.classList.addClass("pointer");
+    stats_popup.classList.add("transparent");
+    down.classList.add("transparent");
   }
 
-  async function sceneStats(primaryDelay = 1000, secondaryDelay = 125) {
+  async function sceneStats(lives, primaryDelay = 1000, secondaryDelay = 125) {
+    if (lives <= 0) {
+      next_question.innerHTML = "Finish &#10132; ";
+    } else {
+      next_question.innerHTML = "Next question &#10132; ";
+    }
+    
+    
     // after 1 second, fade out cards
     await new Promise((resolve) => setTimeout(resolve, primaryDelay));
     $(".choice").css("opacity", 0);

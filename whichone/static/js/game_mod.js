@@ -31,6 +31,7 @@ function Game(input, output) {
         output.state.currentMode,
         options,
         choice,
+        output.state.lives,
         (answer = evaluateChoices())
       );
       args.view.updateScores(output.state.score, output.state.highScore);
