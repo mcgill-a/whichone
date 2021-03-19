@@ -222,7 +222,7 @@ function View(input, output) {
       choice.classList.add("transparent");
       choice.classList.remove("cursor-pointer");
     });
-    
+
     down.classList.add("transparent");
     stats_popup.classList.add("transparent");
 

@@ -106,7 +106,7 @@ function Game(input, output) {
   }
 
   function evaluateChoices() {
-    if(
+    if (
       getValue(output.state.currentMode, options["1"]) >
       getValue(output.state.currentMode, options["2"])
     ) {
