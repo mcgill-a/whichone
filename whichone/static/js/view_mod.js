@@ -30,6 +30,7 @@ function View(input, output) {
   const counter = args.document.getElementById("countdown-number");
   /* Stats */
   const stats_popup = args.document.getElementById("stats-popup");
+  const stats_status = args.document.getElementById("stats-status");
   /* End game */
   const game_over = args.document.getElementById("game-over");
   const end_score = args.document.getElementById("end_score");
@@ -56,8 +57,7 @@ function View(input, output) {
     current_score.forEach((score) => {
       score.textContent = currentScore;
     });
-    console.log(`High score ${highScore}`);
-    console.log(high_score);
+
     high_score.forEach((score) => {
       score.textContent = highScore;
     });
@@ -98,33 +98,38 @@ function View(input, output) {
   output.hideCounter = function hideCounter() {};
 
   output.showStats = function showStats(mode, options, choice, lives, answer) {
-    $(".choice").css("cursor", "default");
-
     if (choice === answer) {
-      $("#stat-status").text("Correct!");
-      $("#data-popup").addClass("green-border");
+      stats_status.textContent = "Correct!";
+      data_popup.classList.add("green-border");
       setTimeout(function () {
-        $("#data-popup").removeClass("green-border");
+        data_popup.classList.remove("green-border");
       }, 1000);
-      $(`#text${choice}`).addClass("text-correct");
+
+      if (choice === "1") {
+        choice_1_text.classList.add("text-correct");
+      } else {
+        choice_2_text.classList.add("text-correct");
+      }
     } else {
-      $("#stat-status").text(getWrongAnswerText());
-      $("#data-popup").addClass("red-border");
+      stats_status.textContent = getWrongAnswerText();
+      data_popup.classList.add("red-border");
       setTimeout(function () {
-        $("#data-popup").removeClass("red-border");
+        data_popup.classList.remove("red-border");
       }, 1000);
 
       // if they didn't choose anything and the timer expired
       if (choice === "") {
-        $(`#text1`).addClass("text-wrong");
-        $(`#text2`).addClass("text-wrong");
-      } else {
-        $(`#text${choice}`).addClass("text-wrong");
+        choice_1_text.classList.add("text-wrong");
+        choice_2_text.classList.add("text-wrong");
+      } else if (choice === "1") {
+        choice_1_text.classList.add("text-wrong");
+      } else if (choice === "2") {
+        choice_2_text.classList.add("text-wrong");
       }
     }
 
     // hide the timer
-    $(".down").css("opacity", 0);
+    down.classList.add("transparent");
 
     // Transition scenes from the cards to the stats display
     sceneStats(lives);
@@ -139,7 +144,6 @@ function View(input, output) {
   };
 
   output.updateQuestion = function updateQuestion(mode, options) {
-    console.log(mode);
     let prefix = "";
     let text = "";
     let suffix = "?";
@@ -195,8 +199,8 @@ function View(input, output) {
 
     choices.forEach((choice) => {
       choice.classList.remove("disabled");
-      choice.classList.add("transparent");
-      choice.classList.add("pointer");
+      choice.classList.remove("transparent");
+      choice.classList.add("cursor-pointer");
     });
 
     data_popup.classList.remove("disabled");
@@ -207,24 +211,29 @@ function View(input, output) {
 
   async function sceneStats(lives, primaryDelay = 1000, secondaryDelay = 125) {
     if (lives <= 0) {
-      next_question.innerHTML = "Finish &#10132; ";
+      next_question.innerHTML = "Finish &#10132;&nbsp;";
     } else {
-      next_question.innerHTML = "Next question &#10132; ";
+      next_question.innerHTML = "Next question &#10132;&nbsp;";
     }
 
     // after 1 second, fade out cards
     await new Promise((resolve) => setTimeout(resolve, primaryDelay));
-    $(".choice").css("opacity", 0);
-    $(".choice").css("cursor", "default");
-    $(".down").css("opacity", 0);
-    $("#stats-popup").css("opacity", 0);
+    choices.forEach((choice) => {
+      choice.classList.add("transparent");
+      choice.classList.remove("cursor-pointer");
+    });
+    
+    down.classList.add("transparent");
+    stats_popup.classList.add("transparent");
 
     // after cards have faded, display the stats popup
     await new Promise((resolve) => setTimeout(resolve, secondaryDelay));
-    $(".choice").addClass("disabled");
-    $(".time-display").addClass("disabled");
-    $("#stats-popup").removeClass("disabled");
-    $("#stats-popup").css("opacity", 1);
+    choices.forEach((choice) => {
+      choice.classList.add("disabled");
+    });
+    time_display.classList.add("disabled");
+    stats_popup.classList.remove("disabled");
+    stats_popup.classList.remove("transparent");
   }
 
   function sceneEndGame(score, cheaterMode) {

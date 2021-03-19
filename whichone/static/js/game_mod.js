@@ -48,10 +48,6 @@ function Game(input, output) {
   };
 
   output.nextQuestion = function nextQuestion() {
-    console.log("Next question");
-
-    // TODO: hide the stats popup
-
     if (output.state.lives > 0) {
       output.state.paused = false;
       // get a random new question
@@ -69,7 +65,6 @@ function Game(input, output) {
   output.startGame = function startGame() {
     output.state = getDefaultState();
     if (output.state.ready && output.state.stopped) {
-      console.log("Start game");
       output.state.stopped = false;
       runMode(output.state.currentMode);
       args.view.showChoices(output.state.score, output.state.highScore);
@@ -111,10 +106,14 @@ function Game(input, output) {
   }
 
   function evaluateChoices() {
-    return getValue(output.state.currentMode, options["1"]) >
+    if(
+      getValue(output.state.currentMode, options["1"]) >
       getValue(output.state.currentMode, options["2"])
-      ? "1"
-      : "2";
+    ) {
+      return "1";
+    } else {
+      return "2";
+    }
   }
 
   function getValue(mode, option) {

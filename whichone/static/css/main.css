@@ -458,6 +458,7 @@ input:checked+.slider:before {
     display: flex;
     flex-direction: column;
     margin: auto 10px;
+    opacity: 1;
 }
 
 .time-display,
@@ -697,9 +698,8 @@ svg circle {
     border-radius: 10px;
     -moz-border-radius: 10px;
     transition: all .12s ease-in-out;
-    cursor: pointer;
     outline: 0 !important;
-    opacity: 0;
+    opacity: 1;
     width: 280px;
     height: 395px;
 }
@@ -810,6 +810,7 @@ svg circle {
 .stats-display {
     height: 400px;
     max-height: 100%;
+    opacity: 1;
 }
 
 .dark-box {
