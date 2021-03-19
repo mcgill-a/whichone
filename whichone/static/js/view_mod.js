@@ -211,7 +211,12 @@ function View(input, output) {
     });
   }
 
-  async function sceneStats(lives, stat, primaryDelay = 1000, secondaryDelay = 125) {
+  async function sceneStats(
+    lives,
+    stat,
+    primaryDelay = 1000,
+    secondaryDelay = 125
+  ) {
     if (lives <= 0) {
       next_question.innerHTML = "Finish &#10132;&nbsp;";
     } else {
@@ -297,7 +302,6 @@ function View(input, output) {
   }
 
   function getStatistic(mode, options, choice, lives, answer) {
-
     return "";
   }
 }
