@@ -76,7 +76,7 @@ function Game(input, output) {
   function stopGame() {
     output.state.stopped = true;
     if (args.data.isAudioEnabled()) {
-      if (output.state.lives >= 10) {
+      if (output.state.score >= 10) {
         args.view.triggerSound(SOUNDS.GAMEOVER10);
       } else {
         args.view.triggerSound(SOUNDS.GAMEOVER);
