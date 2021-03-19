@@ -20,11 +20,11 @@ function Data(input, output) {
   };
 
   output.isAudioEnabled = function isAudioEnabled() {
-    return !output.user.muteSound;
+    return output.user.audioEnabled;
   };
 
   output.toggleMute = function toggleMute() {
-    output.user.muteSound = !output.user.muteSound;
+    output.user.audioEnabled = !output.user.audioEnabled;
     updateLocalUser(args.spotify_id);
   };
 
@@ -40,6 +40,9 @@ function Data(input, output) {
     } else {
       output.user = getDefaultData();
     }
+
+    args.initialisePage(output.user.audioEnabled, output.user.modes);
+
     // if 1 week has passed or default data (0),
     // it is expired, get spotify data
     if (isLocalDataExpired(output.user.expire, currentTime, EXPIRATION_TIME)) {
@@ -81,7 +84,7 @@ function Data(input, output) {
       expire: 0,
       highScore: 0,
       scores: [],
-      muteSound: false,
+      audioEnabled: true,
       modes: {
         danceability: true,
         valence: true,

@@ -23,7 +23,7 @@ function Controller(input, output) {
 
   mute_icon.onclick = function () {
     args.data.toggleMute();
-    args.view.updateMuteIcon(args.data.user.muteSound);
+    args.view.updateMuteIcon(args.data.isAudioEnabled());
   };
 
   choices.forEach((choice) => {

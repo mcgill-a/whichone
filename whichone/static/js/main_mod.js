@@ -1,26 +1,30 @@
-// Data module dependencies
-const inData = {
-    spotify_id: document.getElementById("info").getAttribute("data-user")
-};
-// Data module exports
+const view = {};
 const data = { user: null };
-Data(inData, data);
-console.log(data.user);
+const game = {};
+const controller = {};
+
+const initialisePage = function initialisePage(audioState, toggles) {
+    view.updateMuteIcon(audioState);
+    view.updateModeToggles(toggles);
+}
 
 // View module dependencies
 const inView = { document };
-// View module exports
-const view = {};
 View(inView, view);
+
+// Data module dependencies
+const inData = {
+    spotify_id: document.getElementById("info").getAttribute("data-user"),
+    initialisePage
+};
+Data(inData, data);
 
 // Game module dependencies
 const inGame = { data: data, view: view };
-// Game module exports
-const game = {};
 Game(inGame, game);
 
 // Controller module dependencies
 const inController = { game: game, data: data, view: view, document };
-// Controller module exports
-const controller = {};
 Controller(inController, controller);
+
+

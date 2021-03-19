@@ -8,6 +8,10 @@ function View(input, output) {
   /* Icons */
   const life_icons = args.document.querySelectorAll(".life");
   const mute_icon = args.document.getElementById("mute-icon");
+  /* Toggles */
+  const toggle_danceability = args.document.getElementById("danceability");
+  const toggle_valence = args.document.getElementById("valence");
+  const toggle_duration = args.document.getElementById("duration_ms");
   /* Question */
   const mode_prefix = args.document.getElementById("mode_prefix");
   const mode_text = args.document.getElementById("mode_text");
@@ -72,6 +76,12 @@ function View(input, output) {
       }
     });
   };
+
+  output.updateModeToggles = function updateModeToggles(toggles) {
+    toggle_danceability.checked = toggles.danceability;
+    toggle_valence.checked = toggles.valence;
+    toggle_duration.checked = toggles.duration_ms;
+  }
 
   output.updateLifeIcons = function updateLifeIcons(lives, cheaterMode) {
     for (let i = 0; i < life_icons.length; i++) {
