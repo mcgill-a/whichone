@@ -1,5 +1,7 @@
 // Data module dependencies
-const inData = { spotify_id: $("#info").data("user") };
+const inData = {
+    spotify_id: document.getElementById("info").getAttribute("data-user")
+};
 // Data module exports
 const data = { user: null };
 Data(inData, data);
