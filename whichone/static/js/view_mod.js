@@ -192,13 +192,13 @@ function View(input, output) {
     stats_popup.classList.add("disabled");
     /* Remove "disabled" */
     time_display.classList.remove("disabled");
-    
+
     choices.forEach((choice) => {
       choice.classList.remove("disabled");
       choice.classList.add("transparent");
       choice.classList.add("pointer");
     });
-    
+
     data_popup.classList.remove("disabled");
     /* Opacity */
     stats_popup.classList.add("transparent");
@@ -211,8 +211,7 @@ function View(input, output) {
     } else {
       next_question.innerHTML = "Next question &#10132; ";
     }
-    
-    
+
     // after 1 second, fade out cards
     await new Promise((resolve) => setTimeout(resolve, primaryDelay));
     $(".choice").css("opacity", 0);
