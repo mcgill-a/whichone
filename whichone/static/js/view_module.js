@@ -347,7 +347,7 @@ function View(input, output) {
     } else if (score >= 20 && score < 100) {
       return `Congrats! You've nailed that one. Can you beat it again?`;
     } else {
-      return `Something's wrong I can feel it`;
+      return `Something's wrong I can feel it.`;
     }
   }
 
