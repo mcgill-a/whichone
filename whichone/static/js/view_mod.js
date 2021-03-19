@@ -131,8 +131,10 @@ function View(input, output) {
     // hide the timer
     down.classList.add("transparent");
 
+    const stat = getStatistic(mode, options, choice, lives, answer);
+
     // Transition scenes from the cards to the stats display
-    sceneStats(lives);
+    sceneStats(lives, stat);
   };
 
   output.updateMuteIcon = function updateMuteIcon(enabled) {
@@ -209,12 +211,14 @@ function View(input, output) {
     });
   }
 
-  async function sceneStats(lives, primaryDelay = 1000, secondaryDelay = 125) {
+  async function sceneStats(lives, stat, primaryDelay = 1000, secondaryDelay = 125) {
     if (lives <= 0) {
       next_question.innerHTML = "Finish &#10132;&nbsp;";
     } else {
       next_question.innerHTML = "Next question &#10132;&nbsp;";
     }
+
+    // statistic.textContent = stat
 
     // after 1 second, fade out cards
     await new Promise((resolve) => setTimeout(resolve, primaryDelay));
@@ -290,5 +294,10 @@ function View(input, output) {
     } else {
       return `Something's wrong I can feel it`;
     }
+  }
+
+  function getStatistic(mode, options, choice, lives, answer) {
+
+    return "";
   }
 }
