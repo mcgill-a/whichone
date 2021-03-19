@@ -18,6 +18,7 @@ const inData = {
   initialisePage,
 };
 Data(inData, data);
+data.init();
 
 // Game module dependencies
 const inGame = { data: data, view: view };

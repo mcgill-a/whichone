@@ -3,6 +3,7 @@ function Game(input, output) {
   const args = input;
 
   const MAX_LIVES = 3;
+  const TIME_LIMIT = 12;
   const options = { 1: {}, 2: {} };
   const MODES = {
     ARTIST_POPULARITY: "artist_popularity",
@@ -19,9 +20,12 @@ function Game(input, output) {
     GAMEOVER10: "/static/resources/gameover_10plus.mp3",
   };
 
+  var refreshIntervalId = null;
+
   output.makeGuess = function makeGuess(choice) {
     if (!output.state.stopped && !output.state.paused) {
       output.state.paused = true;
+      stopCountdown();
       if (choice === evaluateChoices()) {
         correctAnswer();
       } else {
@@ -55,6 +59,7 @@ function Game(input, output) {
       runMode(output.state.currentMode);
       // show question + cards / timer
       args.view.showChoices(output.state.score, output.state.highScore);
+      startCountdown();
       // TODO: reset counter
     } else {
       stopGame();
@@ -70,6 +75,7 @@ function Game(input, output) {
       args.view.updateLifeIcons(output.state.lives, output.state.cheaterMode);
       args.view.updateScores(output.state.score, output.state.highScore);
       args.view.showChoices(output.state.score, output.state.highScore);
+      startCountdown();
     }
   };
 
@@ -104,6 +110,33 @@ function Game(input, output) {
     }
 
     args.view.updateLifeIcons(output.state.lives, output.state.cheaterMode);
+  }
+
+  function countdown() {
+    output.state.counter--;
+    console.log("countdown", output.state.counter);
+    if (output.state.counter === 0 && !output.state.paused) {
+      console.log("empty guess");
+      output.makeGuess(null);
+      clearInterval(refreshIntervalId);
+    }
+    args.view.updateCountdown(TIME_LIMIT, output.state.counter);
+  }
+
+  function startCountdown() {
+    output.state.counter = TIME_LIMIT;
+    args.view.updateCountdown(TIME_LIMIT, output.state.counter);
+    if (refreshIntervalId !== null) {
+      clearInterval(refreshIntervalId);
+    }
+    refreshIntervalId = setInterval(countdown, 1000);
+
+    args.view.toggleCountdownAnimation(true);
+  }
+
+  function stopCountdown() {
+    clearInterval(refreshIntervalId);
+    args.view.toggleCountdownAnimation(false, output.state.counter === 0);
   }
 
   function evaluateChoices() {
@@ -176,6 +209,7 @@ function Game(input, output) {
       previousScore: 0,
       highScore: args.data.user.highScore,
       cheaterMode: false,
+      counter: TIME_LIMIT,
       currentMode: getRandomMode(),
     };
   }

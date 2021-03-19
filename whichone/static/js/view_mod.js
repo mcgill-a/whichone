@@ -32,6 +32,7 @@ function View(input, output) {
   const time_display = args.document.getElementById("time-display");
   const down = args.document.getElementById("down");
   const counter = args.document.getElementById("countdown-number");
+  const counter_progress = args.document.getElementById("inner-circle");
   /* Stats */
   const stats_popup = args.document.getElementById("stats-popup");
   const stats_status = args.document.getElementById("stats-status");
@@ -109,14 +110,40 @@ function View(input, output) {
     };
   };
 
-  output.updateCounter = function updateCounter(time) {
+  output.updateCountdown = function updateCountdown(maxTime, time) {
     counter.textContent = time;
-    // TODO: if time < x, set outline border to red
+    console.log(time);
+    if (time <= maxTime / 2) {
+      counter_progress.classList.add("stroke-red");
+    } else {
+      counter_progress.classList.remove("stroke-red");
+    }
   };
 
-  output.showCounter = function showCounter() {};
+  output.toggleCountdownAnimation = function toggleCountdownAnimation(
+    enabled,
+    visibleAfter
+  ) {
+    if (enabled) {
+      counter_progress.classList.add("animated");
+      counter_progress.classList.remove("transparent");
+      counter.classList.remove("transparent");
+    } else {
+      counter_progress.classList.remove("animated");
+      if (!visibleAfter) {
+        counter_progress.classList.add("transparent");
+        counter.classList.add("transparent");
+      }
+    }
+  };
 
-  output.hideCounter = function hideCounter() {};
+  output.showCountdown = function showCountdown() {
+    down.classList.remove("disabled");
+  };
+
+  output.hideCountdown = function hideCountdown() {
+    down.classList.add("disabled");
+  };
 
   output.showStats = function showStats(mode, options, choice, lives, answer) {
     if (choice === answer) {
@@ -138,13 +165,12 @@ function View(input, output) {
         data_popup.classList.remove("red-border");
       }, 1000);
 
-      // if they didn't choose anything and the timer expired
-      if (choice === "") {
-        choice_1_text.classList.add("text-wrong");
-        choice_2_text.classList.add("text-wrong");
-      } else if (choice === "1") {
+      if (choice === "1") {
         choice_1_text.classList.add("text-wrong");
       } else if (choice === "2") {
+        choice_2_text.classList.add("text-wrong");
+      } else {
+        choice_1_text.classList.add("text-wrong");
         choice_2_text.classList.add("text-wrong");
       }
     }
