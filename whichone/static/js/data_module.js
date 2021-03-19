@@ -95,21 +95,22 @@ function Data(input, output) {
     let local = JSON.parse(data);
 
     // reset modes if they are invalid
-    if (local.modes == null ||
-      !'danceability' in local.modes ||
-      !'valence' in local.modes ||
-      !'duration_ms' in local.modes ||
+    if (
+      local.modes == null ||
+      !"danceability" in local.modes ||
+      !"valence" in local.modes ||
+      !"duration_ms" in local.modes ||
       Object.keys(local.modes).length > 3
     ) {
       local.modes = {
         danceability: true,
         valence: true,
-        duration_ms: true
+        duration_ms: true,
       };
     }
 
     // migrate existing high scores
-    if ('high_score' in local) {
+    if ("high_score" in local) {
       local.highScore = local.high_score;
       delete local.high_score;
     }
