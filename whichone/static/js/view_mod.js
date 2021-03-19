@@ -322,6 +322,19 @@ function View(input, output) {
   }
 
   function getStatistic(mode, options, choice, lives, answer) {
+    console.log(mode);
+    console.log(options);
+    console.log(choice);
+    console.log(lives);
+    console.log(answer);
+
+    console.log(options["1"]);
+    console.log(options["2"]);
+
+    small = answer === options["1"] ? options["2"] : options["1"];
+
+    console.log(small);
+
     return "";
   }
 }
