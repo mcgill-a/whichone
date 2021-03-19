@@ -1,7 +1,6 @@
 function Data(input, output) {
   const args = input;
   const EXPIRATION_TIME = 604800000; // 1 week (milliseconds)
-  const isBoolean = (val) => val != null && "boolean" === typeof val;
 
   output.updateHighScore = function updateHighScore(score) {
     output.user.highScore = score;
@@ -95,24 +94,26 @@ function Data(input, output) {
     let data = localStorage.getItem(id);
     let local = JSON.parse(data);
 
-    // reset modes if they are not valid
-    if (local.modes !== null) {
-      if (
-        !isBoolean(local.modes.danceability) ||
-        !isBoolean(local.modes.valence) ||
-        !isBoolean(local.modes.duration_ms)
-      ) {
-        local.modes = {
-          danceability: true,
-          valence: true,
-          duration_ms: true,
-        };
-      }
+    // reset modes if they are invalid
+    if (local.modes == null ||
+      !'danceability' in local.modes ||
+      !'valence' in local.modes ||
+      !'duration_ms' in local.modes ||
+      Object.keys(local.modes).length > 3
+    ) {
+      local.modes = {
+        danceability: true,
+        valence: true,
+        duration_ms: true
+      };
     }
 
-    if (local.highScore === null || Number.isNaN(local.highScore)) {
-      local.highScore = 0;
+    // migrate existing high scores
+    if ('high_score' in local) {
+      local.highScore = local.high_score;
+      delete local.high_score;
     }
+
     return local;
   }
 
