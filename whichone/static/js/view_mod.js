@@ -176,8 +176,6 @@ function View(input, output) {
 
     choice_1_text.textContent = options["1"].data.name;
     choice_2_text.textContent = options["2"].data.name;
-    choice_1_text.classList.remove("text-wrong", "text-correct");
-    choice_2_text.classList.remove("text-wrong", "text-correct");
 
     if (mode === "artist_popularity") {
       choice_1_image.src = options["1"].data.images[1].url;
@@ -189,24 +187,26 @@ function View(input, output) {
   };
 
   function sceneChoices() {
-    /* Add "disabled" */
+    // reset the text colour for choices
+    choice_1_text.classList.remove("text-wrong", "text-correct");
+    choice_2_text.classList.remove("text-wrong", "text-correct");
+
+    /* Hide */
     game_over.classList.add("disabled");
-    //time_up.classList.addClass("disabled");
     options_popup.classList.add("disabled");
     stats_popup.classList.add("disabled");
-    /* Remove "disabled" */
+    stats_popup.classList.add("transparent");
+    down.classList.add("transparent");
+
+    /* Show */
     time_display.classList.remove("disabled");
+    data_popup.classList.remove("disabled");
 
     choices.forEach((choice) => {
       choice.classList.remove("disabled");
       choice.classList.remove("transparent");
       choice.classList.add("cursor-pointer");
     });
-
-    data_popup.classList.remove("disabled");
-    /* Opacity */
-    stats_popup.classList.add("transparent");
-    down.classList.add("transparent");
   }
 
   async function sceneStats(lives, primaryDelay = 1000, secondaryDelay = 125) {

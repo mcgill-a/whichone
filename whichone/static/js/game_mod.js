@@ -72,7 +72,6 @@ function Game(input, output) {
   };
 
   function stopGame() {
-    console.log("Stop game");
     output.state.stopped = true;
     if (args.data.isAudioEnabled()) {
       if (output.state.lives >= 10) {
@@ -81,7 +80,6 @@ function Game(input, output) {
         args.view.triggerSound(SOUNDS.GAMEOVER);
       }
     }
-
     args.view.endGameTransition(output.state.score, output.state.cheaterMode);
   }
 

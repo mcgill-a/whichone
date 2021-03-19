@@ -10,17 +10,14 @@ function Controller(input, output) {
   const mode_toggles = args.document.querySelectorAll("input[name=toggle]");
 
   sign_out.onclick = function () {
-    console.log("Sign out");
     args.game.spotifyLogout();
   };
 
   play_again.onclick = function () {
-    console.log("Play again");
     args.game.startGame();
   };
 
   next_question.onclick = function () {
-    console.log("Next screen");
     args.game.nextQuestion();
   };
 
@@ -31,7 +28,6 @@ function Controller(input, output) {
 
   choices.forEach((choice) => {
     choice.onclick = function () {
-      console.log("Make guess");
       args.game.makeGuess(choice.getAttribute("data-choice"));
     };
   });
