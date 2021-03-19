@@ -276,7 +276,7 @@ function View(input, output) {
       next_question.innerHTML = "Next question &#10132;&nbsp;";
     }
 
-    statistic.textContent = stat
+    statistic.textContent = stat;
 
     // after 1 second, fade out cards
     await new Promise((resolve) => setTimeout(resolve, primaryDelay));
@@ -359,13 +359,16 @@ function View(input, output) {
   }
 
   function getStatistic(mode, options, choice, lives, answer) {
-    mode = (mode == "track_popularity" || mode == "artist_popularity") ? "popularity" : mode;
+    mode =
+      mode == "track_popularity" || mode == "artist_popularity"
+        ? "popularity"
+        : mode;
     small = options[answer] === options["1"] ? options["2"] : options["1"];
     big = options[answer];
     let modeText = "";
 
     switch (mode) {
-      case ("popularity"):
+      case "popularity":
         bigNum = options[answer].data[mode];
         smallNum = small.data[mode];
         break;
@@ -374,7 +377,7 @@ function View(input, output) {
         smallNum = small.features[mode];
         break;
     }
-    durationMore = Math.round((Math.round((bigNum - smallNum) * 10) / 10) / 1000);
+    durationMore = Math.round(Math.round((bigNum - smallNum) * 10) / 10 / 1000);
     amountMore = Math.max(1, Math.round((smallNum / bigNum) * 100)) + "%";
 
     switch (mode) {
