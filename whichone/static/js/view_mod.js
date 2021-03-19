@@ -331,10 +331,9 @@ function View(input, output) {
     console.log(options["1"]);
     console.log(options["2"]);
 
-    small = (answer === options["1"] ? options["2"] : options["1"]);
+    small = answer === options["1"] ? options["2"] : options["1"];
 
     console.log(small);
-
 
     return "";
   }
