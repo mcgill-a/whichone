@@ -337,15 +337,15 @@ function View(input, output) {
 
   function getGameOverText(score, cheaterMode) {
     if (cheaterMode) {
-      return `Looks like you triggered cheater mode..`;
+      return `Looks like you triggered cheater mode...`;
     } else if (score == 0) {
       return `Better luck next time!`;
     } else if (score == 1) {
       return `At least that's more than 0!`;
     } else if (score > 1 && score < 6) {
-      return `Tip: Choose the correct answers next time`;
+      return `Tip: Choose the correct answers next time.`;
     } else if (score >= 6 && score < 10) {
-      return `Pretty good attempt! You're starting to get the hang of this`;
+      return `Pretty good! You're starting to get the hang of this.`;
     } else if (score >= 10 && score < 20) {
       return `Nice one! `;
     } else if (score >= 20 && score < 100) {
