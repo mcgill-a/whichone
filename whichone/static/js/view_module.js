@@ -311,10 +311,6 @@ function View(input, output) {
     data_popup.classList.add("disabled");
     options_popup.classList.remove("disabled");
 
-    if (!game_over_headline.textContent.endsWith("!")) {
-      game_over_headline.innerHTML += "!";
-    }
-
     game_over_button_txt.textContent = "Play Again";
   }
 
