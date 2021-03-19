@@ -59,10 +59,8 @@ function Game(input, output) {
       // show question + cards / timer
       args.view.showChoices(output.state.score, output.state.highScore);
       startCountdown();
-      // TODO: reset counter
     } else {
       stopGame();
-      // TODO: stop counter
     }
   };
 
@@ -106,7 +104,6 @@ function Game(input, output) {
     if (args.data.isAudioEnabled()) {
       args.view.triggerSound(SOUNDS.INCORRECT);
     }
-
     args.view.updateLifeIcons(output.state.lives, output.state.cheaterMode);
   }
 
