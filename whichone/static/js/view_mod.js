@@ -81,7 +81,7 @@ function View(input, output) {
     toggle_danceability.checked = toggles.danceability;
     toggle_valence.checked = toggles.valence;
     toggle_duration.checked = toggles.duration_ms;
-  }
+  };
 
   output.updateLifeIcons = function updateLifeIcons(lives, cheaterMode) {
     for (let i = 0; i < life_icons.length; i++) {
