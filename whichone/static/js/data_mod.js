@@ -4,8 +4,6 @@ function Data(input, output) {
   const EXPIRATION_TIME = 604800000; // 1 week (milliseconds)
   const isBoolean = (val) => val != null && "boolean" === typeof val;
 
-  initialiseData();
-
   output.updateHighScore = function updateHighScore(score) {
     output.user.highScore = score;
     updateLocalUser(args.spotify_id);
@@ -33,7 +31,7 @@ function Data(input, output) {
     updateLocalUser(id);
   };
 
-  function initialiseData(currentTime = Date.now(), id = args.spotify_id) {
+  output.init = function init(currentTime = Date.now(), id = args.spotify_id) {
     if (isLocalDataAvailable(id)) {
       output.user = getLocalData(id);
       updateLocalUser(id);
