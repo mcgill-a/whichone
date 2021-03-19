@@ -6,6 +6,11 @@ function Data(input, output) {
 
   initialiseData();
 
+  output.updateHighScore = function updateHighScore(score) {
+    output.user.highScore = score;
+    updateLocalUser(args.spotify_id);
+  };
+
   output.isDataReady = function isDataReady() {
     return (
       output.user.top_artists !== null &&
@@ -80,7 +85,7 @@ function Data(input, output) {
       modes: {
         danceability: true,
         valence: true,
-        duration: true,
+        duration_ms: true,
       },
     };
   }
@@ -95,12 +100,12 @@ function Data(input, output) {
       if (
         !isBoolean(local.modes.danceability) ||
         !isBoolean(local.modes.valence) ||
-        !isBoolean(local.modes.duration)
+        !isBoolean(local.modes.duration_ms)
       ) {
         local.modes = {
           danceability: true,
           valence: true,
-          duration: true,
+          duration_ms: true,
         };
       }
     }
