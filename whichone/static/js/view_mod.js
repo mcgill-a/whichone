@@ -35,6 +35,7 @@ function View(input, output) {
   /* Stats */
   const stats_popup = args.document.getElementById("stats-popup");
   const stats_status = args.document.getElementById("stats-status");
+  const statistic = args.document.getElementById("stats-text");
   /* End game */
   const game_over = args.document.getElementById("game-over");
   const game_over_headline = args.document.getElementById("game-over-headline");
@@ -249,7 +250,7 @@ function View(input, output) {
       next_question.innerHTML = "Next question &#10132;&nbsp;";
     }
 
-    // statistic.textContent = stat
+    statistic.textContent = stat
 
     // after 1 second, fade out cards
     await new Promise((resolve) => setTimeout(resolve, primaryDelay));
@@ -320,9 +321,9 @@ function View(input, output) {
       return `At least that's more than 0!`;
     } else if (score > 1 && score < 6) {
       return `Tip: Choose the correct answers next time`;
-    } else if (score >= 6 && score < 12) {
+    } else if (score >= 6 && score < 10) {
       return `Pretty good attempt! You're starting to get the hang of this`;
-    } else if (score >= 12 && score < 20) {
+    } else if (score >= 10 && score < 20) {
       return `Nice one! `;
     } else if (score >= 20 && score < 100) {
       return `Congrats! You've nailed that one. Can you beat it again?`;
@@ -332,19 +333,42 @@ function View(input, output) {
   }
 
   function getStatistic(mode, options, choice, lives, answer) {
-    console.log(mode);
-    console.log(options);
-    console.log(choice);
-    console.log(lives);
-    console.log(answer);
+    mode = (mode == "track_popularity" || mode == "artist_popularity") ? "popularity" : mode;
+    small = options[answer] === options["1"] ? options["2"] : options["1"];
+    big = options[answer];
+    let modeText = "";
 
-    console.log(options["1"]);
-    console.log(options["2"]);
+    switch (mode) {
+      case ("popularity"):
+        bigNum = options[answer].data[mode];
+        smallNum = small.data[mode];
+        break;
+      default:
+        bigNum = options[answer].features[mode];
+        smallNum = small.features[mode];
+        break;
+    }
+    durationMore = Math.round((Math.round((bigNum - smallNum) * 10) / 10) / 1000);
+    amountMore = Math.max(1, Math.round((smallNum / bigNum) * 100)) + "%";
 
-    small = answer === options["1"] ? options["2"] : options["1"];
+    switch (mode) {
+      case "duration_ms":
+        modeText = "seconds longer";
+        amountMore = durationMore;
+        break;
+      case "danceability":
+        modeText = "more danceable";
+        break;
+      case "valence":
+        modeText = "more upbeat";
+        break;
+    }
 
-    console.log(small);
-
-    return "";
+    switch (mode) {
+      case "popularity":
+        return `You have listened to ${options[answer].data.name} ${amountMore} more than ${small.data.name}.`;
+      default:
+        return `${options[answer].data.name} is ${amountMore} ${modeText} than ${small.data.name}.`;
+    }
   }
 }
