@@ -1,6 +1,6 @@
 // Data module dependencies
 const inData = {
-    spotify_id: document.getElementById("info").getAttribute("data-user")
+  spotify_id: document.getElementById("info").getAttribute("data-user"),
 };
 // Data module exports
 const data = { user: null };
