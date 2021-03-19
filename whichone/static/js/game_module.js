@@ -1,4 +1,3 @@
-// game_mod.js
 function Game(input, output) {
   const args = input;
 
@@ -104,7 +103,6 @@ function Game(input, output) {
 
   function incorrectAnswer() {
     output.state.lives--;
-
     if (args.data.isAudioEnabled()) {
       args.view.triggerSound(SOUNDS.INCORRECT);
     }
@@ -114,9 +112,7 @@ function Game(input, output) {
 
   function countdown() {
     output.state.counter--;
-    console.log("countdown", output.state.counter);
     if (output.state.counter === 0 && !output.state.paused) {
-      console.log("empty guess");
       output.makeGuess(null);
       clearInterval(refreshIntervalId);
     }

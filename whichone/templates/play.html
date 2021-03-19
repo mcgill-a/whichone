@@ -1,16 +1,6 @@
 {% extends "base.html" %}
 {% block head %}
 {{ super() }}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!--
-
-<script type="text/javascript" src="{{url_for('static', filename='js/data.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/ui.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/game.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/buttons.js')}}"></script>
--->
-
 <!-- Prevent logout then returning back-->
 <script type="text/javascript">
     function preventBack() {
@@ -192,10 +182,10 @@
 </div>
 
 
-<script type="text/javascript" src="{{url_for('static', filename='js/data_mod.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/game_mod.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/controller_mod.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/view_mod.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/main_mod.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/data_module.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/game_module.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/controller_module.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/view_module.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/main_module.js')}}"></script>
 
 {% endblock %}

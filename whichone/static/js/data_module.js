@@ -1,4 +1,3 @@
-// data_mod.js
 function Data(input, output) {
   const args = input;
   const EXPIRATION_TIME = 604800000; // 1 week (milliseconds)

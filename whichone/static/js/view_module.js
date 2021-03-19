@@ -1,6 +1,13 @@
-// view_mod.js
 function View(input, output) {
   const args = input;
+
+  const ICONS = {
+    LIFE_ENABLED: "/static/resources/spotify-icon.png",
+    LIFE_DISABLED: "/static/resources/spotify-icon-dark.png",
+    LIFE_CHEATER: "/static/resources/spotify-icon-red.png",
+    SOUND_ENABLED: "/static/resources/volume-on.png",
+    SOUND_DISABLED: "/static/resources/volume-off.png",
+  };
 
   /* Scores */
   const current_score = args.document.querySelectorAll(".current-score");
@@ -28,7 +35,6 @@ function View(input, output) {
   /* Data */
   const data_popup = args.document.getElementById("data-popup");
   /* Timer */
-  //const time_up = args.document.querySelectorAll(".time-up");
   const time_display = args.document.getElementById("time-display");
   const down = args.document.getElementById("down");
   const counter = args.document.getElementById("countdown-number");
@@ -47,14 +53,6 @@ function View(input, output) {
   const end_score_value = args.document.getElementById("end_score_value");
   const end_comment = args.document.getElementById("end_comment");
   const enabled_after_end = args.document.querySelectorAll(".enable-after-end");
-
-  const ICONS = {
-    LIFE_ENABLED: "/static/resources/spotify-icon.png",
-    LIFE_DISABLED: "/static/resources/spotify-icon-dark.png",
-    LIFE_CHEATER: "/static/resources/spotify-icon-red.png",
-    SOUND_ENABLED: "/static/resources/volume-on.png",
-    SOUND_DISABLED: "/static/resources/volume-off.png",
-  };
 
   output.showChoices = function showChoices() {
     sceneChoices();
@@ -112,7 +110,6 @@ function View(input, output) {
 
   output.updateCountdown = function updateCountdown(maxTime, time) {
     counter.textContent = time;
-    console.log(time);
     if (time <= maxTime / 2) {
       counter_progress.classList.add("stroke-red");
     } else {

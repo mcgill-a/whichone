@@ -1,4 +1,3 @@
-// controller_mod.js
 function Controller(input, output) {
   const args = input;
 
