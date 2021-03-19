@@ -34,7 +34,9 @@ function View(input, output) {
   /* End game */
   const game_over = args.document.getElementById("game-over");
   const game_over_headline = args.document.getElementById("game-over-headline");
-  const game_over_button_txt = args.document.getElementById("game-over-button-text");
+  const game_over_button_txt = args.document.getElementById(
+    "game-over-button-text"
+  );
   const end_score = args.document.getElementById("end_score");
   const end_score_value = args.document.getElementById("end_score_value");
   const end_comment = args.document.getElementById("end_comment");

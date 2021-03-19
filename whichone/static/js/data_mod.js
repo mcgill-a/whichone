@@ -9,7 +9,7 @@ function Data(input, output) {
   output.updateHighScore = function updateHighScore(score) {
     output.user.highScore = score;
     updateLocalUser(args.spotify_id);
-  }
+  };
 
   output.isDataReady = function isDataReady() {
     return (
