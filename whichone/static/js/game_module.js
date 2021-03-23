@@ -19,7 +19,7 @@ function Game(input, output) {
     GAMEOVER10: "/static/resources/gameover_10plus.mp3",
   };
 
-  var refreshIntervalId = null;
+  let countdownInstance = null;
 
   output.makeGuess = function makeGuess(choice) {
     if (!output.state.stopped && !output.state.paused) {
@@ -122,7 +122,7 @@ function Game(input, output) {
     output.state.counter--;
     if (output.state.counter === 0 && !output.state.paused) {
       output.makeGuess(null);
-      clearInterval(refreshIntervalId);
+      clearInterval(countdownInstance);
     }
     args.view.updateCountdown(TIME_LIMIT, output.state.counter);
   }
@@ -130,16 +130,16 @@ function Game(input, output) {
   function startCountdown() {
     output.state.counter = TIME_LIMIT;
     args.view.updateCountdown(TIME_LIMIT, output.state.counter);
-    if (refreshIntervalId !== null) {
-      clearInterval(refreshIntervalId);
+    if (countdownInstance !== null) {
+      clearInterval(countdownInstance);
     }
-    refreshIntervalId = setInterval(countdown, 1000);
+    countdownInstance = setInterval(countdown, 1000);
 
     args.view.toggleCountdownAnimation(true);
   }
 
   function stopCountdown() {
-    clearInterval(refreshIntervalId);
+    clearInterval(countdownInstance);
     args.view.toggleCountdownAnimation(false, output.state.counter === 0);
   }
 
