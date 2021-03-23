@@ -11,7 +11,7 @@ Controller(spotify_id, game, data, view, document, controller);
 
 start();
 
-async function start(user_data=null) {
+async function start(user_data = null) {
   if (user_data === null) {
     user_data = await controller.fetchData();
   }
