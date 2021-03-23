@@ -40,33 +40,35 @@ function Controller(spotify_id, game, data, view, document, controller) {
     id = spotify_id,
     currentTime = Date.now()
   ) {
-    let user = {};
+    return new Promise((resolve, reject) => {
+      let user = {};
 
-    if (isLocalDataAvailable(id)) {
-      user = getLocalData(id);
-    } else {
-      user = getDefaultData();
-    }
+      if (isLocalDataAvailable(id)) {
+        user = getLocalData(id);
+      } else {
+        user = getDefaultData();
+      }
 
-    // if 1 week has passed or default data (0),
-    // it is expired, get spotify data
-    if (isLocalDataExpired(user.expire, currentTime, EXPIRATION_TIME)) {
-      getSpotifyData()
-        .then((spotify_data) => {
-          user.top_artists = spotify_data.top_artists;
-          user.top_tracks = spotify_data.top_tracks;
-          user.audio_features = spotify_data.audio_features;
-          user.expire = currentTime;
-          // Initialise the data module using the updated user object
-          data.init(user);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } else {
-      // Initialise the data module using the original user object
-      data.init(user);
-    }
+      // if 1 week has passed or default data (0),
+      // it is expired, get spotify data
+      if (isLocalDataExpired(user.expire, currentTime, EXPIRATION_TIME)) {
+        getSpotifyData()
+          .then((spotify_data) => {
+            user.top_artists = spotify_data.top_artists;
+            user.top_tracks = spotify_data.top_tracks;
+            user.audio_features = spotify_data.audio_features;
+            user.expire = currentTime;
+            // Initialise the data module using the updated user object
+            resolve(user);
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      } else {
+        // Initialise the data module using the original user object
+        resolve(user);
+      }
+    });
   };
 
   function isLocalDataAvailable(id) {
