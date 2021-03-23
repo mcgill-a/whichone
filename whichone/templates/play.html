@@ -52,7 +52,7 @@
     </div>
     <div class="section game-controls">
         <div class="choices">
-            <button id="button-choice-1" class="choice no-margin choice1 disabled" data-choice="1">
+            <button id="button-choice-1" class="choice no-margin choice1 no-display" data-choice="1">
                 <div class="choice-art">
                     <img id="image1" alt="album art photo cover">
                 </div>
@@ -60,7 +60,7 @@
                     <p class="gotham-small padding-5" id="text1"></p>
                 </div>
             </button>
-            <div id="time-display" class="time-display no-margin disabled">
+            <div id="time-display" class="time-display no-margin no-display">
                 <div id="down" class="down">
                     <div id="countdown" title="Choose before time runs out!">
                         <svg id="abc">
@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <div id="stats-popup" class="row container-vert stats-display disabled">
+            <div id="stats-popup" class="row container-vert stats-display no-display">
                 <div class="flex-vertical">
                     <h2 id="stats-status" class="gotham-medium limit-font-size status-header"></h2>
                     <h4 id="stats-text" class="gotham-small small-label margin-top-m" color="white"></h4>
@@ -83,20 +83,20 @@
                 <h2 id="game-over-headline" class="gotham-medium limit-font-size-big text-thin"><span id="end_score">Ready to play?</span>
                     <span id="end_score_value" class="text-orange"></span></h2>
                 <h4 class="gotham-small" id="end_comment"></h4>
-                <div class="flex-horizontal disabled enable-after-end">
+                <div class="flex-horizontal no-display enable-after-end">
                     <img id="fire_icon" alt="current score icon" title="High Score" class="span-icon-score"
                         src="{{url_for('static', filename='resources/trophy-gold.png')}}">
                     <h4 class="high-score gotham-small margin-top-m margin-bottom-m" id="end_high_score"></h4>
                 </div>
                 <button id="play-again" class="play gotham-medium">
                     <div class="flex-horizontal">
-                        <img id="reset_icon" alt="play again icon" title="Current Score" class="span-icon-reset disabled enable-after-end"
+                        <img id="reset_icon" alt="play again icon" title="Current Score" class="span-icon-reset no-display enable-after-end"
                             src="{{url_for('static', filename='resources/reset.png')}}">
                         <span id="game-over-button-text">Start Game</span>
                     </div>
                 </button>
             </div>
-            <button id="button-choice-2" class="choice no-margin choice2 disabled" data-choice="2">
+            <button id="button-choice-2" class="choice no-margin choice2 no-display" data-choice="2">
                 <div class="choice-art">
                     <img id="image2" alt="album art photo cover">
                 </div>
@@ -108,7 +108,7 @@
 
     <div id="info" class="section game-info" data-user={{user_id}}>
         <div class="choices height-auto">
-            <div id="data-popup" class="row container-vert disabled">
+            <div id="data-popup" class="row container-vert no-display">
                 <div class="flex-right">
                     <div id="score-mobile">
                         <h2 class="gotham-small text-white current-score" id="current_score-m">0</h1>
