@@ -176,10 +176,8 @@ function Game(data, view, game) {
     }
 
     if (mode !== MODES.ARTIST_POPULARITY) {
-      options["1"].features =
-        data.user.audio_features[options["1"].data.id];
-      options["2"].features =
-        data.user.audio_features[options["2"].data.id];
+      options["1"].features = data.user.audio_features[options["1"].data.id];
+      options["2"].features = data.user.audio_features[options["2"].data.id];
     }
 
     view.updateQuestion(mode, options);
