@@ -187,9 +187,9 @@ function Game(data, view, game) {
     return list[Math.floor(Math.random() * list.length)];
   }
 
-  function getRandomMode() {
+  function getRandomMode(ready) {
     const choiceArray = [MODES.ARTIST_POPULARITY, MODES.TRACK_POPULARITY];
-    if (data.user.modes) {
+    if (ready && data.user.modes) {
       for (const [mode, enabled] of Object.entries(data.user.modes)) {
         if (enabled) {
           choiceArray.push(mode);
@@ -200,17 +200,18 @@ function Game(data, view, game) {
   }
 
   function getDefaultState() {
+    const ready = data.isDataReady();
     return {
-      ready: data.isDataReady(),
+      ready,
       stopped: true,
       paused: false,
       lives: MAX_LIVES,
       score: 0,
       previousScore: 0,
-      highScore: data.user.highScore,
+      highScore: ready ? data.user.highScore : 0,
       cheaterMode: false,
       counter: TIME_LIMIT,
-      currentMode: getRandomMode(),
+      currentMode: getRandomMode(ready),
     };
   }
 }

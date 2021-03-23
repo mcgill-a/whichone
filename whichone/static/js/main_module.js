@@ -1,6 +1,7 @@
-const view = {};
 const data = { user: null };
+const view = {};
 const game = {};
+const controller = {};
 const spotify_id = document.getElementById("info").getAttribute("data-user");
 
 const initialisePage = function initialisePage(audioState, toggles) {
@@ -8,11 +9,8 @@ const initialisePage = function initialisePage(audioState, toggles) {
   view.updateModeToggles(toggles);
 };
 
-View(document, view);
-
 Data(spotify_id, initialisePage, data);
-data.init();
-
+View(document, view);
 Game(data, view, game);
-
-Controller(game, data, view, document);
+Controller(spotify_id, game, data, view, document, controller);
+controller.fetchData();
