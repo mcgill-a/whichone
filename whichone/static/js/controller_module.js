@@ -36,8 +36,11 @@ function Controller(spotify_id, game, data, view, document, controller) {
     };
   });
 
-  controller.fetchData = function fetchData(id=spotify_id, currentTime = Date.now()) {
-    let user = { };
+  controller.fetchData = function fetchData(
+    id = spotify_id,
+    currentTime = Date.now()
+  ) {
+    let user = {};
 
     if (isLocalDataAvailable(id)) {
       user = getLocalData(id);
@@ -198,5 +201,4 @@ function Controller(spotify_id, game, data, view, document, controller) {
         });
     });
   }
-
 }

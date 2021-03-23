@@ -33,7 +33,7 @@ function Data(spotify_id, initialisePage, data) {
     updateLocalUser(id);
     // now that data has been loaded, setup the page settings
     initialisePage(data.user.audioEnabled, data.user.modes);
-  }
+  };
 
   function updateLocalUser(id, userObject = data.user) {
     localStorage.setItem(id, JSON.stringify(userObject));
