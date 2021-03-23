@@ -1,53 +1,52 @@
-function Data(input, output) {
-  const args = input;
+function Data(spotify_id, initialisePage, data) {
   const EXPIRATION_TIME = 604800000; // 1 week (milliseconds)
 
-  output.updateHighScore = function updateHighScore(score) {
-    output.user.highScore = score;
-    updateLocalUser(args.spotify_id);
+  data.updateHighScore = function updateHighScore(score) {
+    data.user.highScore = score;
+    updateLocalUser(spotify_id);
   };
 
-  output.isDataReady = function isDataReady() {
+  data.isDataReady = function isDataReady() {
     return (
-      output.user.top_artists !== null &&
-      output.user.top_tracks !== null &&
-      output.audio_features !== null
+      data.user.top_artists !== null &&
+      data.user.top_tracks !== null &&
+      data.audio_features !== null
     );
   };
 
-  output.isAudioEnabled = function isAudioEnabled() {
-    return output.user.audioEnabled;
+  data.isAudioEnabled = function isAudioEnabled() {
+    return data.user.audioEnabled;
   };
 
-  output.toggleMute = function toggleMute() {
-    output.user.audioEnabled = !output.user.audioEnabled;
-    updateLocalUser(args.spotify_id);
+  data.toggleMute = function toggleMute() {
+    data.user.audioEnabled = !data.user.audioEnabled;
+    updateLocalUser(spotify_id);
   };
 
-  output.toggleMode = function toggleMode(toggle, id = args.spotify_id) {
-    output.user.modes[toggle.id] = toggle.checked;
+  data.toggleMode = function toggleMode(toggle, id = spotify_id) {
+    data.user.modes[toggle.id] = toggle.checked;
     updateLocalUser(id);
   };
 
-  output.init = function init(currentTime = Date.now(), id = args.spotify_id) {
+  data.init = function init(currentTime = Date.now(), id = spotify_id) {
     if (isLocalDataAvailable(id)) {
-      output.user = getLocalData(id);
+      data.user = getLocalData(id);
       updateLocalUser(id);
     } else {
-      output.user = getDefaultData();
+      data.user = getDefaultData();
     }
     // now that data has been loaded, setup the page settings
-    args.initialisePage(output.user.audioEnabled, output.user.modes);
+    initialisePage(data.user.audioEnabled, data.user.modes);
 
     // if 1 week has passed or default data (0),
     // it is expired, get spotify data
-    if (isLocalDataExpired(output.user.expire, currentTime, EXPIRATION_TIME)) {
+    if (isLocalDataExpired(data.user.expire, currentTime, EXPIRATION_TIME)) {
       getSpotifyData()
         .then((data) => {
-          output.user.top_artists = data.top_artists;
-          output.user.top_tracks = data.top_tracks;
-          output.user.audio_features = data.audio_features;
-          output.user.expire = currentTime;
+          data.user.top_artists = data.top_artists;
+          data.user.top_tracks = data.top_tracks;
+          data.user.audio_features = data.audio_features;
+          data.user.expire = currentTime;
           updateLocalUser(id);
         })
         .catch((error) => {
@@ -68,7 +67,7 @@ function Data(input, output) {
     return currentTimestamp - storedTimestamp > expirationTime;
   }
 
-  function updateLocalUser(id, userObject = output.user) {
+  function updateLocalUser(id, userObject = data.user) {
     localStorage.setItem(id, JSON.stringify(userObject));
   }
 
@@ -156,11 +155,11 @@ function Data(input, output) {
   }
 
   function processAudioFeatures(audio_features) {
-    let output = {};
+    let data = {};
     audio_features.forEach((result) => {
-      output[result["id"]] = result;
+      data[result["id"]] = result;
     });
-    return output;
+    return data;
   }
 
   function getSpotifyData(

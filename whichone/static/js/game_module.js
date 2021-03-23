@@ -1,6 +1,4 @@
-function Game(input, output) {
-  const args = input;
-
+function Game(data, view, game) {
   const MAX_LIVES = 3;
   const TIME_LIMIT = 12;
   const options = { 1: {}, 2: {} };
@@ -21,27 +19,27 @@ function Game(input, output) {
 
   let countdownInstance = null;
 
-  output.makeGuess = function makeGuess(choice) {
-    if (!output.state.stopped && !output.state.paused) {
-      output.state.paused = true;
+  game.makeGuess = function makeGuess(choice) {
+    if (!game.state.stopped && !game.state.paused) {
+      game.state.paused = true;
       stopCountdown();
       if (choice === evaluateChoices()) {
         correctAnswer();
       } else {
         incorrectAnswer();
       }
-      args.view.showStats(
-        output.state.currentMode,
+      view.showStats(
+        game.state.currentMode,
         options,
         choice,
-        output.state.lives,
+        game.state.lives,
         (answer = evaluateChoices())
       );
-      args.view.updateScores(output.state.score, output.state.highScore);
+      view.updateScores(game.state.score, game.state.highScore);
     }
   };
 
-  output.spotifyLogout = function spotifyLogout() {
+  game.spotifyLogout = function spotifyLogout() {
     const url = "https://accounts.spotify.com/en/logout";
     const spotifyLogoutWindow = window.open(
       url,
@@ -50,61 +48,61 @@ function Game(input, output) {
     );
   };
 
-  output.nextQuestion = function nextQuestion() {
-    if (output.state.lives > 0) {
-      output.state.paused = false;
+  game.nextQuestion = function nextQuestion() {
+    if (game.state.lives > 0) {
+      game.state.paused = false;
       // get a random new question
-      output.state.currentMode = getRandomMode();
-      runMode(output.state.currentMode);
+      game.state.currentMode = getRandomMode();
+      runMode(game.state.currentMode);
       // show question + cards / timer
-      args.view.showChoices(output.state.score, output.state.highScore);
+      view.showChoices(game.state.score, game.state.highScore);
       startCountdown();
     } else {
       stopGame();
     }
   };
 
-  output.startGame = function startGame() {
-    output.state = getDefaultState();
-    if (output.state.ready && output.state.stopped) {
-      output.state.stopped = false;
-      runMode(output.state.currentMode);
-      args.view.updateLifeIcons(output.state.lives, output.state.cheaterMode);
-      args.view.updateScores(output.state.score, output.state.highScore);
-      args.view.showChoices(output.state.score, output.state.highScore);
+  game.startGame = function startGame() {
+    game.state = getDefaultState();
+    if (game.state.ready && game.state.stopped) {
+      game.state.stopped = false;
+      runMode(game.state.currentMode);
+      view.updateLifeIcons(game.state.lives, game.state.cheaterMode);
+      view.updateScores(game.state.score, game.state.highScore);
+      view.showChoices(game.state.score, game.state.highScore);
       startCountdown();
     }
   };
 
   function stopGame() {
-    output.state.stopped = true;
-    if (args.data.isAudioEnabled()) {
-      if (output.state.score >= 10) {
+    game.state.stopped = true;
+    if (data.isAudioEnabled()) {
+      if (game.state.score >= 10) {
         triggerSound(SOUNDS.GAMEOVER10);
       } else {
         triggerSound(SOUNDS.GAMEOVER);
       }
     }
-    args.view.endGameTransition(output.state.score, output.state.cheaterMode);
+    view.endGameTransition(game.state.score, game.state.cheaterMode);
   }
 
   function correctAnswer() {
-    output.state.score++;
-    if (output.state.score > output.state.highScore) {
-      output.state.highScore = output.state.score;
-      args.data.updateHighScore(output.state.highScore);
+    game.state.score++;
+    if (game.state.score > game.state.highScore) {
+      game.state.highScore = game.state.score;
+      data.updateHighScore(game.state.highScore);
     }
-    if (args.data.isAudioEnabled()) {
+    if (data.isAudioEnabled()) {
       triggerSound(SOUNDS.CORRECT);
     }
   }
 
   function incorrectAnswer() {
-    output.state.lives--;
-    if (args.data.isAudioEnabled()) {
+    game.state.lives--;
+    if (data.isAudioEnabled()) {
       triggerSound(SOUNDS.INCORRECT);
     }
-    args.view.updateLifeIcons(output.state.lives, output.state.cheaterMode);
+    view.updateLifeIcons(game.state.lives, game.state.cheaterMode);
   }
 
   function triggerSound(src) {
@@ -119,34 +117,34 @@ function Game(input, output) {
   }
 
   function countdown() {
-    output.state.counter--;
-    if (output.state.counter === 0 && !output.state.paused) {
-      output.makeGuess(null);
+    game.state.counter--;
+    if (game.state.counter === 0 && !game.state.paused) {
+      game.makeGuess(null);
       clearInterval(countdownInstance);
     }
-    args.view.updateCountdown(TIME_LIMIT, output.state.counter);
+    view.updateCountdown(TIME_LIMIT, game.state.counter);
   }
 
   function startCountdown() {
-    output.state.counter = TIME_LIMIT;
-    args.view.updateCountdown(TIME_LIMIT, output.state.counter);
+    game.state.counter = TIME_LIMIT;
+    view.updateCountdown(TIME_LIMIT, game.state.counter);
     if (countdownInstance !== null) {
       clearInterval(countdownInstance);
     }
     countdownInstance = setInterval(countdown, 1000);
 
-    args.view.toggleCountdownAnimation(true);
+    view.toggleCountdownAnimation(true);
   }
 
   function stopCountdown() {
     clearInterval(countdownInstance);
-    args.view.toggleCountdownAnimation(false, output.state.counter === 0);
+    view.toggleCountdownAnimation(false, game.state.counter === 0);
   }
 
   function evaluateChoices() {
     if (
-      getValue(output.state.currentMode, options["1"]) >
-      getValue(output.state.currentMode, options["2"])
+      getValue(game.state.currentMode, options["1"]) >
+      getValue(game.state.currentMode, options["2"])
     ) {
       return "1";
     } else {
@@ -165,9 +163,9 @@ function Game(input, output) {
   function runMode(mode) {
     let modeData = [];
     if (mode === MODES.ARTIST_POPULARITY) {
-      modeData = args.data.user.top_artists;
+      modeData = data.user.top_artists;
     } else {
-      modeData = args.data.user.top_tracks;
+      modeData = data.user.top_tracks;
     }
 
     options["1"].data = getRandomListItem(modeData);
@@ -179,12 +177,12 @@ function Game(input, output) {
 
     if (mode !== MODES.ARTIST_POPULARITY) {
       options["1"].features =
-        args.data.user.audio_features[options["1"].data.id];
+        data.user.audio_features[options["1"].data.id];
       options["2"].features =
-        args.data.user.audio_features[options["2"].data.id];
+        data.user.audio_features[options["2"].data.id];
     }
 
-    args.view.updateQuestion(mode, options);
+    view.updateQuestion(mode, options);
   }
 
   function getRandomListItem(list) {
@@ -193,8 +191,8 @@ function Game(input, output) {
 
   function getRandomMode() {
     const choiceArray = [MODES.ARTIST_POPULARITY, MODES.TRACK_POPULARITY];
-    if (args.data.user.modes) {
-      for (const [mode, enabled] of Object.entries(args.data.user.modes)) {
+    if (data.user.modes) {
+      for (const [mode, enabled] of Object.entries(data.user.modes)) {
         if (enabled) {
           choiceArray.push(mode);
         }
@@ -205,13 +203,13 @@ function Game(input, output) {
 
   function getDefaultState() {
     return {
-      ready: args.data.isDataReady(),
+      ready: data.isDataReady(),
       stopped: true,
       paused: false,
       lives: MAX_LIVES,
       score: 0,
       previousScore: 0,
-      highScore: args.data.user.highScore,
+      highScore: data.user.highScore,
       cheaterMode: false,
       counter: TIME_LIMIT,
       currentMode: getRandomMode(),

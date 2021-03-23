@@ -1,6 +1,4 @@
-function View(input, output) {
-  const args = input;
-
+function View(document, view) {
   const ICONS = {
     LIFE_ENABLED: "/static/resources/spotify-icon.png",
     LIFE_DISABLED: "/static/resources/spotify-icon-dark.png",
@@ -10,59 +8,59 @@ function View(input, output) {
   };
 
   /* Scores */
-  const current_score = args.document.querySelectorAll(".current-score");
-  const high_score = args.document.querySelectorAll(".high-score");
+  const current_score = document.querySelectorAll(".current-score");
+  const high_score = document.querySelectorAll(".high-score");
   /* Icons */
-  const life_icons = args.document.querySelectorAll(".life");
-  const mute_icon = args.document.getElementById("mute-icon");
+  const life_icons = document.querySelectorAll(".life");
+  const mute_icon = document.getElementById("mute-icon");
   /* Toggles */
-  const toggle_danceability = args.document.getElementById("danceability");
-  const toggle_valence = args.document.getElementById("valence");
-  const toggle_duration = args.document.getElementById("duration_ms");
+  const toggle_danceability = document.getElementById("danceability");
+  const toggle_valence = document.getElementById("valence");
+  const toggle_duration = document.getElementById("duration_ms");
   /* Question */
-  const mode_prefix = args.document.getElementById("mode_prefix");
-  const mode_text = args.document.getElementById("mode_text");
-  const mode_suffix = args.document.getElementById("mode_suffix");
-  const next_question = args.document.getElementById("next-question");
+  const mode_prefix = document.getElementById("mode_prefix");
+  const mode_text = document.getElementById("mode_text");
+  const mode_suffix = document.getElementById("mode_suffix");
+  const next_question = document.getElementById("next-question");
   /* Choice */
-  const choice_1_text = args.document.getElementById("text1");
-  const choice_1_image = args.document.getElementById("image1");
-  const choice_2_text = args.document.getElementById("text2");
-  const choice_2_image = args.document.getElementById("image2");
-  const choices = args.document.querySelectorAll(".choice");
+  const choice_1_text = document.getElementById("text1");
+  const choice_1_image = document.getElementById("image1");
+  const choice_2_text = document.getElementById("text2");
+  const choice_2_image = document.getElementById("image2");
+  const choices = document.querySelectorAll(".choice");
   /* Options */
-  const options_popup = args.document.getElementById("options-popup");
+  const options_popup = document.getElementById("options-popup");
   /* Data */
-  const data_popup = args.document.getElementById("data-popup");
+  const data_popup = document.getElementById("data-popup");
   /* Timer */
-  const time_display = args.document.getElementById("time-display");
-  const down = args.document.getElementById("down");
-  const counter = args.document.getElementById("countdown-number");
-  const counter_progress = args.document.getElementById("inner-circle");
+  const time_display = document.getElementById("time-display");
+  const down = document.getElementById("down");
+  const counter = document.getElementById("countdown-number");
+  const counter_progress = document.getElementById("inner-circle");
   /* Stats */
-  const stats_popup = args.document.getElementById("stats-popup");
-  const stats_status = args.document.getElementById("stats-status");
-  const statistic = args.document.getElementById("stats-text");
+  const stats_popup = document.getElementById("stats-popup");
+  const stats_status = document.getElementById("stats-status");
+  const statistic = document.getElementById("stats-text");
   /* End game */
-  const game_over = args.document.getElementById("game-over");
-  const game_over_headline = args.document.getElementById("game-over-headline");
-  const game_over_button_txt = args.document.getElementById(
+  const game_over = document.getElementById("game-over");
+  const game_over_headline = document.getElementById("game-over-headline");
+  const game_over_button_txt = document.getElementById(
     "game-over-button-text"
   );
-  const end_score = args.document.getElementById("end_score");
-  const end_score_value = args.document.getElementById("end_score_value");
-  const end_comment = args.document.getElementById("end_comment");
-  const enabled_after_end = args.document.querySelectorAll(".enable-after-end");
+  const end_score = document.getElementById("end_score");
+  const end_score_value = document.getElementById("end_score_value");
+  const end_comment = document.getElementById("end_comment");
+  const enabled_after_end = document.querySelectorAll(".enable-after-end");
 
-  output.showChoices = function showChoices() {
+  view.showChoices = function showChoices() {
     sceneChoices();
   };
 
-  output.endGameTransition = function endGameTransition(score, cheaterMode) {
+  view.endGameTransition = function endGameTransition(score, cheaterMode) {
     sceneEndGame(score, cheaterMode);
   };
 
-  output.updateScores = function updateScores(currentScore, highScore) {
+  view.updateScores = function updateScores(currentScore, highScore) {
     // scores are displayed in multiple places, update them all
     current_score.forEach((score) => {
       score.textContent = currentScore;
@@ -77,13 +75,13 @@ function View(input, output) {
     });
   };
 
-  output.updateModeToggles = function updateModeToggles(toggles) {
+  view.updateModeToggles = function updateModeToggles(toggles) {
     toggle_danceability.checked = toggles.danceability;
     toggle_valence.checked = toggles.valence;
     toggle_duration.checked = toggles.duration_ms;
   };
 
-  output.updateLifeIcons = function updateLifeIcons(lives, cheaterMode) {
+  view.updateLifeIcons = function updateLifeIcons(lives, cheaterMode) {
     for (let i = 0; i < life_icons.length; i++) {
       if (cheaterMode) {
         life_icons[i].src = ICONS.LIFE_CHEATER;
@@ -97,7 +95,7 @@ function View(input, output) {
     }
   };
 
-  output.updateCountdown = function updateCountdown(maxTime, time) {
+  view.updateCountdown = function updateCountdown(maxTime, time) {
     counter.textContent = time;
     if (time <= maxTime / 2) {
       counter_progress.classList.add("stroke-red");
@@ -106,7 +104,7 @@ function View(input, output) {
     }
   };
 
-  output.toggleCountdownAnimation = function toggleCountdownAnimation(
+  view.toggleCountdownAnimation = function toggleCountdownAnimation(
     enabled,
     visibleAfter
   ) {
@@ -123,15 +121,15 @@ function View(input, output) {
     }
   };
 
-  output.showCountdown = function showCountdown() {
+  view.showCountdown = function showCountdown() {
     down.classList.remove("no-display");
   };
 
-  output.hideCountdown = function hideCountdown() {
+  view.hideCountdown = function hideCountdown() {
     down.classList.add("no-display");
   };
 
-  output.showStats = function showStats(mode, options, choice, lives, answer) {
+  view.showStats = function showStats(mode, options, choice, lives, answer) {
     if (choice === answer) {
       stats_status.textContent = "Correct!";
       data_popup.classList.add("green-border");
@@ -170,7 +168,7 @@ function View(input, output) {
     sceneStats(lives, stat);
   };
 
-  output.updateMuteIcon = function updateMuteIcon(enabled) {
+  view.updateMuteIcon = function updateMuteIcon(enabled) {
     if (enabled) {
       mute_icon.src = ICONS.SOUND_ENABLED;
     } else {
@@ -178,7 +176,7 @@ function View(input, output) {
     }
   };
 
-  output.updateQuestion = function updateQuestion(mode, options) {
+  view.updateQuestion = function updateQuestion(mode, options) {
     let prefix = "";
     let text = "";
     let suffix = "?";
