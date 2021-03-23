@@ -116,7 +116,7 @@ function Game(input, output) {
     audio.onerror = function () {
       console.error(`Audio source not found (${src})`);
     };
-  };
+  }
 
   function countdown() {
     output.state.counter--;
