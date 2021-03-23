@@ -356,7 +356,7 @@ input:checked+.slider:before {
     transition: visibility 0s linear 300ms, opacity 300ms;
 }
 
-.disabled {
+.no-display {
     display: none !important;
     width: 0 !important;
     height: 0 !important;

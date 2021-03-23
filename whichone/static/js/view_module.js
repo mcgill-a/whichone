@@ -124,11 +124,11 @@ function View(input, output) {
   };
 
   output.showCountdown = function showCountdown() {
-    down.classList.remove("disabled");
+    down.classList.remove("no-display");
   };
 
   output.hideCountdown = function hideCountdown() {
-    down.classList.add("disabled");
+    down.classList.add("no-display");
   };
 
   output.showStats = function showStats(mode, options, choice, lives, answer) {
@@ -233,20 +233,20 @@ function View(input, output) {
     choice_2_text.classList.remove("text-wrong", "text-correct");
 
     /* Hide */
-    game_over.classList.add("disabled");
-    options_popup.classList.add("disabled");
-    stats_popup.classList.add("disabled");
+    game_over.classList.add("no-display");
+    options_popup.classList.add("no-display");
+    stats_popup.classList.add("no-display");
     stats_popup.classList.add("transparent");
     down.classList.add("transparent");
 
     /* Show */
-    time_display.classList.remove("disabled");
-    data_popup.classList.remove("disabled");
+    time_display.classList.remove("no-display");
+    data_popup.classList.remove("no-display");
 
     choices.forEach((choice) => {
-      choice.classList.remove("disabled");
+      choice.classList.remove("no-display");
       choice.classList.remove("transparent");
-      choice.classList.add("cursor-pointer");
+      choice.disabled = false;
     });
   }
 
@@ -262,13 +262,16 @@ function View(input, output) {
       next_question.innerHTML = "Next question &#10132;&nbsp;";
     }
 
+    choices.forEach((choice) => {
+      choice.disabled = true;
+    });
+
     statistic.textContent = stat;
 
     // after 1 second, fade out cards
     await new Promise((resolve) => setTimeout(resolve, primaryDelay));
     choices.forEach((choice) => {
       choice.classList.add("transparent");
-      choice.classList.remove("cursor-pointer");
     });
 
     down.classList.add("transparent");
@@ -277,10 +280,10 @@ function View(input, output) {
     // after cards have faded, display the stats popup
     await new Promise((resolve) => setTimeout(resolve, secondaryDelay));
     choices.forEach((choice) => {
-      choice.classList.add("disabled");
+      choice.classList.add("no-display");
     });
-    time_display.classList.add("disabled");
-    stats_popup.classList.remove("disabled");
+    time_display.classList.add("no-display");
+    stats_popup.classList.remove("no-display");
     stats_popup.classList.remove("transparent");
   }
 
@@ -289,16 +292,16 @@ function View(input, output) {
     end_score.textContent = "You scored ";
     end_score_value.textContent = score;
     end_comment.textContent = getGameOverText(score, cheaterMode);
-    stats_popup.classList.add("disabled");
+    stats_popup.classList.add("no-display");
     stats_popup.classList.add("transparent");
-    game_over.classList.remove("disabled");
+    game_over.classList.remove("no-display");
 
     enabled_after_end.forEach((item) => {
-      item.classList.remove("disabled");
+      item.classList.remove("no-display");
     });
 
-    data_popup.classList.add("disabled");
-    options_popup.classList.remove("disabled");
+    data_popup.classList.add("no-display");
+    options_popup.classList.remove("no-display");
 
     game_over_button_txt.textContent = "Play Again";
   }
