@@ -80,9 +80,9 @@ function Game(input, output) {
     output.state.stopped = true;
     if (args.data.isAudioEnabled()) {
       if (output.state.score >= 10) {
-        args.view.triggerSound(SOUNDS.GAMEOVER10);
+        triggerSound(SOUNDS.GAMEOVER10);
       } else {
-        args.view.triggerSound(SOUNDS.GAMEOVER);
+        triggerSound(SOUNDS.GAMEOVER);
       }
     }
     args.view.endGameTransition(output.state.score, output.state.cheaterMode);
@@ -95,17 +95,28 @@ function Game(input, output) {
       args.data.updateHighScore(output.state.highScore);
     }
     if (args.data.isAudioEnabled()) {
-      args.view.triggerSound(SOUNDS.CORRECT);
+      triggerSound(SOUNDS.CORRECT);
     }
   }
 
   function incorrectAnswer() {
     output.state.lives--;
     if (args.data.isAudioEnabled()) {
-      args.view.triggerSound(SOUNDS.INCORRECT);
+      triggerSound(SOUNDS.INCORRECT);
     }
     args.view.updateLifeIcons(output.state.lives, output.state.cheaterMode);
   }
+
+  function triggerSound(src) {
+    const audio = new Audio(src);
+    audio.oncanplay = function () {
+      audio.volume = 0.3;
+      audio.play();
+    };
+    audio.onerror = function () {
+      console.error(`Audio source not found (${src})`);
+    };
+  };
 
   function countdown() {
     output.state.counter--;

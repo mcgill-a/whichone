@@ -97,17 +97,6 @@ function View(input, output) {
     }
   };
 
-  output.triggerSound = function triggerSound(src) {
-    const audio = new Audio(src);
-    audio.oncanplay = function () {
-      audio.volume = 0.3;
-      audio.play();
-    };
-    audio.onerror = function () {
-      console.error(`Audio source not found (${src})`);
-    };
-  };
-
   output.updateCountdown = function updateCountdown(maxTime, time) {
     counter.textContent = time;
     if (time <= maxTime / 2) {
