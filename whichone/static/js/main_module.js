@@ -9,7 +9,7 @@ const initialisePage = function initialisePage(audioState, toggles) {
   view.updateModeToggles(toggles);
 };
 
-async function start(user_data=null) {
+async function start(user_data = null) {
   if (user_data === null) {
     user_data = await controller.fetchData();
   }
