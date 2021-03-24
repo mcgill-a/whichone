@@ -29,7 +29,6 @@ function Data(spotify_id, initialisePage, data) {
 
   data.init = function init(user, id = spotify_id) {
     data.user = user;
-    console.log(data.user);
     updateLocalUser(id);
     // now that data has been loaded, setup the page settings
     initialisePage(data.user.audioEnabled, data.user.modes);
