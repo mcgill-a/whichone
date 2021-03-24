@@ -346,29 +346,29 @@ input:checked+.slider:before {
     transition: visibility 0s linear 300ms, opacity 300ms;
 }
 
-.disabled {
+.no-display {
     display: none !important;
     width: 0 !important;
     height: 0 !important;
 }
 
-.margin-top-15 {
+.margin-top-s {
     margin-top: 15px !important;
 }
 
-.margin-top-30 {
+.margin-top-m {
     margin-top: 30px !important;
 }
 
-.margin-top-60 {
+.margin-top-l {
     margin-top: 60px !important;
 }
 
-.margin-bottom-30 {
+.margin-bottom-m {
     margin-bottom: 30px !important;
 }
 
-.margin-left-10 {
+.margin-left-xs {
     margin-left: 10px !important;
 }
 
@@ -388,6 +388,10 @@ input:checked+.slider:before {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.transparent {
+    opacity: 0;
 }
 
 /* ---------------------------------- */
@@ -441,10 +445,10 @@ input:checked+.slider:before {
 /* Countdown timer */
 
 .down {
-    z-index: 9;
     display: flex;
     flex-direction: column;
     margin: auto 10px;
+    opacity: 1;
 }
 
 .time-display,
@@ -462,7 +466,6 @@ input:checked+.slider:before {
     flex-direction: row;
     align-items: center;
     width: 100% !important;
-    z-index: 9;
     opacity: 0;
     font-size: 4vw !important;
     text-align: center;
@@ -481,7 +484,6 @@ input:checked+.slider:before {
     color: white;
     display: inline-block;
     line-height: 40px;
-    z-index: 5 !important;
 }
 
 svg {
@@ -506,6 +508,13 @@ svg circle {
     z-index: -1;
 }
 
+.stroke-red {
+    stroke: rgb(239,83,80);
+}
+
+.stroke-yellow {
+    stroke: rgb(255,199,137);
+}
 
 .animated {
     animation: countdown 12s linear infinite forwards;
@@ -539,7 +548,7 @@ svg circle {
 
 /* Text */
 
-#stat-status {
+#stats-status {
     font-weight: normal !important;
 }
 
@@ -601,6 +610,34 @@ svg circle {
     color: rgb(246, 197, 132);
 }
 
+.text-popularity {
+    color: rgb(255,199,137);
+}
+
+.text-default {
+    color: whitesmoke;
+}
+
+.text-danceable {
+    color: rgb(236,137,255);
+}
+
+.text-valence {
+    color: rgb(160,255,137);
+}
+
+.text-duration {
+    color: rgb(144,145,255);
+}
+
+.text-wrong {
+    color: red;
+}
+
+.text-correct {
+    color: lightgreen;
+}
+
 .text-thin {
     font-weight: 400 !important;
 }
@@ -650,7 +687,6 @@ svg circle {
 }
 
 .choice {
-    z-index: 11;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -661,9 +697,8 @@ svg circle {
     border-radius: 10px;
     -moz-border-radius: 10px;
     transition: all .12s ease-in-out;
-    cursor: pointer;
     outline: 0 !important;
-    opacity: 0;
+    opacity: 1;
     width: 280px;
     height: 395px;
 }
@@ -774,6 +809,7 @@ svg circle {
 .stats-display {
     height: 400px;
     max-height: 100%;
+    opacity: 1;
 }
 
 .dark-box {

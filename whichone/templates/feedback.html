@@ -1,15 +1,19 @@
 {% extends "base.html" %}
 {% block head %}
 {{ super() }}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/form.js')}}"></script>
+<script>
+    window.onload = function() {
+        const feedback = document.getElementById("feedback-form");
+        feedback.reset();
+    };
+</script>
 {% endblock %}
 
 {% block content %}
 <div class="section feedback">
     <div class="center-display">
         <div class="container-feedback gotham-extra-small">
-            <form action="https://formspree.io/f/mdopvvey" method="POST">
+            <form id="feedback-form" action="https://formspree.io/f/mdopvvey" method="POST">
                 <div class="row">
 
                     <label class="feedback-label" for="exampleEmailInput">Your Email</label>
@@ -32,7 +36,7 @@
             </form>
             <div class="row border-top">
                 <a href='play'>
-                    <button class="gotham-extra-small btn-stat margin-top-15">Back to game</button>
+                    <button class="gotham-extra-small btn-stat margin-top-s">Back to game</button>
                 </a>
             </div>
         </div>
